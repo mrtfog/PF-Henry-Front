@@ -39,10 +39,16 @@ export function getMovieDetail(id){
         }
 
     }
-
 }
 
-// ------------------------------- FILTERS ------------------------------- 
+
+export function getMoviesByName(payload){
+    return {
+        type: 'GET_MOVIE_BY_NAME',
+        payload
+    }
+}
+
 
 export const orderAsc = (type) => (dispatch, getState) => {
     const filtered = getState().filteredMovies
