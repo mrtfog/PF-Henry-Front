@@ -1,46 +1,34 @@
 const initialState = {
-    movies:[],
 
-  movieOnDisplay:  {
+  movies:[],
 
-    _id:550,
-    title:"Fight Club",
-    summary: "A ticking-time-bomb insomniac and a slippery soap salesman channel primal male aggression into a shocking new form of therapy. Their concept catches on, with underground 'fight clubs' forming in every town, until an eccentric gets in the way and ignites an out-of-control spiral toward oblivion.",
-    rating: 8.4,
-    vote_count: 24840,
-    duration: 139,
-    release_date: "1999-10-15",
-    image: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
-    onCinema: false,
-    deleted: false,
-    genres: [18]
+  movieOnDisplay:  {}
 
-  }
 }
 
-
- export default function rootReducer(state= initialState, action) {
+export default function rootReducer(state= initialState, action) {
     
-    switch(action.type){
-        case 'GET_MOVIES': {
-            return{
-              ...state,
-              movies: action.payload
+  switch(action.type){
 
-            }
-        }
+    case 'GET_MOVIES': 
 
-        case 'GET_MOVIE_DETAIL':
-          return {
-            ...state
-          }
+      return{
+        ...state,
+        movies: action.payload    
+      }
 
-        default: 
-        return {
-            ...state
-        }
+    case 'GET_MOVIE_DETAIL':
 
+      return {
+        ...state,
+        movieOnDisplay: action.payload
+      }
 
-    }
+    default: 
+      return {
+        ...state
+      }
+
+  }
 
 }
