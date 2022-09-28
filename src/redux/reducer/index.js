@@ -24,7 +24,7 @@ export default function rootReducer(state= initialState, action) {
             }
      
         case 'GET_MOVIE_BY_NAME':
-          let searchResult = action.payload.length > 1 ? state.movies.filter(movie => {
+          let searchResult = action.payload.length ? state.allMovies.filter(movie => {
           return movie.title.toUpperCase().includes(action.payload.toUpperCase())===true})
           : state.allMovies
           return{

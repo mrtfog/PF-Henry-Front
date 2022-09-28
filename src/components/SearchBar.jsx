@@ -1,5 +1,5 @@
-import React from 'react'
-import {useDispatch} from 'react-redux';
+import React, { useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux';
 import {useState} from 'react'
 import {getMoviesByName} from '../redux/actions/index'
 
@@ -10,10 +10,17 @@ function SearchBar() {
 
     const [name, setName] = useState('')
 
+    
+     useEffect(()=>{
+      dispatch(getMoviesByName(name))
+    }, [name, dispatch]) 
+
+
+
+
     function handleSearchBar(e){
-        e.preventDefault();
-        setName(e.target.value)
-        dispatch(getMoviesByName(name))
+      console.log(e.target)
+      setName(e.target.value)
     }
 
     function handleSubmit(e){
@@ -21,14 +28,14 @@ function SearchBar() {
         dispatch(getMoviesByName(name))
         setName("")
     }
-
   return (
 
     <div className={style.searchContainer}>
         <form onSubmit={e => handleSubmit(e)}>
         <input 
           className={style.inputSearch}
-          type="text" 
+          type="text"
+          value={name}
           placeholder='Nombre de una película' 
           onChange={e => handleSearchBar(e)}/>
           <button type='submit'>Buscar</button>
