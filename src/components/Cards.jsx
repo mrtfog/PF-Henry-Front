@@ -6,13 +6,18 @@ import style from '../scss/components/_cards.module.scss'
 
 
 export default function Cards() {
+
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getMovies())
-    }, [])
+
+      dispatch(getMovies())
+
+    }, [dispatch])
 
     const movies = useSelector(state => state.movies)
+
+    console.log(movies)
 
 
   return (
