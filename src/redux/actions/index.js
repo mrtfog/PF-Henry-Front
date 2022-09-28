@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export function getMovies(){
 
     return async(dispatch)=>{
@@ -48,4 +47,27 @@ export function getMoviesByName(payload){
         type: 'GET_MOVIE_BY_NAME',
         payload
     }
+}
+
+
+export const orderAsc = (type) => (dispatch, getState) => {
+    const filtered = getState().filteredMovies
+    let moviesOrder = []
+
+    if( type === 'asc_name'){
+        moviesOrder = filtered.sort((a, b) => {
+            if(a.title > b.title) return 1
+            if(a.title < b.title) return -1
+            return 0
+        })
+    } else if(type === 'asc_rating'){
+        moviesOrder = filtered.sort((a, b) => a.rating - b.rating)
+    }
+    dispatch({
+        type: 'ORDER_ASC_RATING',
+        payload: {
+            moviesOrder,
+            name: type,
+        }
+    })
 }
