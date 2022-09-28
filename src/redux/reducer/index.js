@@ -1,7 +1,7 @@
 const initialState = {
   movies:[],
   allMovies: [],
-  movieOnDisplay:  {}
+  movieOnDisplay:  {},    
   filteredMovies: [],
   orderBy: "Select",
   filterBy: "All",
@@ -15,7 +15,7 @@ export default function rootReducer(state= initialState, action) {
         case 'GET_MOVIES': 
             return{
               ...state,
-              movies: action.payload
+              movies: action.payload, 
               allMovies: action.payload  
             }
 
