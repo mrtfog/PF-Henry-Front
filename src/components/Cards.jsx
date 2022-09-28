@@ -12,7 +12,7 @@ export default function Cards() {
     useEffect(() => {
 
       dispatch(getMovies())
-
+      
     }, [dispatch])
 
     const movies = useSelector(state => state.movies)
