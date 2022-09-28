@@ -1,0 +1,107 @@
+@import '../abstracts/variables';
+
+.container_movieDetail{
+
+    color: #f5f5f5;
+
+    header{
+        display: flex;
+        flex-direction: row;
+
+        .gradient{
+            position: absolute;
+            width: 100vw;
+            height: 80vh;
+            background: linear-gradient(85deg, $background-color 40vw, transparent);
+            z-index: -10;
+        }
+
+        div{
+            width: 35vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            h2{
+                font-size: 3em;
+            }
+            
+            p{
+                font-size: 1.2em;
+            }
+
+            .buttons{
+
+                display: flex;
+                flex-direction: row;
+
+                button{
+
+                    padding: 0.8rem;
+                    margin: 10px;
+                    display: inline;
+                    border-radius: 8px;
+                    border: none;
+                    background-color: $primary-color;
+                    color: #f5f5f5;
+                    transition: 0.2s linear;
+
+                    &:hover{
+
+                        transform: scale(1.05)
+                    }
+                }
+
+            }
+        }
+
+        img{
+            width: 65vw;
+            z-index: -11;
+        }
+    }
+
+    .details{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .section{
+            width: 80vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(11, 12, 13);
+            padding: 40px;
+            border-radius: 30px;
+            margin-top: 8vh;
+
+            &:last-child{
+                margin-bottom: 8vh;
+            }
+
+            h3{
+                font-size: 1.5em;
+            }
+
+            hr{
+                background-color: $secondary-color;
+                height: 1px;
+                border: none;
+                width: 90%;
+            }
+        }
+
+        .trailer{
+
+            width: fit-content;
+
+        }
+
+    }
+
+}
