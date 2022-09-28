@@ -41,3 +41,11 @@ export function getMovieDetail(id){
 
     }
 }
+
+
+export function getMoviesByName(payload){
+    return {
+        type: 'GET_MOVIE_BY_NAME',
+        payload
+    }
+}

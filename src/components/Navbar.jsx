@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
+import SearchBar from '../components/SearchBar'
 
 import style from '../scss/components/_navbar.module.scss';
 
@@ -11,6 +12,8 @@ export default function Navbar() {
         </Link>
 
         <div className={style.navBtnContainer}>
+
+          <SearchBar/>
           <ul>
             <li><NavLink to="#">Cargar función</NavLink></li>
             <li><NavLink to="#">Registrarse</NavLink></li>

@@ -1,0 +1,43 @@
+@import '../abstracts/variables';
+
+
+.searchContainer{
+    display:flex;
+    align-items: center;
+    form{
+        position: relative;
+        input {
+            min-width: 230px;
+            border-radius: 26px;
+            border: 1px solid #ada9a9;
+            padding-left: 0.5em;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+            outline: 0;
+            background-position: 12px;
+            background-size: 15px;
+            font-size: 0.9em;
+        }
+
+        button{
+            padding-left: 1em;
+            padding-right: 1em;
+            position: absolute;
+            border-radius: 26px;
+            border: none;
+            color: white;
+            font-weight: 600;
+            background-color: $secondary-color;
+            height: 100%;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+        }
+
+        button:hover{
+            transform: scale(1.1);
+            transition: scale 0.2s;
+        }
+    }
+}
+  
