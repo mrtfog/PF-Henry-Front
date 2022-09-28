@@ -3,8 +3,6 @@ const initialState = {
   allMovies: [],
   movieOnDisplay:  {},    
   filteredMovies: [],
-  orderBy: "Select",
-  filterBy: "All",
 }
 
 export default function rootReducer(state= initialState, action) {
@@ -34,13 +32,24 @@ export default function rootReducer(state= initialState, action) {
           movies: searchResult
           }
       
-        case 'ORDER_ASC_NAME':
-        case "ORDER_ASC_RATING":
+
+          case 'FILTER_BY_NAME':
+            let sortedByName = action.payload === 'ASC' ?
+                state.movies.sort(function (a,b){
+                    if (a.title > b.title) return -1;
+                    if (a.title < b.title) return 1;
+                    else return 0
+                }) :
+                state.movies.sort(function (a,b){
+                    if (a.title > b.title) return 1;
+                    if (a.title < b.title) return -1;
+                    else return 0
+                })
             return{
-              ...state,
-              filteredMovies: action.payload.moviesOrder,
-              orderBy: action.payload.name,
+                ...state,
+                movies: sortedByName
             }
+
         default: 
         return {
             ...state
