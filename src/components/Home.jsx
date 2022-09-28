@@ -22,6 +22,7 @@ export default function Home() {
     const paginado = function (pageNumber){
         setCurrentPage(pageNumber)
     }
+
     useEffect(() => {
       setCurrentPage(1)
     }, [movies])
@@ -29,7 +30,7 @@ export default function Home() {
   
   return (
     <div className={style.container_home}>
-        <Filters setOrder={setOrder} order={order}/>
+        <Filters setOrder={setOrder} order={order} page={paginado}/>
         <Cards order={order} page={currentMovies}/>
         <Paginado 
          moviesPerPage={moviesPerPage}
