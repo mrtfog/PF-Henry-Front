@@ -17,8 +17,6 @@ export default function Cards() {
 
     const movies = useSelector(state => state.movies)
 
-    console.log(movies)
-
 
   return (
     <div className={style.container_cards}>
