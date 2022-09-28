@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export function getMovies(){
 
     return async(dispatch)=>{
@@ -65,4 +64,4 @@ export const orderAsc = (type) => (dispatch, getState) => {
             name: type,
         }
     })
-
+}
