@@ -3,13 +3,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import style from '../scss/components/_filters.module.scss'
 import { sortByName } from '../redux/actions'
 
-export default function Filters({setOrder, order}) {
+export default function Filters({setOrder, order, page}) {
 
   const dispatch = useDispatch()
+
+
+
   // ORDENAMIENTO ALFABÉTICO//
   const handleOrder = (e) => {
     setOrder(e.target.value)
-    console.log(order)
+    page(1)
     dispatch(sortByName(order))
   }
 
