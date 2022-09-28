@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovies } from '../redux/actions'
 import Card from './Card'
+import Paginado from './Paginado'
 import style from '../scss/components/_cards.module.scss'
 
 export default function Cards({page}) {
@@ -13,6 +14,7 @@ export default function Cards({page}) {
       dispatch(getMovies())
       
     }, [dispatch])
+
 
 
   return (

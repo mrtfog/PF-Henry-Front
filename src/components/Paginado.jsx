@@ -1,13 +1,14 @@
 import React from "react";
 import style from '../scss/components/_paginado.module.scss'
 
+
 export default function Paginado ({moviesPerPage, movies, setCurrentPage, currentPage}){
     const pages = [];
     const numOfPages = Math.ceil(movies / moviesPerPage)
 
     for (let i = 1; i <= numOfPages; i++) {
-        pages.push(i)
-    }
+     pages.push(i)
+     }
 
     return(
         <div >
