@@ -54,13 +54,15 @@
         /*Text*/
         .title {
         margin: 1rem;
-        font-size: 1.5em;
+        margin-bottom: 0.3rem;
+        font-size: 1.2em;
         font-weight: 500;
         }
         
         .subtitle {
         letter-spacing: 1px;
         font-size: 0.9em;
+        margin-top: 0;
         }
         
         ul {
@@ -80,7 +82,7 @@
         }
         
         &:hover .card_img {
-        transform: translateY(-33%);
+        transform: translateY(-35%);
         }
         
         &:hover .social_media li {
