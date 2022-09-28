@@ -18,8 +18,7 @@ export default function MovieDetail() {
 
     const movie = useSelector(state => state.movieOnDisplay)
     console.log(movie)
-    console.log(movie.videos ? movie.videos.results[0].id : undefined)
-
+    
     const urlPoster = 'https://image.tmdb.org/t/p/original' + movie.poster_path
     const urlBanner = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path
 
@@ -57,7 +56,7 @@ export default function MovieDetail() {
                 </div>
 
                 <div className={style.section}>
-                    <YouTube className={style.trailer} videoId={movie.videos ? movie.videos.results[0].key : undefined}/>
+                    <YouTube className={style.trailer} videoId={movie.videos ? (movie.videos.results.length > 0 ? movie.videos.results[0].key : '44A-KNz2U-w') : undefined}/>
                 </div>
 
                 <div className={style.section}>

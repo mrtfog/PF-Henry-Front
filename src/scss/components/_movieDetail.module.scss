@@ -16,6 +16,11 @@
             z-index: -10;
         }
 
+        img{
+            width: 65vw;
+            z-index: -11;
+        }
+
         div{
             width: 35vw;
             display: flex;
@@ -56,10 +61,7 @@
             }
         }
 
-        img{
-            width: 65vw;
-            z-index: -11;
-        }
+ 
     }
 
     .details{
