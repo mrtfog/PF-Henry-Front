@@ -35,6 +35,7 @@ export default function Home() {
          moviesPerPage={moviesPerPage}
           movies={movies.length}
           setCurrentPage={paginado}
+          currentPage={currentPage}
           />
     </div>
   )
