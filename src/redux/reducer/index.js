@@ -1,5 +1,6 @@
 const initialState = {
-  movies: [],
+  movies:[],
+  carousel: [],
   allMovies: [],
   movieOnDisplay: {},
   functions: [],
@@ -25,6 +26,18 @@ export default function rootReducer(state = initialState, action) {
         movieOnDisplay: action.payload,
       };
 
+
+        case 'GET_MOVIES': 
+        let filteredMovies = action.payload.filter( m => {
+            if(m.language !== "ko"){return m}
+        })
+            return{
+              ...state,
+              movies: filteredMovies, 
+              allMovies: filteredMovies,
+              carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`)
+            }
+
     case "GET_MOVIE_BY_NAME":
       let searchResult = action.payload.length
         ? state.allMovies.filter((movie) => {
@@ -39,6 +52,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         movies: searchResult,
       };
+
 
       //------------------------ FILTERS ------------------------
       case 'FILTER_BY_NAME':
