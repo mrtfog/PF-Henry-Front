@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../scss/components/_home.module.scss'
 import Cards from './Cards'
+import Carousel from './Carousel'
 import Filters from './Filters'
 import Paginado from './Paginado'
 import { getGenre } from '../redux/actions'
@@ -42,6 +43,7 @@ export default function Home() {
   
   return (
     <div className={style.container_home}>
+        <Carousel></Carousel>
         <Filters 
           setOrder={setOrder} 
           order={order} 
@@ -51,7 +53,7 @@ export default function Home() {
           orderByGenre={orderByGenre}
           setOrderByGenre={setOrderByGenre}
         />
-        
+
         <Cards order={order} orderByGenre={orderByGenre} page={currentMovies}/>
 
         <Paginado 

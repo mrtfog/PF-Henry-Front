@@ -1,9 +1,12 @@
 const initialState = {
-  movies: [],
+  movies:[],
+  carousel: [],
   allMovies: [],
   movieOnDisplay: {},
   functions: [],
   genres: [],
+  movieReviews: [],
+  upcoming:[]
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -11,25 +14,24 @@ export default function rootReducer(state = initialState, action) {
   switch (action.type) {
 
 //------------------------ LLAMADOS A LA API ------------------------
-    case "GET_MOVIES":
-      let filteredMovies = action.payload.filter((m) => {
-        if (m.language !== "ko") {
-          return m;
-        }
-      });
-      return {
-        ...state,
-        movies: filteredMovies,
-        allMovies: filteredMovies,
-      };
 
 
-    case "GET_MOVIE_DETAIL":
-      return {
-        ...state,
-        movieOnDisplay: action.payload,
-      };
+        case 'GET_MOVIES': 
+        let filteredMovies = action.payload.filter( m => {
+            if(m.language !== "ko"){return m}
+        })
+            return{
+              ...state,
+              movies: filteredMovies, 
+              allMovies: filteredMovies,
+              carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`)
+            }
 
+        case "GET_MOVIE_DETAIL":
+        return {
+          ...state,
+          movieOnDisplay: action.payload,
+        };
 
     case "GET_MOVIE_BY_NAME":
       let searchResult = action.payload.length
@@ -45,6 +47,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         movies: searchResult,
       };
+
 
     case 'GET_GENRES': 
       return{
@@ -71,7 +74,7 @@ export default function rootReducer(state = initialState, action) {
             let sortedByRating = [ ...state.movies] 
             sortedByRating = sortedByRating.sort( ( a, b ) => {
                 if(a.rating > b.rating) return action.payload === 'ASC' ? -1 : 1 
-                if(a.rating < b.rating) return action.payload === 'SASC' ? 1 : -1 
+                if(a.rating < b.rating) return action.payload === 'ASC' ? 1 : -1 
                 return 0
             }) 
             return{
@@ -101,12 +104,29 @@ export default function rootReducer(state = initialState, action) {
 
 
  //------------------------ FUNCTIONS REDUCERS ------------------------
-    case "GET_FUNCTIONS":
-      return {
-        ...state,
-        functions: action.payload,
-      };
 
+ case "GET_FUNCTIONS":
+  return {
+    ...state,
+    functions: action.payload,
+  };
+
+case 'POST_FUNCTION':
+    
+    return{
+        ...state
+    }
+
+case 'GET_MOVIE_REVIEWS':
+    return{
+        ...state,
+        movieReviews: action.payload
+    }
+
+case 'POST_REVIEW':
+    return{
+        ...state
+    }
     default:
       return {
         ...state,
