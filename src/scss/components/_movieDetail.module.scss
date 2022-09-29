@@ -3,30 +3,39 @@
 .container_movieDetail{
 
     color: #f5f5f5;
+    max-width: 100vw;
 
     header{
         display: flex;
         flex-direction: row;
+        max-width: 100vw;
+        overflow: hidden;
 
         .gradient{
             position: absolute;
-            width: 100vw;
-            height: 80vh;
-            background: linear-gradient(85deg, $background-color 40vw, transparent);
+            width: 120vw;
+            height: 82vh;
+            background: linear-gradient(30deg, $background-color 30vw, transparent);
             z-index: -10;
         }
 
-        img{
-            width: 65vw;
+        .image{
+            width: 100vw;
+            height: 80vh;
+            background-size: cover;
+            background-position: center;
             z-index: -11;
         }
 
-        div{
-            width: 35vw;
+        .info{
+            width: 45vw;
+            height: 80vh;
+            position: absolute;
+            left: 50px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            justify-content: flex-end;
+            bottom: 18vh;
 
             h2{
                 font-size: 3em;
@@ -34,6 +43,7 @@
             
             p{
                 font-size: 1.2em;
+                text-align: justify;
             }
 
             .buttons{
@@ -53,7 +63,6 @@
                     transition: 0.2s linear;
 
                     &:hover{
-
                         transform: scale(1.05)
                     }
                 }
@@ -70,6 +79,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        max-width: 100vw;
 
         .section{
             width: 80vw;
