@@ -1,0 +1,48 @@
+ @import '../abstracts/variables';
+ 
+ .carouselContainer{
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    height: 50vh;
+    overflow: hidden;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    background-size: cover;
+    background-position: center;
+    width: 60vw;
+
+    .carouselImg{
+        width:60vw;
+        height: auto;
+        min-height: 100%;
+
+    }
+
+    .carouselBtnPrev{
+        position:absolute;
+        left: 1%;
+        font-size: 5em;
+        background: none;
+        border: none;
+        color: rgba(245, 245, 245, 0.185);
+        font-family: $font;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.178);
+        cursor: pointer;
+    }
+    .carouselBtnNext{
+        position:absolute;
+        right: 1%;
+        font-size: 5em;
+        background: none;
+        border: none;
+        color: rgba(245, 245, 245, 0.185);
+        font-family: $font;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.178);
+        cursor: pointer;
+    }
+ }
+ 
+ 

@@ -1,5 +1,6 @@
 const initialState = {
   movies:[],
+  carousel: [],
   allMovies: [],
   movieOnDisplay:  {},
 }
@@ -16,7 +17,8 @@ export default function rootReducer(state= initialState, action) {
             return{
               ...state,
               movies: filteredMovies, 
-              allMovies: filteredMovies  
+              allMovies: filteredMovies,
+              carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`)
             }
 
         case 'GET_MOVIE_DETAIL':
