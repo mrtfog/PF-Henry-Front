@@ -16,7 +16,7 @@ export default function Card({img, rating, title, genres, id}) {
             </Link>
             <ul className={style.social_media}>
               <li><svg className={style.icon} version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	            viewBox="0 0 130 115" enableBackground="new 0 0 128 128" xmlSpace="preserve">
+	            viewBox="0 0 130 109" enableBackground="new 0 0 128 128" xmlSpace="preserve">
               <path d="M82.859,17.211l-11.996-3.084c-0.81-0.207-1.672-0.069-2.376,0.387c-0.703,0.455-1.185,1.183-1.327,2.008
                 c-0.029,0.17-0.043,0.276-0.055,0.361c-0.909,3.537-4.091,6.008-7.738,6.008c-0.668,0-1.341-0.085-1.997-0.254
                 c-2.068-0.531-3.807-1.837-4.893-3.676c-1.087-1.839-1.392-3.991-0.864-6.054c0.033-0.085,0.072-0.186,0.129-0.35
@@ -99,15 +99,15 @@ export default function Card({img, rating, title, genres, id}) {
                 c0.806-0.756,2.071-0.715,2.826,0.092c0.756,0.806,0.715,2.071-0.092,2.826l-8.223,7.705C75.148,78.621,74.657,78.8,74.167,78.8z"
                 />
               </svg></li>
-
+{/* 
           <li><svg className={style.icon} viewBox="0 0 25 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <path d="M18,16.08 C17.24,16.08 16.56,16.38 16.04,16.85 L8.91,12.7 C8.96,12.47 9,12.24 9,12 C9,11.76 8.96,11.53 8.91,11.3 L15.96,7.19 C16.5,7.69 17.21,8 18,8 C19.66,8 21,6.66 21,5 C21,3.34 19.66,2 18,2 C16.34,2 15,3.34 15,5 C15,5.24 15.04,5.47 15.09,5.7 L8.04,9.81 C7.5,9.31 6.79,9 6,9 C4.34,9 3,10.34 3,12 C3,13.66 4.34,15 6,15 C6.79,15 7.5,14.69 8.04,14.19 L15.16,18.35 C15.11,18.56 15.08,18.78 15.08,19 C15.08,20.61 16.39,21.92 18,21.92 C19.61,21.92 20.92,20.61 20.92,19 C20.92,17.39 19.61,16.08 18,16.08 Z" fill="#1D1D1D"></path>
-        </svg></li>
+        </svg></li> */}
 
 
         
         <li><svg className={style.icon} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	      viewBox="0 0 512 512" enableBackground="new 0 0 512 512" xmlSpace="preserve">
+	      viewBox="0 0 505 440" enableBackground="new 0 0 512 512" xmlSpace="preserve">
         <path d="M488.5,256c0,9.1-6.83,16.5-15.23,16.5H272.5v200.77c0,8.4-7.4,15.23-16.5,15.23c-9.1,0-16.5-6.83-16.5-15.23V272.5
           H38.73c-8.4,0-15.23-7.4-15.23-16.5c0-9.1,6.83-16.5,15.23-16.5H239.5V38.73c0-8.4,7.4-15.23,16.5-15.23
           c9.1,0,16.5,6.83,16.5,15.23V239.5h200.77C481.67,239.5,488.5,246.9,488.5,256z"/>
