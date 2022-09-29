@@ -27,7 +27,7 @@ export default function Card({img, rating, title, genres, id}) {
         </ul>
         <div className={style.card_info}>
         <p className={style.title}>{title}</p>
-        <p className={style.subtitle}>⭐{Math.trunc(rating)}</p>
+        <p className={style.subtitle}>⭐{(Math.round(rating * 100) / 100).toFixed(1)}</p>
         </div>
     </div>
   )
