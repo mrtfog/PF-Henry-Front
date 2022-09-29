@@ -1,8 +1,7 @@
 const initialState = {
   movies:[],
   allMovies: [],
-  movieOnDisplay:  {},    
-  filteredMovies: [],
+  movieOnDisplay:  {},
 }
 
 export default function rootReducer(state= initialState, action) {
@@ -11,10 +10,13 @@ export default function rootReducer(state= initialState, action) {
     switch(action.type){
 
         case 'GET_MOVIES': 
+        let filteredMovies = action.payload.filter( m => {
+            if(m.language !== "ko"){return m}
+        })
             return{
               ...state,
-              movies: action.payload, 
-              allMovies: action.payload  
+              movies: filteredMovies, 
+              allMovies: filteredMovies  
             }
 
         case 'GET_MOVIE_DETAIL':
