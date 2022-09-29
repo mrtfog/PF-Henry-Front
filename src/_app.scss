@@ -1,1 +1,6 @@
-@import './scss/base/base'
+@import './scss/base/base';
+@import './scss/abstracts/variables';
+
+html, body{
+    font-family: $font;
+}
