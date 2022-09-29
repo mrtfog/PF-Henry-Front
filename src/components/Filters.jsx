@@ -16,16 +16,24 @@ export default function Filters({setOrder, order, page}) {
     dispatch(sortByName(order))
   }
 
+  
+
 
   
 
   return (
     <div className={style.container_filters}>
         <select onChange={e => handleOrder(e)}>
-            
-                  <option value="ASC">From A to Z</option> 
-                  <option value="DESC">From Z to A</option> 
-              </select>
+            <option value="ASC">From A to Z</option> 
+            <option value="DESC">From Z to A</option> 
+        </select>
+
+
+        <select onChange={e => handleOrder(e)}>
+            <option value="ASC">From A to Z</option> 
+            <option value="DESC">From Z to A</option> 
+
+        </select>
     </div>
   )
 }

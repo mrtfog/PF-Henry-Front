@@ -13,7 +13,7 @@ export default function Cards({page}) {
       dispatch(getMovies())
       
     }, [dispatch])
-
+    
 
 
   return (
