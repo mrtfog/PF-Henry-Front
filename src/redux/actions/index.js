@@ -24,12 +24,24 @@ export function getMovieDetail(id) {
   };
 }
 
+
 export function getMoviesByName(payload) {
   return {
     type: "GET_MOVIE_BY_NAME",
     payload,
   };
 }
+
+//------------------------ FILTERS ------------------------
+
+export function sortByRating(payload){
+  return {
+      type: 'FILTER_BY_RATING',
+      payload
+  }
+}
+
+
 
 export function sortByName(payload) {
   return {
@@ -38,7 +50,7 @@ export function sortByName(payload) {
   };
 }
 
-//FUNCTION ACTIONS
+//------------------------ FUNCTION ACTIONS ------------------------
 
 export function getAllFunctions() {
   return async (dispatch) => {
