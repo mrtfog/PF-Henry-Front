@@ -40,23 +40,33 @@ export default function rootReducer(state = initialState, action) {
         movies: searchResult,
       };
 
-    case "FILTER_BY_NAME":
-      let sortedByName =
-        action.payload === "ASC"
-          ? state.movies.sort(function (a, b) {
-              if (a.title > b.title) return -1;
-              if (a.title < b.title) return 1;
-              else return 0;
-            })
-          : state.movies.sort(function (a, b) {
-              if (a.title > b.title) return 1;
-              if (a.title < b.title) return -1;
-              else return 0;
-            });
-      return {
-        ...state,
-        movies: sortedByName,
-      };
+      //------------------------ FILTERS ------------------------
+      case 'FILTER_BY_NAME':
+        let sortedByName = [ ...state.movies ]
+
+        sortedByName = sortedByName.sort( ( a, b ) => {
+                if(a.title > b.title) return action.payload === 'ASC' ? -1 : 1 
+                if(a.title < b.title) return action.payload === 'ASC' ? 1 : -1 
+                return 0
+            }) 
+        return{
+            ...state,
+            movies: sortedByName
+        }
+
+        case 'FILTER_BY_RATING':
+            let sortedByRating = [ ...state.movies] 
+            sortedByRating = sortedByRating.sort( ( a, b ) => {
+                if(a.rating > b.rating) return action.payload === 'ASC' ? -1 : 1 
+                if(a.rating < b.rating) return action.payload === 'SASC' ? 1 : -1 
+                return 0
+            }) 
+            return{
+                ...state,
+                movies: sortedByRating,
+            }
+
+
     case "GET_FUNCTIONS":
       return {
         ...state,

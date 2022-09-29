@@ -10,6 +10,8 @@ export default function Home() {
     // Estado local de ordenamiento + función seteadora //
     const [order, setOrder] = useState('');
 
+    // Estado local de ordenamiento de rating //
+    const [orderByRating, setOrderByRating] = useState('')
 
     const movies = useSelector(state => state.movies)
     const [currentPage, setCurrentPage]= useState(1);
@@ -30,14 +32,22 @@ export default function Home() {
   
   return (
     <div className={style.container_home}>
-        <Filters setOrder={setOrder} order={order} page={paginado}/>
+        <Filters 
+          setOrder={setOrder} 
+          order={order} 
+          page={paginado}
+          orderByRating={orderByRating}
+          setOrderByRating={setOrderByRating}
+        />
+        
         <Cards order={order} page={currentMovies}/>
+        
         <Paginado 
-         moviesPerPage={moviesPerPage}
+          moviesPerPage={moviesPerPage}
           movies={movies.length}
           setCurrentPage={paginado}
           currentPage={currentPage}
-          />
+        />
     </div>
   )
 }
