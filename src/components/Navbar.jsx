@@ -37,19 +37,19 @@ export default function Navbar() {
         <SearchBar />
         <ul>
           <li>
-            <NavLink to="/function">Cargar función</NavLink>
+            <NavLink to="/function">Create function</NavLink>
           </li>
           <li>
-            <NavLink to="#">Registrarse</NavLink>
+            <NavLink to="#">Register</NavLink>
           </li>
           <li>
-            <NavLink to="#">Suscribirse</NavLink>
+            <NavLink to="#">Suscribe</NavLink>
           </li>
           <li>
-            <NavLink to="#">Mi lista</NavLink>
+            <NavLink to="#">My list</NavLink>
           </li>
           <li>
-            <NavLink to="#">Perfil</NavLink>
+            <NavLink to="#">Profile</NavLink>
           </li>
         </ul>
       </div>
