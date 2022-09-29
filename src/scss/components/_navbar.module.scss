@@ -19,13 +19,14 @@
             padding: 0.3rem 1rem;
 
             li{
-                display:flex;
-                align-items: center;
-                justify-content: center;
+                padding: 0.8rem;
+                margin: 10px;
+                display: inline;
+                border-radius: 8px;
+                border: none;
                 background-color: $primary-color;
-                border-radius: 10px;
-                padding: 0.5em 1em;
-                font-weight: 700;
+                color: #f5f5f5;
+                transition: 0.2s linear;
 
                 a{
                     text-decoration: none;
@@ -34,9 +35,8 @@
             }
 
             li:hover{
-                background-color: #297a9bda;
                 cursor: pointer;
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
         }
         
