@@ -3,10 +3,14 @@ const initialState = {
   allMovies: [],
   movieOnDisplay: {},
   functions: [],
+  genres: [],
 };
 
 export default function rootReducer(state = initialState, action) {
+  
   switch (action.type) {
+
+//------------------------ LLAMADOS A LA API ------------------------
     case "GET_MOVIES":
       let filteredMovies = action.payload.filter((m) => {
         if (m.language !== "ko") {
@@ -19,11 +23,13 @@ export default function rootReducer(state = initialState, action) {
         allMovies: filteredMovies,
       };
 
+
     case "GET_MOVIE_DETAIL":
       return {
         ...state,
         movieOnDisplay: action.payload,
       };
+
 
     case "GET_MOVIE_BY_NAME":
       let searchResult = action.payload.length
@@ -39,6 +45,13 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         movies: searchResult,
       };
+
+    case 'GET_GENRES': 
+      return{
+        ...state,
+        genres: action.payload
+      }
+
 
       //------------------------ FILTERS ------------------------
       case 'FILTER_BY_NAME':
@@ -67,6 +80,27 @@ export default function rootReducer(state = initialState, action) {
             }
 
 
+        case 'FILTER_BY_GENRE': 
+
+        if(action.payload === 'order') {
+          return{
+            ...state,
+            movies: [...state.allMovies]
+          }
+        }else{
+          let filteredMovies = [...state.allMovies]
+          filteredMovies = filteredMovies.filter( m => {
+            return m.genres.includes(Number(action.payload)) 
+          })
+          console.log(filteredMovies)
+          return{
+            ...state,
+            movies: filteredMovies
+          }
+        } 
+
+
+ //------------------------ FUNCTIONS REDUCERS ------------------------
     case "GET_FUNCTIONS":
       return {
         ...state,

@@ -1,13 +1,14 @@
-import React,{ useState } from 'react'
+import React,{ useEffect }from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from '../scss/components/_filters.module.scss'
-import { sortByName, sortByRating } from '../redux/actions'
+import { sortByName, sortByRating, sortByGenre } from '../redux/actions'
 
-export default function Filters({setOrder, order, page, orderByRating, setOrderByRating}) {
+export default function Filters({setOrder, order, page, orderByRating, setOrderByRating, orderByGenre, setOrderByGenre}) {
 
   const dispatch = useDispatch()
 
 
+  let genresMovies = useSelector((state) => state.genres)
 
   // ORDENAMIENTO ALFABÉTICO//
   const handleOrder = (e) => {
@@ -16,11 +17,18 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
     dispatch(sortByName(order))
   }
 
+  // ORDENAMIENTO POR RANTING//
   const handleOrderByRating = (e) => {
     setOrderByRating(e.target.value)
-    console.log(e.target.value)
     page(1)
     dispatch(sortByRating(orderByRating))
+  }
+
+    // ORDENAMIENTO POR GENERO//
+  const handleOrderByGenre = (e) => {
+    setOrderByGenre(e.target.value)
+    page(1)
+    dispatch(sortByGenre(e.target.value))
   }
   
   return (
@@ -36,6 +44,16 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
             <option value="order">Order by rating</option>
             <option value="ASC">rating asc</option> 
             <option value="DESC">rating desc</option> 
+        </select>
+
+        <select onChange={e => handleOrderByGenre(e)}>
+            <option value="order">Order by genre</option>
+            { genresMovies?.map((g) => {
+              return <option
+              key={g.id}
+              value={g.id}
+              >{g.name}</option>
+            })}
         </select>
 
     </div>
