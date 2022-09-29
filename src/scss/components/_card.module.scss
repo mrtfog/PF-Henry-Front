@@ -2,7 +2,7 @@
 
 .card {
     width: 167px;
-    height: 250px;
+    height: 260px;
     background: #f5f5f5;
     position: relative;
     box-shadow: 0px 2px 5px rgba(35,35,35,0.3);
@@ -81,7 +81,7 @@
         }
         
         &:hover .card_img {
-        transform: translateY(-35%);
+        transform: translateY(-37%);
         }
         
         &:hover .social_media li {
