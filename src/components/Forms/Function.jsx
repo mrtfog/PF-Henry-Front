@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { getMovies } from "../../redux/actions";
+import { getAllFunctions } from "../../redux/actions";
 const initialState = {
   movieId: "",
   dateTime: "",
@@ -10,6 +11,7 @@ const initialState = {
 export default function Function() {
   const [form, setForm] = useState(initialState);
   const movies = useSelector((state) => state.movies);
+  const functions = useSelector((state) => state.functions);
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const handleDate = () => {};
@@ -21,6 +23,7 @@ export default function Function() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovies());
+    dispatch(getAllFunctions());
   }, [dispatch]);
   useEffect(() => {
     setForm({ ...form, movieId: selectedMovie?.value });
@@ -43,7 +46,7 @@ export default function Function() {
           onChange={setSelectedMovie}
           options={
             movies.length &&
-            movies.slice(0, 10).map((e) => {
+            movies.map((e) => {
               return { value: e._id, label: e.title };
             })
           }
