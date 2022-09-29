@@ -34,7 +34,6 @@ function SearchBar() {
           placeholder="Nombre de una película"
           onChange={handleSearchBar}
         />
-        <button type="submit">Buscar</button>
       </form>
     </div>
   );
