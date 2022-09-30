@@ -1,83 +1,152 @@
 @import '../../abstracts/variables';
+@import '../../abstracts/mixins';
 
-
-.formFunctionContainer{
+.container{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 70%;
+    flex-direction: row-reverse;
+    width: 100%;
     margin: auto;
-    margin-top:3rem;
-    margin-bottom: 3rem;
-    h1{
-        color: #f5f5f5;
-        margin-bottom: 3rem;
-    }
-    
-   form{
-    
-    .Date{
+
+    .functions_container{
+
         display: flex;
-        flex-direction:row;
-        justify-content: space-around;
-        margin-bottom: 3rem;
-        
-        
-        .minDivDate{
-           
-            border-radius: 0.5rem;
-            border-bottom: 10px solid black;
-                border-right: 10px solid black ;
-           padding:1rem;
+        flex-direction: column;
+        width: 50%;
+
+        h1{
+            text-align: center;
+            color: $text-color-white;
+        }
+
+        .functions{
+
             display: flex;
             flex-direction: column;
+            justify-items: center;
             align-items: center;
-            text-align: center;
-            justify-content: center;
-          
+            width: 80%;
+            margin: 3vh;
+            padding: 40px;
+            height: 60vh;
+            border-radius: 30px;
+            background-color: rgb(10, 10, 12);
+            overflow-y: scroll;
             
-            label{
+            .function{
+
+                width: 60%;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
                 color: #f5f5f5;
-                font-size: 1rem;
+                margin-top: 40px;
+                border: 2px solid $secondary-color;
+                border-radius: 15px;
+
+                .room_and_format{
+
+                    p{
+                        display: initial;
+
+                        &:first-child{
+                            margin-right: 30px;
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+
+    .formFunction{
+
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        h1{
+            color: #f5f5f5;
+            margin-bottom: 3rem;
+        }
+        
+        form{
+            width: 65%;
+
+            
+            .Date{
+                display: flex;
+                flex-direction:row;
+                justify-content: space-around;
+                margin-bottom: 3rem;
+                
+                
+                .minDivDate{
+                
+                    border-radius: 0.5rem;
+                    border-bottom: 10px solid black;
+                    border-right: 10px solid black ;
+                    padding:1rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    text-align: center;
+                    justify-content: center;
+                
+                    
+                    label{
+                        color: #f5f5f5;
+                        font-size: 1rem;
+                    }
+                }
+                .error{
+                    color: #ff3860;
+                    height: 13px;
+        
+                }
+        
+            }
+            .Select {
+
+                margin-bottom: 2rem;
+
+                select{
+                    @include select;
+                    width: 100%;
+                }
+            
+                label{
+                    color: #f5f5f5;
+                    font-size: 1rem;
+                    
+                
+                }
+                .error{
+                    color: #ff3860;
+                    height: 13px;
+                }
+                
+            }
+        
+            button{
+
+                @include btn-primary;
+                width: 100%;
+
+                &:disabled{
+                    background-color: $background-color;
+                    cursor: not-allowed;
+                }
+
+
+        
             }
         }
-        .error{
-            color: #ff3860;
-            height: 13px;
-
-        }
 
     }
-    .Select {
-       margin-bottom: 3rem;
-      
-        label{
-            color: #f5f5f5;
-            font-size: 1rem;
-            
-        
-           }
-           .error{
-            color: #ff3860;
-            height: 13px;
-        }
-           
-    }
-   
-    button{
-        display:flex;
-        align-items: center;
-        justify-content: center;
-        background-color: $secondary-color;
-        border-radius: 10px;
-        padding: 0.8em 1em;
-        border:transparent;
-        font-size: 1rem;
-        color:#f5f5f5;
-        cursor:pointer;
-
-    }
-   }
+    
     
 }
