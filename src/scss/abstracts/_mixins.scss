@@ -48,3 +48,26 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+@mixin select{
+
+    font-family: $font;
+    font-weight: 500;
+    padding: .5em;
+    margin: .5em;
+    text-align: center;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    border: 2px #f5f5f5 solid;
+    border-radius: 6px;
+    transition: .2s linear;
+
+    &:hover, &:focus, &:active{
+        background-color: $secondary-color;
+        border: 2px $secondary-color solid;
+        color: $text-color-white;
+        box-shadow: none;
+        outline: none;
+    }
+
+}
