@@ -30,17 +30,20 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
     page(1)
     dispatch(sortByGenre(e.target.value))
   }
+
   
   return (
+
     <div className={style.container_filters}>
-        <select onChange={e => handleOrder(e)}>
+        <select id='note' name='note' onChange={e => handleOrder(e)}>
             <option value="order">Order by name</option>
             <option value="ASC">From A to Z</option> 
             <option value="DESC">From Z to A</option> 
-        </select>
+        </select> 
 
+ 
 
-        <select onChange={e => handleOrderByRating(e)}>
+        <select  onChange={e => handleOrderByRating(e)}>
             <option value="order">Order by rating</option>
             <option value="ASC">rating asc</option> 
             <option value="DESC">rating desc</option> 
@@ -55,7 +58,6 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
               >{g.name}</option>
             })}
         </select>
-
     </div>
   )
 }

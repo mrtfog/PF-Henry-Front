@@ -31,7 +31,7 @@ function SearchBar() {
           className={style.inputSearch}
           type="text"
           value={name}
-          placeholder="Nombre de una película"
+          placeholder="What are you looking for?"
           onChange={handleSearchBar}
         />
       </form>

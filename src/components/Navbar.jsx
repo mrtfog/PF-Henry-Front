@@ -19,7 +19,7 @@ export default function Navbar() {
           preserveAspectRatio="xMidYMid meet"
         >
           <path
-            fill="#3B88C3"
+            fill="#ff315a"
             d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"
           ></path>
           <path
