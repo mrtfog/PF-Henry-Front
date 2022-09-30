@@ -113,10 +113,12 @@ export default function Card({img, rating, title, genres, id}) {
           c9.1,0,16.5,6.83,16.5,15.23V239.5h200.77C481.67,239.5,488.5,246.9,488.5,256z"/>
         </svg></li>
         </ul>
+        <Link to={`/movies/${id}`}>
         <div className={style.card_info}>
         <p className={style.title}>{title}</p>
         <p className={style.subtitle}>⭐{(Math.round(rating * 100) / 100).toFixed(1)}</p>
         </div>
+        </Link>
     </div>
   )
 }
