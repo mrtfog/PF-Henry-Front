@@ -11,13 +11,13 @@
             min-width: 230px;
             border-radius: 8px;
             border: 1px solid $primary-color;
-            padding: .5em;
+            padding: .8rem;
             outline: 0;
             background-position: 12px;
             background-size: 15px;
             font-size: 0.9em;
             &::placeholder{
-                color: $background-color;
+                color: #4d4d4d;
                 font-weight: 500;
             }
         }

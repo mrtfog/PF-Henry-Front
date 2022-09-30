@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMovies } from '../redux/actions'
 import Card from './Card'
+import Loader from './Loader'
 import style from '../scss/components/_cards.module.scss'
 
 export default function Cards({page}) {
@@ -23,7 +24,7 @@ export default function Cards({page}) {
       <Card key={data._id} id={data._id} img={data.image} rating={data.rating} title={data.title} genres={data.genres} duration={data.duration}/>
       )
       ) 
-      : <h1>No hay pelis</h1>}
+      : <Loader />}
   </div>
   )
 }
