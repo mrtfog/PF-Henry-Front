@@ -6,6 +6,7 @@ import Carousel from './Carousel'
 import Filters from './Filters'
 import Paginado from './Paginado'
 import { getGenre, resetMovieDetail } from '../redux/actions'
+import Footer from './Footer'
 
 export default function Home() {
 
@@ -62,6 +63,8 @@ export default function Home() {
           setCurrentPage={paginado}
           currentPage={currentPage}
         />
+
+        <Footer />
     </div>
   )
 }

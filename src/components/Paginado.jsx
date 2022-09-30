@@ -11,7 +11,7 @@ export default function Paginado ({moviesPerPage, movies, setCurrentPage, curren
      }
 
     return(
-        <div >
+        <div className={style.container_pagination}>
         <button className={`${style.button} ${style.prev_next}`} onClick={() => setCurrentPage((curr) => curr!== 1? curr - 1 : curr)}>&#10092;  Prev</button>
         {   pages &&
             pages.map((p, index) => {
