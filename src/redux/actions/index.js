@@ -38,6 +38,52 @@ export function getGenre(){
  }
 }
 
+export function getMovieReviews(id){
+
+  return async(dispatch)=>{
+
+      try{
+
+        const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/review/${id}`)
+
+        return dispatch({type: 'GET_MOVIE_REVIEWS', payload: data})
+      }
+      catch(e){
+        console.log(e)
+      }
+
+  }
+}
+
+export function postReview(payload){
+
+  return async(dispatch)=>{
+
+      try{
+        await axios.post('https://pf-henry-back.herokuapp.com/review/post', payload)
+        return dispatch({type: 'POST_REVIEW'})
+      }
+      catch(e){
+        console.log(e)
+      }
+  }
+}
+
+export function getUpcoming(){
+
+  return async(dispatch)=>{
+
+      try{
+        const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/api/upcoming`)
+
+        return dispatch({type: 'GET_UPCOMING', payload: data})
+      }
+      catch(e){
+        console.log(e)
+      }
+  }
+}
+
 
 //------------------------ FUNCTION ACTIONS ------------------------
 
