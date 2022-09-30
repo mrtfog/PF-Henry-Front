@@ -33,25 +33,34 @@ export default function Navbar() {
         </svg>
       </Link>
 
+
+
       <div className={style.navBtnContainer}>
-        <SearchBar />
-        <ul>
-          <li>
-            <NavLink to="/function">Create function</NavLink>
-          </li>
-          <li>
-            <NavLink to="#">Register</NavLink>
-          </li>
-          <li>
-            <NavLink to="#">Suscribe</NavLink>
-          </li>
-          <li>
-            <NavLink to="#">My list</NavLink>
-          </li>
-          <li>
-            <NavLink to="#">Profile</NavLink>
-          </li>
-        </ul>
+        <div className={style.searchbar}>
+          <SearchBar />
+        </div>
+
+        
+            <NavLink to="#">
+              <button>My list</button>
+            </NavLink>
+
+            <NavLink to="#">
+              <button>Profile</button>
+            </NavLink>
+
+            <NavLink to="/function">
+              <button className={style.btn_primary}>Create function</button>
+            </NavLink>
+
+            <NavLink to="#">
+              <button className={style.btn_primary}>Sign Up</button>
+            </NavLink>
+
+            <NavLink to="#">
+              <button className={style.btn_primary}>Log in</button>
+            </NavLink>
+
       </div>
     </nav>
   );

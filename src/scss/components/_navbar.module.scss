@@ -1,4 +1,5 @@
 @import '../abstracts/_variables';
+@import '../abstracts/mixins';
 
 .navMain{
     background-color: $background-color;
@@ -7,39 +8,25 @@
     justify-content: space-between;
     padding: 0rem 1rem;
 
+    
+
     .navBtnContainer{
         display: flex;
-        gap: 1rem;
-
-        ul{
-            display: flex;
-            justify-content:space-around;
-            list-style-type:none;
-            gap: 1rem;
-            padding: 0.3rem 1rem;
-
-            li{
-                padding: 0.8rem;
-                margin: 10px;
-                display: inline;
-                border-radius: 8px;
-                border: none;
-                background-color: $primary-color;
-                color: #f5f5f5;
-                transition: 0.2s linear;
-
-                a{
-                    text-decoration: none;
-                    color: white;
-                }
-            }
-
-            li:hover{
-                cursor: pointer;
-                transform: scale(1.05);
-            }
-        }
+        align-items: center;
+    
         
+    .searchbar{
+        padding-right: 19.5rem;
+    }
+
+        
+        button{
+            @include btn-secondary
+        }
+
+        .btn_primary{
+            @include btn-primary
+        }
 
     }
 

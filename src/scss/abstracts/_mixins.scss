@@ -1,0 +1,43 @@
+@import './variables';
+
+@mixin btn-primary{
+        font-family: $font;
+        font-weight: 400;
+        padding: 0.8rem;
+        margin: 10px;
+        display: inline;
+        border-radius: 8px;
+        border: 1px solid $primary-color;
+        background-color: $primary-color;
+        color: $text-color-white;
+        transition: 0.2s linear;
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.05);
+            background-color: $hprimary-color;
+            color: $text-color-white;
+            border-color: $hprimary-color;
+        }
+}
+
+@mixin btn-secondary{
+    font-family: $font;
+    font-weight: 400;
+    padding: 0.8rem;
+    margin: 10px;
+    display: inline;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    color: $text-color-white;
+    transition: 0.2s linear;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: $primary-color;
+        color: $text-color-white;
+        border-radius: $primary-color;
+    }
+}

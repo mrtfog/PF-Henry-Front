@@ -12,13 +12,13 @@ export default function Paginado ({moviesPerPage, movies, setCurrentPage, curren
 
     return(
         <div >
-        <button className={style.button} id={style.prev} onClick={() => setCurrentPage((curr) => curr!== 1? curr - 1 : curr)}>Prev</button>
+        <button className={`${style.button} ${style.prev_next}`} onClick={() => setCurrentPage((curr) => curr!== 1? curr - 1 : curr)}>&#10092;  Prev</button>
         {   pages &&
             pages.map((p, index) => {
-                return <button  className={currentPage===index+1?style.buttonCurr:style.button} key={index} onClick={() => setCurrentPage(p)}>{p}</button>
+                return <button  className={currentPage===index+1?style.buttonCurr:style.button} key={index} onClick={() => setCurrentPage(p)}><p> {p} </p></button>
             })
         }
-        <button  className={style.button} id={style.next} onClick={() => setCurrentPage((curr) =>curr!== pages.length ? curr + 1 : curr)}>Next</button>
+        <button  className={`${style.button} ${style.prev_next}`} onClick={() => setCurrentPage((curr) =>curr!== pages.length ? curr + 1 : curr)}> Next  &#10093;</button>
     </div>
     )
 }

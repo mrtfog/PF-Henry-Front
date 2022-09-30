@@ -1,10 +1,50 @@
 @import '../abstracts/variables';
 
+.prev_next{
+    padding-right: 20px;
+    transition: .2s linear;
+    &:hover{
+        color: $hprimary-color;
+    }
+}
 .button {
+
+    font-size: 17px;
+    font-family: $font;
+    font-weight: 400;
     background-color: $background-color;
-    color: rgb(255, 255, 255)
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    cursor: pointer;
+    margin-bottom: 15px;
+
+
+    p{
+
+        height: 10px;
+        padding: 0 .8rem;
+        transition: .2s linear;
+        &:hover{
+            color: $hprimary-color;
+        }
+    }
+
 }
 .buttonCurr {
+    font-family: $font;
     background-color: $primary-color;
-    color: rgb(0, 0, 0)
+    color: rgb(0, 0, 0);
+    border-radius: 6px;
+    cursor: pointer;
+
+    p{
+        height: 10px;
+        padding: 0 .8rem;
+    }
 }
+
+
+
+
+
+
