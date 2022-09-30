@@ -1,10 +1,11 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
-
+import { useLocation } from "react-router-dom";
 import style from "../scss/components/_navbar.module.scss";
 
 export default function Navbar() {
+  const { pathname } = useLocation();
   return (
     <nav className={style.navMain}>
       <Link to="/" className={style.navLogo}>
@@ -33,34 +34,30 @@ export default function Navbar() {
         </svg>
       </Link>
 
-
-
       <div className={style.navBtnContainer}>
         <div className={style.searchbar}>
-          <SearchBar />
+          {pathname === "/" ? <SearchBar /> : null}
         </div>
 
-        
-            <NavLink to="#">
-              <button>My list</button>
-            </NavLink>
+        <NavLink to="#">
+          <button>My list</button>
+        </NavLink>
 
-            <NavLink to="#">
-              <button>Profile</button>
-            </NavLink>
+        <NavLink to="#">
+          <button>Profile</button>
+        </NavLink>
 
-            <NavLink to="/function">
-              <button className={style.btn_primary}>Create function</button>
-            </NavLink>
+        <NavLink to="/function">
+          <button className={style.btn_primary}>Create function</button>
+        </NavLink>
 
-            <NavLink to="#">
-              <button className={style.btn_primary}>Sign Up</button>
-            </NavLink>
+        <NavLink to="#">
+          <button className={style.btn_primary}>Sign Up</button>
+        </NavLink>
 
-            <NavLink to="#">
-              <button className={style.btn_primary}>Log in</button>
-            </NavLink>
-
+        <NavLink to="#">
+          <button className={style.btn_primary}>Log in</button>
+        </NavLink>
       </div>
     </nav>
   );
