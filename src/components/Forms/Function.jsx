@@ -15,14 +15,16 @@ export default function Function() {
   //const functions = useSelector((state) => state.functions);
 
 
- 
+
   const [datePicker, setDatePicker] = useState(new Date());
+
+
 
   const [input, setInput] = useState({
     movieId: undefined,
     dateTime: datePicker,
-    roomId:  undefined,
-    format:  undefined,
+    roomId: undefined,
+    format: undefined,
   })
   const [error, setError] = useState({
   });
@@ -51,30 +53,33 @@ export default function Function() {
   const handleSubmit = (e) => {
     e.preventDefault();
     input.movieId = Number(input.movieId)
-    console.log(input.movieId)
-    console.log(input)
+    input.dateTime = datePicker
     dispatch(postFunction(input));
     alert("Show created")
     setInput({
       movieId: "",
       dateTime: datePicker,
-      roomId:  "",
-      format:  "",
+      roomId: "",
+      format: "",
     })
   }
 
-  function handleChange(e){
+  function handleChange(e) {
     setInput({
       ...input,
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     })
-    
+
 
     setError(validate({
       ...input,
-      [e.target.name]:e.target.value
+      [e.target.name]: e.target.value
     }))
   }
+
+  useEffect(() => {
+    setError(validate(input))
+  }, [])
 
 
   return (
@@ -101,14 +106,15 @@ export default function Function() {
         <div className={style.Select}>
           <label>Films on the billboard</label>
           <div>
-          <select value={input.movieId} name="movieId" onChange={e => handleChange(e)}>
-            <option  value="" disabled selected hidden>Select movie</option>
-                {
+            <select value={input.movieId} name="movieId" onChange={e => handleChange(e)}>
+              <option value="" disabled selected hidden>Select movie</option>
+              {
                 movies.map((movie) => {
                   return (
-                  <option value={movie._id}>{movie.title}</option>)})
-                }
-          </select>
+                    <option value={movie._id}>{movie.title}</option>)
+                })
+              }
+            </select>
           </div>
           {error.movieIdError ? (
             <span className={style.error}>{error.movieIdError}</span>
@@ -117,14 +123,15 @@ export default function Function() {
         <div className={style.Select}>
           <label>Seleccione sala</label>
           <div>
-          <select value={input.roomId} name="roomId" onChange={e => handleChange(e)}>
-          <option value="" disabled selected hidden>Select room</option>
-                {
+            <select value={input.roomId} name="roomId" onChange={e => handleChange(e)}>
+              <option value="" disabled selected hidden>Select room</option>
+              {
                 roomOptions.map((room) => {
                   return (
-                  <option value={room.value}>{room.label}</option>)})
-                }
-          </select>
+                    <option value={room.value}>{room.label}</option>)
+                })
+              }
+            </select>
           </div>
           {error.roomIdError && (
             <span className={style.error}>{error.roomIdError}</span>
@@ -133,14 +140,15 @@ export default function Function() {
         <div className={style.Select}>
           <label>Seleccione formato</label>
           <div>
-          <select value={input.formatId} name="format" onChange={e => handleChange(e)}>
-          <option value="" disabled selected hidden>Select format</option>
-                {
+            <select value={input.formatId} name="format" onChange={e => handleChange(e)}>
+              <option value="" disabled selected hidden>Select format</option>
+              {
                 formatOptions.map((formato) => {
                   return (
-                  <option value={formato.value}>{formato.label}</option>)})
-                }
-          </select>
+                    <option value={formato.value}>{formato.label}</option>)
+                })
+              }
+            </select>
           </div>
           {error.formatError && (
             <span className={style.error}>{error.formatError}</span>
