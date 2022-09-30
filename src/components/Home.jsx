@@ -5,7 +5,7 @@ import Cards from './Cards'
 import Carousel from './Carousel'
 import Filters from './Filters'
 import Paginado from './Paginado'
-import { getGenre } from '../redux/actions'
+import { getGenre, resetMovieDetail } from '../redux/actions'
 
 export default function Home() {
 
@@ -34,12 +34,12 @@ export default function Home() {
 
     useEffect(() => {
       setCurrentPage(1)
+      dispatch(getGenre())
     }, [movies])
 
-    
-  useEffect(() => {
-    dispatch(getGenre())
-  }, [movies])
+    useEffect(()=>{
+      dispatch(resetMovieDetail())
+    }, [])
   
   return (
     <div className={style.container_home}>

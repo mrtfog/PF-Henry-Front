@@ -27,6 +27,11 @@ export function getMovieDetail(id) {
   };
 }
 
+export function resetMovieDetail(){
+
+  return {type: 'RESET_MOVIE_DETAIL'}
+}
+
 export function getGenre(){
  return async (dispatch) => {
   try{  
@@ -42,30 +47,29 @@ export function getMovieReviews(id){
 
   return async(dispatch)=>{
 
-      try{
+    try{
 
-        const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/review/${id}`)
+      const { data } = await axios.get(`https://pf-henry-back.herokuapp.com/review/${id}`)
 
-        return dispatch({type: 'GET_MOVIE_REVIEWS', payload: data})
-      }
-      catch(e){
-        console.log(e)
-      }
+      return dispatch({ type: 'GET_MOVIE_REVIEWS', payload: data })
+    }
+    catch(e){
+      console.log(e)
+    }
 
   }
 }
 
 export function postReview(payload){
-
   return async(dispatch)=>{
 
-      try{
-        await axios.post('https://pf-henry-back.herokuapp.com/review/post', payload)
-        return dispatch({type: 'POST_REVIEW'})
-      }
-      catch(e){
-        console.log(e)
-      }
+    try{
+      await axios.post('https://pf-henry-back.herokuapp.com/review/post', payload)
+      return dispatch({type: 'POST_REVIEW'})
+    }
+    catch(e){
+      console.log(e)
+    }
   }
 }
 
@@ -73,14 +77,14 @@ export function getUpcoming(){
 
   return async(dispatch)=>{
 
-      try{
-        const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/api/upcoming`)
+    try{
+      const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/api/upcoming`)
 
-        return dispatch({type: 'GET_UPCOMING', payload: data})
-      }
-      catch(e){
-        console.log(e)
-      }
+      return dispatch({type: 'GET_UPCOMING', payload: data})
+    }
+    catch(e){
+      console.log(e)
+    }
   }
 }
 
