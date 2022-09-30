@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Select from "react-select";
 import { getMovies } from "../../redux/actions";
 import { getAllFunctions } from "../../redux/actions";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
