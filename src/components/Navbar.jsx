@@ -48,7 +48,7 @@ export default function Navbar() {
         </NavLink>
 
         <NavLink to="/function">
-          <button className={style.btn_primary}>Create function</button>
+          <button className={style.btn_primary}>Create Movie Showtime</button>
         </NavLink>
 
         <NavLink to="#">
