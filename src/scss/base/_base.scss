@@ -11,3 +11,20 @@ body{
     background-color: $primary-color;
     color: #fff;
 }
+
+::-webkit-scrollbar{
+
+    background-color: transparent;
+    width: 10px;
+    padding: 5px 0;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: $secondary-color;
+    border-radius: 8px;
+
+    &:hover{
+        background-color: $hsecondary-color;
+    }
+
+}

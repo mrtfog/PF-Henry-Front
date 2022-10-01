@@ -11,6 +11,8 @@
 
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
         width: 50%;
 
         h1{
@@ -18,46 +20,56 @@
             color: $text-color-white;
         }
 
-        .functions{
+        div{
 
             display: flex;
             flex-direction: column;
             justify-items: center;
             align-items: center;
             width: 80%;
-            margin: 3vh;
-            padding: 40px;
-            height: 60vh;
-            border-radius: 30px;
-            background-color: rgb(10, 10, 12);
-            overflow-y: scroll;
             
-            .function{
+            
+            .functions{
 
-                width: 60%;
-                padding: 20px;
                 display: flex;
+                width: 80%;
                 flex-direction: column;
+                justify-items: center;
                 align-items: center;
-                justify-content: center;
-                color: #f5f5f5;
-                margin-top: 40px;
-                border: 2px solid $secondary-color;
-                border-radius: 15px;
+                margin: 3vh;
+                padding: 40px;
+                height: 60vh;
+                border-radius: 30px;
+                background-color: rgb(10, 10, 12);
+                overflow-y: scroll;
+                
+                .function{
 
-                .room_and_format{
+                    width: 60%;
+                    padding: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    color: #f5f5f5;
+                    margin-top: 40px;
+                    border: 2px solid $secondary-color;
+                    border-radius: 15px;
+                    transition: 0.3s;
 
-                    p{
-                        display: initial;
+                    &:hover{
+                        transform: scale(1.03);
+                    }
 
-                        &:first-child{
-                            margin-right: 30px;
-                        }
+                    span{
+                        padding-right: 3px;
                     }
                 }
+
             }
 
         }
+
     }
 
     .formFunction{
@@ -100,13 +112,15 @@
                     label{
                         color: #f5f5f5;
                         font-size: 1rem;
+                        margin-right: 10px;
+
+                        span{
+                            color: #ff3860;
+                            height: 13px;
+                        }
                     }
                 }
-                .error{
-                    color: #ff3860;
-                    height: 13px;
-        
-                }
+
         
             }
             .Select {
@@ -118,15 +132,20 @@
                     width: 100%;
                 }
             
+                                    
                 label{
                     color: #f5f5f5;
                     font-size: 1rem;
-                    
-                
-                }
-                .error{
-                    color: #ff3860;
-                    height: 13px;
+
+                    span{
+                        color: #ff3860;
+                        height: 13px;
+                        margin-left: 8px;
+                        animation: wiggle 1s linear;
+                        animation-duration: 0;
+                        display: inline-block
+    
+                    }
                 }
                 
             }
@@ -148,5 +167,17 @@
 
     }
     
+    
+}
+
+@keyframes wiggle {
+
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(0deg); }
+    55% { transform: rotate(2deg); }
+    65% { transform: rotate(-2deg); }
+   80% { transform: rotate(0deg); }
+   100% { transform: rotate(0deg); }
+
     
 }

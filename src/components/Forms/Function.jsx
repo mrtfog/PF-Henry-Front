@@ -24,16 +24,16 @@ export default function Function() {
   const [error, setError] = useState({});
 
   const roomOptions = [
-    { value: "1", label: "sala 1" },
-    { value: "2", label: "sala 2" },
-    { value: "3", label: "sala 3" },
-    { value: "4", label: "sala 4" },
+    { value: "1", label: "Movie Theater 1" },
+    { value: "2", label: "Movie Theather 2" },
+    { value: "3", label: "Movie Theather 3" },
+    { value: "4", label: "Movie Theather 4" },
   ];
   const formatOptions = [
-    { value: "2D-Doblado", label: "2D-Doblado" },
-    { value: "2D-Subtitulada", label: "2D-Subtitulada" },
-    { value: "3D-Subtitulada", label: "3D-Subtitulada" },
-    { value: "3D-Doblado", label: "3D-Doblado" },
+    { value: "2D-Translated", label: "2D-Translated" },
+    { value: "2D-Subtitled", label: "2D-Subtitled" },
+    { value: "3D-Subtitled", label: "3D-Subtitled" },
+    { value: "3D-Translated", label: "3D-Translated" },
   ];
 
 
@@ -82,45 +82,45 @@ export default function Function() {
 
       <div className={style.functions_container}>
 
-        <h1>Functions</h1>
+        <div>
 
-        <div className={style.functions}>
+          <h1>Movie showtimes</h1>
 
-          {functions.length > 0 ?
-          functions.map(f =>{
+          <div className={style.functions}>
 
-            return(
-              <div className={style.function}>
+            {functions.length > 0 ?
+            functions.map(f =>{
 
-                {/* traer poster de la peli y envolver todo en un div flex row, en la izquierda la img, en la derecha tda la info */}
-                <h3>{f.movieTitle}</h3>
-                <p>Date: {new Date(f.dateTime).toLocaleString().replace(',',' -')}</p>
-                <div className={style.room_and_format}>
-                  <p>Room: {f.roomId}</p>
-                  <p>Format: {f.format}</p>
+              return(
+                <div className={style.function}>
+
+                  {/* traer poster de la peli y envolver todo en un div flex row, en la izquierda la img, en la derecha tda la info */}
+                  <h3>{f.movieTitle}</h3>
+                  <p><span>Date:</span> {new Date(f.dateTime).toLocaleString().replace(',',' -').substring(0, 17)}hs</p>
+                    <p><span>Movie Theater:</span> {f.roomId}</p>
+                    <p><span>Format:</span> {f.format}</p>
+
                 </div>
+              )
+            }):
+            
+            <p>no hay</p>}
 
-              </div>
-            )
-          }):
+          </div>
           
-          <p>no hay</p>}
-
         </div>
 
       </div>
 
       <div className={style.formFunction}>
-        <h1>Create new movie</h1>
+        <h1>Create showtime</h1>
         <form onSubmit={handleSubmit}>
           <div className={style.Date}>
             <div className={style.minDivDate}>
-              <label>Date</label>
+              <label>Date {error.dateError && (<span className={style.error}>*Select date</span>)}</label>
               <DatePicker value={datePicker} onChange={setDatePicker} minDate={datePicker} />
             </div>
-            {error.dateError && (
-              <span className={style.error}>Select date</span>
-            )}
+            
             <div className={style.minDivDate}>
               <label>Time</label>
               <TimePicker value={datePicker} onChange={setDatePicker} />
@@ -131,7 +131,7 @@ export default function Function() {
           </div>
 
           <div className={style.Select}>
-            <label>Films on the billboard</label>
+            <label>Films on the billboard {error.movieIdError ? (<span className={style.error}> *{error.movieIdError}</span>) : null}</label>
             <div>
             <select value={input.movieId} name="movieId" onChange={e => handleChange(e)}>
               <option  value="" disabled selected hidden>Select movie</option>
@@ -142,12 +142,10 @@ export default function Function() {
                   }
             </select>
             </div>
-            {error.movieIdError ? (
-              <span className={style.error}>{error.movieIdError}</span>
-            ) : null}
+
           </div>
           <div className={style.Select}>
-            <label>Seleccione sala</label>
+            <label>Select Room {error.roomIdError && (<span className={style.error}>*{error.roomIdError}</span>)}</label>
             <div>
             <select value={input.roomId} name="roomId" onChange={e => handleChange(e)}>
             <option value="" disabled selected hidden>Select room</option>
@@ -158,12 +156,9 @@ export default function Function() {
                   }
             </select>
             </div>
-            {error.roomIdError && (
-              <span className={style.error}>{error.roomIdError}</span>
-            )}
           </div>
           <div className={style.Select}>
-            <label>Seleccione formato</label>
+            <label>Select Format {error.formatError && (<span className={style.error}>*{error.formatError}</span>)}</label>
             <div>
             <select value={input.formatId} name="format" onChange={e => handleChange(e)}>
             <option value="" disabled selected hidden>Select format</option>
@@ -174,11 +169,8 @@ export default function Function() {
                   }
             </select>
             </div>
-            {error.formatError && (
-              <span className={style.error}>{error.formatError}</span>
-            )}
           </div>
-          <button disabled={Object.keys(error).length !== 0 ? true : false} type="submit">Crear Función</button>
+          <button disabled={Object.keys(error).length !== 0 ? true : false} type="submit">Create Showtime</button>
         </form>
 
       </div>
