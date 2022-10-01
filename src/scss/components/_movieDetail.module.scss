@@ -20,13 +20,12 @@ body{
             position: absolute;
             width: 100vw;
             height: 82vh;
-            background: linear-gradient(30deg, $background-color 30vw, transparent);
+            background: radial-gradient(circle at top right, transparent,  $background-color 90vw);
             z-index: -10;
         }
 
         .gradient_color{
-            background: linear-gradient(30deg, $background-color 25vw, $secondary-color);
-
+            background: radial-gradient(circle at top right, transparent,  $secondary-color 90vw);
         }
 
         .image{
