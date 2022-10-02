@@ -8,7 +8,8 @@ import style from '../scss/components/_cards.module.scss'
 export default function Cards({page}) {
 
     const dispatch = useDispatch()
-    // const movies = useSelector(state => state.movies)
+    const msg = useSelector(state => state.msg)
+
     useEffect(() => {
 
       dispatch(getMovies())
@@ -24,7 +25,7 @@ export default function Cards({page}) {
       <Card key={data._id} id={data._id} img={data.image} rating={data.rating} title={data.title} genres={data.genres} duration={data.duration}/>
       )
       ) 
-      : <Loader />}
+      : (msg === "Loading..." ? <Loader /> : <p className={style.msg}>{msg}</p>)}
   </div>
   )
 }

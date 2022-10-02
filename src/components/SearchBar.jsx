@@ -10,13 +10,11 @@ function SearchBar() {
 
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    dispatch(getMoviesByName(name));
-  }, [name, dispatch]);
-
   function handleSearchBar(e) {
     console.log(e.target);
     setName(e.target.value);
+    dispatch(getMoviesByName(e.target.value));
+
   }
 
   function handleSubmit(e) {
@@ -31,7 +29,7 @@ function SearchBar() {
           className={style.inputSearch}
           type="text"
           value={name}
-          placeholder="What are you looking for?"
+          placeholder="What are you searching for?"
           onChange={handleSearchBar}
         />
       </form>
