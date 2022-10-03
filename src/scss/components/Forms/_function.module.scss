@@ -88,41 +88,62 @@
         form{
             width: 65%;
 
-            
-            .Date{
+            .mainDivDate{
                 display: flex;
-                flex-direction:row;
-                justify-content: space-around;
-                margin-bottom: 3rem;
-                
-                
-                .minDivDate{
-                
-                    border-radius: 0.5rem;
-                    border-bottom: 10px solid black;
-                    border-right: 10px solid black ;
-                    padding:1rem;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    text-align: center;
-                    justify-content: center;
-                
-                    
-                    label{
-                        color: #f5f5f5;
-                        font-size: 1rem;
-                        margin-right: 10px;
 
-                        span{
-                            color: #ff3860;
-                            height: 13px;
-                        }
+                flex-direction: column;
+                margin-bottom: 2rem;
+                label{
+                    color: #f5f5f5;
+                    font-size: 1rem;
+
+                    span{
+                        color: #ff3860;
+                        height: 13px;
+                        margin-left: 8px;
+                        animation: wiggle 1s linear;
+                        animation-duration: 0;
+                        display: inline-block
+    
                     }
                 }
+                .Date{
+                    display: flex;
+                    flex-direction:row;
+                    justify-content: space-around;
+                    width: 100%;
+                   
+                    
+                    .minDivDate{
+                    
+                        border-radius: 0.5rem;
+                        border-bottom: 10px solid black;
+                        border-right: 10px solid black ;
+                        padding:1rem;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                        justify-content: center;
+                    
+                        
+                        label{
+                            color: #f5f5f5;
+                            font-size: 1rem;
+                            margin-right: 10px;
+    
+                            
+                        }
+                    }
+    
+            
+                }
+                
 
-        
+                
+
             }
+            
             .Select {
 
                 margin-bottom: 2rem;
