@@ -17,7 +17,7 @@ export default function rootReducer(state = initialState, action) {
 
     case 'GET_MOVIES': 
       let filteredMovies = action.payload.filter( m => {
-        if(m.language !== "ko"){return m}
+        if(m.language === "en" || m.language === "es" ){return m}
       })
       return{
         ...state,
@@ -104,7 +104,6 @@ export default function rootReducer(state = initialState, action) {
         filteredMovies = filteredMovies.filter( m => {
           return m.genres.includes(Number(action.payload)) 
         })
-        console.log(filteredMovies)
         return{
           ...state,
           movies: filteredMovies,

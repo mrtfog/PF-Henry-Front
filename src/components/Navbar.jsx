@@ -15,11 +15,11 @@ export default function Navbar() {
       setColor(false);
     }
   };
-  window.addEventListener("scroll", changeColor);
+  window.addEventListener('scroll', changeColor);
   return (
     <nav
       className={style.navMain}
-      style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+      style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
     >
       <Link to="/" className={style.navLogo}>
         <svg

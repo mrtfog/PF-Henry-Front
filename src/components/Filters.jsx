@@ -43,8 +43,8 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
 
         <select  onChange={e => handleOrderByRating(e)}>
             <option value="order">Order by rating</option>
-            <option value="ASC">Highest to Lowest</option> 
-            <option value="DESC">Lowest to Highest</option> 
+            <option value="ASC">Lowest to Highest</option> 
+            <option value="DESC">Highest to Lowest</option> 
         </select>
 
         <select onChange={e => handleOrderByGenre(e)}>
