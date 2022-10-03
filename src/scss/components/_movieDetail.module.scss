@@ -25,7 +25,7 @@ body{
         }
 
         .gradient_color{
-            background: radial-gradient(circle at top right, transparent,  $secondary-color 90vw);
+            background: radial-gradient(circle at top right,  $secondary-color , transparent 90vw);
         }
 
         .image{

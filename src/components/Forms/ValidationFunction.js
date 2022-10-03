@@ -7,7 +7,6 @@
 //     return errors
 // }
 export default function validate(values) {
-  // Recibe un OBJETO input, es decir nuestro estado.
   const errors = {};
   if (!values.movieId) {
     errors.movieId = "The movie option is required";

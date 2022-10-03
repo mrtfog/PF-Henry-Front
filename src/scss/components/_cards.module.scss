@@ -6,4 +6,17 @@
     flex-wrap: wrap;
     width: 70%;
     margin: auto;
+
+    .msg{
+
+        color: #f5f5f5;
+        margin: 30px;
+    }
+
+    .loading{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

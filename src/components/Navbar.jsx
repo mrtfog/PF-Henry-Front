@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { useLocation } from "react-router-dom";
@@ -6,8 +6,21 @@ import style from "../scss/components/_navbar.module.scss";
 
 export default function Navbar() {
   const { pathname } = useLocation();
+  //change the color navbar
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 30) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+  window.addEventListener("scroll", changeColor);
   return (
-    <nav className={style.navMain}>
+    <nav
+      className={style.navMain}
+      style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+    >
       <Link to="/" className={style.navLogo}>
         <svg
           width="36px"
@@ -48,7 +61,7 @@ export default function Navbar() {
         </NavLink>
 
         <NavLink to="/function">
-          <button className={style.btn_primary}>Create function</button>
+          <button className={style.btn_primary}>Create Movie Showtime</button>
         </NavLink>
 
         <NavLink to="#">

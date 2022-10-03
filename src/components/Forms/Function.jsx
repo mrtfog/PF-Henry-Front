@@ -13,16 +13,16 @@ export default function Function() {
   const movies = useSelector((state) => state.movies);
   const functions = useSelector((state) => state.functions);
   const roomOptions = [
-    { value: "1", label: "sala 1" },
-    { value: "2", label: "sala 2" },
-    { value: "3", label: "sala 3" },
-    { value: "4", label: "sala 4" },
+    { value: "1", label: "Movie Theater 1" },
+    { value: "2", label: "Movie Theather 2" },
+    { value: "3", label: "Movie Theather 3" },
+    { value: "4", label: "Movie Theather 4" },
   ];
   const formatOptions = [
-    { value: "2D-Doblado", label: "2D-Doblado" },
-    { value: "2D-Subtitulada", label: "2D-Subtitulada" },
-    { value: "3D-Subtitulada", label: "3D-Subtitulada" },
-    { value: "3D-Doblado", label: "3D-Doblado" },
+    { value: "2D-Translated", label: "2D-Translated" },
+    { value: "2D-Subtitled", label: "2D-Subtitled" },
+    { value: "3D-Subtitled", label: "3D-Subtitled" },
+    { value: "3D-Translated", label: "3D-Translated" },
   ];
 
   const dispatch = useDispatch();

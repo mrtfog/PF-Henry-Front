@@ -41,16 +41,14 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
             <option value="DESC">From Z to A</option> 
         </select> 
 
- 
-
         <select  onChange={e => handleOrderByRating(e)}>
             <option value="order">Order by rating</option>
-            <option value="ASC">rating asc</option> 
-            <option value="DESC">rating desc</option> 
+            <option value="ASC">Highest to Lowest</option> 
+            <option value="DESC">Lowest to Highest</option> 
         </select>
 
         <select onChange={e => handleOrderByGenre(e)}>
-            <option value="order">Order by genre</option>
+            <option value="order">Filter by genre</option>
             { genresMovies?.map((g) => {
               return <option
               key={g.id}

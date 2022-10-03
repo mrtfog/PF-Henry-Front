@@ -7,7 +7,8 @@ const initialState = {
   functions: [],
   genres: [],
   movieReviews: [],
-  upcoming:[]
+  upcoming:[],
+  msg: 'Loading...'
 };
 
 export default function rootReducer(state = initialState, action) {
@@ -22,7 +23,7 @@ export default function rootReducer(state = initialState, action) {
         ...state,
         movies: filteredMovies, 
         allMovies: filteredMovies,
-        carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`)
+        carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`),
       }
 
 
@@ -53,6 +54,7 @@ export default function rootReducer(state = initialState, action) {
       return {
         ...state,
         movies: searchResult,
+        msg: searchResult.length === 0 ? `There are no results for '${action.payload}'` : 'Loading...'
       };
 
 
@@ -105,7 +107,8 @@ export default function rootReducer(state = initialState, action) {
         console.log(filteredMovies)
         return{
           ...state,
-          movies: filteredMovies
+          movies: filteredMovies,
+          msg: filteredMovies.length === 0 ? 'There are no movies for this genre' : 'Loading...'
         }
       } 
 
