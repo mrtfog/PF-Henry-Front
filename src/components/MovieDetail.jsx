@@ -75,8 +75,8 @@ export default function MovieDetail() {
                         {movieReviews.length > 0 ? movieReviews.map(r =>{
 
                             return(<div className={style.review}>
-                                <span className={style.stars}>{getStars(r.stars)}</span>
-                                <p>"{r.description}"</p>
+                                <p><span className={style.stars}>{getStars(r.stars)}</span><br/> {r.stars}/10</p>
+                                <p className={style.text}>"{r.description}"</p>
                             </div>)
                         }) 
                         :
