@@ -126,6 +126,7 @@ body{
             padding: 30px;
             flex-wrap: wrap;
             justify-content: center;
+            // align-items: center;
 
             .no_reviews{
 
@@ -146,23 +147,27 @@ body{
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
-                width: 20vw;
-                height: 15vw;
+                width: 22vw;
+                min-height: 15vw;
+                height: fit-content;
                 border: 2px solid  $secondary-color;
                 border-radius: 10px;
                 transition: 0.2s transform linear;
                 margin: 30px;
 
                 p{
-                    padding: 0 20px;
+                    padding: 5px 20px;
+                    font-style: italic;
                 }
 
                 &:hover{
                     transform: scale(1.05);
+                    box-shadow: 0 0.1rem 0.7rem $secondary-color;  
                 }
             }
 
             .stars{
+                padding: 20px;
                 color: $primary-color;
                 font-size: 1.2rem;
                 position: relative;

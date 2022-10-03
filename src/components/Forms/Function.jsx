@@ -50,13 +50,19 @@ export default function Function() {
     },
   });
 
+  useEffect(()=>{
+
+    document.getElementById('functionsDiv').scrollTo(0, -1000000)
+
+  }, [functions])
+
   return (
     <div className={style.container}>
       <div className={style.functions_container}>
         <div>
           <h1>Movie showtimes</h1>
 
-          <div className={style.functions}>
+          <div className={style.functions} id='functionsDiv'>
             {functions.length > 0 ? (
               functions.map((f, index) => {
                 return (
