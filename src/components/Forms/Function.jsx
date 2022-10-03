@@ -13,10 +13,10 @@ export default function Function() {
   const movies = useSelector((state) => state.movies);
   const functions = useSelector((state) => state.functions);
   const roomOptions = [
-    { value: "1", label: "Movie Theater 1" },
-    { value: "2", label: "Movie Theather 2" },
-    { value: "3", label: "Movie Theather 3" },
-    { value: "4", label: "Movie Theather 4" },
+    { value: "1", label: "Movie theater 1" },
+    { value: "2", label: "Movie theater 2" },
+    { value: "3", label: "Movie theater 3" },
+    { value: "4", label: "Movie theater 4" },
   ];
   const formatOptions = [
     { value: "2D-Translated", label: "2D-Translated" },
@@ -40,7 +40,6 @@ export default function Function() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      console.log(values);
       dispatch(postFunction(values));
       alert("Show created");
       dispatch(getAllFunctions());
@@ -65,24 +64,27 @@ export default function Function() {
           <div className={style.functions} id='functionsDiv'>
             {functions.length > 0 ? (
               functions.map((f, index) => {
+
                 return (
                   <div key={index} className={style.function}>
-                    {/* traer poster de la peli y envolver todo en un div flex row, en la izquierda la img, en la derecha tda la info */}
-                    <h3>{f.movieTitle}</h3>
-                    <p>
-                      <span>Date:</span>{" "}
-                      {new Date(f.dateTime)
-                        .toLocaleString()
-                        .replace(",", " -")
-                        .substring(0, 17)}
-                      hs
-                    </p>
-                    <p>
-                      <span>Movie Theater:</span> {f.roomId}
-                    </p>
-                    <p>
-                      <span>Format:</span> {f.format}
-                    </p>
+
+                    <div>
+                      <img src={'https://image.tmdb.org/t/p/original' + f.image} />
+                    </div>
+                    <div>
+                      <h3>{f.movieTitle}</h3>
+                      <p>
+                        <span>Date:</span>{" "}
+                        <br/>
+                        {new Date(f.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}hs
+                      </p>
+                      <p>
+                        <span>Movie Theater:</span><br/>{f.roomId}
+                      </p>
+                      <p>
+                        <span>Format:</span><br/> {f.format}
+                      </p>
+                    </div>
                   </div>
                 );
               })

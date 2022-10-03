@@ -48,10 +48,10 @@
                 
                 .function{
 
-                    width: 60%;
+                    width: 80%;
                     padding: 20px;
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     align-items: center;
                     justify-content: center;
                     color: #f5f5f5;
@@ -63,21 +63,31 @@
                     animation-name: rotates;
                     animation-duration: 0.8s;
 
-                    @keyframes rotates {
-                        0%   {transform: rotate(0deg)}
-                        25%  {
-                            transform: rotate(1deg);
-                            border: 2px solid $primary-color;
-                            box-shadow: 0 0.1rem 0.7rem $primary-color;  
-                        }
-                        50%  {transform: rotate(-1deg)}
-                        75%  {transform: rotate(1deg)}
-                        100% {
-                            transform: rotate(0deg);
-                            border: 2px solid $secondary-color;
-                            box-shadow: 0 0.1rem 0.7rem $secondary-color;  
+                    div{
 
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        h3{
+                            font-weight: 700;
+                            text-shadow: 0 0 10px $text-color-white;
+                            text-align: center;
                         }
+                        img{
+                            width: 150px;
+                        }
+
+                        p{
+                            text-align: center;
+                            margin: 0.5rem;
+                        }
+
+                        span{
+                            font-weight: 600;
+                            padding-bottom: 0.5rem;
+                        }
+
                     }
 
 
@@ -85,10 +95,6 @@
                         transform: scale(1.03);
                         box-shadow: 0 0.1rem 0.7rem $secondary-color;  
 
-                    }
-
-                    span{
-                        padding-right: 3px;
                     }
                 }
 
@@ -221,5 +227,22 @@
    100% { transform: rotate(0deg); }
 
     
+}
+
+@keyframes rotates {
+    0%   {transform: rotate(0deg)}
+    25%  {
+        transform: rotate(1deg);
+        border: 2px solid $primary-color;
+        box-shadow: 0 0.1rem 0.7rem $primary-color;  
+    }
+    50%  {transform: rotate(-1deg)}
+    75%  {transform: rotate(1deg)}
+    100% {
+        transform: rotate(0deg);
+        border: 2px solid $secondary-color;
+        box-shadow: 0 0.1rem 0.7rem $secondary-color;  
+
+    }
 }
 
