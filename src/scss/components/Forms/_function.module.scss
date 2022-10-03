@@ -5,6 +5,7 @@
     display: flex;
     flex-direction: row-reverse;
     width: 100%;
+    height: 100vh;
     margin: auto;
 
     .functions_container{
@@ -14,6 +15,7 @@
         justify-content: space-between;
         align-items: center;
         width: 50%;
+        margin: 2rem;
 
         h1{
             text-align: center;
@@ -27,28 +29,29 @@
             justify-items: center;
             align-items: center;
             width: 80%;
+            height: 100%;
             
             
             .functions{
 
                 display: flex;
                 width: 80%;
-                flex-direction: column;
+                flex-direction: column-reverse;
                 justify-items: center;
                 align-items: center;
                 margin: 3vh;
                 padding: 40px;
-                height: 60vh;
+                height: 450px;
                 border-radius: 30px;
                 background-color: rgb(10, 10, 12);
                 overflow-y: scroll;
                 
                 .function{
 
-                    width: 60%;
+                    width: 80%;
                     padding: 20px;
                     display: flex;
-                    flex-direction: column;
+                    flex-direction: row;
                     align-items: center;
                     justify-content: center;
                     color: #f5f5f5;
@@ -57,12 +60,41 @@
                     border-radius: 15px;
                     transition: 0.3s;
 
-                    &:hover{
-                        transform: scale(1.03);
+                    animation-name: rotates;
+                    animation-duration: 0.8s;
+
+                    div{
+
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+
+                        h3{
+                            font-weight: 700;
+                            text-shadow: 0 0 10px $text-color-white;
+                            text-align: center;
+                        }
+                        img{
+                            width: 150px;
+                        }
+
+                        p{
+                            text-align: center;
+                            margin: 0.5rem;
+                        }
+
+                        span{
+                            font-weight: 600;
+                            padding-bottom: 0.5rem;
+                        }
+
                     }
 
-                    span{
-                        padding-right: 3px;
+
+                    &:hover{
+                        transform: scale(1.03);
+                        box-shadow: 0 0.1rem 0.7rem $secondary-color;  
+
                     }
                 }
 
@@ -77,8 +109,8 @@
         display: flex;
         width: 50%;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        margin-top: 2em;
 
         h1{
             color: #f5f5f5;
@@ -87,10 +119,10 @@
         
         form{
             width: 65%;
+            max-height: 70vh;
 
             .mainDivDate{
                 display: flex;
-
                 flex-direction: column;
                 margin-bottom: 2rem;
                 label{
@@ -135,12 +167,8 @@
                             
                         }
                     }
-    
-            
-                }
-                
 
-                
+                }    
 
             }
             
@@ -180,8 +208,6 @@
                     background-color: $background-color;
                     cursor: not-allowed;
                 }
-
-
         
             }
         }
@@ -202,3 +228,21 @@
 
     
 }
+
+@keyframes rotates {
+    0%   {transform: rotate(0deg)}
+    25%  {
+        transform: rotate(1deg);
+        border: 2px solid $primary-color;
+        box-shadow: 0 0.1rem 0.7rem $primary-color;  
+    }
+    50%  {transform: rotate(-1deg)}
+    75%  {transform: rotate(1deg)}
+    100% {
+        transform: rotate(0deg);
+        border: 2px solid $secondary-color;
+        box-shadow: 0 0.1rem 0.7rem $secondary-color;  
+
+    }
+}
+

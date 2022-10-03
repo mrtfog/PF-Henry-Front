@@ -5,7 +5,6 @@ export default ({ onChange, options, value, name, label }) => {
     <div>
       <select name={name} value={value} onChange={onChange} label={name}>
         <option value="">{label}</option>
-        {console.log(value)}
         {options.length &&
           options.map((option) => {
             return (

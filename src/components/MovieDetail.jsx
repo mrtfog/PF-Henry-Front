@@ -24,25 +24,6 @@ export default function MovieDetail() {
     const urlPoster = 'https://image.tmdb.org/t/p/original' + movie.poster_path
     const urlBanner = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path
 
-    // const movieReviews = [
-    //     {
-    //         _id: "6334c51d46744ace16ed498c",
-    //         userId: "asd123",
-    //         movieId: 55012,
-    //         stars: 1,
-    //         description: "Ari Aster se consagra como maestro ilusionista. El terror, bañado en el sol eterno de medianoche, se descubre como una fuerza luminosa y colorista; como una catarsis para perder el miedo a tener miedo.",
-    //         deleted: false
-    //     },
-    //     {
-    //         _id: "6334c5f5709490180f61db22",
-    //         userId: "asd1adasd23",
-    //         movieId: 55012,
-    //         stars: 8,
-    //         description: "Turbia, deslumbrante, divertida... pavorosa. Un cuento de miedo a plena luz del día que es terror con la misma claridad que comedia negra",
-    //         deleted: false
-    //     }
-    // ]
-
     function getStars(num){
         let stars = ''
 
@@ -94,7 +75,7 @@ export default function MovieDetail() {
                         {movieReviews.length > 0 ? movieReviews.map(r =>{
 
                             return(<div className={style.review}>
-                                <p className={style.stars}>{getStars(r.stars)}</p>
+                                <span className={style.stars}>{getStars(r.stars)}</span>
                                 <p>"{r.description}"</p>
                             </div>)
                         }) 
