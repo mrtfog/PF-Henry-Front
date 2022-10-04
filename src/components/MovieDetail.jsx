@@ -2,8 +2,9 @@ import React, { useEffect } from 'react'
 import style from '../scss/components/_movieDetail.module.scss'
 import YouTube from 'react-youtube'
 import { useSelector, useDispatch } from 'react-redux'
-import { getMovieDetail, getMovieReviews } from '../redux/actions'
+import { getMovieReviews } from '../redux/actions/reviews'
 import { useParams } from 'react-router-dom'
+import { resetMovieDetail, getMovieDetail } from '../redux/actions/movies'
 
 
 export default function MovieDetail() {
@@ -12,14 +13,18 @@ export default function MovieDetail() {
     const dispatch = useDispatch()
 
     useEffect(()=>{
+
         window.scrollTo(0, 0)
         dispatch(getMovieDetail(id))
         dispatch(getMovieReviews(id))
-    }, [dispatch])
+
+        return ()=> dispatch(resetMovieDetail())
+
+    }, [])
 
 
-    const movie = useSelector(state => state.movieOnDisplay)
-    const movieReviews = useSelector(state => state.movieReviews)
+    const movie = useSelector(state => state.moviesReducer.movieDetail)
+    const movieReviews = useSelector(state => state.reviewsReducer.movieReviews)
     
     const urlPoster = 'https://image.tmdb.org/t/p/original' + movie.poster_path
     const urlBanner = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path
