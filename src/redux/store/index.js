@@ -1,7 +1,17 @@
-import { createStore, compose, applyMiddleware } from 'redux';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk'; 
-import rootReducer from '../reducer';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import moviesReducer from '../reducer/movies'
+import reviewsReducer from '../reducer/reviews'
+import showtimesReducer from '../reducer/showtimes'
+
+const rootReducer = combineReducers({
+
+  moviesReducer: moviesReducer,
+  reviewsReducer: reviewsReducer,
+  showtimesReducer: showtimesReducer
+
+})
 
 const store = createStore(
     rootReducer,

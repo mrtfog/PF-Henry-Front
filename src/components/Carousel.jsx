@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react'
-
-
 import style from '../scss/components/_carousel.module.scss'
 import img from "../assets/uncharted-poster.jpg"
 import { useSelector } from 'react-redux'
@@ -11,7 +9,7 @@ function Carousel() {
 /* Arreglo de images hardcodeado, acá irian las imagénes de poster de las películas en cartelera*/
 // const images = ['presencias-poster.jpg','thenorthman-poster.jpg','thor-poster.webp', 'uncharted-poster.jpg']
 
-const images = useSelector((state) => state.carousel)
+const images = useSelector((state) => state.moviesReducer.carousel)
 
 /* Uso estados locales para moverme entre las imágenes y uso un index*/
 const [selectedIndex, setSelectedIndex] = useState(0)

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import { getMoviesByName } from "../redux/actions/index";
+import { getMoviesByName } from "../redux/actions/movies";
 
 import style from "../scss/components/_searchbar.module.scss";
 
