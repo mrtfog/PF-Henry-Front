@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../../redux/actions";
-import { getAllFunctions } from "../../redux/actions";
+import { getMovies } from "../../redux/actions/movies";
+import { getAllShowtimes, postShowtime } from "../../redux/actions/showtimes";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
-import { postFunction } from "../../redux/actions/index";
 import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
 
 export default function Function() {
-  const movies = useSelector((state) => state.movies);
-  const functions = useSelector((state) => state.functions);
+  const movies = useSelector((state) => state.moviesReducer.movies);
+  const functions = useSelector((state) => state.showtimesReducer.showtimes);
   const roomOptions = [
     { value: "1", label: "Movie theater 1" },
     { value: "2", label: "Movie theater 2" },
@@ -28,7 +27,7 @@ export default function Function() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovies());
-    dispatch(getAllFunctions());
+    dispatch(getAllShowtimes());
   }, [dispatch]);
 
   const formik = useFormik({
@@ -40,9 +39,9 @@ export default function Function() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      dispatch(postFunction(values));
+      dispatch(postShowtime(values));
       alert("Show created");
-      dispatch(getAllFunctions());
+      dispatch(getAllShowtimes());
       resetForm({
         values: "",
       });

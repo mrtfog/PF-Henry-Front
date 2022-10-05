@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { getMovies } from '../redux/actions'
+import { getMovies } from '../redux/actions/movies'
 import Card from './Card'
 import Loader from './Loader'
 import style from '../scss/components/_cards.module.scss'
@@ -8,7 +8,7 @@ import style from '../scss/components/_cards.module.scss'
 export default function Cards({page}) {
 
     const dispatch = useDispatch()
-    const msg = useSelector(state => state.msg)
+    const msg = useSelector(state => state.moviesReducer.msg)
 
     useEffect(() => {
 
@@ -16,7 +16,6 @@ export default function Cards({page}) {
       
     }, [dispatch])
     
-
 
   return (
     <div className={style.container_cards}>

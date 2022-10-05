@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import MovieDetail from "./components/MovieDetail";
 import Navbar from "./components/Navbar";
 import Function from "./components/Forms/Function";
+import Seats from "./components/SeatPicker";
 import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import { useLocation } from "react-router-dom";
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
+          <Route exact path="/seats" component={Seats} />
         </Switch>
       </div>
     );

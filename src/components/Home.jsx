@@ -5,7 +5,7 @@ import Cards from './Cards'
 import Carousel from './Carousel'
 import Filters from './Filters'
 import Paginado from './Paginado'
-import { getGenre, resetMovieDetail } from '../redux/actions'
+import { getGenre } from '../redux/actions/movies'
 import Footer from './Footer'
 
 export default function Home() {
@@ -21,7 +21,7 @@ export default function Home() {
     // Estado local de ordenamiento de rating //
     const [orderByGenre, setOrderByGenre] = useState()
 
-    const movies = useSelector(state => state.movies)
+    const movies = useSelector(state => state.moviesReducer.movies)
     const [currentPage, setCurrentPage]= useState(1);
     const [moviesPerPage, setMoviesPerPage]= useState(20);
 
@@ -37,10 +37,6 @@ export default function Home() {
       setCurrentPage(1)
       dispatch(getGenre())
     }, [movies])
-
-    useEffect(()=>{
-      dispatch(resetMovieDetail())
-    }, [])
   
   return (
     <div className={style.container_home}>
