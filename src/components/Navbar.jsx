@@ -52,8 +52,8 @@ export default function Navbar() {
           {pathname === "/" ? <SearchBar /> : null}
         </div>
 
-        <NavLink to="#">
-          <button>My list</button>
+        <NavLink to="/playlists">
+          <button>My playlist</button>
         </NavLink>
 
         <NavLink to="#">
