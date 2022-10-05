@@ -30,6 +30,15 @@
                 animation-duration: 0;
                 display: inline-block
             }
+
+            span {
+
+                svg{
+                    width: 50px;
+                    height: 40px;
+                    fill: white;
+                }
+            }
         }
     }
 }
