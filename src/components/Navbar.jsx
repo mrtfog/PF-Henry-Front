@@ -6,20 +6,11 @@ import style from "../scss/components/_navbar.module.scss";
 
 export default function Navbar() {
   const { pathname } = useLocation();
-  //change the color navbar
-  const [color, setColor] = useState(false);
-  const changeColor = () => {
-    if (window.scrollY >= 30) {
-      setColor(true);
-    } else {
-      setColor(false);
-    }
-  };
-  window.addEventListener("scroll", changeColor);
+
   return (
     <nav
       className={style.navMain}
-      style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
+      style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
     >
       <Link to="/" className={style.navLogo}>
         <svg
@@ -60,15 +51,15 @@ export default function Navbar() {
           <button>Profile</button>
         </NavLink>
 
-        <NavLink to="/function">
+        {/* <NavLink to="/function">
           <button className={style.btn_primary}>Create Movie Showtime</button>
-        </NavLink>
+        </NavLink> */}
 
         <NavLink to="#">
           <button className={style.btn_primary}>Sign Up</button>
         </NavLink>
 
-        <NavLink to="#">
+        <NavLink to="/admin/statistics">
           <button className={style.btn_primary}>Log in</button>
         </NavLink>
       </div>

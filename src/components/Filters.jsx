@@ -1,14 +1,14 @@
 import React,{ useEffect }from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import style from '../scss/components/_filters.module.scss'
-import { sortByName, sortByRating, sortByGenre } from '../redux/actions'
+import { sortByName, sortByRating, sortByGenre } from '../redux/actions/movies'
 
 export default function Filters({setOrder, order, page, orderByRating, setOrderByRating, orderByGenre, setOrderByGenre}) {
 
   const dispatch = useDispatch()
 
 
-  let genresMovies = useSelector((state) => state.genres)
+  let genresMovies = useSelector((state) => state.moviesReducer.genres)
 
   // ORDENAMIENTO ALFABÉTICO//
   const handleOrder = (e) => {
@@ -43,8 +43,8 @@ export default function Filters({setOrder, order, page, orderByRating, setOrderB
 
         <select  onChange={e => handleOrderByRating(e)}>
             <option value="order">Order by rating</option>
-            <option value="ASC">Highest to Lowest</option> 
-            <option value="DESC">Lowest to Highest</option> 
+            <option value="ASC">Lowest to Highest</option> 
+            <option value="DESC">Highest to Lowest</option> 
         </select>
 
         <select onChange={e => handleOrderByGenre(e)}>

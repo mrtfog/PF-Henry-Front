@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovies } from "../../redux/actions";
-import { getAllFunctions } from "../../redux/actions";
+import { getMovies } from "../../redux/actions/movies";
+import { getAllShowtimes, postShowtime } from "../../redux/actions/showtimes";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
-import { postFunction } from "../../redux/actions/index";
 import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
 
 export default function Function() {
-  const movies = useSelector((state) => state.movies);
-  const functions = useSelector((state) => state.functions);
+  const movies = useSelector((state) => state.moviesReducer.movies);
+  const functions = useSelector((state) => state.showtimesReducer.showtimes);
   const roomOptions = [
     { value: "1", label: "Movie theater 1" },
     { value: "2", label: "Movie theater 2" },
@@ -28,7 +27,7 @@ export default function Function() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getMovies());
-    dispatch(getAllFunctions());
+    dispatch(getAllShowtimes());
   }, [dispatch]);
 
   const formik = useFormik({
@@ -40,20 +39,18 @@ export default function Function() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      dispatch(postFunction(values));
+      dispatch(postShowtime(values));
       alert("Show created");
-      dispatch(getAllFunctions());
+      dispatch(getAllShowtimes());
       resetForm({
         values: "",
       });
     },
   });
 
-  useEffect(()=>{
-
-    document.getElementById('functionsDiv').scrollTo(0, -1000000)
-
-  }, [functions])
+  useEffect(() => {
+    document.getElementById("functionsDiv").scrollTo(0, -1000000);
+  }, [functions]);
 
   return (
     <div className={style.container}>
@@ -61,35 +58,53 @@ export default function Function() {
         <div>
           <h1>Movie showtimes</h1>
 
-          <div className={style.functions} id='functionsDiv'>
+          <div className={style.functions} id="functionsDiv">
             {functions.length > 0 ? (
               functions.map((f, index) => {
-
                 return (
                   <div key={index} className={style.function}>
-
                     <div>
-                      <img src={'https://image.tmdb.org/t/p/original' + f.image} />
+                      <img
+                        src={"https://image.tmdb.org/t/p/original" + f.image}
+                      />
                     </div>
                     <div>
                       <h3>{f.movieTitle}</h3>
                       <p>
-                        <span>Date:</span>{" "}
-                        <br/>
-                        {new Date(f.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}hs
+                        <span>Date:</span> <br />
+                        {new Date(f.dateTime)
+                          .toLocaleString()
+                          .replace(",", " -")
+                          .substring(0, 17)}
+                        hs
                       </p>
                       <p>
-                        <span>Movie Theater:</span><br/>{f.roomId}
+                        <span>Movie Theater:</span>
+                        <br />
+                        {f.roomId}
                       </p>
                       <p>
-                        <span>Format:</span><br/> {f.format}
+                        <span>Format:</span>
+                        <br /> {f.format}
                       </p>
                     </div>
                   </div>
                 );
               })
             ) : (
-              <p>no hay</p>
+              <div className={style.notFound}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+                  <path
+                    fill="#2a3a3e"
+                    d="m47.8 0-3.06.68 3.79 2.65zM23.55 15.53h-5.12l-3.22 3.52h5.12zM50.05 15.64l-3.13 3.41h3.13zM47.33 15.53h-5.12l-3.22 3.52h5.12zM39.4 15.53h-5.12l-3.22 3.52h5.12zM31.48 15.53h-5.12l-3.22 3.52h5.12zM45.9 4.02 42 1.29 37 2.4l3.91 2.74zM38.17 5.74l-3.91-2.73-5 1.11 3.9 2.73zM30.42 7.47l-3.9-2.74-4.99 1.11 3.9 2.73zM22.69 9.18l-3.91-2.73-4.99 1.12 3.91 2.72zM14.95 10.9l-3.9-2.72-4.99 1.11 3.89 2.72zM3.46 10l.83 3.27 2.93-.65zM4.57 18.95l3.12-3.42H4.57zM15.62 15.53h-5.11l-3.22 3.52h5.11zM35.24 31.72c-.02-.49.2-.95.58-1.26.38-.3.9-.4 1.38-.27 4.15 1.19 8.42 1.69 12.86 1.52V21.12H4.57V48.1h12.09c.02-.12.06-.24.11-.34.22-.45.64-.76 1.13-.84 6.35-1.08 12.46-3.75 18.18-7.88-.56-3.1-.77-5.82-.84-7.32z"
+                  />
+                  <path
+                    fill="#2a3a3e"
+                    d="M51.13 33.72c-.02 0-.03.01-.04.01-.01 0-.02-.01-.03-.01-4.75.26-9.34-.18-13.71-1.35.27 4.1 1.66 17.08 8.55 20.91a6.229 6.229 0 0 0 6.09 0c6.92-3.83 8.28-16.87 8.55-20.96-3.2.77-6.34 1.24-9.41 1.4zm-9.08 6.78c-.02.02-.06.05-.09.07-.19.13-.38.2-.59.2-.32 0-.62-.14-.83-.41-.34-.46-.25-1.1.19-1.45 1.49-1.18 3.71-1.62 5.46-1.09.03.01.09.03.13.04.54.18.82.75.64 1.28-.17.54-.76.84-1.29.68-1.19-.36-2.69-.07-3.62.68zm11.91 6.48c-.56.94-1.55 1.76-2.88 2.36-.59.28-1.35.41-2.1.41-.8 0-1.6-.16-2.23-.46-1.31-.64-2.3-1.48-2.83-2.43-.28-.5-.1-1.13.39-1.41.5-.28 1.13-.1 1.41.39.23.4.75 1.01 1.93 1.58.65.32 1.91.33 2.57.03 1.19-.55 1.72-1.14 1.96-1.54.29-.49.93-.65 1.42-.36.48.3.65.94.36 1.43zm2.18-6.21c-.2 0-.4-.06-.59-.2a.705.705 0 0 1-.09-.07c-.93-.75-2.43-1.04-3.6-.67-.55.16-1.13-.13-1.3-.68-.17-.54.11-1.11.64-1.28.04-.01.1-.03.13-.04 1.75-.53 3.97-.09 5.46 1.09.43.35.53.99.19 1.45-.21.25-.52.4-.84.4zM39.2 48.76c-1.13-.29-2.56.01-3.49.76-.43.35-1.1.3-1.45-.13-.36-.43-.32-1.07.1-1.44.03-.02.08-.06.11-.08.98-.8 2.36-1.24 3.73-1.26a36.9 36.9 0 0 1-1.66-5.34c-5.55 3.86-11.44 6.42-17.56 7.59 2.02 3.58 8.9 14.68 16.76 15.15 2.17.11 4.22-.86 5.48-2.64 1.3-1.83 1.98-4.33 2.01-7.38-1.66-1.39-2.98-3.2-4.03-5.23zm-9.22 3.1c-1.22.11-2.5.94-3.08 1.98l-.07.11c-.11.19-.28.32-.47.4-.29.11-.63.09-.93-.08-.48-.28-.64-.91-.36-1.4.93-1.67 2.83-2.9 4.64-3.08.04 0 .1-.01.13-.01.57-.04 1.05.39 1.09.95.04.57-.38 1.06-.95 1.13zm8.72 6.33c-.85 1.03-2.57 1.83-3.9 1.83h-.02c-1.46-.01-2.7-.34-3.59-.97a1.02 1.02 0 0 1-.26-1.44c.33-.47.97-.58 1.44-.26.38.27 1.12.59 2.42.6h.01c.72 0 1.85-.53 2.32-1.09.83-1 1.06-1.77 1.1-2.24.05-.57.55-.99 1.12-.94.57.05.99.56.94 1.13-.09 1.09-.63 2.26-1.58 3.38z"
+                  />
+                </svg>
+                <p>There are not showtimes</p>
+              </div>
             )}
           </div>
         </div>
