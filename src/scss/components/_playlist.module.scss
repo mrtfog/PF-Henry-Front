@@ -1,0 +1,164 @@
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
+
+.container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .titleAndButton{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 75%;
+        margin: 8vh 0;
+        color: $text-color-white;
+
+        h2{
+            text-transform: capitalize;
+            font-size: 2rem;
+        }
+
+        div{  
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            .button{
+                @include btn-secondary;
+            }
+
+        }
+    
+    }
+
+
+    .playlist{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 65vw;
+ 
+        .movie{
+            width: 70vw;
+            @include playlist;
+            height: fit-content;
+            padding: 5px;
+            text-decoration: none;
+
+            img{
+                width: 70px;
+                border-radius: 10px;
+                margin-left: 5px;
+            }
+            a{
+                width: 80%;
+                height: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                display: flex;
+                color: $text-color-white;
+
+            }
+
+            div{
+
+                display: flex;
+                flex-direction: row;
+
+                .play{
+                    @include btn-primary;
+                    background-color: $background-color;
+                    border-color: $background-color;
+                    color: $text-color-white;
+                    padding: 0.3rem 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+
+                    span{
+                        padding-left: 3px;
+                    }
+                }
+
+            }
+            
+        }
+        
+    }
+
+    .randomMovie{
+        position: absolute;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top:15vh;
+        background-color: $background-color;
+        border-radius: 10px;
+        width: 65vw;
+        height: 80vh;
+        filter: drop-shadow(0 0 100vw black);
+        box-shadow: 0 0 10px 3px $secondary-color;
+        color: $text-color-white;
+
+        .close{
+
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        div{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 90%;
+            justify-content: space-evenly;
+
+            div{
+                display: flex;
+                flex-direction: column;
+                width: fit-content;
+                max-width: 50%;
+
+                img{
+                    width: 250px;
+                }
+
+                h2{
+                    font-size: 2.3rem;
+                    text-align: center;
+                }
+                
+                .buttons{
+                    display: flex;
+                    max-width: none;
+                    flex-direction: row;
+
+                    button{
+                        @include btn-secondary;
+                        width: 100px;
+                    }
+                    button:first-child{
+                        @include btn-primary;
+                    }
+                }
+ 
+            }
+
+        }
+
+    }
+
+    button.delete{
+        @include btn-secondary;
+        padding: 0.4rem 0.6rem;
+        border: none;
+    }
+}

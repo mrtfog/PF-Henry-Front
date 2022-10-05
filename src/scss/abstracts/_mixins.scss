@@ -71,3 +71,29 @@
     }
 
 }
+
+@mixin playlist{
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    // background-color: $text-color-white;
+    background: linear-gradient(15deg,
+    $primary-color,
+    $secondary-color
+    );
+    width: 100%;
+    height: 9vh;
+    margin: 15px;
+    padding: 0 20px;
+    border-radius: 10px;
+    transition: 0.3s linear;
+    box-shadow: 6px 4px 8px black;
+
+
+    &:hover{
+        transform: scale(1.03);
+    }
+}
+
