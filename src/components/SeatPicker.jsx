@@ -1,41 +1,43 @@
 import React, {useState} from 'react';
-//import SeatPicker from "react-seat-picker";
 import "../scss/components/_seatPicker.scss";
 
 export default function Seats() {
-  const [selected, setSelected] = useState([]);
-    const rows = [
-        [
-          { showtimeId: '1', _id: '1', location: "A1" },
-          { showtimeId: '1', _id: '2', location: "A2" },
-          { showtimeId: '1', _id: '3', location: "A3" },
-          { showtimeId: '1', _id: '4', location: "A4" },
-          { showtimeId: '1', _id: '24', location: "A5" },
-          { showtimeId: '1', _id: '34', location: "A6" },
-          { showtimeId: '1', _id: '44', location: "A7" },
-          { showtimeId: '1', _id: '54', location: "A8" },
-          null,
-          { showtimeId: '1', _id: '5', location: "A9" },
-          { showtimeId: '1', _id: '6', location: "A10" },
-          { showtimeId: '1', _id: '7', location: "A11" },
-          { showtimeId: '1', _id: '8', location: "A12" },
-          { showtimeId: '1', _id: '9', location: "A13", userId: '1' }
-        ],
-        [
-          { showtimeId: '1', _id: '11', location: "B1" },
-          { showtimeId: '1', _id: '12', location: "B2" },
-          { showtimeId: '1', _id: '13', location: "B3", userId: '1' },
-          { showtimeId: '1', _id: '14', location: "B4" },
-          { showtimeId: '1', _id: '74', location: "B5" },
-          { showtimeId: '1', _id: '84', location: "B6" },
-          { showtimeId: '1', _id: '34', location: "B7" },
-          { showtimeId: '1', _id: '94', location: "B8" },
-          null,
-          { showtimeId: '1', _id: '15', location: "B9" },
-          { showtimeId: '1', _id: '16', location: "B10" },
-          { showtimeId: '1', _id: '17', location: "B11" },
-          { showtimeId: '1', _id: '18', location: "B12" },
-          { showtimeId: '1', _id: '19', location: "B13" }
+  let tickets = 5
+  let seatsReserved= 0
+  //let userId = userId
+  // let movieTheatre = [[]]
+  const [selected, setSelected] = useState([
+    [
+      { showtimeId: '1', _id: '1', location: "A1" },
+      { showtimeId: '1', _id: '2', location: "A2" },
+      { showtimeId: '1', _id: '3', location: "A3" },
+      { showtimeId: '1', _id: '4', location: "A4" },
+      { showtimeId: '1', _id: '24', location: "A5" },
+      { showtimeId: '1', _id: '34', location: "A6" },
+      { showtimeId: '1', _id: '44', location: "A7" },
+      { showtimeId: '1', _id: '54', location: "A8" },
+      null,
+      { showtimeId: '1', _id: '5', location: "A9" },
+      { showtimeId: '1', _id: '6', location: "A10" },
+      { showtimeId: '1', _id: '7', location: "A11" },
+      { showtimeId: '1', _id: '8', location: "A12" },
+      { showtimeId: '1', _id: '9', location: "A13", userId: '1' }
+    ],
+    [
+      { showtimeId: '1', _id: '11', location: "B1" },
+      { showtimeId: '1', _id: '12', location: "B2" },
+      { showtimeId: '1', _id: '13', location: "B3", userId: '1' },
+      { showtimeId: '1', _id: '14', location: "B4" },
+      { showtimeId: '1', _id: '74', location: "B5" },
+      { showtimeId: '1', _id: '84', location: "B6" },
+      { showtimeId: '1', _id: '34', location: "B7" },
+      { showtimeId: '1', _id: '94', location: "B8" },
+      null,
+      { showtimeId: '1', _id: '15', location: "B9" },
+      { showtimeId: '1', _id: '16', location: "B10" },
+      { showtimeId: '1', _id: '17', location: "B11" },
+      { showtimeId: '1', _id: '18', location: "B12" },
+      { showtimeId: '1', _id: '19', location: "B13" }
         ],
         [
           { showtimeId: '1', _id: '21', location: "C1" },
@@ -117,14 +119,48 @@ export default function Seats() {
           { showtimeId: '1', _id: '18', location: "G12" },
           { showtimeId: '1', _id: '19', location: "G13" }
         ]
-      ];
+      ]);
 
 function handleClick(e){
-  
-  e.target.className === "seat seat--enabled"
-  ?e.target.className = "seat seat--selected"
-  :e.target.className = "seat seat--enabled"
-  
+  let initialState = selected
+  let seatSelected = e.target.innerText
+  if(e.target.className === "seat seat--enabled"){
+    if (seatsReserved===tickets)return alert('All seats already selected')
+    e.target.className = "seat seat--selected"
+    for (let i = 0; i < initialState.length; i++) {
+      for (let j = 0; j < initialState[i].length; j++) {
+        
+        if (initialState[i][j]!==null){
+        if(initialState[i][j].location===seatSelected){
+          initialState[i][j] = { showtimeId : initialState[i][j].showtimeId,
+                                      _id : initialState[i][j]._id,
+                                      location : initialState[i][j].location,
+                                      userId : "1"
+                                        }
+          seatsReserved=seatsReserved+1
+          console.log(seatsReserved)
+        }
+      }else  continue
+      }
+    }
+    } else {
+    e.target.className = "seat seat--enabled"
+    for (let i = 0; i < initialState.length; i++) {
+      for (let j = 0; j < initialState[i].length; j++) {
+        
+        if (initialState[i][j]!==null){
+        if(initialState[i][j].location===seatSelected){
+          initialState[i][j] = { showtimeId : initialState[i][j].showtimeId,
+                                      _id : initialState[i][j]._id,
+                                      location : initialState[i][j].location,
+                                        }
+        seatsReserved=seatsReserved-1
+        }
+      }else  continue
+      }
+    }
+}
+setSelected(initialState)
 }
 
 function seatsRowDivs(arr){
@@ -154,10 +190,10 @@ return row
       <h1>Pick your Seat/s</h1>
       <h4>Screen</h4>
       <div className="box">
-      {rows.length?
-      rows.map((r, index)=>
+      {selected.length?
+      selected.map((r, index)=>
       <div className="seat-picker__row">
-        <div class="seat-picker__row__leter">{index+1}</div>
+        <div className="seat-picker__row__leter">{index+1}</div>
         {seatsRowDivs(r)}</div>):<div>No seats here</div>}
       </div>
     </div>
