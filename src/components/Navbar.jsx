@@ -55,7 +55,7 @@ export default function Navbar() {
           <button className={style.btn_primary}>Create Movie Showtime</button>
         </NavLink> */}
 
-        <NavLink to="#">
+        <NavLink to="/register">
           <button className={style.btn_primary}>Sign Up</button>
         </NavLink>
 

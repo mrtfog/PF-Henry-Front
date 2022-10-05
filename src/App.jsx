@@ -9,6 +9,7 @@ import Playlist from "./components/Playlist";
 import Seats from "./components/SeatPicker";
 import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
+import Register from './components/Users/Register'
 import { useLocation } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
           <Route exact path="/seats" component={Seats} />
           <Route exact path='/playlists' component={Playlists} />
           <Route exact path='/playlists/:id' component={Playlist} />
+          <Route exact path="/register" component={Register} />
         </Switch>
       </div>
     );
