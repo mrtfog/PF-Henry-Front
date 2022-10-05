@@ -9,7 +9,7 @@
     margin: auto;
 
     .functions_container{
-
+        color: $text-color-white;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -45,6 +45,21 @@
                 border-radius: 30px;
                 background-color: rgb(10, 10, 12);
                 overflow-y: scroll;
+                .notFound{
+                    display:flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    svg{
+                        margin-bottom: 2rem;
+                        width:130px;
+                        height: 130px;
+                        path{
+                            fill: rgba(236, 233, 233, 0.589);
+                            transition: 0.2s linear;
+                        }
+                    }
+                }
                 
                 .function{
 
@@ -120,6 +135,7 @@
         form{
             width: 65%;
             max-height: 70vh;
+           
 
             .mainDivDate{
                 display: flex;
@@ -173,7 +189,7 @@
             }
             
             .Select {
-
+          
                 margin-bottom: 2rem;
 
                 select{
@@ -200,7 +216,7 @@
             }
         
             button{
-
+            
                 @include btn-primary;
                 width: 100%;
 
