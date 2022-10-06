@@ -18,8 +18,20 @@ export function getUserSession(id) {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`http://localhost:8082/auth/login/success`);
+            const { data } = await axios.get(`https://pf-henry-back.herokuapp.com/auth/success`);
             return dispatch({ type: "GET_USER_SESSION", payload: data });
+        } 
+        catch (e) {
+            console.log(e);
+        }
+    };
+}
+
+export function postLogIn(payload){
+    return async (dispatch) => {
+        try {
+            await axios.post(`https://pf-henry-back.herokuapp.com/auth/login`, payload);
+            return dispatch({ type: "POST_LOG_IN"});
         } 
         catch (e) {
             console.log(e);
@@ -34,8 +46,9 @@ export function postNewUser(payload){
     return async(dispatch)=>{
 
         try{
-            await axios.post('http://localhost:8082/auth/register', payload)
-            return dispatch({type:'POST_NEW_USER'})
+            const response = await axios.post('https://pf-henry-back.herokuapp.com/auth/register', payload, {withCredentials:true})
+            console.log(response)
+            return dispatch({type:'POST_NEW_USER', payload: response.status})
         }
         catch(e){
             console.log(e)
