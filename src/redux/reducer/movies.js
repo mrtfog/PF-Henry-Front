@@ -5,6 +5,8 @@ const initialState = {
     movieDetail: {},
     carousel: [],
     upcoming:[],
+    genres: [],
+    msg: 'Loading...'
 };
   
 export default function moviesReducer(state = initialState, action) {
@@ -14,14 +16,14 @@ export default function moviesReducer(state = initialState, action) {
         case 'GET_MOVIES': 
         
             let filteredMovies = action.payload.filter( m => {
-            if(m.language !== "ko"){return m}
+            if(m.language === "en" || m.language === 'es'){return m}
             })
 
             return{
                 ...state,
                 movies: filteredMovies,
                 allMovies: filteredMovies,
-                carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`),
+                carousel: filteredMovies.slice(0,5).map((e) =>`https://image.tmdb.org/t/p/original${e.backdrop_path}`)
             }
   
   
@@ -95,7 +97,7 @@ export default function moviesReducer(state = initialState, action) {
 
                 return{
                     ...state,
-                    filteredMovies: [...state.allMovies]
+                    movies: [...state.allMovies]
                 }
             }
             

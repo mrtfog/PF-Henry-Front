@@ -1,16 +1,29 @@
 import React from 'react'
 import style from '../scss/components/_card.module.scss'
 import {Link} from 'react-router-dom'
+import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function Card({img, rating, title, genres, id}) {
 
 
   const url = "https://image.tmdb.org/t/p/original" + img
 
+  const dispatch = useDispatch()
+
+  const addPlaylistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
+
+  function handleAddToList(){
+
+    dispatch(addToPlaylistDisplay('flex'))
+    dispatch(selectedMovie(id, title))
+
+  }
+
   return (
 
    
-    <div className={style.card}>
+    <div className={style.card} style={{zIndex: addPlaylistDisplay === 'none' ? 0 : -1}}>
             <Link to={`/movies/${id}`}>
             <div className={style.card_img} style={{backgroundImage: `url(${url})`}}> </div>
             </Link>
@@ -106,7 +119,7 @@ export default function Card({img, rating, title, genres, id}) {
 
 
         
-        <li><svg className={style.icon} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+        <li onClick={handleAddToList}><svg className={style.icon} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	      viewBox="0 0 505 440" enableBackground="new 0 0 512 512" xmlSpace="preserve">
         <path d="M488.5,256c0,9.1-6.83,16.5-15.23,16.5H272.5v200.77c0,8.4-7.4,15.23-16.5,15.23c-9.1,0-16.5-6.83-16.5-15.23V272.5
           H38.73c-8.4,0-15.23-7.4-15.23-16.5c0-9.1,6.83-16.5,15.23-16.5H239.5V38.73c0-8.4,7.4-15.23,16.5-15.23

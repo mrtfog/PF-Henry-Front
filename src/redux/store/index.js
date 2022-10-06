@@ -4,15 +4,18 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import moviesReducer from '../reducer/movies'
 import reviewsReducer from '../reducer/reviews'
 import showtimesReducer from '../reducer/showtimes'
+import playlistsReducer from '../reducer/playlists'
 import usersReducer from '../reducer/users'
+import cartReducer from '../reducer/cart'
 
 const rootReducer = combineReducers({
 
   moviesReducer: moviesReducer,
   reviewsReducer: reviewsReducer,
   showtimesReducer: showtimesReducer,
-  usersReducer: usersReducer
-
+  playlistsReducer: playlistsReducer,
+  usersReducer: usersReducer,
+  cartReducer: cartReducer
 })
 
 const store = createStore(
