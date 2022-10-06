@@ -24,11 +24,27 @@ export default function validate(values) {
     if (!values.firstname) {
       errors.firstname = "Please write your name";
     }
+
+    if(values.firstname.length < 3) {
+      errors.firstname = 'Your first name must have at least 2 characters'
+    }
+
     if (!values.lastname) {
       errors.lastname = "Please write your last name";
     }
+
+    if(values.lastname.length < 3) {
+      errors.lastname = 'Your first name must have at least 2 characters'
+    }
+
     if (!values.username) {
       errors.username = "A user name is required";
     }
+
+    if(values.username.length < 4) {
+      errors.username = 'Your first name must have at least 5 characters'
+    }
+    
+
     return errors;
   }
