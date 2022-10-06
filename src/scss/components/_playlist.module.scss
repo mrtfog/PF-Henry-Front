@@ -94,66 +94,45 @@
     }
 
     .randomMovie{
-        position: absolute;
-        flex-direction: column;
+
+        display: flex;
+        flex-direction: row;
         align-items: center;
-        justify-content: center;
-        top:15vh;
-        background-color: $background-color;
-        border-radius: 10px;
-        width: 65vw;
-        height: 80vh;
-        filter: drop-shadow(0 0 100vw black);
-        box-shadow: 0 0 10px 3px $secondary-color;
-        color: $text-color-white;
-
-        .close{
-
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
+        width: 90%;
+        justify-content: space-evenly;
 
         div{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            width: 90%;
-            justify-content: space-evenly;
+            width: fit-content;
+            max-width: 50%;
 
-            div{
+            img{
+                width: 250px;
+            }
+
+            h2{
+                font-size: 2.3rem;
+                text-align: center;
+            }
+            
+            .buttons{
                 display: flex;
-                flex-direction: column;
-                width: fit-content;
-                max-width: 50%;
+                max-width: none;
+                flex-direction: row;
 
-                img{
-                    width: 250px;
+                button{
+                    @include btn-secondary;
+                    width: 100px;
                 }
-
-                h2{
-                    font-size: 2.3rem;
-                    text-align: center;
+                button:first-child{
+                    @include btn-primary;
                 }
-                
-                .buttons{
-                    display: flex;
-                    max-width: none;
-                    flex-direction: row;
-
-                    button{
-                        @include btn-secondary;
-                        width: 100px;
-                    }
-                    button:first-child{
-                        @include btn-primary;
-                    }
-                }
- 
             }
 
         }
-
     }
 
     button.delete{
