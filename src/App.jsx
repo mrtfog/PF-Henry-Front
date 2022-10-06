@@ -18,7 +18,7 @@ function App() {
   if (!pathname.includes("/admin")) {
     return (
       <div className="App">
-        <Navbar />
+        {pathname.includes('/register') ? null : <Navbar />}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
