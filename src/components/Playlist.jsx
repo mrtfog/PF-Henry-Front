@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { clearPlaylistMovies, getPlaylist, getPlaylistMovies } from '../redux/actions/playlists'
+import PopUpTemplate from './PopUpTemplate'
 
 export default function Playlist(){
 
@@ -37,6 +38,28 @@ export default function Playlist(){
 
         setRandomMovie(movies[Math.round(Math.random() * (movies.length - 1))])
         setDisplay('flex')
+    }
+
+    function randomMovieDiv(){
+
+        return(
+
+            <div className={style.randomMovie}>
+                <div>
+                    <img src={'https://image.tmdb.org/t/p/original' + randomMovie.poster_path} />
+                </div>
+                <div>
+                    <h2>{randomMovie.title}</h2>
+                    <div className={style.buttons}>
+                        <Link to={`/movies/${randomMovie.id}`}>
+                            <button>► Play</button>
+                        </Link>
+                        <button className={style.button} onClick={handleRandomMovieSelect}>Try Again</button>
+                    </div>
+                </div>
+            </div>
+
+        )
     }
 
     return (
@@ -90,25 +113,7 @@ export default function Playlist(){
             {
                 randomMovie === false ? null :
 
-                <div className={style.randomMovie} style={{display: display}}>
-
-                    <button className={`${style.delete} ${style.close}`} onClick={()=> setDisplay('none')}>X</button>
-                    <div>
-                        <div>
-                        <img src={'https://image.tmdb.org/t/p/original' + randomMovie.poster_path} />
-                        </div>
-                        <div>
-                            <h2>{randomMovie.title}</h2>
-                            <div className={style.buttons}>
-                                <Link to={`/movies/${randomMovie.id}`}>
-                                    <button>► Play</button>
-                                </Link>
-                                <button className={style.button} onClick={handleRandomMovieSelect}>Try Again</button>
-                            </div>
-                        </div>
-                    </div>
-
-            </div>
+                <PopUpTemplate content={randomMovieDiv()} displayState={display} handleOnClose={()=> setDisplay('none')} />
 
             }
 

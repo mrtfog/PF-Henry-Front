@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToPlaylistDisplay, getUserPlaylists } from '../../redux/actions/playlists'
-import style from '../../scss/components/Forms/_addPlaylist.module.scss'
-import Select from './Select'
+import { addToPlaylistDisplay, getUserPlaylists } from '../redux/actions/playlists'
+import PopUpTemplate from './PopUpTemplate'
+import style from '../scss/components/_addToPlaylistPopUp.module.scss'
 
-export default function AddPlaylist() {
-
+export default function AddToPlaylistPopUp() {
+    
     const dispatch = useDispatch()
 
     const display = useSelector(state => state.playlistsReducer.formDisplay)
     const playlists = useSelector(state => state.playlistsReducer.playlists)
     const movie = useSelector(state => state.playlistsReducer.selectedMovie)
+
 
     const [name, setName] = useState('')
 
@@ -24,17 +24,15 @@ export default function AddPlaylist() {
         dispatch(addToPlaylistDisplay('none'))
     }
 
-    return (
+    function selectPlaylistDiv(){
 
-        <div className={style.container} style={{display: display}}>
+        return (
 
-            <div className={style.popup}>
-                <button className={style.close} onClick={handleDisplay}>cancel</button>
-
+            <div className={style.container}>
                 <h2>Add <span>"{movie.title}"</span> to playlist</h2>
+                <hr></hr>
                 <h3>Choose Playlist</h3>
                 <select onChange={(e)=> console.log(e.target.value)}>
-                    {console.log(playlists)}
                     {
                     playlists ? playlists.map(p =>{
 
@@ -50,8 +48,13 @@ export default function AddPlaylist() {
                     <input type='text' placeholder='Playlist Name...' value={name} onChange={(e) => setName(e.target.value)}/>
                     <button>+</button>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        )
+    }
+
+    return (
+        
+        <PopUpTemplate displayState={display} handleOnClose={handleDisplay} content={selectPlaylistDiv()}/>
     )
 }
