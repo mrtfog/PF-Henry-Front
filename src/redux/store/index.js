@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
   moviesReducer: moviesReducer,
   reviewsReducer: reviewsReducer,
   showtimesReducer: showtimesReducer,
-  playlistsReducer: playlistsReducer
+  playlistsReducer: playlistsReducer,
   usersReducer: usersReducer
 })
 
