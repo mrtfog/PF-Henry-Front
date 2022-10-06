@@ -10,6 +10,7 @@ function Carousel() {
 // const images = ['presencias-poster.jpg','thenorthman-poster.jpg','thor-poster.webp', 'uncharted-poster.jpg']
 
 const images = useSelector((state) => state.moviesReducer.carousel)
+const addPlaylistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
 
 /* Uso estados locales para moverme entre las imágenes y uso un index*/
 const [selectedIndex, setSelectedIndex] = useState(0)
@@ -48,7 +49,7 @@ useEffect(() =>{
 
   
   return (
-    <div className={style.carouselContainer} style={{backgroundImage:`url(${selectedImage ? selectedImage : img})`}}>
+    <div className={style.carouselContainer} style={{backgroundImage:`url(${selectedImage ? selectedImage : img})`, zIndex: addPlaylistDisplay === 'none' ? 0 : -1}}>
         <button className={style.carouselBtnPrev} onClick ={previous}>{"<"}</button>
         <button className={style.carouselBtnNext}onClick ={next}>{">"}</button>
     </div>

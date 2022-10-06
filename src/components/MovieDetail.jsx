@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getMovieReviews } from '../redux/actions/reviews'
 import { useParams } from 'react-router-dom'
 import { resetMovieDetail, getMovieDetail } from '../redux/actions/movies'
+import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
 
 
 export default function MovieDetail() {
@@ -25,7 +26,8 @@ export default function MovieDetail() {
 
     const movie = useSelector(state => state.moviesReducer.movieDetail)
     const movieReviews = useSelector(state => state.reviewsReducer.movieReviews)
-    
+    const playlistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
+
     const urlPoster = 'https://image.tmdb.org/t/p/original' + movie.poster_path
     const urlBanner = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path
 
@@ -41,20 +43,27 @@ export default function MovieDetail() {
         return stars
     }
 
+    function handleDisplay(){
+
+        dispatch(addToPlaylistDisplay('flex'))
+        dispatch(selectedMovie(movie.id, movie.title))
+
+    }
+
     return (
 
         <div className={style.container_movieDetail}>
 
             <header>
 
-                <div className={style.info}>
+                <div className={style.info} style={{zIndex: playlistDisplay === 'none' ? 0 : -1}}>
 
                     <h2>{movie.title}</h2>
                     <p>Release: {movie.release_date}  •  Duration: {movie.runtime} min   •   ★ {(Math.round(movie.vote_average * 100) / 100).toFixed(1)}</p>
                     <p>{movie.overview}</p>
                     <div className={style.buttons}>
                         <button>► Play</button>
-                        <button className={style.secondary_button}>+ Add to List</button>
+                        <button className={style.secondary_button} onClick={handleDisplay}>+ Add to List</button>
                     </div>
                 </div>
 
