@@ -4,12 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import moviesReducer from '../reducer/movies'
 import reviewsReducer from '../reducer/reviews'
 import showtimesReducer from '../reducer/showtimes'
+import playlistsReducer from '../reducer/playlists'
 
 const rootReducer = combineReducers({
 
   moviesReducer: moviesReducer,
   reviewsReducer: reviewsReducer,
-  showtimesReducer: showtimesReducer
+  showtimesReducer: showtimesReducer,
+  playlistsReducer: playlistsReducer
 
 })
 
