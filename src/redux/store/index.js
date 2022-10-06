@@ -5,6 +5,7 @@ import moviesReducer from '../reducer/movies'
 import reviewsReducer from '../reducer/reviews'
 import showtimesReducer from '../reducer/showtimes'
 import playlistsReducer from '../reducer/playlists'
+import usersReducer from '../reducer/users'
 
 const rootReducer = combineReducers({
 
@@ -12,7 +13,7 @@ const rootReducer = combineReducers({
   reviewsReducer: reviewsReducer,
   showtimesReducer: showtimesReducer,
   playlistsReducer: playlistsReducer
-
+  usersReducer: usersReducer
 })
 
 const store = createStore(

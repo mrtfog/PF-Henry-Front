@@ -56,7 +56,7 @@ export default function Function() {
     <div className={style.container}>
       <div className={style.functions_container}>
         <div>
-          <h1>Movie showtimes</h1>
+          <h2>Movie showtimes</h2>
 
           <div className={style.functions} id="functionsDiv">
             {functions.length > 0 ? (
@@ -111,7 +111,7 @@ export default function Function() {
       </div>
 
       <div className={style.formFunction}>
-        <h1>Create new movie</h1>
+        <h2>Create new movie</h2>
 
         <form onSubmit={formik.handleSubmit}>
           <div className={style.mainDivDate}>
@@ -136,7 +136,7 @@ export default function Function() {
                 />
               </div>
 
-              <div className={style.minDivDate}>
+              <div className={style.minDivTime}>
                 <label>Time</label>
                 <TimePicker
                   emptyLabel="Select time"
