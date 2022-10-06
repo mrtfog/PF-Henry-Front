@@ -1,34 +1,21 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import style from '../scss/components/_cart.module.scss'
+import { getCart } from '../redux/actions/cart';
 
 export default function Cart() {
 
-    const functions = useSelector((state) => state.showtimesReducer.showtimes);
+    const dispatch = useDispatch()
 
-    // const cart = [
-    //     {
-    //         _id: '718930',
-    //         tickets: '3',
-    //         combo: false,
-    //         showtime:
-    //     },
-    //     {
-    //         _id: '760161',
-    //         tickets: '1',
-    //         combo: true,
-    //         showtime:
-    //     },
-    //     {
-    //         _id: '985939',
-    //         tickets: '2',
-    //         combo: true,
-    //         showtime:
-    //     }
-    // ]
+    const functions = useSelector((state) => state.showtimesReducer.showtimes);
+    // console.log(functions)
+
+    use
 
   return (
     <div>
 
-
+        ESTE ES EL CART
         
     </div>
   )
