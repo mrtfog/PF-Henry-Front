@@ -1,26 +1,36 @@
 import React from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getUserPlaylists } from '../redux/actions/playlists'
 import style from '../scss/components/_playlists.module.scss'
 
-export default function playlist() {
+export default function Playlist() {
 
-    const playlists = [
-        {
-            _id: 'sdhskj',
-            name: 'playlist 1', 
-            useId:'user789', 
-            contributors:[],
-            movies:[459151, 769636, 948333]
+    const dispatch = useDispatch()
+    const playlists = useSelector(state => state.playlistsReducer.playlists)
+
+    useEffect(()=>{
+        dispatch(getUserPlaylists())
+    }, [])
+
+    // const playlists = [
+    //     {
+    //         _id: 'sdhskj',
+    //         name: 'playlist 1', 
+    //         useId:'user789', 
+    //         contributors:[],
+    //         movies:[459151, 769636, 948333]
             
-        },
-        {
-            _id: 'sdhskj2',
-            name: 'playlist 2', 
-            userId: 'user867',
-            contributors:[{id: 34, username:'Belen'}, {id: 35, username:'Sergio'}, {id: 36, username:'Belen2'}, {id: 37, username:'Martin'},{id: 38, username:'Angela'}, {id: 39, username:'Andres'}, {id: 40, userName:'Luciano'}],
-            movies:[674, 383498]
-        }
-    ]
+    //     },
+    //     {
+    //         _id: 'sdhskj2',
+    //         name: 'playlist 2', 
+    //         userId: 'user867',
+    //         contributors:[{id: 34, username:'Belen'}, {id: 35, username:'Sergio'}, {id: 36, username:'Belen2'}, {id: 37, username:'Martin'},{id: 38, username:'Angela'}, {id: 39, username:'Andres'}, {id: 40, userName:'Luciano'}],
+    //         movies:[674, 383498]
+    //     }
+    // ]
 
     return (
 

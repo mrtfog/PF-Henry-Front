@@ -11,14 +11,17 @@ import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
 import { useLocation } from "react-router-dom";
+import AddPlaylist from "./components/Forms/AddPlaylist";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
+
 function App() {
   const { pathname } = useLocation();
   if (!pathname.includes("/admin")) {
     return (
       <div className="App">
         {pathname.includes('/register') ? null : <Navbar />}
+        <AddPlaylist />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
@@ -35,8 +38,6 @@ function App() {
       <div className="AppAdmin">
         <NavbarAdmin />
         <Switch>
-          {/* RUTAS ADMIN */}
-
           <Route exact path="/admin/statistics" component={Statistics} />
           <Route exact path="/admin/function" component={Function} />
           <Route exact path="/admin/users" component={Users} />
