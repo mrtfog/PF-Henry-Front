@@ -1,14 +1,15 @@
-@import '../../abstracts/variables';
-@import '../../abstracts/mixins';
+@import '../abstracts/variables';
+@import '../abstracts/mixins';
 
 .container{
-
     width: 100vw;
     height: 100vh;
+    top: 0;
     position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    justify-items: center;
     align-items: center;
 
 
@@ -19,7 +20,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        top:5vh;
+        top:15vh;
         background-color: $background-color;
         border-radius: 10px;
         width: 65vw;
@@ -28,13 +29,7 @@
         box-shadow: 0 0 10px 3px $secondary-color;
         color: $text-color-white;
         z-index: 100000;
-
-        h2 span{
-            color: $primary-color;
-            text-shadow: 0 0 10px $primary-color;
-            margin: 0 1rem;
-        }
-
+        
         .close{
 
             position: absolute;
@@ -44,27 +39,5 @@
             padding: 0.4rem 0.6rem;
             border: none;
         }
-
-        select{
-            @include select;
-            width: 50%;
-        }
-
-        .createPlaylist{
-            input{
-                width: 28vw;
-                height: 5vh;
-                border-radius: 8px;
-                padding: 3px;
-                border: none;
-            }
-
-            button{
-                @include btn-primary;
-                padding: 0.7rem 1rem;
-            }
-        }
-
     }
-
 }

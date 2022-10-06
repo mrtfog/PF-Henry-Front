@@ -11,9 +11,10 @@ import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
 import { useLocation } from "react-router-dom";
-import AddPlaylist from "./components/Forms/AddPlaylist";
+import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
+import Cart from "./components/Cart";
 
 function App() {
   const { pathname } = useLocation();
@@ -21,7 +22,7 @@ function App() {
     return (
       <div className="App">
         {pathname.includes('/register') ? null : <Navbar />}
-        <AddPlaylist />
+        <AddToPlaylistPopUp />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/cart" component={Cart}  />
         </Switch>
       </div>
     );

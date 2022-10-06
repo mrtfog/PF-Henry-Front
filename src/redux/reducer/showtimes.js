@@ -9,7 +9,6 @@ export default function showtimesReducer(state = initialState, action) {
     switch (action.type) {
   
         case "GET_SHOWTIMES":
-            
             return {
                 ...state,
                 showtimes: action.payload,
