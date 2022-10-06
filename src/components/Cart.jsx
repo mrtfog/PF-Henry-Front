@@ -1,35 +1,23 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux';
+import style from '../scss/components/_cart.module.scss'
+import { getCart } from '../redux/actions/cart';
 
 export default function Cart() {
 
+    const dispatch = useDispatch()
+
     const functions = useSelector((state) => state.showtimesReducer.showtimes);
+    // console.log(functions)
 
-    // const cart = [
-    //     {
-    //         _id: '718930',
-    //         tickets: '3',
-    //         combo: false,
-    //         showtime:
-    //     },
-    //     {
-    //         _id: '760161',
-    //         tickets: '1',
-    //         combo: true,
-    //         showtime:
-    //     },
-    //     {
-    //         _id: '985939',
-    //         tickets: '2',
-    //         combo: true,
-    //         showtime:
-    //     }
-    // ]
-
-  return (
-    <div>
-
-
-        
-    </div>
-  )
+    return (
+        <div>
+        <div>Cart</div>
+        <form action = "http://localhost:8082/payment/payment" method = "POST">
+            <input type = "hidden" name = "title" value = "Minnios" ></input>
+            <input type = "hidden" name =  "price" value = "780"></input>
+            <button type = "submit" style = {{width :"80", height:"40px", borderRadius: "5px"}}>Buy Now</button>
+        </form>
+        </div>
+      )
 }

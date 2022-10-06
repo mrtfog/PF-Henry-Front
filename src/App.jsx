@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 import AddPlaylist from "./components/Forms/AddPlaylist";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
+import Cart from "./components/Cart";
 
 function App() {
   const { pathname } = useLocation();
@@ -29,6 +30,7 @@ function App() {
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
+          <Route exact path="/cart" component={Cart}  />
         </Switch>
       </div>
     );

@@ -62,6 +62,11 @@ export default function Navbar() {
         <NavLink to="/admin/statistics">
           <button className={style.btn_primary}>Log in</button>
         </NavLink>
+
+        <NavLink to="/cart">
+        <button>Carrito</button>
+        </NavLink>
+
       </div>
     </nav>
   );
