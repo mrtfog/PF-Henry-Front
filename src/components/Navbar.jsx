@@ -59,7 +59,7 @@ export default function Navbar() {
           <button className={style.btn_primary}>Sign Up</button>
         </NavLink>
 
-        <NavLink to="/admin/statistics">
+        <NavLink to="/login">
           <button className={style.btn_primary}>Log in</button>
         </NavLink>
 

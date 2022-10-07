@@ -23,6 +23,7 @@ export default function showtimesReducer(state = initialState, action) {
         case "POST_LOG_IN":
             return {
                 ...state,
+                userSession: action.payload,
             }
             
         case "POST_NEW_USER":
@@ -31,6 +32,12 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 registerStatus: action.payload,
             };
+
+        case 'CLEAR_REGISTER_STATUS':
+            return {
+                ...state,
+                registerStatus: undefined,
+            }
   
         default:
             return {
