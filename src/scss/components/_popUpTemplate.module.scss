@@ -1,6 +1,9 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
+$infinity: 100;
+
+
 .container{
     width: 100vw;
     height: 100vh;
@@ -11,6 +14,7 @@
     justify-content: center;
     justify-items: center;
     align-items: center;
+    z-index: $infinity;
 
 
     .popup{
@@ -28,7 +32,7 @@
         filter: drop-shadow(0 0 100vw black);
         box-shadow: 0 0 10px 3px $secondary-color;
         color: $text-color-white;
-        z-index: 100000;
+
         
         .close{
 

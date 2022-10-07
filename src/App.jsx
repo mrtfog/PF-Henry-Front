@@ -15,6 +15,7 @@ import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
 import Cart from "./components/Cart";
+import AddToCartPopUp from "./components/AddToCartPopUp";
 
 function App() {
   const { pathname } = useLocation();
@@ -23,6 +24,7 @@ function App() {
       <div className="App">
         {pathname.includes('/register') ? null : <Navbar />}
         <AddToPlaylistPopUp />
+        <AddToCartPopUp />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
