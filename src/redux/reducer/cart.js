@@ -41,7 +41,7 @@ export default function showtimesReducer(state = initialState, action) {
             };
         
         case 'GET_SHOWTIME_BY_MOVIE_ID':
-
+            
         return{
             ...state,
             showtime: action.payload
