@@ -32,13 +32,13 @@ export default function AddToCartPopUp() {
         return (
 
             <div className={style.container_addToCartPU}>
-                <h2>Add <span>'{movie.title}'</span> tickets to cart</h2>
+                <h2>Add<span>'{movie.title}'</span>tickets to cart</h2>
                 <hr></hr>
-                <h3>Choose Playlist</h3>
+                <h3>Choose showtime</h3>
 
                 <select onChange={(e)=> console.log(e.target.value)}>
                     {
-                    showtime ? showtime.map(p =>{
+                    showtime.length ? showtime.map(p =>{
                         return <option key={p._id} value={p._id}>
                             {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format}
                             </option>

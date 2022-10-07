@@ -8,9 +8,9 @@ footer{
 
     bottom: 0;
     width: 100%;
-    background: linear-gradient(60deg,
-    $primary-color -5vw,
-    $secondary-color,
+    background: linear-gradient(70deg,
+    $primary-color,
+    $secondary-color  75%
     );
 
     color: $text-color-white;
