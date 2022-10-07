@@ -6,11 +6,29 @@ import style from "../scss/components/_navbar.module.scss";
 
 export default function Navbar() {
   const { pathname } = useLocation();
-
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 60) {
+      setColor(true);
+    }
+    if (window.scrollY === 0) {
+      setColor(false);
+    }
+  };
+  window.addEventListener("scroll", changeColor);
   return (
     <nav
       className={style.navMain}
-      style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
+      style={
+        color
+          ? {
+              backgroundColor: "#040405",
+              boxShadow: "0 0 10px rgba(255, 49, 90, 0.5)",
+              transition: ".4s linear",
+            }
+          : { backgroundColor: "transparent", transition: ".4s linear" }
+      }
+      // style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
     >
       <Link to="/" className={style.navLogo}>
         <h2>HPFC</h2>
@@ -61,9 +79,8 @@ export default function Navbar() {
         </NavLink>
 
         <NavLink to="/cart">
-        <button>Carrito</button>
+          <button>Carrito</button>
         </NavLink>
-
       </div>
     </nav>
   );

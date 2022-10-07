@@ -18,15 +18,19 @@ import Login from "./components/Users/Login";
 import Cart from "./components/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 
-
 function App() {
   const { pathname } = useLocation();
   if (!pathname.includes("/admin")) {
     return (
       <div className="App">
-        {pathname.includes('/register') ? null : pathname.includes('login')? null : <Navbar />}
+        {pathname.includes("/register") ? null : pathname.includes(
+            "login"
+          ) ? null : (
+          <Navbar />
+        )}
         <AddToPlaylistPopUp />
         <AddToCartPopUp />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
@@ -34,9 +38,8 @@ function App() {
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
-          <Route exact path='/login' component={Login}/>
-          <Route exact path="/cart" component={Cart}  />
-
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/cart" component={Cart} />
         </Switch>
       </div>
     );
