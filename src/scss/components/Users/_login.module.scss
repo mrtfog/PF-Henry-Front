@@ -1,0 +1,241 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    .navbarContainer{
+        nav{
+            background-color: $background-color;
+            display:flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 20%;
+            padding-top: 1em;
+            padding-bottom: 1em;
+            box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
+        }
+    }
+
+    .formContainer{
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        align-items: center;
+        justify-content: center;
+        background-color: $background-color;
+        height: 100%;
+        width: 30%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+        border-radius: 5%;
+        border-color: $secondary-color;
+        border-width: 2px;
+        border-style:solid;
+        padding-top: 1em;
+        padding-bottom: 1em;
+
+        form{
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 50px;
+            width: 75%;
+            gap: 0.5rem;
+
+            h1{
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .inputContainer{
+                display: flex;
+                flex-direction: column;
+                justify-items: center;
+                justify-content: center;
+                align-self: center;
+                text-align: left;
+                width: 100%;
+
+                .inputPassword{
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    justify-items: center;
+                    justify-content: center;
+                    width: 100%;
+
+                    input{
+                        @include select;
+                        margin-left: 0;
+                        margin-right: 0;
+                        text-align: left;
+                        padding-left: 1rem;
+                        color: $background-color;
+    
+                        &:hover, &:focus, &:active{
+                            background-color: white;
+                            color: $background-color;
+                        }
+                    }
+
+                    .showButton{
+                        position: absolute;
+                        right: 1em;
+                        top: 0.7em;
+                        scale: 0.9;
+                        svg{
+                            width: auto;
+                            height: 25px;
+                            fill: $secondary-color;
+                        }
+                    }
+                }
+
+
+                
+                label {
+                    padding: 0;
+                    display: block;
+                    color: white;
+                    text-align: left;
+                    font-size: 1rem;
+                    margin-top: 0.65rem;
+                    margin-bottom: 0.5rem;
+                    width: 100%
+
+                }
+
+                input{
+                    @include select;
+                    margin-left: 0;
+                    margin-right: 0;
+                    text-align: left;
+                    padding-left: 1rem;
+                    color: $background-color;
+                
+                    &:hover, &:focus, &:active{
+                        background-color: white;
+                        color: $background-color;
+                    }
+                }
+
+                .errorMessage{
+                    display: block;
+                    color: #ff3860;
+                    height: 13px;
+                    margin-left: 8px;
+                    margin-top: 5px;
+                    animation: wiggle 1s linear;
+                    animation-duration: 0;
+                    display: inline-block;
+                    font-size: 0.8rem;
+                }
+                
+            }
+
+            .btnContainer{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top:1em;
+                align-items: center;
+                justify-content: center;
+                gap: 1em;
+
+                .primaryBtn{
+                    @include btn-primary;
+                    width: 100%;
+                    min-width: fit-content;
+                }
+
+                span{
+                    color: white;
+                }
+
+                .googleBtn{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content:space-between;
+                    align-items: center;
+                    width: 50%;
+                    min-width: fit-content;
+                    margin: 10px;
+                    background-color:rgb(66 133 244);
+                    border-radius: 8px;
+                    height: 2.65rem;
+                    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+                    overflow: hidden;
+
+                    .btnText{
+                        display: flex;
+                        justify-content: center;     
+                        align-items: center;                       
+                        width: 100%;
+                        height: 100%;
+
+                        a{  
+                            padding: 1rem;
+                            color: white;
+                            font-size: 14px;
+                            letter-spacing: 0.2px;
+                            font-family: "Roboto";
+                        }
+                    }
+
+                    .googleIconWrapper{
+                        padding: 1rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: auto;
+                        height: 100%;
+                        border-radius: 2px;
+                        background-color: white;
+
+                        .googleIcon{
+                            width: auto;
+                            height: 50%;
+                        }     
+                    }
+
+                    &:hover{
+                        transform: scale(1.05);
+                        transition: 0.2s linear;
+                        background-color:rgb(46, 110, 214);
+                    }
+
+                    &:active{
+                        background:rgb(66 133 244);
+                    }  
+                }
+
+                .linkToRegister{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5rem;
+                    justify-content: center;
+                    margin-top: 2em;
+                    margin-bottom: 3em;
+                    color: white;
+
+                    span{
+
+                        .Link{
+                            font-weight: 600;
+                            color: $primary-color;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+
+}

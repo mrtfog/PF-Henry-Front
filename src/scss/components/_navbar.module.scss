@@ -36,22 +36,24 @@
 
     .navLogo{
             cursor: pointer;
+            color: $primary-color;
             margin-left: 1rem;
-            
-            img {
-                height: 40px;
-                width: auto;
-                padding: 0.5rem 1rem;
-                background-size: cover;
-                border-radius: 80%;
-            }
-
-            img:hover{
-                box-shadow: none;
-            }
+            animation: 3.5s lights infinite;
+            transition: .2s linear;
+        &:hover{
+            transform: scale(1.08);
+        }
     }
     .navLogo:hover{
         cursor: pointer;
         box-shadow: none;
     }
+}
+
+@keyframes lights{
+    0%{ text-shadow: 0 0 10px $primary-color}
+    25%{ text-shadow: 0 0 0px $primary-color}
+    50%{ text-shadow: 0 0 10px $primary-color}
+    75%{ text-shadow: 0 0 0px $primary-color}
+    100%{ text-shadow: 0 0 10px $primary-color}
 }

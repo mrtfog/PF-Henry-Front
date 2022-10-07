@@ -15,7 +15,7 @@ const initialState = {
     ],
     display: 'none',
     takenTickets: {},
-
+    showtime: [],
 }
   
 export default function showtimesReducer(state = initialState, action) {
@@ -39,7 +39,13 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 display: action.payload
             };
-
+        
+        case 'GET_SHOWTIME_BY_MOVIE_ID':
+            
+        return{
+            ...state,
+            showtime: action.payload
+        }
         default:
             return {
                 ...state,

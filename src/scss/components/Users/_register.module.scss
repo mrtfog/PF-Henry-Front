@@ -1,5 +1,6 @@
 @import '../../abstracts/variables';
 @import '../../abstracts/mixins';
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
 
 .registerContainer{
         display: grid;
@@ -85,6 +86,82 @@
                    .secondaryBtn{
                         @include btn-secondary;
                     }
+
+                    .googleBtn{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content:space-between;
+                        align-items: center;
+                        min-width: fit-content;
+                        margin: 10px;
+                        background-color:rgb(66 133 244);
+                        border-radius: 8px;
+                        height: 2.65rem;
+                        box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+                        overflow: hidden;
+
+                        .btnText{
+                            display: flex;
+                            justify-content: center;     
+                            align-items: center;                       
+                            width: 100%;
+                            height: 100%;
+
+                            a{  
+                                padding: 1rem;
+                                color: white;
+                                font-size: 14px;
+                                letter-spacing: 0.2px;
+                                font-family: $font;
+                            }
+                        }
+
+                        .googleIconWrapper{
+                            padding: 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: auto;
+                            height: 100%;
+                            border-radius: 2px;
+                            background-color: white;
+
+                            .googleIcon{
+                                width: auto;
+                                height: 50%;
+                            }     
+                        }
+
+                        &:hover{
+                            transform: scale(1.05);
+                            transition: 0.2s linear;
+                            background-color:rgb(46, 110, 214);
+                        }
+
+                        &:active{
+                            background:rgb(66 133 244);
+                        }  
+                    }
+
+                }
+
+                .linkToRegister{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5rem;
+                    justify-content: center;
+                    margin-top: 2em;
+                    margin-bottom: 3em;
+                    color: white;
+
+                    span{
+
+                        .Link{
+                            font-weight: 600;
+                            color: $primary-color;
+                            text-decoration: none;
+                        }
+                    }
                 }
     
     
@@ -143,6 +220,7 @@
                         display: block;
                         color: #ff3860;
                         height: 13px;
+                        margin-top:5px;
                         margin-left: 8px;
                         animation: wiggle 1s linear;
                         animation-duration: 0;

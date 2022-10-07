@@ -6,7 +6,7 @@ import { addToCartDisplay, takenTickets } from '../redux/actions/cart'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-export default function Card({img, rating, title, genres, id}) {
+export default function Card({img, rating, title, id}) {
 
 
   const url = "https://image.tmdb.org/t/p/original" + img
@@ -27,12 +27,14 @@ export default function Card({img, rating, title, genres, id}) {
 
     dispatch(addToCartDisplay('flex'))
     dispatch(takenTickets(id, title))
+
+
   }
 
   return (
 
    
-    <div className={style.card} style={{zIndex: addPlaylistDisplay === 'none' || addToCartDisplay === 'none' ? 0 : -1}}>
+    <div className={style.card} style={{zIndex: addToCartDisplay === 'flex' || addPlaylistDisplay === 'flex'  ?  -2 : 2 }}>
             <Link to={`/movies/${id}`}>
             <div className={style.card_img} style={{backgroundImage: `url(${url})`}}> </div>
             </Link>

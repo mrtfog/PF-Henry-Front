@@ -1,7 +1,8 @@
 const initialState = {
     users: [],
     selectedUser: [],
-    userSession: []
+    userSession: [],
+    registerStatus:undefined,
 };
   
 export default function showtimesReducer(state = initialState, action) {
@@ -19,11 +20,24 @@ export default function showtimesReducer(state = initialState, action) {
                 userSession: action.payload
             }
             
-        case "POST_NEW_USER":
-            
+        case "POST_LOG_IN":
             return {
                 ...state,
+                userSession: action.payload,
+            }
+            
+        case "POST_NEW_USER":
+
+            return {
+                ...state,
+                registerStatus: action.payload,
             };
+
+        case 'CLEAR_REGISTER_STATUS':
+            return {
+                ...state,
+                registerStatus: undefined,
+            }
   
         default:
             return {

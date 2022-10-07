@@ -2,6 +2,7 @@ import React,{ useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
+import { getShowtimeByMovieId, addToCartDisplay } from '../redux/actions/cart'
 
 export default function AddToCartPopUp() {
 
@@ -10,6 +11,20 @@ export default function AddToCartPopUp() {
     const display = useSelector( state => state.cartReducer.display)
     const movie = useSelector( state => state.cartReducer.takenTickets)
 
+    
+    const showtime = useSelector ( state => state.cartReducer.showtime)
+    // console.log(showtime)
+
+    useEffect(() => {
+        dispatch(getShowtimeByMovieId(movie.id))
+    }, [movie])
+
+
+
+    function handleDisplay(){
+
+        dispatch(addToCartDisplay('none'))
+    }
 
     
     function selectPlaylistDiv(){
@@ -17,28 +32,19 @@ export default function AddToCartPopUp() {
         return (
 
             <div className={style.container_addToCartPU}>
-                <h2>Add <span>'{movie.title}'</span> tickets to cart</h2>
+                <h2>Add<span>'{movie.title}'</span>tickets to cart</h2>
                 <hr></hr>
-                <h3>Choose Playlist</h3>
+                <h3>Choose showtime</h3>
 
-
-
-                {/* <select onChange={(e)=> console.log(e.target.value)}>
+                <select onChange={(e)=> console.log(e.target.value)}>
                     {
-                    playlists ? playlists.map(p =>{
-
-                        return <option key={p._id} value={p._id}>{p.name}</option>
+                    showtime.length ? showtime.map(p =>{
+                        return <option key={p._id} value={p._id}>
+                            {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format}
+                            </option>
                     })
-                    : <option disabled>You don't have any playlist</option>}
+                    : <option disabled>You don't have any showtime</option>}
                 </select>
-
-                <h5>or</h5>
-
-                <h3>Create new Playlist</h3>
-                <div className={style.createPlaylist}>
-                    <input type='text' placeholder='Playlist Name...' value={name} onChange={(e) => setName(e.target.value)}/>
-                    <button>+</button>
-                </div> */}
 
             </div>
         )
