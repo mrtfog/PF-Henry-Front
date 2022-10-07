@@ -11,11 +11,15 @@ export default function AddToCartPopUp() {
     const display = useSelector( state => state.cartReducer.display)
     const movie = useSelector( state => state.cartReducer.takenTickets)
 
+    
     const showtime = useSelector ( state => state.cartReducer.showtime)
+    // console.log(showtime)
 
     useEffect(() => {
         dispatch(getShowtimeByMovieId(movie.id))
-    }, [])
+    }, [movie])
+
+
 
     function handleDisplay(){
 
@@ -36,10 +40,7 @@ export default function AddToCartPopUp() {
                     {
                     showtime ? showtime.map(p =>{
                         return <option key={p._id} value={p._id}>
-                            <span>
-                            new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)<span> {p.format}</span>
-                            </span>
-
+                            {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format}
                             </option>
                     })
                     : <option disabled>You don't have any showtime</option>}

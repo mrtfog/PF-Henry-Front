@@ -27,12 +27,14 @@ export default function Card({img, rating, title, id}) {
 
     dispatch(addToCartDisplay('flex'))
     dispatch(takenTickets(id, title))
+
+
   }
 
   return (
 
    
-    <div className={style.card} >
+    <div className={style.card} style={{zIndex: addToCartDisplay === 'flex' || addPlaylistDisplay === 'flex'  ?  -2 : 2 }}>
             <Link to={`/movies/${id}`}>
             <div className={style.card_img} style={{backgroundImage: `url(${url})`}}> </div>
             </Link>

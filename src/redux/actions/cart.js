@@ -21,7 +21,7 @@ export function getShowtimeByMovieId(id){
     return async(dispatch) => {
 
         try{
-            let { data } = await axios(`https://pf-henry-back.herokuapp.com/showtime/getByMovie/${id}`)
+            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/showtime/getByMovie/${id}`)
 
             return dispatch({type: 'GET_SHOWTIME_BY_MOVIE_ID', payload: data})
 
@@ -34,11 +34,10 @@ export function getShowtimeByMovieId(id){
 }
 
 
-export function takenTickets({id, title}){
+export function takenTickets(id, title){
 
     return {type:'TAKEN_TICKETS', payload: {id, title}}
 }
-
 
 export function addToCartDisplay(display){
 
