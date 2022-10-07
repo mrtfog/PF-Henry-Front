@@ -15,7 +15,7 @@ import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
 import Login from "./components/Users/Login";
-import Cart from "./components/Cart";
+import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 
 function App() {

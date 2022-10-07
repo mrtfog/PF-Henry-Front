@@ -1,0 +1,76 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+
+.container_cart{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 75%;
+        margin: 2vh 0;
+        color: $text-color-white;
+
+        h2{
+            text-transform: capitalize;
+            font-size: 2rem;
+        }
+
+        button{
+            @include btn-primary
+        }
+    
+    }
+
+
+    .cart{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80vw;
+ 
+        .movies{
+            width: 70vw;
+            @include playlist;
+            height: fit-content;
+            padding: 5px;
+            text-decoration: none;
+
+            img{
+                width: 70px;
+                border-radius: 10px;
+                margin-left: 5px;
+            }
+            h3,p{
+                margin-left: 20px;
+                width: 80%;
+                height: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                display: flex;
+                color: $text-color-white;
+
+            }
+            
+        }
+        
+    }
+
+
+    button.delete{
+        @include btn-secondary;
+        padding: 0.4rem 0.6rem;
+        border: none;
+    }
+}
