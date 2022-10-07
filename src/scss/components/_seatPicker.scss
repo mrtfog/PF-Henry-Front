@@ -9,6 +9,17 @@
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    min-width: 25%;
+}
+.inRow {
+  font-family: sans-serif;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+  margin: 3rem;
 }
 
 .seat-picker__row {
@@ -93,4 +104,9 @@
 
 .blank {
   margin: 1rem;
+}
+
+.img {
+ max-width: 30%;
+ margin: 1rem;
 }

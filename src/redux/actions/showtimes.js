@@ -6,9 +6,9 @@ export function getAllShowtimes() {
 
         try {
 
-            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/function/getAll");
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/showtime/getAll");
     
-            return dispatch({ type: "GET_FUNCTIONS", payload: data });
+            return dispatch({ type: "GET_SHOWTIMES", payload: data });
         } 
         
         catch (e) {
@@ -23,9 +23,9 @@ export function postShowtime(payload){
 
         try{
 
-            await axios.post('https://pf-henry-back.herokuapp.com/function/post', payload)
+            await axios.post('https://pf-henry-back.herokuapp.com/showtime/post', payload)
             
-            return dispatch({type:'POST_FUNCTION'})
+            return dispatch({type:'POST_SHOWTIME'})
         }
         catch(e){
             console.log(e)

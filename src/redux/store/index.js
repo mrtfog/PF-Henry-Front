@@ -6,6 +6,7 @@ import reviewsReducer from '../reducer/reviews'
 import showtimesReducer from '../reducer/showtimes'
 import playlistsReducer from '../reducer/playlists'
 import usersReducer from '../reducer/users'
+import cartReducer from '../reducer/cart'
 
 const rootReducer = combineReducers({
 
@@ -13,7 +14,9 @@ const rootReducer = combineReducers({
   reviewsReducer: reviewsReducer,
   showtimesReducer: showtimesReducer,
   playlistsReducer: playlistsReducer,
-  usersReducer: usersReducer
+  usersReducer: usersReducer,
+  cartReducer: cartReducer
+
 })
 
 const store = createStore(
