@@ -31,7 +31,7 @@ const NavbarAdmin = () => {
           <button>Users</button>
         </NavLink>
         <NavLink to="/admin/function">
-          <button>Functions</button>
+          <button>Showtimes</button>
         </NavLink>
         <NavLink to="/admin/bookings">
           <button>Bookings</button>

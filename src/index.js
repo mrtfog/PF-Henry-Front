@@ -18,8 +18,16 @@ const theme = createTheme({
         color: "#f5f5f5",
         fontFamily: "Montserrat",
         textAlign: "center",
-
-        // .. other styling that you want
+      },
+    },
+    MuiPickersToolbar: {
+      toolbar: {
+        backgroundColor: "#4B79A5",
+      },
+    },
+    MuiPickersDay: {
+      daySelected: {
+        backgroundColor: "#4B79A5",
       },
     },
   },

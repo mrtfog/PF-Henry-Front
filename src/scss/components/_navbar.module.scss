@@ -2,12 +2,12 @@
 @import '../abstracts/mixins';
 
 .navMain{
-    background-color: $background-color;
+    
     display:flex;
     align-items: center;
     justify-content: space-between;
     padding: 0rem 1rem;
-    box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
+    // box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
     position:sticky;
     top: 0px;
     z-index: 5;

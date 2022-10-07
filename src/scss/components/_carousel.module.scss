@@ -12,30 +12,47 @@
     margin-bottom: 2em;
     background-size: cover;
     background-position: center;
-    width: 80vw;
-
+    width: 100vw;
+    
+    .overlay{
+       
+        position:absolute;
+        background-image: linear-gradient(to top,#141518,transparent,transparent,transparent,#141518);
+        height: 100%;
+        width:100%;
+    }
+    
     .carouselImg{
-        width:80vw;
+        width:100vw;
         height: auto;
         min-height: 100%;
     }
 
     .carouselBtnPrev{
-        position:absolute;
-        left: 1%;
-        font-size: 4em;
-        background: none;
-        border: none;
-        color: rgba(245, 245, 245, .5);
-        font-family: $font;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.178);
-        cursor: pointer;
-        transition: .2s linear;
-        &:hover{
-            text-shadow: 0 0 20px rgba(0, 0, 0, 1),
-                         0 0 25px rgba(0, 0, 0, 1);    
-            color: white;
-        }
+        
+            position:absolute;
+            left: 1%;
+            font-size: 4em;
+            background: none;
+            border: none;
+            color: rgba(245, 245, 245, .5);
+            font-family: $font;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.178);
+            cursor: pointer;
+            transition: .2s linear;
+            &:hover{
+
+             
+                text-shadow: 0 0 20px rgba(0, 0, 0, 1 ),
+                            0 0 25px rgba(0, 0, 0, 1 );    
+                color: white;
+            
+            }
+           
+            
+          
+        
+      
     }
     .carouselBtnNext{
         position:absolute;
