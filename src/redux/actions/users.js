@@ -30,8 +30,8 @@ export function getUserSession(id) {
 export function postLogIn(payload){
     return async (dispatch) => {
         try {
-            await axios.post(`https://pf-henry-back.herokuapp.com/auth/login`, payload);
-            return dispatch({ type: "POST_LOG_IN"});
+            const response = await axios.post(`https://pf-henry-back.herokuapp.com/auth/login`, payload);
+            return dispatch({ type: "POST_LOG_IN", payload: response});
         } 
         catch (e) {
             console.log(e);
@@ -47,13 +47,19 @@ export function postNewUser(payload){
 
         try{
             const response = await axios.post('https://pf-henry-back.herokuapp.com/auth/register', payload, {withCredentials:true})
-            console.log(response)
             return dispatch({type:'POST_NEW_USER', payload: response.status})
         }
         catch(e){
-            console.log(e)
+            alert(e.response.data)
         }
 
     }
 
+}
+
+
+export function clearRegisterStatus(){
+    return (dispatch) =>{
+        return dispatch({type:'CLEAR_REGISTER_STATUS'})
+    }
 }

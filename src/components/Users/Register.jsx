@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { postNewUser } from '../../redux/actions/users'
+import { clearRegisterStatus, postNewUser } from '../../redux/actions/users'
 import {useFormik} from 'formik'
 import validate from './ValidationRegister'
 import {useHistory} from 'react-router-dom'
@@ -8,6 +8,7 @@ import {useHistory} from 'react-router-dom'
 
 import style from '../../scss/components/Users/_register.module.scss'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export default function Register() {
     let history = useHistory();
@@ -27,13 +28,11 @@ export default function Register() {
                                             // reservation:[] es para crear usuarios que ya tengan algo añadido en el carrito previamente al registro.
             dispatch(postNewUser({user:values, reservations: []}))
             resetForm({values:''})
-            if (registerStatus === 201) history.push('/login')
-            if (registerStatus === 500) alert('Error')
         }
     })
 
 
-    console.log('Esto es registerStatus -> ', registerStatus)
+    // console.log('Esto es registerStatus -> ', registerStatus)
 
     const [type, setType] = useState('password')
 
@@ -41,6 +40,16 @@ export default function Register() {
         setType(type === 'password' ? 'text' : 'password')
     }
 
+    useEffect(()=>{
+        if (registerStatus === 201) {
+            alert(`User creation result was ${registerStatus} -> Successfully`)
+            history.push('/login')
+        }
+        
+        if (registerStatus && registerStatus !== 201) alert(`User creation result was ${registerStatus} -> Something went wrong :(`)
+
+
+    }, [registerStatus])
 
   return (
     <div className={style.registerContainer}>

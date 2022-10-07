@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { getUserSession, postLogIn, postNewUser } from '../../redux/actions/users'
+import { clearRegisterStatus, getUserSession, postLogIn, postNewUser } from '../../redux/actions/users'
 import {useFormik} from 'formik'
 import validate from './ValidationLogin'
 import {useHistory} from 'react-router-dom'
@@ -19,7 +19,6 @@ function Login() {
         },
         validate,
         onSubmit: (values, {resetForm}) => {
-            dispatch(postLogIn(values))
             resetForm({values:''})
         }
     })
@@ -31,6 +30,10 @@ function Login() {
         setType(type === 'password' ? 'text' : 'password')
     }
 
+    useEffect(()=>{
+        dispatch(clearRegisterStatus())
+    },[])
+    
 
   return (
     <div className={style.loginContainer}>
@@ -65,7 +68,7 @@ function Login() {
         </div>
 
         <div className={style.formContainer}>
-            <form>
+            <form action="https://pf-henry-back.herokuapp.com/auth/login" method='POST'>
                 <h1>Log in</h1>
                 <div className={style.inputContainer}>
                     <label>Email</label>
