@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
@@ -18,8 +18,6 @@ export default function AddToCartPopUp() {
     useEffect(() => {
         dispatch(getShowtimeByMovieId(movie.id))
     }, [movie])
-
-
 
     function handleDisplay(){
 
@@ -45,6 +43,13 @@ export default function AddToCartPopUp() {
                     })
                     : <option disabled>You don't have any showtime</option>}
                 </select>
+                    
+                 <h3>How many tickets?</h3>   
+                <div className={style.counter}>
+                    <span className={style.minus}><p>-</p></span>
+                    <input type="number" className={style.count} value="1"/>
+                    <span className={style.plus}><p>+</p></span>
+                </div>
 
             </div>
         )

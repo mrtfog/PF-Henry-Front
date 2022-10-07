@@ -3,7 +3,7 @@
 
 
 .container_addToCartPU{
-
+    font-family: $font;
     display: flex;
     width: 100%;
     height: 100%;
@@ -30,5 +30,61 @@
         margin-right: 0;
         margin-left: 0;
     }
+
+    .counter{
+
+        margin-top: 20px;
+        height: 60px;
+        min-width: 200px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+
+        span{
+            width: 100%;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        .minus{
+            color: #000;
+            cursor: pointer;
+            transition: .2s linear;
+            &:hover{
+                transform: scale(1.10);
+                text-shadow: 0 0 10px $primary-color,
+                             0 0 15px $primary-color;
+            }
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        }
+
+        input[type=number] { -moz-appearance:textfield; }
+            .count{
+            text-align: center;
+            height: 80%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            border-style: none;
+            max-width: 40px;
+        }
+        .plus{
+            color: #000;
+            cursor: pointer;
+            transition: .2s linear;
+            &:hover{
+                transform: scale(1.10);
+                text-shadow: 0 0 10px $primary-color,
+                             0 0 15px $primary-color;
+            }
+        }
+       }
 
 }
