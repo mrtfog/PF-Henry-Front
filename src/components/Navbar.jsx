@@ -8,7 +8,7 @@ export default function Navbar() {
   const { pathname } = useLocation();
   const [color, setColor] = useState(false);
   const changeColor = () => {
-    if (window.scrollY >= 80) {
+    if (window.scrollY >= 60) {
       setColor(true);
     }
     if (window.scrollY === 0) {

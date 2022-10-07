@@ -61,10 +61,10 @@ function Carousel() {
     >
       <div className={style.overlay}></div>
       <button className={style.carouselBtnPrev} onClick={previous}>
-        {"<"}
+        &#10092;
       </button>
       <button className={style.carouselBtnNext} onClick={next}>
-        {">"}
+        &#10093;
       </button>
     </div>
   );
