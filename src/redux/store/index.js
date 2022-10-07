@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
   playlistsReducer: playlistsReducer,
   usersReducer: usersReducer,
   cartReducer: cartReducer
+
 })
 
 const store = createStore(

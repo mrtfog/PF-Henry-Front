@@ -2,6 +2,8 @@ import React from 'react'
 import style from '../scss/components/_card.module.scss'
 import {Link} from 'react-router-dom'
 import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
+import { addToCartDisplay, takenTickets } from '../redux/actions/cart'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 export default function Card({img, rating, title, genres, id}) {
@@ -20,15 +22,22 @@ export default function Card({img, rating, title, genres, id}) {
 
   }
 
+
+  function handleAddToCart(){
+
+    dispatch(addToCartDisplay('flex'))
+    dispatch(takenTickets(id, title))
+  }
+
   return (
 
    
-    <div className={style.card} style={{zIndex: addPlaylistDisplay === 'none' ? 0 : -1}}>
+    <div className={style.card} style={{zIndex: addPlaylistDisplay === 'none' || addToCartDisplay === 'none' ? 0 : -1}}>
             <Link to={`/movies/${id}`}>
             <div className={style.card_img} style={{backgroundImage: `url(${url})`}}> </div>
             </Link>
             <ul className={style.social_media}>
-              <li><svg className={style.icon} version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+              <li onClick={handleAddToCart}><svg className={style.icon} version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	            viewBox="0 0 130 109" enableBackground="new 0 0 128 128" xmlSpace="preserve">
               <path d="M82.859,17.211l-11.996-3.084c-0.81-0.207-1.672-0.069-2.376,0.387c-0.703,0.455-1.185,1.183-1.327,2.008
                 c-0.029,0.17-0.043,0.276-0.055,0.361c-0.909,3.537-4.091,6.008-7.738,6.008c-0.668,0-1.341-0.085-1.997-0.254

@@ -1,38 +1,29 @@
-import React, { useState, useEffect } from 'react'
+import React,{ useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addToPlaylistDisplay, getUserPlaylists } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
-import style from '../scss/components/_addToPlaylistPopUp.module.scss'
+import style from '../scss/components/_addToCartPopUp.module.scss'
 
-export default function AddToPlaylistPopUp() {
-    
+export default function AddToCartPopUp() {
+
     const dispatch = useDispatch()
 
-    const display = useSelector(state => state.playlistsReducer.formDisplay)
-    const playlists = useSelector(state => state.playlistsReducer.playlists)
-    const movie = useSelector(state => state.playlistsReducer.selectedMovie)
+    const display = useSelector( state => state.cartReducer.display)
+    const movie = useSelector( state => state.cartReducer.takenTickets)
 
 
-    const [name, setName] = useState('')
-
-    useEffect(()=>{
-        dispatch(getUserPlaylists())
-    }, [])
-
-    function handleDisplay(){
-
-        dispatch(addToPlaylistDisplay('none'))
-    }
-
+    
     function selectPlaylistDiv(){
 
         return (
 
-            <div className={style.container}>
-                <h2>Add <span>'{movie.title}'</span> to playlist</h2>
+            <div className={style.container_addToCartPU}>
+                <h2>Add <span>'{movie.title}'</span> tickets to cart</h2>
                 <hr></hr>
                 <h3>Choose Playlist</h3>
-                <select onChange={(e)=> console.log(e.target.value)}>
+
+
+
+                {/* <select onChange={(e)=> console.log(e.target.value)}>
                     {
                     playlists ? playlists.map(p =>{
 
@@ -47,7 +38,7 @@ export default function AddToPlaylistPopUp() {
                 <div className={style.createPlaylist}>
                     <input type='text' placeholder='Playlist Name...' value={name} onChange={(e) => setName(e.target.value)}/>
                     <button>+</button>
-                </div>
+                </div> */}
 
             </div>
         )
