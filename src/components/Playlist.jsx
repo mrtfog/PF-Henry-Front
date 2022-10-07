@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { clearPlaylistMovies, getPlaylist, getPlaylistMovies } from '../redux/actions/playlists'
+import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, removeMovieFromPlaylist } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
 
 export default function Playlist(){
@@ -33,6 +33,13 @@ export default function Playlist(){
 
     const [randomMovie, setRandomMovie] = useState(false)
     const [display, setDisplay] = useState('none')
+
+    function handleMovieDelete(movieId, title){
+
+        dispatch(removeMovieFromPlaylist(movieId, id))
+        alert(`"${title}" was successfully removed from the playlist`)
+        setTimeout(()=> dispatch(getPlaylistMovies(playlist.movies)), 1000)
+    }
 
     function handleRandomMovieSelect(){
 
@@ -102,7 +109,7 @@ export default function Playlist(){
                                 <Link to={`/movies/${m.id}`}>
                                     <button  className={style.play}>► Play</button>
                                 </Link>
-                                <button className={style.delete}>X</button>
+                                <button className={style.delete} onClick={()=>handleMovieDelete(m.id, m.title)}>X</button>
                             </div>
                         </div>
                     )
