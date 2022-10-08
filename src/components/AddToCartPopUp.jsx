@@ -11,7 +11,9 @@ export default function AddToCartPopUp() {
     const display = useSelector( state => state.cartReducer.display)
     const movie = useSelector( state => state.cartReducer.takenTickets)
 
+
     //==================ESTADO DEL CONTADOR==================
+    
     const [value, setValue] = useState(1)
 
     const showtime = useSelector ( state => state.cartReducer.showtime)

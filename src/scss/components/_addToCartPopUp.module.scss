@@ -54,8 +54,6 @@
             transition: .2s linear;
             &:hover{
                 transform: scale(1.10);
-                text-shadow: 0 0 10px $primary-color,
-                             0 0 15px $primary-color;
             }
         }
         input[type=number]::-webkit-inner-spin-button, 
@@ -81,10 +79,12 @@
             transition: .2s linear;
             &:hover{
                 transform: scale(1.10);
-                text-shadow: 0 0 10px $primary-color,
-                             0 0 15px $primary-color;
             }
         }
+       }
+
+       button{
+        @include btn-primary;
        }
 
 }
