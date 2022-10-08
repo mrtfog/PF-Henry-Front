@@ -1,0 +1,100 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+
+
+.mainNav{
+    background-color:RGB(4, 4, 5) ;
+    display:flex;
+    align-items: center;
+    flex-direction: column;
+    min-width:15%;
+    height:100vh;
+    top:0;
+    position:fixed;
+   
+    .user{
+        width:100%;
+        min-height:220px;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+       img{
+        width:80px;
+        height: 80px;
+        border-radius: 50%;
+       }
+       p{
+        color:$text-color-white;
+        font-family: $font;
+       }
+        
+
+    }
+    .menu{
+        
+        min-height: 380px;
+        width:100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        button{
+            @include btn-secondary;
+            margin:1rem;
+            border-radius: 2rem;
+            min-width:140px;
+           
+           
+        }
+     
+
+    }
+
+    .footer{
+        background-color: $primary-color;
+        width: 100%;
+        height:100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+       div{
+        
+        width:80%;
+        display: flex;
+        justify-content: space-between;
+        svg{
+            width:25px;
+            height:25px;
+            transition: 0.2s linear;
+            path{
+                fill: rgba(236, 233, 233, 0.589);
+                transition: 0.2s linear;
+            }
+
+            &:hover{
+                path{
+                    fill:#fff;
+                }
+                
+            }
+            polygon{
+                
+                fill: rgb(10, 10, 12);
+                transition: 0.2s linear;
+            }
+            &:hover{
+            polygon{
+                    fill:#fff;
+                }
+                
+            }
+        }
+       
+       
+       }
+
+
+
+    }
+}

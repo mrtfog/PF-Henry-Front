@@ -66,7 +66,7 @@ export default function Navbar() {
           <button>My playlist</button>
         </NavLink>
 
-        <NavLink to="#">
+        <NavLink to="/profile/edit">
           <button>Profile</button>
         </NavLink>
 
