@@ -1,7 +1,7 @@
 @import '/src/scss/abstracts/variables';
 
 .card {
-        width: 175px;
+        min-width: 175px;
         height: 280px;
         background: linear-gradient(70deg,
         $primary-color,
