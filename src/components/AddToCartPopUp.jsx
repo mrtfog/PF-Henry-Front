@@ -11,7 +11,9 @@ export default function AddToCartPopUp() {
     const display = useSelector( state => state.cartReducer.display)
     const movie = useSelector( state => state.cartReducer.takenTickets)
 
-    
+    //==================ESTADO DEL CONTADOR==================
+    const [value, setValue] = useState(1)
+
     const showtime = useSelector ( state => state.cartReducer.showtime)
     // console.log(showtime)
 
@@ -46,10 +48,11 @@ export default function AddToCartPopUp() {
                     
                  <h3>How many tickets?</h3>   
                 <div className={style.counter}>
-                    <span className={style.minus}><p>-</p></span>
-                    <input type="number" className={style.count} value="1"/>
-                    <span className={style.plus}><p>+</p></span>
+                    <span className={style.minus} onClick={() => value <= 1 ? setValue(value) : setValue(value - 1)}><p>-</p></span>
+                    <input type="number" className={style.count} value={value}/>
+                    <span className={style.plus} onClick={() => setValue(value + 1)}><p>+</p></span>
                 </div>
+                <button type='submit'>Go to cart</button>
 
             </div>
         )
