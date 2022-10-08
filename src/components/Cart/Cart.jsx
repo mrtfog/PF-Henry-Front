@@ -38,6 +38,7 @@ export default function Cart() {
                             <p>Movie Theater {c.room}</p>
                             <p>{c.format} • {c.tickets} tickets</p>
                             <p>{new Date(c.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs</p>
+                            <p>Seats</p>
                             <p>Amount</p>
 
                             <div>
@@ -50,7 +51,23 @@ export default function Cart() {
             <p>You haven't ticktes in your cart yet!</p> }
 
             </div>
+            
+            <div className={style.footerBtn}>
 
+                <div className={style.addCombo}>
+                    <h3 style={{color: 'white'}}>Add combo</h3>
+                </div>
+
+                <div className={style.paymentGateway}>
+                    <form action = "http://localhost:8082/payment/payment" method = "POST">
+                        <input type = "hidden" name = "title" value = "Minnios" ></input>
+                        <input type = "hidden" name =  "price" value = "780"></input>
+                        <button type = "submit" className={style.btn_finish}>Buy Now</button>
+                    </form>
+                </div>
+
+
+            </div>
         </div>
       )
 }
