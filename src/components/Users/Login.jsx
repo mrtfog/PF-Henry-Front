@@ -40,7 +40,8 @@ function Login() {
         <div className={style.navbarContainer}>
             <nav>
                 <Link to="/" className={style.navLogo}>
-                    <svg
+                    <h2>HPFC</h2>
+                    {/* <svg
                     width="36px"
                     height="36px"
                     viewBox="0 0 36 36"
@@ -62,7 +63,7 @@ function Login() {
                         fill="#FFF"
                         d="M30 20a4 4 0 0 0-4-4H15a4 4 0 0 0-4 4l-6-4H4v13h1l6-4v2a4 4 0 0 0 4 4h11a4 4 0 0 0 4-4v-7z"
                     ></path>
-                    </svg>
+                    </svg> */}
                 </Link>
             </nav>
         </div>
