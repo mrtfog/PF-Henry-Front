@@ -17,6 +17,7 @@ import Users from "./components/AdminPanel/Users";
 import Login from "./components/Users/Login";
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
+import Slider from './components/Slider';
 
 function App() {
   const { pathname } = useLocation();
@@ -35,6 +36,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
           <Route exact path="/seats" component={Seats} />
+          <Route exact path="/slider" component={Slider} />
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
