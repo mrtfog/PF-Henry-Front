@@ -2,20 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../scss/components/Cart/_cart.module.scss";
 import { getCart, getShowtimeByMovieId } from "../../redux/actions/cart";
-const tickets = [
-  {
-    title: "Thor: Love and Thunder",
-    image:
-      "https://image.tmdb.org/t/p/original/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg",
-    price: "14",
-  },
-  {
-    title: "Fight Club",
-    image:
-      "https://image.tmdb.org/t/p/original/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg",
-    price: "14",
-  },
-];
+
 export default function Cart() {
   const dispatch = useDispatch();
 
@@ -90,7 +77,7 @@ export default function Cart() {
             <input
               type="hidden"
               name="title"
-              value={tickets.map((e) => e.title)}
+              value={cart.map((e) => e.title)}
             />
             <input type="hidden" name="total" value="28" />
             <button type="submit" className={style.btn_finish}>
