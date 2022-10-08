@@ -10,6 +10,34 @@ export default function Cart() {
   const cart = useSelector((state) => state.cartReducer.cart);
   const showtime = useSelector((state) => state.cartReducer.showtime);
 
+  // {
+  //     showtimeId: "633d84a8454ea464def96467",
+  //     movieId: '550',
+  //     tickets: '3',
+  //     room: '1',
+  //     format: '2D',
+  //     dateTime: '2022-10-06T13:19:10.000Z',
+  //     poster_path: "/pB8BM7pdSp6B6Ih7QZ4DrQ3PmJK.jpg"
+  // },
+  // {
+  //     showtimeId: "633f208f2e588110d481ecd6",
+  //     movieId: '616037',
+  //     tickets: '5',
+  //     room: '3',
+  //     format: '3D',
+  //     dateTime: '2022-10-09T13:19:10.000Z',
+  //     poster_path: "/pIkRyD18kl4FhoCNQuWxWu5cBLM.jpg"
+  // },
+  // {
+  //     showtimeId: "633f93177775cfc170bdea81",
+  //     movieId: '760161',
+  //     tickets: '2',
+  //     room: '2',
+  //     format: '3D',
+  //     dateTime: '2022-10-11T13:19:10.000Z',
+  //     poster_path: "/wSqAXL1EHVJ3MOnJzMhUngc8gFs.jpg"
+  // }
+
   useEffect(() => {
     dispatch(getCart());
   }, []);
@@ -26,10 +54,8 @@ export default function Cart() {
           cart.map((c) => {
             return (
               <div className={style.movies}>
-                <img
-                  src={"https://image.tmdb.org/t/p/original" + c.poster_path}
-                />
-                <h3>{c.movieId}</h3>
+                <img src={"https://image.tmdb.org/t/p/original" + c.image} />
+                <h3>{c.movieTitle}</h3>
                 <p>Movie Theater {c.room}</p>
                 <p>
                   {c.format} • {c.tickets} tickets
@@ -51,7 +77,7 @@ export default function Cart() {
             );
           })
         ) : (
-          <p>You haven't ticktes in your cart yet!</p>
+          <p style={{ color: "#fff" }}>You haven't ticktes in your cart yet!</p>
         )}
       </div>
 
@@ -62,24 +88,8 @@ export default function Cart() {
 
         <div className={style.paymentGateway}>
           <form action="http://localhost:8082/payment/payment" method="POST">
-            <input
-              type="hidden"
-              name="userId"
-              value="633f41f593ae09e524360970"
-            />
-            {/* <input
-              type="hidden"
-              name="tickets"
-              value={tickets.map((e) => {
-                return `${e.title}%${e.price}%${e.image}`;
-              })}
-            /> */}
-            <input
-              type="hidden"
-              name="title"
-              value={cart.map((e) => e.title)}
-            />
-            <input type="hidden" name="total" value="28" />
+            <input type="hidden" name="title" value="Minnios"></input>
+            <input type="hidden" name="price" value="780"></input>
             <button type="submit" className={style.btn_finish}>
               Buy Now
             </button>

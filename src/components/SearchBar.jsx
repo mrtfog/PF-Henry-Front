@@ -11,7 +11,6 @@ function SearchBar() {
   const [name, setName] = useState("");
 
   function handleSearchBar(e) {
-    console.log(e.target);
     setName(e.target.value);
     dispatch(getMoviesByName(e.target.value));
 
