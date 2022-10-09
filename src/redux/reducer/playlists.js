@@ -47,6 +47,21 @@ export default function playlistReducer(state = initialState, action){
                 movies: action.payload
             }
 
+        case 'CREATE_NEW_PLAYLIST':
+            return{
+                ...state
+            }
+
+        case 'ADD_MOVIE_TO_PLAYLIST':
+            return{
+                ...state
+            }
+
+        case 'REMOVE_MOVIE_FROM_PLAYLIST':
+            return{
+                ...state
+            }
+
         case 'CLEAR_PLAYLIST_MOVIES':
             return{
                 ...state,

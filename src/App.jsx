@@ -19,6 +19,7 @@ import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import Slider from "./components/Slider";
 
+
 function App() {
   const { pathname } = useLocation();
   if (!pathname.includes("/admin")) {
