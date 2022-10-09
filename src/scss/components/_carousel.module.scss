@@ -18,7 +18,18 @@
     .overlay{
        
         position:absolute;
-        background-image: linear-gradient(to top,#141518,transparent,transparent,transparent,#141518);
+        background-image: linear-gradient(to top,
+        rgba(20, 21, 24, 1),
+        rgba(20, 21, 24, .5),
+        rgba(20, 21, 24, .2),   
+        rgba(20, 21, 24, .1),   
+        transparent,
+        transparent,
+        transparent,
+        rgba(20, 21, 24, .1),   
+        rgba(20, 21, 24, .2),   
+        rgba(20, 21, 24, .5),
+        rgba(20, 21, 24, 1));
         height: 100%;
         width:100%;
     }
