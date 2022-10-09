@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
-import LogIn from './components/Users/LogIn'
+import LogIn from './components/Users/Login'
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import Slider from './components/Slider';
