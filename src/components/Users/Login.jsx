@@ -5,6 +5,7 @@ import style from '../../scss/components/Users/_login.module.scss'
 import { useAuth } from '../contexts/AuthContext'
 import validate from './ValidationLogin.js'
 import { Link } from 'react-router-dom'
+import GoogleSignIn from './GoogleSignIn'
 
 export default function Login() {
 
@@ -90,14 +91,7 @@ export default function Login() {
                         
                         <span>Or</span>
 
-                        <div className={style.googleBtn}>
-                            <div className={style.googleIconWrapper}>
-                                <img className={style.googleIcon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="" />
-                            </div>
-                            <div className={style.btnText}>
-                                <a href='https://pf-henry-back.herokuapp.com/auth/google'>Log in with Google</a>
-                            </div>
-                        </div>
+                        <GoogleSignIn/>
 
                     </div>
 
