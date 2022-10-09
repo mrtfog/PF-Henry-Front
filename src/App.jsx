@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
-import Login from "./components/Users/Login";
+import LogIn from './components/Users/LogIn'
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import Slider from './components/Slider';
@@ -63,7 +63,7 @@ function App() {
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={LogIn} />
           <Route exact path="/cart" component={Cart} />
         </Switch>
       </div>

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase'
-import {getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword} from 'firebase/auth'
+import axios from 'axios'
+import {getAuth, GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile} from 'firebase/auth'
 
 const AuthContext = React.createContext()
 
@@ -15,14 +16,31 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true)
 
 
+    function signInWithGoogle(){
+        const provider = new GoogleAuthProvider();
+        signInWithRedirect(auth, provider)
 
-    function signUp(email, password){
+    }
+
+    async function signUp(email, password, username){
 
         createUserWithEmailAndPassword(auth, email, password)
-        // onAuthStateChanged( auth, (user) =>{
 
-        //     console.log('username', user.displayName)
-        // })
+        onAuthStateChanged(auth, (user)=>{
+
+            updateProfile(user, {
+                displayName: username 
+            })
+        })
+
+        try{
+
+            await axios.post('https://pf-henry-back.herokuapp.com/user/register', currentUser)
+        }
+        catch(e){
+
+            console.log(e)
+        }
 
     }
 
@@ -30,6 +48,13 @@ export function AuthProvider({children}) {
 
         signInWithEmailAndPassword(auth, email, password)
         
+    }
+
+    
+    function logOut(){
+
+        return signOut(auth)
+
     }
 
     useEffect(()=>{
@@ -53,7 +78,9 @@ export function AuthProvider({children}) {
     let value={
         currentUser,
         signUp,
-        logIn
+        logIn,
+        signInWithGoogle,
+        logOut
     }
 
 
