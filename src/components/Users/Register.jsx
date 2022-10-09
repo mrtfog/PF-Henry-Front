@@ -85,11 +85,10 @@ export default function Register() {
             ></path>
             </svg> */}
         </Link> 
-        <div className={style.titleContainer}>
+
             <h3>
                 Enjoy without spoilers
             </h3>
-        </div>
         </div>
 
         <div className={style.formSideContainer}>
