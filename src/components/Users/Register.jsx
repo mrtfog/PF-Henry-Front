@@ -8,6 +8,7 @@ import { useAuth } from '../contexts/AuthContext'
 import style from '../../scss/components/Users/_register.module.scss'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import GoogleSignIn from './GoogleSignIn'
 
 export default function Register() {
 
@@ -29,8 +30,8 @@ export default function Register() {
         onSubmit: (values, {resetForm}) => {
                                             // reservation:[] es para crear usuarios que ya tengan algo añadido en el carrito previamente al registro.
             // dispatch(postNewUser({user:values, reservations: []}))
-            const { email, password } = values
-            signUp(email, password)
+            const { email, password, username} = values
+            signUp(email, password, username)
             resetForm({values:''})
             history.push('/')
         }
@@ -40,6 +41,12 @@ export default function Register() {
     // console.log('Esto es registerStatus -> ', registerStatus)
 
     const [type, setType] = useState('password')
+
+    // function handleGoogleSignIn(){
+
+    //     signInWithGoogle()
+    //     history.push('/')
+    // }
 
     function handleClick(){
         setType(type === 'password' ? 'text' : 'password')
@@ -153,14 +160,8 @@ export default function Register() {
                     <div className={style.btnContainer}>
                         <button className={style.primaryBtn} type='submit' disabled={Object.keys(formik.errors).length !== 0 ? true : false}>Create account</button>
                         <span>Or</span>
-                        <div className={style.googleBtn}>
-                            <div className={style.googleIconWrapper}>
-                                <img className={style.googleIcon} src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="" />
-                            </div>
-                            <div className={style.btnText}>
-                                <a href='https://pf-henry-back.herokuapp.com/auth/google'>Sign in with google</a>
-                            </div>
-                        </div>
+
+                        <GoogleSignIn />
                     </div>
 
                     <div className={style.linkToRegister}>Already have an account? 
