@@ -3,8 +3,11 @@ import { Link, NavLink } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import { useLocation } from "react-router-dom";
 import style from "../scss/components/_navbar.module.scss";
+import { useAuth } from "./contexts/AuthContext";
 
 export default function Navbar() {
+
+  const {currentUser} =  useAuth()
   const { pathname } = useLocation();
   const [color, setColor] = useState(false);
   const changeColor = () => {
@@ -57,16 +60,21 @@ export default function Navbar() {
         </svg> */}
       </Link>
 
+      <h1>{currentUser ? currentUser.email : 'nono'}</h1>
+
       <div className={style.navBtnContainer}>
         <div className={style.searchbar}>
           {pathname === "/" ? <SearchBar /> : null}
         </div>
 
+        {pathname === "/login" ? null : 
+
+        <>
         <NavLink to="/playlists">
           <button>My playlist</button>
         </NavLink>
 
-        <NavLink to="#">
+        <NavLink to="/profile/edit">
           <button>Profile</button>
         </NavLink>
 
@@ -81,6 +89,10 @@ export default function Navbar() {
         <NavLink to="/cart">
           <button>Carrito</button>
         </NavLink>
+
+        </>
+
+        }
       </div>
     </nav>
   );

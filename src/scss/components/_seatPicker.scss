@@ -10,103 +10,160 @@
     align-items: center;
     flex-flow: column;
     min-width: 25%;
-}
-.inRow {
-  font-family: sans-serif;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
-  margin: 3rem;
-}
+    max-width: 100vw;
+    padding: 0;
+    margin: 0;
 
-.seat-picker__row {
-  font-family: sans-serif;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
-  margin: 1px;
-}
+    .inRow {
+        font-family: sans-serif;
+        text-align: center;
+        color: #fff;
+        display: flex;
+        max-width: 100%;
+        justify-content: center;
+        align-items: center;
+        flex-flow: row;
+        margin: 0;
+        padding: 0;
+            
 
-.seat {
-  background-image:url('../seatImg/10a783e46bd6adafb776edd545c66b65.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-color: $secondary-color;
-  height: 28px;
-  width: 28px;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-  margin: 2px;
-  border-radius: 20%;
-}
+        .movieDetail{
 
-.seat:hover {
-  background-color: $hsecondary-color;
-}
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-.seat--reserved {
-  background-color: grey;
-  height: 28px;
-  width: 28px;
-  color: rgb(97, 97, 97);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  cursor: not-allowed;
-}
+            div{
+                margin: 1rem;
+            }
+            span{
+                padding: 1rem;
+            }
 
-.seat--reserved:hover {
-  background-color: grey;
-  color: rgb(97, 97, 97);
-}
+            .img {
+                max-width: 30%;
+                margin: 1rem;
+            }
+        }
 
-.seat--selected {
-  background-image:url('../seatImg/10a783e46bd6adafb776edd545c66b65.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  background-color: $primary-color;
-  height: 28px;
-  width: 28px;
-  color: rgb(0, 0, 0);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+        .seatPicker{
 
-.seat--selected:hover {
-  background-color: $hprimary-color;
-  color: rgb(0, 0, 0);
-}
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
 
-.box {
-  width: 500px;
-  height: 70px;
-  border: solid 5px rgb(236, 235, 235);
-  border-color: rgb(252, 247, 247) transparent transparent transparent;
-  border-radius:10%/75px 75px 0 0;
-  margin-top: 5px;
-  padding: 2rem;
-  padding-top: 9rem;
-}
+            .box {
 
-.blank {
-  margin: 1rem;
-}
+                width: 500px;
+                height: fit-content;
+                border: solid 5px rgb(236, 235, 235);
+                border-color: rgb(252, 247, 247) transparent transparent transparent;
+                border-radius: 10%/75px 75px 0 0  ;
+                margin-top: 5px;
+                padding: 2rem;
+                padding-top: 3.5rem;
+                transform: translateY(180deg);
 
-.img {
- max-width: 30%;
- margin: 1rem;
+                .seat-picker__row {
+                    font-family: sans-serif;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-flow: row;
+                    margin: 1px;
+
+                    
+                    .blank {
+                        margin: 1rem;
+                    }
+
+                    .seat {
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        height: 28px;
+                        width: 28px;
+                        color: #fff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        cursor: pointer;
+                        margin: 2px;
+                        border-radius: 20%;
+
+                        svg{
+                            fill: $secondary-color;
+                            z-index: -1;
+                        }
+
+                        &:hover svg{
+                            fill: $text-color-white;
+                        }
+
+                    }
+
+                    .seat--reserved {
+                        height: 28px;
+                        width: 28px;
+                        color: rgb(97, 97, 97);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        cursor: not-allowed;
+
+                        svg{
+                            fill: grey;
+                        }
+
+                        &:hover svg{
+                            fill: rgb(97, 97, 97);
+                        }
+                    }
+
+                    .seat--selected {
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        height: 28px;
+                        width: 28px;
+                        color: rgb(0, 0, 0);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+
+                        svg{
+                            fill: $primary-color;
+                            filter: drop-shadow(0 0 10px $primary-color);
+                            z-index: -1;
+                        }
+                      
+                        &:hover svg {
+                          fill: $hprimary-color;
+                        }
+                    }
+
+                    .columnNumber{
+
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        margin-bottom: 10px;
+
+                    }
+                }
+
+
+            }
+        }
+    }
+
 }

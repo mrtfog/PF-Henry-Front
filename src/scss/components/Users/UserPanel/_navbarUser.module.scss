@@ -1,5 +1,5 @@
-@import '../../abstracts/variables';
-@import '../../abstracts/mixins';
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
 
 
 .mainNav{
@@ -34,7 +34,7 @@
     }
     .menu{
         
-        min-height: 60vh;
+        min-height:60vh;
         width:100%;
         display:flex;
         flex-direction: column;
@@ -98,12 +98,4 @@
 
 
     }
-   
-    // padding: 0rem 1rem;
-    // box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
-    // position:sticky;
-    // top: 0px;
-    // z-index: 5;
-   
-
 }

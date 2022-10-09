@@ -4,13 +4,15 @@ import { clearRegisterStatus, postNewUser } from '../../redux/actions/users'
 import {useFormik} from 'formik'
 import validate from './ValidationRegister'
 import {useHistory} from 'react-router-dom'
-
-
+import { useAuth } from '../contexts/AuthContext'
 import style from '../../scss/components/Users/_register.module.scss'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export default function Register() {
+
+    const { signUp } = useAuth()
+
     let history = useHistory();
     const registerStatus = useSelector((state) => state.usersReducer.registerStatus)
     const dispatch = useDispatch()
@@ -26,8 +28,11 @@ export default function Register() {
         validate,
         onSubmit: (values, {resetForm}) => {
                                             // reservation:[] es para crear usuarios que ya tengan algo añadido en el carrito previamente al registro.
-            dispatch(postNewUser({user:values, reservations: []}))
+            // dispatch(postNewUser({user:values, reservations: []}))
+            const { email, password } = values
+            signUp(email, password)
             resetForm({values:''})
+            history.push('/')
         }
     })
 
@@ -55,7 +60,8 @@ export default function Register() {
     <div className={style.registerContainer}>
         <div className={style.imageContainer}>
             <Link to="/" className={style.navLogo}>
-            <svg
+            <h2>HPFC</h2>
+            {/* <svg
             width="36px"
             height="36px"
             viewBox="0 0 36 36"
@@ -77,7 +83,7 @@ export default function Register() {
                 fill="#FFF"
                 d="M30 20a4 4 0 0 0-4-4H15a4 4 0 0 0-4 4l-6-4H4v13h1l6-4v2a4 4 0 0 0 4 4h11a4 4 0 0 0 4-4v-7z"
             ></path>
-            </svg>
+            </svg> */}
         </Link> 
         <div className={style.titleContainer}>
             <h3>

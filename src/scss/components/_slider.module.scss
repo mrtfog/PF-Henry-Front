@@ -1,16 +1,37 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
-
+h3 {
+ margin-left: 50px;
+ color: white;
+ text-shadow: 1px 1px 2px rgb(255, 255, 255);
+}
 .holder {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 300px;
-    margin: 50px;
+    margin: 5px 20px 20px 20px;
+    
 
     .slideButtons {
-        @include btn-secondary 
+        @include btn-secondary;
+        height: 80px;
+        border: 0;
+        font-size: 50px;
+        transition: 2s ease;
+        text-shadow: 1px 1px 2px rgb(255, 255, 255);
+        margin: 5px;
+    
+        &:hover {
+            box-shadow: 0 0 10px 3px $primary-color;
+            height: 100px;
+            border: 0;
+            background-color: transparent;
+            transform:scaleY(1.8);
+            transform:scalex(0.8);
+            transition: .5s ease;
+        }
     }
     .container {
         width: 100%;
@@ -19,25 +40,20 @@
         overflow-y: hidden;
         padding: 2%;
         border-radius: 25px;
-        box-shadow: 0 0 10px 3px $secondary-color;
-        margin : 40px;
+        margin-right: 3rem;
         justify-content: center;
+        transition: .2s ease;
+        scroll-behavior: smooth;
 
 
             .img_container {
                 display: flex;
-                .img {
-                    min-width: 200px;
-                    height: 280px;
-                    box-shadow: 0 0 10px 3px black;;
-                    margin-left: 30px;
-                    margin-right: 30px;
-                }
-
             }
     }
 
     ::-webkit-scrollbar {
         display: none;
     }
+
 }
+

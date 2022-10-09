@@ -13,9 +13,6 @@ export function getCart() {
 
 }
 
-
-
-
 export function getShowtimeByMovieId(id){
 
     return async(dispatch) => {
@@ -34,12 +31,36 @@ export function getShowtimeByMovieId(id){
 }
 
 
-export function takenTickets(id, title){
+export function postCart(payload){
+    
+    return async (dispatch) => {
+        
+        try{
+            
+            await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload)
+            
+            return dispatch({type: 'POST_RESERVATION'})
+            
+        } catch(e){
+            console.log(e)
+        }
+    }
+    
+    
+}
 
+
+
+export function takenTickets(id, title){
+    
     return {type:'TAKEN_TICKETS', payload: {id, title}}
 }
 
 export function addToCartDisplay(display){
-
+    
     return {type:'ADD_TO_CART_DISPLAY', payload: display}
+}
+
+export function addToCart(payload){
+      return {type: 'ADD_TO_CART', payload}
 }

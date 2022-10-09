@@ -5,6 +5,25 @@ export function getUserPlaylists(){
     return {type:'GET_USER_PLAYLISTS'}
 }
 
+// export function getUserPlaylist(userId){
+
+//     return async(dispatch)=>{
+
+//         try{
+    
+//             let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser/${userId}`)
+    
+//             return dispatch({type: 'GET_USER_PLAYLISTS', payload: data})
+//         }
+
+//         catch(e){
+
+//             console.log(e)
+//         }
+
+//     }
+// }
+
 export function getPlaylist(id){
 
     return {type:'GET_PLAYLIST', payload: id}
@@ -31,6 +50,63 @@ export function getPlaylistMovies(movies){
             console.log(e)
         }
 
+    }
+}
+
+export function createNewPlaylist(playlist){  // playlist = {name:'', userId:''}
+
+    return async(dispatch)=>{
+
+        try{
+
+            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist)
+
+            return dispatch({type: 'CREATE_NEW_PLAYLIST'})
+
+        }
+        catch(e){
+
+            console.log(e)
+
+        }
+    }
+}
+
+export function addMovieToPlaylist(movieId, playlistId){
+
+    return async(dispatch)=>{
+
+        try{
+
+            await axios.get(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`)
+
+            return dispatch({type: 'ADD_MOVIE_TO_PLAYLIST'})
+
+        }
+        catch(e){
+
+            console.log(e)
+
+        }
+    }
+}
+
+export function removeMovieFromPlaylist(movieId, playlistId){
+
+    return async(dispatch)=>{
+
+        try{
+
+            await axios.get(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`)
+
+            return dispatch({type: 'REMOVE_MOVIE_FROM_PLAYLIST'})
+
+        }
+        catch(e){
+
+            console.log(e)
+
+        }
     }
 }
 
