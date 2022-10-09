@@ -5,65 +5,72 @@
 .registerContainer{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        height: 100vh;
+        height: auto;
+        min-height: 100vh;
         font-family: $font;
+        overflow: hidden;
 
     .imageContainer{
+        position: relative;
         grid-column:1/3;
         background-image: url(../../../assets/uncharted-poster.jpg);
         background-position: center left;
         background-size: cover;
+        padding-left: 3em;
+        padding-top: 2em;
+        padding-bottom: 2em;
         
 
         .navLogo{
-            cursor: pointer;
-            color: $primary-color;
-            margin-left: 1rem;
-            animation: 3.5s lights infinite;
-            transition: .2s linear;
-            &:hover{
-                transform: scale(1.08);
+
+            h2{
+                color: $primary-color;
+                transition: all 0.1s linear;
             }
+
+            &:hover{
+                text-shadow: 5px 5px 10px #ff3b62b4;
+                font-size: 1.1rem;
+            }
+
         }
         .navLogo:hover{
             cursor: pointer;
             box-shadow: none;
         }
-        .titleContainer{
-            display: flex;
-            height: 90%;
+
+        h3{
             position: absolute;
-
-
-            h3{
-                color: white;
-                font-size: 1.7rem;
-                margin-top: 1em;
-                margin-left: 1em;
-                align-self: flex-end;
-                text-shadow: 1px 1px 2px black
-            }
+            bottom: 2em;
+            margin: 0;
+            color: white;
+            font-size: 1.7rem;
+            align-self: flex-end;
+            text-shadow: 1px 1px 2px black
         }
     }
 
     .formSideContainer{
         grid-column: 3/6;
+        display: flex;
         background-color:$background-color;
         width: 100%;
+        height: auto;
         box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
 
         .formContainer{
             display: flex;
             align-items: center;
             width: 100%;
-            height: 100vh;
-
+            height: auto;
+            overflow: scroll;
 
             form{
                 margin-left: 12%;
                 flex-direction: column;
                 justify-content: center;
                 width: 50%;
+                height: auto;
                 
     
                 h1{
