@@ -39,7 +39,9 @@ const msg = useSelector(state => state.moviesReducer.msg)
         
             
             {movies.length > 0 ? movies.map((data) => ( 
+
                 <Card className={style.img} key={data._id} id={data._id} img={data.image} rating={data.rating} title={data.title} genres={data.genres} duration={data.duration} />
+
                 )
                 ) 
                 : (msg === "Loading..." ? <Loader /> : <p className='msg'>{msg}</p>)}
