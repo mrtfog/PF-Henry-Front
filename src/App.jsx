@@ -11,7 +11,6 @@ import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
 import { useLocation } from "react-router-dom";
-import LoginTrucho from "./components/LoginTrucho";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
