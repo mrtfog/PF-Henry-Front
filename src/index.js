@@ -10,6 +10,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
 import { alpha } from "@material-ui/core/styles";
+import { AuthProvider } from "./components/contexts/AuthContext";
 
 const theme = createTheme({
   overrides: {
@@ -38,7 +39,9 @@ root.render(
     <BrowserRouter>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <ThemeProvider theme={theme}>
+          <AuthProvider>
           <App />
+          </AuthProvider>
         </ThemeProvider>
       </MuiPickersUtilsProvider>
     </BrowserRouter>

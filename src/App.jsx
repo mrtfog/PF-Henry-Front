@@ -11,6 +11,7 @@ import Statistics from "./components/AdminPanel/Statistics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
 import { useLocation } from "react-router-dom";
+import LoginTrucho from "./components/LoginTrucho";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
@@ -51,11 +52,7 @@ function App() {
   if ((!pathname.includes("/admin")) || (!pathname.includes("/profile"))) {
     return (
       <div className="App">
-        {pathname.includes("/register") ? null : pathname.includes(
-            "login"
-          ) ? null : (
-          <Navbar />
-        )}
+        {pathname.includes("/register") ? null : <Navbar /> }
         <AddToPlaylistPopUp />
         <AddToCartPopUp />
         <Switch>

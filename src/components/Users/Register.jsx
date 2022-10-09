@@ -4,13 +4,15 @@ import { clearRegisterStatus, postNewUser } from '../../redux/actions/users'
 import {useFormik} from 'formik'
 import validate from './ValidationRegister'
 import {useHistory} from 'react-router-dom'
-
-
+import { useAuth } from '../contexts/AuthContext'
 import style from '../../scss/components/Users/_register.module.scss'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export default function Register() {
+
+    const { signUp } = useAuth()
+
     let history = useHistory();
     const registerStatus = useSelector((state) => state.usersReducer.registerStatus)
     const dispatch = useDispatch()
@@ -26,8 +28,11 @@ export default function Register() {
         validate,
         onSubmit: (values, {resetForm}) => {
                                             // reservation:[] es para crear usuarios que ya tengan algo añadido en el carrito previamente al registro.
-            dispatch(postNewUser({user:values, reservations: []}))
+            // dispatch(postNewUser({user:values, reservations: []}))
+            const { email, password } = values
+            signUp(email, password)
             resetForm({values:''})
+            history.push('/')
         }
     })
 
