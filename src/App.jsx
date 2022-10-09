@@ -51,11 +51,7 @@ function App() {
   if ((!pathname.includes("/admin")) || (!pathname.includes("/profile"))) {
     return (
       <div className="App">
-        {pathname.includes("/register") ? null : pathname.includes(
-            "login"
-          ) ? null : (
-          <Navbar />
-        )}
+        {pathname.includes("/register") ? null : <Navbar /> }
         <AddToPlaylistPopUp />
         <AddToCartPopUp />
         <Switch>
