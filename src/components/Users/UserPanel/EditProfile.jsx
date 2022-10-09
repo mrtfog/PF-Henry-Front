@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import CardPayments from './CardPayments'
+import CardPayments from './Card'
 import style from '../../../scss/components/Users/UserPanel/_editProfile.module.scss'
 
 function EditProfile() {
@@ -54,10 +54,15 @@ function EditProfile() {
 
         <div className={style.subInfoContainer}>
             <h3>Your subscription</h3>
+            <div className={style.subtitlesContainer}>
+                <div className={style.subtitle1}>Status</div>
+                <div className={style.subtitle2}>Date</div>
+                <div className={style.subtitle3}>Amount</div>
+            </div>
             <CardPayments
-                state='ACTIVE'
-                lastPaymentDate='08/08/2022'
-                lastPaymentAmount='3,000.99'
+                status='ACTIVE'
+                date='08/08/2022'
+                amount='3,000.99'
             ></CardPayments>
         </div>
       </div>

@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: flex;
     justify-content: space-between;
-    padding: 2em;
+    padding: 1em;
     padding-left:  4em;
     padding-right:  4em;
     align-items: center;
@@ -16,8 +16,9 @@
     border-radius: 25px;
     font-family: $font;
 
-    .activeSub{
-
+    .type{
+        width: 15%;
+        text-align: left;
         span{
             font-weight: 600;
             font-size: 1.1rem;
@@ -27,13 +28,18 @@
     }
 
     span{
+        width: 20%;
+        text-align: left;
         color:$background-color;
         font-weight: 600;
         font-size: 1.1rem;
     }
 
     .deleteBtn{
-
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 20%;
         span{
             @include btn-primary;
             background-color: $background-color;
@@ -41,8 +47,9 @@
             color: $text-color-white;
             padding: 0.3rem 1rem;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             font-weight: 500;
+            width: auto;
         }
 
     }
