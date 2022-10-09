@@ -1,0 +1,49 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+
+
+.card{
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+    padding: 2em;
+    padding-left:  4em;
+    padding-right:  4em;
+    align-items: center;
+    background-color: white;
+    width: 60%;
+    margin: 1em 0;
+    border-radius: 25px;
+    font-family: $font;
+
+    .activeSub{
+
+        span{
+            font-weight: 600;
+            font-size: 1.1rem;
+            color:rgb(0, 88, 0);
+        }
+
+    }
+
+    span{
+        color:$background-color;
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .deleteBtn{
+
+        span{
+            @include btn-primary;
+            background-color: $background-color;
+            border-color: $background-color;
+            color: $text-color-white;
+            padding: 0.3rem 1rem;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+    }
+}

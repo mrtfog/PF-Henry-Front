@@ -1,10 +1,12 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
+
 h3 {
  margin-left: 50px;
  color: white;
  text-shadow: 1px 1px 2px rgb(255, 255, 255);
 }
+
 .holder {
     display: flex;
     flex-direction: row;
@@ -32,6 +34,7 @@ h3 {
             transform:scalex(0.8);
             transition: .5s ease;
         }
+
     }
     .container {
         width: 100%;
@@ -40,10 +43,12 @@ h3 {
         overflow-y: hidden;
         padding: 2%;
         border-radius: 25px;
+
         margin-right: 3rem;
         justify-content: center;
         transition: .2s ease;
         scroll-behavior: smooth;
+
 
 
             .img_container {
@@ -55,4 +60,6 @@ h3 {
         display: none;
     }
 
+
 }
+
