@@ -8,7 +8,7 @@ import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
 
-export default function Function() {
+export default function ShowTime() {
   const movies = useSelector((state) => state.moviesReducer.movies);
   const functions = useSelector((state) => state.showtimesReducer.showtimes);
   const roomOptions = [

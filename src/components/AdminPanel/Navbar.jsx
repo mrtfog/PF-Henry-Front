@@ -24,13 +24,13 @@ const NavbarAdmin = () => {
         </svg> */}
       </div>
       <div className={style.menu}>
-        <NavLink to="/admin/statistics">
+        <NavLink to="/admin/statistics/graphics">
           <button>Statistics</button>
         </NavLink>
         <NavLink to="/admin/users">
           <button>Users</button>
         </NavLink>
-        <NavLink to="/admin/function">
+        <NavLink to="/admin/showTime">
           <button>Showtimes</button>
         </NavLink>
         <NavLink to="/admin/bookings">
