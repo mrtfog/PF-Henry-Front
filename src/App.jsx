@@ -22,6 +22,7 @@ import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from './components/Users/UserPanel/NavbarUser'
 
+
 function App() {
   const { pathname } = useLocation();
   if (pathname.includes("/admin")) {
