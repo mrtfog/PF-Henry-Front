@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getMovies } from '../redux/actions/movies';
 import Loader from './Loader'
 
-export default function Slider() {
+export default function Slider({ movies, title }) {
     const dispatch = useDispatch()
     const ref = useRef(null)
     const nav = ref.current
@@ -26,12 +26,12 @@ function handleOnClick(e){
 
 
 
-const allMovies = useSelector(state=>state.moviesReducer.movies)
-let movies = allMovies?.slice(0, 20)
+// const allMovies = useSelector(state=>state.moviesReducer.movies)
+// let movies = allMovies?.slice(0, 20)
 const msg = useSelector(state => state.moviesReducer.msg)
   return (
       <div className={style.titleContainer}>
-      <h3>Movies selected just for you</h3>
+      <h3>{title}</h3>
       <div className={style.holder}>
       <button onClick={(e)=>handleOnClick(e)} className={style.slideButtons}>&#10092;</button>
             <div ref={ref} className={style.container}>

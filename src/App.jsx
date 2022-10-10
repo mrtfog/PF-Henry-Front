@@ -58,7 +58,6 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
           <Route exact path="/seats" component={Seats} />
-          <Route exact path="/slider" component={Slider} />
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
