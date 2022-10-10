@@ -16,36 +16,33 @@ export default function AddToCartPopUp() {
     const showtimes = useSelector ( state => state.cartReducer.showtime)
     const cart = useSelector ( state => state.cartReducer.cart)
 
-    const filteredMovie = cart.map((f) => {
-        return f.showtimeId === showtimes._id
-    })  
+    
 
-    console.log('filtered movie',filteredMovie)
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
     
     const [value, setValue] = useState(1)
-
+    
     const [selectedShowtime, setSelectedShowtime] = useState({})
-
-
-
+    
+    
+    
     //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
     //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
     //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
     //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
     //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
-
-
+    
+    
     useEffect(() => {
         dispatch(getShowtimeByMovieId(movie.id))
     }, [movie])
-
+    
     function handleDisplay(){
         dispatch(addToCartDisplay('none'))
     }
 
     function handleSelectChange(index){
-
+        
         setSelectedShowtime({
             showtimeId: showtimes[index]._id,
             movieTitle: showtimes[index].movieTitle,
@@ -54,30 +51,33 @@ export default function AddToCartPopUp() {
             format: showtimes[index].format,
             roomId: showtimes[index].roomId,      
         })
-
+        
     }
-
+    
     function handleSubmit(){
+        const filteredMovie = cart.filter((f) => {
+            return f.showtimeId === selectedShowtime.showtimeId
+        })  
         if(filteredMovie.length) {
             alert('You already selected this showtime, check your cart')
             dispatch(addToCartDisplay('none'))
             history.push('/cart')
             filteredMovie = ''
         }
-
+        
         else{
             setValue(value)
             dispatch(addToCart({...selectedShowtime, movieId: movie.id, tickets: value}))
             alert('Reservation added to cart')
             dispatch(addToCartDisplay('none'))
         }
-
-
+        
+        
     }
-
+    
     
     function selectPlaylistDiv(){
-
+        
         return (
 
             <div className={style.container_addToCartPU}>
