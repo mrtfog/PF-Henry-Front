@@ -14,13 +14,14 @@ import { useLocation } from "react-router-dom";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
-import Login from "./components/Users/Login";
+import LogIn from './components/Users/Login'
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import Slider from "./components/Slider";
 import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from "./components/Users/UserPanel/NavbarUser";
+
 
 function App() {
   const { pathname } = useLocation();
@@ -51,11 +52,7 @@ function App() {
   if (!pathname.includes("/admin") || !pathname.includes("/profile")) {
     return (
       <div className="App">
-        {pathname.includes("/register") ? null : pathname.includes(
-            "login"
-          ) ? null : (
-          <Navbar />
-        )}
+        {pathname.includes("/register") ? null : <Navbar /> }
         <AddToPlaylistPopUp />
         <AddToCartPopUp />
         <Switch>
@@ -66,7 +63,7 @@ function App() {
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={LogIn} />
           <Route exact path="/cart" component={Cart} />
         </Switch>
       </div>

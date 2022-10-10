@@ -42,6 +42,7 @@ export default function Cart() {
     dispatch(getCart());
   }, []);
 
+
   return (
     <div className={style.container_cart}>
       <div className={style.title}>
@@ -85,7 +86,6 @@ export default function Cart() {
         <div className={style.addCombo}>
           <h3 style={{ color: "white" }}>Add combo</h3>
         </div>
-
         <div className={style.paymentGateway}>
           <form action="http://localhost:8082/payment/payment" method="POST">
             <input type="hidden" name="title" value="Minnios"></input>

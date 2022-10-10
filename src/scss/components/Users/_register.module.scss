@@ -5,61 +5,64 @@
 .registerContainer{
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-        height: 100vh;
+        min-height: 100vh;
         font-family: $font;
+        overflow: hidden;
 
     .imageContainer{
         grid-column:1/3;
         background-image: url(../../../assets/uncharted-poster.jpg);
         background-position: center left;
         background-size: cover;
+        position: relative;
         
 
         .navLogo{
-            cursor: pointer;
-            color: $primary-color;
-            margin-left: 1rem;
-            animation: 3.5s lights infinite;
-            transition: .2s linear;
-            &:hover{
-                transform: scale(1.08);
-            }
-        }
-        .navLogo:hover{
-            cursor: pointer;
-            box-shadow: none;
-        }
-        .titleContainer{
             display: flex;
-            height: 90%;
-            position: absolute;
+            margin-left: 3.5em;
+            margin-top: 2em;
+            cursor: pointer;
 
+            h2{ 
+                font-size: 2rem;
+                color: $primary-color;
+                transition: all 0.2s linear;
 
-            h3{
-                color: white;
-                font-size: 1.7rem;
-                margin-top: 1em;
-                margin-left: 1em;
-                align-self: flex-end;
-                text-shadow: 1px 1px 2px black
+                &:hover{
+                    font-size: 2.1rem;
+                    text-shadow: 5px 5px 10px $secondary-color;
+                }
             }
         }
+
+        h3{
+            position: absolute;
+            bottom: 1em;
+            color: white;
+            font-size: 1.7rem;
+            margin-left: 2em;
+            align-self: flex-end;
+            text-shadow: 1px 1px 2px black
+        }
+
     }
 
     .formSideContainer{
         grid-column: 3/6;
+        display: flex;
         background-color:$background-color;
-        width: 100%;
+        min-width: 100vh;
         box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
 
         .formContainer{
             display: flex;
             align-items: center;
             width: 100%;
-            height: 100vh;
+            height: auto;
 
 
             form{
+                margin-top: 2em;
                 margin-left: 12%;
                 flex-direction: column;
                 justify-content: center;
