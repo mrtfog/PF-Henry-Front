@@ -1,40 +1,24 @@
 import React from "react";
 import style from "../../../scss/components/Users/UserPanel/_navbarUser.module.scss";
 import { NavLink, Link } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const NavbarUser = () => {
+  const { currentUser } = useAuth();
   return (
     <nav className={style.mainNav}>
-      <div className={style.user}>
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
-          alt="user-logo"
-        ></img>
-        <p>Username</p>
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 512 512"
-          width="80px"
-          height="80px"
-        >
-          <path
-            fill="#FFF"
-            d="M256 112c-48.6 0-88 39.4-88 88C168 248.6 207.4 288 256 288s88-39.4 88-88C344 151.4 304.6 112 256 112zM256 240c-22.06 0-40-17.95-40-40C216 177.9 233.9 160 256 160s40 17.94 40 40C296 222.1 278.1 240 256 240zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-46.73 0-89.76-15.68-124.5-41.79C148.8 389 182.4 368 220.2 368h71.69c37.75 0 71.31 21.01 88.68 54.21C345.8 448.3 302.7 464 256 464zM416.2 388.5C389.2 346.3 343.2 320 291.8 320H220.2c-51.36 0-97.35 26.25-124.4 68.48C65.96 352.5 48 306.3 48 256c0-114.7 93.31-208 208-208s208 93.31 208 208C464 306.3 446 352.5 416.2 388.5z"
-          />
-        </svg> */}
-      </div>
-      <div className={style.menu}>
-        <NavLink to="/profile/edit">
-          <button>Edit profile</button>
-        </NavLink>
-        <NavLink to="/profile/payments">
-          <button>Payments</button>
-        </NavLink>
-
-      </div>
-      <div className={style.footer}>
-        <div>
-          <Link to="/">
+      <ul>
+        <li>
+          <div className={style.user}>
+            <img
+              src="https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="
+              alt="user-logo"
+            ></img>
+            <span>{currentUser.displayName}</span>
+          </div>
+        </li>
+        <li>
+          <NavLink to="/" className={style.link}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -50,8 +34,55 @@ const NavbarUser = () => {
                 />
               </g>
             </svg>
-          </Link>
-          <Link>
+            <span>Home</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/profile/edit" className={style.link}>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+              <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z" />
+            </svg>
+            <span>Profile</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/profile/payments" className={style.link}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              version="1.1"
+              id="Capa_1"
+              viewBox="0 0 946.812 946.812"
+              xmlSpace="preserve"
+            >
+              <g>
+                <g>
+                  <path d="M106.812,428.258c0-38.6,31.4-70,70-70h677.8l-80.2-253.9c-7.5-23.6-32.8-36.8-56.5-29.3l-686.5,217    c-23.7,7.5-36.8,32.8-29.3,56.5l104.8,331.4v-251.7H106.812z" />
+                  <path d="M136.812,833.858c0,22.1,17.9,40,40,40h730c22.1,0,40-17.9,40-40v-54h-810V833.858L136.812,833.858z" />
+                  <path d="M946.812,428.258c0-22.1-17.9-40-40-40h-42.7h-687.3c-22.1,0-40,17.9-40,40v276.5h199.7h610.3V428.258L946.812,428.258z" />
+                </g>
+              </g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+            </svg>
+            <span>Payments</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/" className={style.link}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24px"
@@ -68,9 +99,10 @@ const NavbarUser = () => {
                 fill="#030D45"
               />
             </svg>
-          </Link>
-        </div>
-      </div>
+            <span>LogOut</span>
+          </NavLink>
+        </li>
+      </ul>
     </nav>
   );
 };
