@@ -11,17 +11,15 @@
     position:sticky;
     top: 0px;
     z-index: 5;
-   
-
 
     .navBtnContainer{
         display: flex;
         align-items: center;
     
-        
-    .searchbar{
-        padding-right: 19.5rem;
-    }
+            
+        .searchbar{
+            padding-right: 19.5rem;
+        }
 
         
         button{
@@ -30,6 +28,56 @@
 
         .btn_primary{
             @include btn-primary
+        }
+
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+        }
+
+        .profile{
+            svg{
+                fill: $primary-color;
+            }
+        }
+
+        .userPopUp{
+            position: absolute;
+            flex-direction: column;
+            justify-content: center;
+            top: 14vh;
+            right: 20px;
+            background-color: $background-color;
+            width: 20vw;
+            height: 25vh;
+            padding: 10px;
+            border-radius: 15px;
+
+            h3{
+                width: 100%;
+                text-align: center;
+                color: $primary-color;
+                text-shadow: 0 0 8px $primary-color;
+                padding: 0;
+                padding-bottom: 5px;
+                margin: 0;
+            }
+                
+            a{
+                align-self: center;
+                width: fit-content;
+
+                button{
+                    width: 200px;
+                }
+            }
+            button{
+                width: 200px;
+                align-self: center;
+            }
+            
+
         }
 
     }

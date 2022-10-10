@@ -5,6 +5,7 @@ import { useLocation } from "react-router-dom";
 import style from "../scss/components/_navbar.module.scss";
 import { useAuth } from "./contexts/AuthContext";
 import GoogleSignIn from "./Users/GoogleSignIn";
+import userIMG from '../assets/user.png'
 
 export default function Navbar() {
 
@@ -12,6 +13,9 @@ export default function Navbar() {
   const history = useHistory()
   const { pathname } = useLocation();
   const [color, setColor] = useState(false);
+
+  const [display, setDisplay] = useState('none')
+
   const changeColor = () => {
     if (window.scrollY >= 60) {
       setColor(true);
@@ -36,6 +40,11 @@ export default function Navbar() {
 
     }
   }
+
+  function handleUserPopUp(){
+
+    display === 'none' ? setDisplay('flex') : setDisplay('none')
+  }
   window.addEventListener("scroll", changeColor);
   return (
     <nav
@@ -52,33 +61,8 @@ export default function Navbar() {
       // style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
     >
       <Link to="/" className={style.navLogo}>
-        <h2>HPFC</h2>
-        {/* <svg
-          width="36px"
-          height="36px"
-          viewBox="0 0 36 36"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          aria-hidden="true"
-          role="img"
-          preserveAspectRatio="xMidYMid meet"
-        >
-          <path
-            fill="#ff315a"
-            d="M36 32a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h28a4 4 0 0 1 4 4v28z"
-          ></path>
-          <path
-            fill="#FFF"
-            d="M21 11a6 6 0 1 1-12 0a6 6 0 0 1 12 0zm10.999 2a5 5 0 1 1-10.001-.001A5 5 0 0 1 31.999 13z"
-          ></path>
-          <path
-            fill="#FFF"
-            d="M30 20a4 4 0 0 0-4-4H15a4 4 0 0 0-4 4l-6-4H4v13h1l6-4v2a4 4 0 0 0 4 4h11a4 4 0 0 0 4-4v-7z"
-          ></path>
-        </svg> */}
+        <h2 onClick={()=> setDisplay('none')} >HPFC</h2>
       </Link>
-
-      <h1>{currentUser ? currentUser.email : 'nono'}</h1>
 
       <div className={style.navBtnContainer}>
         <div className={style.searchbar}>
@@ -87,31 +71,47 @@ export default function Navbar() {
         
         {pathname === "/login" ? null : 
 
-        <>
-        <NavLink to="/playlists">
-          <button>My playlist</button>
-        </NavLink>
+        (
+          currentUser ? 
 
-        <NavLink to="/profile/edit">
-          <button>Profile</button>
-        </NavLink>
+            <>
+              <NavLink to="/playlists">
+                <button onClick={()=> setDisplay('none')}>My playlist</button>
+              </NavLink>
+              
+              <NavLink to="/cart">
+                <button onClick={()=> setDisplay('none')}>Cart</button>
+              </NavLink>
 
-        <NavLink to="/register">
-          <button className={style.btn_primary}>Sign Up</button>
-        </NavLink>
+              <img onClick={handleUserPopUp} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg'/>
 
-        <NavLink to="/login">
-          <button className={style.btn_primary}>Log in</button>
-        </NavLink>
+              <div className={style.userPopUp} style={{display: display}}>
 
-        <NavLink to="/cart">
-          <button>Carrito</button>
-        </NavLink>
+                <h3>{currentUser.displayName}</h3>
 
-        <button onClick={()=> handleLogOut()}>Log Out</button>
+                  <NavLink to="/profile/edit">
+                    <button className={style.profile} onClick={()=> setDisplay('none')}> My Profile</button>
+                  </NavLink>
 
-        </>
-        }
+                  <button onClick={()=> handleLogOut()}>Log Out</button>
+
+              </div>
+
+            </>
+
+          :
+
+          <>
+            <NavLink to="/register">
+              <button className={style.btn_primary} onClick={handleUserPopUp}>Sign Up</button>
+            </NavLink>
+
+            <NavLink to="/login">
+              <button className={style.btn_primary} onClick={handleUserPopUp}>Log in</button>
+            </NavLink>
+          </>
+          
+        )}
 
       </div>
     </nav>
