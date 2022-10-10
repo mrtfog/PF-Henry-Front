@@ -3,99 +3,113 @@
 
 
 .mainNav{
-    background-color:RGB(4, 4, 5) ;
-    display:flex;
-    align-items: center;
-    flex-direction: column;
-    min-width:15%;
+    $parent:&;
+    width: 5rem;
     height:100vh;
-    top:0;
-    position:fixed;
+    background-color:RGB(4, 4, 5) ;
+    position:fixed; 
+    transition: width 200ms ease;
     box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
-   
-    .user{
-        width:100%;
-        min-height:30vh;
-        display:flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-       img{
-        width:100px;
-        height: 100px;
-        border-radius: 50%;
-       }
-       p{
-        color:$text-color-white;
-        font-family: $font;
-       }
-        
+    z-index: 3;
+    top: 0;
+    
+    
+    &:hover {
+      width:16rem;
+      box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);}
+    &:hover ul li .link span{
+       display: block;
 
+    } 
+    &:hover ul li .user span{
+        display: block;
+       text-align:center;
+       margin:1.5rem 1.5rem 1.5rem 0;
     }
-    .menu{
-        
-        min-height:60vh;
-        width:100%;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        button{
-            @include btn-secondary;
-            margin:1rem;
-            border-radius: 2rem;
-            min-width:140px;
-           
-           
-        }
-     
-
-    }
-
-    .footer{
-        background-color: $primary-color;
+    ul{
+    list-style:none;
+    padding: 0;
+    margin: 0;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+  
+    li{
         width: 100%;
-        height:10vh;
+
+    .user{
         display: flex;
-        justify-content: center;
         align-items: center;
-       div{
-        
-        width:80%;
-        display: flex;
-        justify-content: space-between;
-        svg{
-            width:25px;
-            height:25px;
-            transition: 0.2s linear;
-            path{
-                fill: rgba(236, 233, 233, 0.589);
-                transition: 0.2s linear;
-            }
-
-            &:hover{
-                path{
-                    fill:#fff;
-                }
-                
-            }
-            polygon{
-                
-                fill: rgb(10, 10, 12);
-                transition: 0.2s linear;
-            }
-            &:hover{
-            polygon{
-                    fill:#fff;
-                }
-                
-            }
+        height: 5rem;
+        margin-bottom: 4rem;
+        margin-top: 1rem;
+       
+        img{
+            min-width:3rem;
+            margin:0 1rem;
+            width:3rem;
+            height:3rem;
+            border-radius: 50%;
         }
-       
-       
-       }
-
-
-
+        span{
+            display:none;
+            margin-left: 1rem;
+            color: $primary-color;
+            font-size: 20px;
+            width: 100%;
+            font-weight: 500;
+            text-shadow:0 0 8px $primary-color ;
+           
+        }
     }
-}
+        
+     
+        .link{
+            display: flex;
+            align-items: center;
+            height: 5rem;
+            color:#b6b6b6;
+            text-decoration: none;
+            filter:grayscale(100%) opacity(0.7);
+            transition:0.3s;
+                &:hover {
+                    filter: grayscale(0%) opacity(1);
+                    // background-color:#141418;
+                    // color:#ececec;
+                    background: linear-gradient(70deg,
+                     $primary-color,
+                    $secondary-color  75%);
+                    
+                    }
+                    svg{
+                        min-width:2rem;
+                        margin:0 1.5rem;
+                        width:30px;
+                        height:30px;
+                        path{
+                            //  fill: rgba(236, 233, 233, 0.589);
+                            fill:#FFF;
+                            transition: 0.2s linear;}
+                                    
+                    }
+                    span{
+                        display:none;
+                       margin-left: 1.5rem;
+                        color:white;
+                        font-size: 1rem;
+                      
+                        width: 100%;
+                        
+                     
+                       
+                    }
+                    // span + .mainNav:hover{
+                    //     display:block;
+                    // }
+
+                    
+        }
+        
+    }
+    }}
