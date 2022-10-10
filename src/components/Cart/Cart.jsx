@@ -16,7 +16,6 @@ export default function Cart() {
 
     dispatch(selectSeatsDisplay('flex'))
     dispatch(selectedReservation(r))
-
   }
 
 
@@ -30,6 +29,8 @@ export default function Cart() {
       <div className={style.cart}>
         {cart.length ? (
           cart.map((r) => {
+
+
             return (
               <div className={style.movies}>
                 <img src={"https://image.tmdb.org/t/p/original" + r.image} />
@@ -45,7 +46,10 @@ export default function Cart() {
                     .substring(0, 17)}
                   Hs
                 </p>
-                <button onClick={() => handleOnClick(r)}> Pick your seats </button>
+                {
+                  r.seatsId ? <span>Seats selected: <br/> {r.seatsId.join('-') }</span>: <p onClick={() => handleOnClick(r)}>Select your seats</p>
+                }
+
                 <p>Amount</p>
 
                 <div>

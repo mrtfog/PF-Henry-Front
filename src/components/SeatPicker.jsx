@@ -1,138 +1,165 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import img from '../assets/uncharted-poster.jpg'
-import "../scss/components/_seatPicker.scss";
-let seatsReserved= 0
+import "../scss/components/_seatPicker.scss"
+import { useAuth } from './contexts/AuthContext'
+import { selectedSeats, selectSeatsDisplay } from '../redux/actions/cart'
+import { useDispatch } from 'react-redux'
+
+let seatsReserved = 0
 
 export default function Seats({reservation}) {
+
+    
+    const dispatch = useDispatch()
+
     let tickets = reservation.tickets
-    let userId = '2'
+    let { currentUser } = useAuth()
+
+    let userId = currentUser.uid
+
     const [seatsSelected, setSeatsSelected] = useState([])
-    // let movieTheatre = [[]]
+
+    const [ seatsId, setSeatsId ] = useState([])
+
 
     let rowNames = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
     const [selected, setSelected] = useState([
         [
-        { showtimeId: '1', _id: '1', location: "A1" },
-        { showtimeId: '1', _id: '2', location: "A2" },
-        { showtimeId: '1', _id: '3', location: "A3" },
+        { showtimeId: '1', _id: "A1", location: "A1" },
+        { showtimeId: '1', _id: 'A2', location: "A2" },
+        { showtimeId: '1', _id: 'A3', location: "A3" },
         null,
-        { showtimeId: '1', _id: '4', location: "A4" },
-        { showtimeId: '1', _id: '24', location: "A5" },
-        { showtimeId: '1', _id: '34', location: "A6" },
-        { showtimeId: '1', _id: '44', location: "A7" },
-        { showtimeId: '1', _id: '54', location: "A8" },
-        { showtimeId: '1', _id: '5', location: "A9" },
-        { showtimeId: '1', _id: '6', location: "A10" },
+        { showtimeId: '1', _id: 'A4', location: "A4" },
+        { showtimeId: '1', _id: 'A5', location: "A5" },
+        { showtimeId: '1', _id: 'A6', location: "A6" },
+        { showtimeId: '1', _id: 'A7', location: "A7" },
+        { showtimeId: '1', _id: 'A8', location: "A8" },
+        { showtimeId: '1', _id: 'A9', location: "A9" },
+        { showtimeId: '1', _id: 'A10', location: "A10" },
         null,
-        { showtimeId: '1', _id: '7', location: "A11" },
-        { showtimeId: '1', _id: '8', location: "A12" },
-        { showtimeId: '1', _id: '9', location: "A13", userId: '1' }
+        { showtimeId: '1', _id: 'A11', location: "A11" },
+        { showtimeId: '1', _id: 'A12', location: "A12" },
+        { showtimeId: '1', _id: 'A13', location: "A13", userId: '1' }
         ],
         [
-        { showtimeId: '1', _id: '11', location: "B1" },
-        { showtimeId: '1', _id: '12', location: "B2" },
-        { showtimeId: '1', _id: '13', location: "B3", userId: '1' },
+        { showtimeId: '1', _id: 'B1', location: "B1" },
+        { showtimeId: '1', _id: 'B2', location: "B2" },
+        { showtimeId: '1', _id: 'B3', location: "B3", userId: '1' },
         null,
-        { showtimeId: '1', _id: '14', location: "B4" },
-        { showtimeId: '1', _id: '74', location: "B5" },
-        { showtimeId: '1', _id: '84', location: "B6" },
-        { showtimeId: '1', _id: '34', location: "B7" },
-        { showtimeId: '1', _id: '94', location: "B8" },
-        { showtimeId: '1', _id: '15', location: "B9" },
-        { showtimeId: '1', _id: '16', location: "B10" },
+        { showtimeId: '1', _id: 'B4', location: "B4" },
+        { showtimeId: '1', _id: 'B5', location: "B5" },
+        { showtimeId: '1', _id: 'B6', location: "B6" },
+        { showtimeId: '1', _id: 'B7', location: "B7" },
+        { showtimeId: '1', _id: 'B8', location: "B8" },
+        { showtimeId: '1', _id: 'B9', location: "B9" },
+        { showtimeId: '1', _id: 'B10', location: "B10" },
         null,
-        { showtimeId: '1', _id: '17', location: "B11" },
-        { showtimeId: '1', _id: '18', location: "B12" },
-        { showtimeId: '1', _id: '19', location: "B13" }
+        { showtimeId: '1', _id: 'B11', location: "B11" },
+        { showtimeId: '1', _id: 'B12', location: "B12" },
+        { showtimeId: '1', _id: 'B13', location: "B13" }
             ],
             [
-            { showtimeId: '1', _id: '21', location: "C1" },
-            { showtimeId: '1', _id: '22', location: "C2" },
-            { showtimeId: '1', _id: '23', location: "C3" },
+            { showtimeId: '1', _id: 'C1', location: "C1" },
+            { showtimeId: '1', _id: 'C2', location: "C2" },
+            { showtimeId: '1', _id: 'C3', location: "C3" },
             null,
-            { showtimeId: '1', _id: '24', location: "C4" },
-            { showtimeId: '1', _id: '29', location: "C5" },
-            { showtimeId: '1', _id: '20', location: "C6" },
-            { showtimeId: '1', _id: '99', location: "C7" },
-            { showtimeId: '1', _id: '98', location: "C8" },
-            { showtimeId: '1', _id: '25', location: "C9" },
-            { showtimeId: '1', _id: '26', location: "C10" },
+            { showtimeId: '1', _id: 'C4', location: "C4" },
+            { showtimeId: '1', _id: 'C5', location: "C5" },
+            { showtimeId: '1', _id: 'C6', location: "C6" },
+            { showtimeId: '1', _id: 'C7', location: "C7" },
+            { showtimeId: '1', _id: 'C8', location: "C8" },
+            { showtimeId: '1', _id: 'C9', location: "C9" },
+            { showtimeId: '1', _id: 'C10', location: "C10" },
             null,
-            { showtimeId: '1', _id: '27', location: "C11", userId: '1' },
-            { showtimeId: '1', _id: '28', location: "C12" },
-            { showtimeId: '1', _id: '29', location: "C13" }
+            { showtimeId: '1', _id: 'C11', location: "C11", userId: '1' },
+            { showtimeId: '1', _id: 'C12', location: "C12" },
+            { showtimeId: '1', _id: 'C13', location: "C13" }
             ],
             [
-            { showtimeId: '1', _id: '11', location: "D1" },
-            { showtimeId: '1', _id: '12', location: "D2" },
-            { showtimeId: '1', _id: '13', location: "D3", userId: '1' },
+            { showtimeId: '1', _id: 'D1', location: "D1" },
+            { showtimeId: '1', _id: 'D2', location: "D2" },
+            { showtimeId: '1', _id: 'D3', location: "D3", userId: '1' },
             null,
-            { showtimeId: '1', _id: '14', location: "D4" },
-            { showtimeId: '1', _id: '74', location: "D5" },
-            { showtimeId: '1', _id: '84', location: "D6" },
-            { showtimeId: '1', _id: '34', location: "D7" },
-            { showtimeId: '1', _id: '94', location: "D8" },
-            { showtimeId: '1', _id: '15', location: "D9" },
-            { showtimeId: '1', _id: '16', location: "D10" },
+            { showtimeId: '1', _id: 'D4', location: "D4" },
+            { showtimeId: '1', _id: 'D5', location: "D5" },
+            { showtimeId: '1', _id: 'D6', location: "D6" },
+            { showtimeId: '1', _id: 'D7', location: "D7" },
+            { showtimeId: '1', _id: 'D8', location: "D8" },
+            { showtimeId: '1', _id: 'D9', location: "D9" },
+            { showtimeId: '1', _id: 'D10', location: "D10" },
             null,
-            { showtimeId: '1', _id: '17', location: "D11" },
-            { showtimeId: '1', _id: '18', location: "D12" },
-            { showtimeId: '1', _id: '19', location: "D13" }
+            { showtimeId: '1', _id: 'D11', location: "D11" },
+            { showtimeId: '1', _id: 'D12', location: "D12" },
+            { showtimeId: '1', _id: 'D13', location: "D13" }
             ],
             [
-            { showtimeId: '1', _id: '11', location: "E1" },
-            { showtimeId: '1', _id: '12', location: "E2" },
-            { showtimeId: '1', _id: '13', location: "E3" },
+            { showtimeId: '1', _id: 'E1', location: "E1" },
+            { showtimeId: '1', _id: 'E2', location: "E2" },
+            { showtimeId: '1', _id: 'E3', location: "E3" },
             null,
-            { showtimeId: '1', _id: '14', location: "E4" },
-            { showtimeId: '1', _id: '74', location: "E5" },
-            { showtimeId: '1', _id: '84', location: "E6" },
-            { showtimeId: '1', _id: '34', location: "E7" },
-            { showtimeId: '1', _id: '94', location: "E8" },
-            { showtimeId: '1', _id: '15', location: "E9" },
-            { showtimeId: '1', _id: '16', location: "E10" },
+            { showtimeId: '1', _id: 'E4', location: "E4" },
+            { showtimeId: '1', _id: 'E5', location: "E5" },
+            { showtimeId: '1', _id: 'E6', location: "E6" },
+            { showtimeId: '1', _id: 'E7', location: "E7" },
+            { showtimeId: '1', _id: 'E8', location: "E8" },
+            { showtimeId: '1', _id: 'E9', location: "E9" },
+            { showtimeId: '1', _id: 'E10', location: "E10" },
             null,
-            { showtimeId: '1', _id: '17', location: "E11" },
-            { showtimeId: '1', _id: '18', location: "E12" },
-            { showtimeId: '1', _id: '19', location: "E13" }
+            { showtimeId: '1', _id: 'E11', location: "E11" },
+            { showtimeId: '1', _id: 'E12', location: "E12" },
+            { showtimeId: '1', _id: 'E13', location: "E13" }
             ],
             [
-            { showtimeId: '1', _id: '11', location: "F1" },
-            { showtimeId: '1', _id: '12', location: "F2" },
-            { showtimeId: '1', _id: '13', location: "F3" },
+            { showtimeId: '1', _id: 'F1', location: "F1" },
+            { showtimeId: '1', _id: 'F2', location: "F2" },
+            { showtimeId: '1', _id: 'F3', location: "F3" },
             null,
-            { showtimeId: '1', _id: '14', location: "F4" },
-            { showtimeId: '1', _id: '74', location: "F5" },
-            { showtimeId: '1', _id: '84', location: "F6" },
-            { showtimeId: '1', _id: '34', location: "F7" },
-            { showtimeId: '1', _id: '94', location: "F8" },
-            { showtimeId: '1', _id: '15', location: "F9" },
-            { showtimeId: '1', _id: '16', location: "F10" },
+            { showtimeId: '1', _id: 'F4', location: "F4" },
+            { showtimeId: '1', _id: 'F5', location: "F5" },
+            { showtimeId: '1', _id: 'F6', location: "F6" },
+            { showtimeId: '1', _id: 'F7', location: "F7" },
+            { showtimeId: '1', _id: 'F8', location: "F8" },
+            { showtimeId: '1', _id: 'F9', location: "F9" },
+            { showtimeId: '1', _id: 'F10', location: "F10" },
             null,
-            { showtimeId: '1', _id: '17', location: "F11" },
-            { showtimeId: '1', _id: '18', location: "F12" },
-            { showtimeId: '1', _id: '19', location: "F13" }
+            { showtimeId: '1', _id: 'F11', location: "F11" },
+            { showtimeId: '1', _id: 'F12', location: "F12" },
+            { showtimeId: '1', _id: 'F13', location: "F13" }
             ],
             [
-            { showtimeId: '1', _id: '11', location: "G1" },
-            { showtimeId: '1', _id: '12', location: "G2" },
-            { showtimeId: '1', _id: '13', location: "G3" },
+            { showtimeId: '1', _id: 'G1', location: "G1" },
+            { showtimeId: '1', _id: 'G2', location: "G2" },
+            { showtimeId: '1', _id: 'G3', location: "G3" },
             null,
-            { showtimeId: '1', _id: '14', location: "G4" },
-            { showtimeId: '1', _id: '74', location: "G5" },
-            { showtimeId: '1', _id: '84', location: "G6" },
-            { showtimeId: '1', _id: '34', location: "G7", userId: '1' },
-            { showtimeId: '1', _id: '94', location: "G8" },
-            { showtimeId: '1', _id: '15', location: "G9" },
-            { showtimeId: '1', _id: '16', location: "G10" },
+            { showtimeId: '1', _id: 'G4', location: "G4" },
+            { showtimeId: '1', _id: 'G5', location: "G5" },
+            { showtimeId: '1', _id: 'G6', location: "G6" },
+            { showtimeId: '1', _id: 'G7', location: "G7", userId: '1' },
+            { showtimeId: '1', _id: 'G8', location: "G8" },
+            { showtimeId: '1', _id: 'G9', location: "G9" },
+            { showtimeId: '1', _id: 'G10', location: "G10" },
             null,
-            { showtimeId: '1', _id: '17', location: "G11" },
-            { showtimeId: '1', _id: '18', location: "G12" },
-            { showtimeId: '1', _id: '19', location: "G13" }
+            { showtimeId: '1', _id: 'G11', location: "G11" },
+            { showtimeId: '1', _id: 'G12', location: "G12" },
+            { showtimeId: '1', _id: 'G13', location: "G13" }
             ]
         ]
     );
 
+
+ /*======================= Submit de info a reducer ======================= */    
+    
+    function handleOnConfirmSeats(){
+        dispatch(selectedSeats(seatsId, userId, reservation.showtimeId))
+        alert('Seats correctly selected')
+        dispatch(selectSeatsDisplay('none'))
+    }
+
+
+
+
+
+/*======================= CAMBIOS DE SELECCION EN ASIENTOS ======================= */   
     function handleClick(e){
         let initialState = selected
         let seatSelected = e.target.innerText
@@ -158,6 +185,7 @@ export default function Seats({reservation}) {
                             }
                             seatsReserved=seatsReserved+1
                             setSeatsSelected(seatsSelected.concat(initialState[i][j].location))  
+                            setSeatsId(seatsId.concat(initialState[i][j]._id))
                         }
                     } else  continue
                 }
@@ -178,7 +206,8 @@ export default function Seats({reservation}) {
                                 location : initialState[i][j].location,
                             }
                             seatsReserved=seatsReserved-1
-                            setSeatsSelected(seatsSelected.filter(s=> s!==initialState[i][j].location))
+                            setSeatsSelected(seatsSelected.filter(s=> s !==initialState[i][j].location))
+                            setSeatsId(seatsId.filter( id => id !== initialState[i][j]._id))
                         }
 
                     }else  continue
@@ -286,7 +315,7 @@ export default function Seats({reservation}) {
             </div>
 
         </div>
-            <button>Confirm selection</button>
+            <button onClick={handleOnConfirmSeats} disabled={seatsReserved < tickets ? true : false}>Confirm selection</button>
         </div>
     );
 
