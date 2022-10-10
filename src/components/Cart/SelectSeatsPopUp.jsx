@@ -1,6 +1,6 @@
 import React from 'react'
 import style from '../../scss/components/Cart/_selectSeatsPopUp.module.scss'
-import { selectSeatsDisplay, selectedReservation } from "../../redux/actions/cart";
+import { selectSeatsDisplay } from "../../redux/actions/cart";
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from '../PopUpTemplate';
 import SeatPicker from '../SeatPicker'

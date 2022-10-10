@@ -75,3 +75,7 @@ export function selectSeatsDisplay(display){
 export function addToCart(payload){
       return {type: 'ADD_TO_CART', payload}
 }
+
+export function selectedSeats(seatsId, userId, showtimeId){
+      return {type: 'SELECTED_SEATS', payload: {seatsId, userId, showtimeId}}
+}

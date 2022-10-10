@@ -28,7 +28,29 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 selectedReservation: action.payload
             }    
-        
+            
+        case 'SELECTED_SEATS':
+
+            const {seatsId, userId, showtimeId} = action.payload 
+
+            const reservation = state.cart.find((r) => {
+                return showtimeId === r.showtimeId
+            })
+
+            reservation.seatsId = seatsId
+            reservation.userId = userId
+
+            return{
+                ...state,
+                cart : state.cart.map( r => {
+                    if(showtimeId === r.showtimeId){
+                        return reservation
+                    } else {
+                        return r
+                    }
+                })
+            }
+
         case 'ADD_TO_CART_DISPLAY':
             
             return {
