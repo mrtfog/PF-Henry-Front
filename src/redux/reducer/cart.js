@@ -1,6 +1,8 @@
 const initialState = {    
     cart : [],
-    display: 'none',
+    displayCart: 'none',
+    displaySeats: 'none',
+    selectedReservation: {},
     takenTickets: {},
     showtime: [],
 }
@@ -20,13 +22,27 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 takenTickets: action.payload
             };
+
+        case 'SELECTED_RESERVATION':
+            return{
+                ...state,
+                selectedReservation: action.payload
+            }    
+        
         case 'ADD_TO_CART_DISPLAY':
             
             return {
                 ...state,
-                display: action.payload
+                displayCart: action.payload
             };
-        
+        case 'SELECT_SEATS_DISPLAY':
+
+        return{
+            ...state,
+            displaySeats: action.payload
+        }
+
+
         case 'GET_SHOWTIME_BY_MOVIE_ID':
             
         return{

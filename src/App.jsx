@@ -17,10 +17,10 @@ import Users from "./components/AdminPanel/Users";
 import LogIn from './components/Users/Login'
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
-import Slider from "./components/Slider";
 import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from "./components/Users/UserPanel/NavbarUser";
+import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
 
 function App() {
   const { pathname } = useLocation();
@@ -54,6 +54,7 @@ function App() {
         {pathname.includes("/register") ? null : <Navbar /> }
         <AddToPlaylistPopUp />
         <AddToCartPopUp />
+        <SelectSeatsPopUp />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />

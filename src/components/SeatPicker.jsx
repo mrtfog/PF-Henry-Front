@@ -3,8 +3,8 @@ import img from '../assets/uncharted-poster.jpg'
 import "../scss/components/_seatPicker.scss";
 let seatsReserved= 0
 
-export default function Seats() {
-    let tickets = 5
+export default function Seats({reservation}) {
+    let tickets = reservation.tickets
     let userId = '2'
     const [seatsSelected, setSeatsSelected] = useState([])
     // let movieTheatre = [[]]
@@ -225,20 +225,29 @@ export default function Seats() {
 
     return (
         <div className="container">
-        <h1>Pick your Seat/s</h1>
+        <h1><span>'{reservation.movieTitle}'</span></h1>
         <div className='inRow'>
             <div className='movieDetail'>
-                <h3>Movie Title</h3>
-                <img src={img} className='img' alt='MovieImg'/>
-                <span>Date/Time: 06/10/2022 18:50hs</span>
-                <div>
-                    <span>Movie Theater: 3</span>
-                    <span>Format: 3D subtitled</span>
+
+                <div className='imgContainer'>
+                    <img src={"https://image.tmdb.org/t/p/original" + reservation.image} className='img' alt='MovieImg'/>
                 </div>
-                <div>
-                    <span>Tickets: {tickets}</span>
-                    <span>Your Selection</span>
-                    {seatsSelected.length? seatsSelected.join(' • ') : <span>No seats selected yet</span>}
+
+                <div className='descriptionContainer'>
+                    <p><span className='spanTitle'>Date: </span>{new Date(reservation.dateTime)
+                        .toLocaleString()
+                        .replace(",", " -")
+                        .substring(0, 18)}
+                    Hs</p>
+
+                    <p><span className='spanTitle'>Tickets: </span>{reservation.tickets}</p>
+
+                    <p><span className='spanTitle'>Movie Theater: </span>{reservation.roomId}</p>  
+                    <p><span className='spanTitle'>Format: </span>{reservation.format}</p>
+                    <p><span className='spanTitle'>Your Seats Selection:</span>
+                    <br />
+                    <br />
+                        {seatsSelected.length? <span className='lastSpan'>{seatsSelected.join(' • ')}</span> : <p>No seats selected yet</p>}</p>
                 </div>
             </div>
 
@@ -277,6 +286,7 @@ export default function Seats() {
             </div>
 
         </div>
+            <button>Confirm selection</button>
         </div>
     );
 
