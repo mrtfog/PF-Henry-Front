@@ -3,16 +3,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
 import { getShowtimeByMovieId, addToCartDisplay, addToCart} from '../redux/actions/cart'
+import { useHistory } from 'react-router-dom'
 
 export default function AddToCartPopUp() {
+
+    const history = useHistory()
 
     const dispatch = useDispatch()
 
     const display = useSelector( state => state.cartReducer.displayCart)
     const movie = useSelector( state => state.cartReducer.takenTickets)
     const showtimes = useSelector ( state => state.cartReducer.showtime)
+    const cart = useSelector ( state => state.cartReducer.cart)
 
+    const filteredMovie = cart.map((f) => {
+        return f.showtimeId === showtimes._id
+    })  
 
+    console.log('filtered movie',filteredMovie)
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
     
     const [value, setValue] = useState(1)
@@ -50,8 +58,21 @@ export default function AddToCartPopUp() {
     }
 
     function handleSubmit(){
-        setValue(value)
-        dispatch(addToCart({...selectedShowtime, movieId: movie.id, tickets: value}))
+        if(filteredMovie.length) {
+            alert('You already selected this showtime, check your cart')
+            dispatch(addToCartDisplay('none'))
+            history.push('/cart')
+            filteredMovie = ''
+        }
+
+        else{
+            setValue(value)
+            dispatch(addToCart({...selectedShowtime, movieId: movie.id, tickets: value}))
+            alert('Reservation added to cart')
+            dispatch(addToCartDisplay('none'))
+        }
+
+
     }
 
     
