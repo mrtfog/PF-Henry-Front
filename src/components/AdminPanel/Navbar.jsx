@@ -15,8 +15,16 @@ const NavbarAdmin = () => {
       <ul>
         <li>
           <div className={style.user}>
-            <img
+            {/* <img
               src="https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="
+              alt="user-logo"
+            ></img> */}
+            <img
+              src={
+                currentUser.photoURL
+                  ? currentUser.photoURL
+                  : "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="
+              }
               alt="user-logo"
             ></img>
             <span>{currentUser.displayName}</span>
