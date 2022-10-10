@@ -7,21 +7,18 @@
     align-items: center;
     justify-content: space-between;
     padding: 0rem 1rem;
-    // box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
     position:sticky;
     top: 0px;
     z-index: 5;
-   
-
 
     .navBtnContainer{
         display: flex;
         align-items: center;
     
-        
-    .searchbar{
-        padding-right: 19.5rem;
-    }
+            
+        .searchbar{
+            padding-right: 11px;
+        }
 
         
         button{
@@ -32,19 +29,73 @@
             @include btn-primary
         }
 
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        .profile{
+            svg{
+                fill: $primary-color;
+            }
+        }
+
+        .userPopUp{
+            position: absolute;
+            flex-direction: column;
+            justify-content: center;
+            top: 14vh;
+            right: 20px;
+            background-color: $background-color;
+            width: 20vw;
+            height: 25vh;
+            padding: 10px;
+            border-radius: 15px;
+
+            h3{
+                width: 100%;
+                text-align: center;
+                color: $primary-color;
+                text-shadow: 0 0 8px $primary-color;
+                padding: 0;
+                padding-bottom: 5px;
+                margin: 0;
+            }
+                
+            a{
+                align-self: center;
+                width: fit-content;
+
+                button{
+                    width: 200px;
+                }
+            }
+            button{
+                width: 200px;
+                align-self: center;
+            }
+            
+
+        }
+
     }
 
     .navLogo{
-            cursor: pointer;
-            color: $primary-color;
-            margin-left: 1rem;
-            animation: 3.5s lights infinite;
-            transition: .2s linear;
+
+        cursor: pointer;
+        color: $primary-color;
+        margin-left: 1rem;
+        animation: 3.5s lights infinite;
+        transition: .2s linear;
+
         &:hover{
             transform: scale(1.08);
         }
     }
     .navLogo:hover{
+
         cursor: pointer;
         box-shadow: none;
     }
