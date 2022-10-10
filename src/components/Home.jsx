@@ -6,7 +6,9 @@ import Carousel from './Carousel'
 import Filters from './Filters'
 import Paginado from './Paginado'
 import { getGenre } from '../redux/actions/movies'
+import { getAllShowtimes, getBillboardMovies } from '../redux/actions/showtimes'
 import Footer from './Footer'
+import Slider from './Slider'
 
 export default function Home() {
 
@@ -22,6 +24,9 @@ export default function Home() {
     const [orderByGenre, setOrderByGenre] = useState()
 
     const movies = useSelector(state => state.moviesReducer.movies)
+    const showtimes = useSelector(state => state.showtimesReducer.showtimes)
+    const billboardIds = Array.from(new Set(showtimes.map(s=>s.movieId)))
+
     const [currentPage, setCurrentPage]= useState(1);
     const [moviesPerPage, setMoviesPerPage]= useState(20);
 
@@ -32,15 +37,22 @@ export default function Home() {
     const paginado = function (pageNumber){
         setCurrentPage(pageNumber)
     }
-
+    
+    console.log(billboardIds)
     useEffect(() => {
       setCurrentPage(1)
       dispatch(getGenre())
+      dispatch(getAllShowtimes());
+      dispatch(getBillboardMovies(billboardIds))
     }, [movies])
-  
+
+    const arrayBillboardMovies = useSelector(state => state.showtimesReducer.billboard)
+    //console.log(arrayBillboardMovies)
+
   return (
     <div className={style.container_home}>
         <Carousel></Carousel>
+        <Slider title='Billboard' movies={arrayBillboardMovies}></Slider>
         <Filters 
           setOrder={setOrder} 
           order={order} 

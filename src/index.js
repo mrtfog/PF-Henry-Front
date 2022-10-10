@@ -9,7 +9,6 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
-import { alpha } from "@material-ui/core/styles";
 import { AuthProvider } from "./components/contexts/AuthContext";
 
 const theme = createTheme({
@@ -33,6 +32,7 @@ const theme = createTheme({
     },
   },
 });
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
@@ -40,7 +40,7 @@ root.render(
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <ThemeProvider theme={theme}>
           <AuthProvider>
-          <App />
+            <App />
           </AuthProvider>
         </ThemeProvider>
       </MuiPickersUtilsProvider>
