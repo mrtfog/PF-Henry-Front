@@ -4,6 +4,7 @@
 .titleContainer{
         
     h3 {
+        font-size: 25px;
         margin-left: 50px;
         color: white;
         text-shadow: 1px 1px 2px rgb(255, 255, 255);
@@ -20,26 +21,27 @@
 
 
     .slideButtons {
-        @include btn-secondary;
+
         height: 80px;
+        background-color: transparent;
+        color: #fff;
         border: 0;
         font-size: 50px;
-        transition: 2s ease;
-        text-shadow: 1px 1px 2px rgb(255, 255, 255);
-        margin: 5px;
+        transition: 2s linear;
+        margin-right: 40px;
+        transition: .2s linear;
+        cursor: pointer;
     
         &:hover {
-            box-shadow: 0 0 10px 3px $primary-color;
-            height: 100px;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 1 ),
+                        0 0 15px rgba(0, 0, 0, 1 );    
             border: 0;
-            background-color: transparent;
-            transform:scaleY(1.8);
-            transform:scalex(0.8);
-            transition: .5s ease;
+            transform: scale(1.10);
+
         }
     }
-    .container {
-        width: 160vh;
+    .container_slider {
+        width: 70vw;
         height: 300px;
         overflow-x: scroll;
         overflow-y: hidden;
@@ -53,6 +55,13 @@
 
             .img_container {
                 display: flex;
+                .loader{
+                    width: 100%;
+                    display: flex;        
+                    justify-content: center;
+                    margin-top: 10vh;
+                    margin-left: 2.5vw;
+                }
             }
     }
 

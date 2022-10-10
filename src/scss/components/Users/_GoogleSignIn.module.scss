@@ -13,7 +13,11 @@
     height: 2.65rem;
     box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
     overflow: hidden;
-
+    cursor: pointer;
+    transition: 0.2s linear;
+    &:hover{
+        transform: scale(1.03);
+    }
     .btnText{
         display: flex;
         justify-content: center;     

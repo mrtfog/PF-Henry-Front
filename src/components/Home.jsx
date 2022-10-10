@@ -38,7 +38,7 @@ export default function Home() {
         setCurrentPage(pageNumber)
     }
     
-    console.log(billboardIds)
+
     useEffect(() => {
       setCurrentPage(1)
       dispatch(getGenre())
@@ -47,12 +47,14 @@ export default function Home() {
     }, [movies])
 
     const arrayBillboardMovies = useSelector(state => state.showtimesReducer.billboard)
+    const arrayUpcomingMovies = useSelector(state => state.moviesReducer.upcoming)
     //console.log(arrayBillboardMovies)
 
   return (
     <div className={style.container_home}>
         <Carousel></Carousel>
         <Slider title='Billboard' movies={arrayBillboardMovies}></Slider>
+        <Slider title='Upcomings' movies={arrayUpcomingMovies}></Slider>
         <Filters 
           setOrder={setOrder} 
           order={order} 

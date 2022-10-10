@@ -2,7 +2,7 @@ import React, { useRef, useEffect} from "react";
 import style from '../scss/components/_slider.module.scss'
 import Card from "./Card";
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovies } from '../redux/actions/movies';
+import { getMovies, getUpcoming } from '../redux/actions/movies';
 import Loader from './Loader'
 
 export default function Slider({ movies, title }) {
@@ -13,6 +13,7 @@ export default function Slider({ movies, title }) {
     useEffect(() => {
 
         dispatch(getMovies())
+        dispatch(getUpcoming())
         
       }, [dispatch])
       
@@ -34,7 +35,7 @@ const msg = useSelector(state => state.moviesReducer.msg)
       <h3>{title}</h3>
       <div className={style.holder}>
       <button onClick={(e)=>handleOnClick(e)} className={style.slideButtons}>&#10092;</button>
-            <div ref={ref} className={style.container}>
+            <div ref={ref} className={style.container_slider}>
                 <div className={style.img_container}>
         
             
@@ -44,7 +45,7 @@ const msg = useSelector(state => state.moviesReducer.msg)
 
                 )
                 ) 
-                : (msg === "Loading..." ? <Loader /> : <p className='msg'>{msg}</p>)}
+                : (msg === "Loading..." ? <div className={style.loader}><Loader /></div>  : <p className='msg'>{msg}</p>)}
                 </div>
             </div>
         <button onClick={(e)=>handleOnClick(e)}  className={style.slideButtons}>&#10093;</button>
