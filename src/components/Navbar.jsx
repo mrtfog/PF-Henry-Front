@@ -69,8 +69,7 @@ export default function Navbar() {
           {pathname === "/" ? <SearchBar /> : null}
         </div>
         
-        {pathname === "/login" ? null : 
-
+        {pathname === "/login" ? null :
         (
           currentUser ? 
 
