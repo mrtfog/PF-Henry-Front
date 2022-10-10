@@ -34,3 +34,27 @@ export function postShowtime(payload){
     }
 
 }
+
+export function getBillboardMovies(movies){
+
+    return async(dispatch)=>{
+
+        try{
+            const promises = movies.map(async(id) =>{
+
+                let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/api/${id}`)
+                return data
+            })
+    
+            let promiseAll = await Promise.all(promises)
+    
+            return dispatch({type: 'GET_BILLBOARD_MOVIES', payload: promiseAll})
+        }
+
+        catch(e){
+
+            console.log(e)
+        }
+
+    }
+}

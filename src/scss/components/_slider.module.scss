@@ -1,10 +1,13 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-h3 {
- margin-left: 50px;
- color: white;
- text-shadow: 1px 1px 2px rgb(255, 255, 255);
+.titleContainer{
+        
+    h3 {
+        margin-left: 50px;
+        color: white;
+        text-shadow: 1px 1px 2px rgb(255, 255, 255);
+    }
 }
 
 .holder {
@@ -14,7 +17,7 @@ h3 {
     align-items: center;
     height: 300px;
     margin: 5px 20px 20px 20px;
-    
+
 
     .slideButtons {
         @include btn-secondary;
@@ -34,21 +37,18 @@ h3 {
             transform:scalex(0.8);
             transition: .5s ease;
         }
-
     }
     .container {
-        width: 100%;
+        width: 160vh;
         height: 300px;
         overflow-x: scroll;
         overflow-y: hidden;
         padding: 2%;
         border-radius: 25px;
-
         margin-right: 3rem;
         justify-content: center;
         transition: .2s ease;
         scroll-behavior: smooth;
-
 
 
             .img_container {
@@ -59,7 +59,6 @@ h3 {
     ::-webkit-scrollbar {
         display: none;
     }
-
 
 }
 
