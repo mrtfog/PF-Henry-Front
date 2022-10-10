@@ -14,6 +14,9 @@ export default function Card({img, rating, title, id}) {
   const dispatch = useDispatch()
 
   const addPlaylistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
+  const showtimes = useSelector(state => state.showtimesReducer.showtimes)
+  const billboardIds = Array.from(new Set(showtimes.map(s=>s.movieId)))
+
 
   function handleAddToList(){
 
@@ -39,6 +42,7 @@ export default function Card({img, rating, title, id}) {
             <div className={style.card_img} style={{backgroundImage: `url(${url})`}}> </div>
             </Link>
             <ul className={style.social_media}>
+              {billboardIds.includes(id)?
               <li onClick={handleAddToCart}><svg className={style.icon} version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	            viewBox="0 0 130 109" enableBackground="new 0 0 128 128" xmlSpace="preserve">
               <path d="M82.859,17.211l-11.996-3.084c-0.81-0.207-1.672-0.069-2.376,0.387c-0.703,0.455-1.185,1.183-1.327,2.008
@@ -123,6 +127,8 @@ export default function Card({img, rating, title, id}) {
                 c0.806-0.756,2.071-0.715,2.826,0.092c0.756,0.806,0.715,2.071-0.092,2.826l-8.223,7.705C75.148,78.621,74.657,78.8,74.167,78.8z"
                 />
               </svg></li>
+              :<Link to={`/movies/${id}`}><li className={style.icon}><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg></li></Link> 
+              }
 {/* 
           <li><svg className={style.icon} viewBox="0 0 25 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
           <path d="M18,16.08 C17.24,16.08 16.56,16.38 16.04,16.85 L8.91,12.7 C8.96,12.47 9,12.24 9,12 C9,11.76 8.96,11.53 8.91,11.3 L15.96,7.19 C16.5,7.69 17.21,8 18,8 C19.66,8 21,6.66 21,5 C21,3.34 19.66,2 18,2 C16.34,2 15,3.34 15,5 C15,5.24 15.04,5.47 15.09,5.7 L8.04,9.81 C7.5,9.31 6.79,9 6,9 C4.34,9 3,10.34 3,12 C3,13.66 4.34,15 6,15 C6.79,15 7.5,14.69 8.04,14.19 L15.16,18.35 C15.11,18.56 15.08,18.78 15.08,19 C15.08,20.61 16.39,21.92 18,21.92 C19.61,21.92 20.92,20.61 20.92,19 C20.92,17.39 19.61,16.08 18,16.08 Z" fill="#1D1D1D"></path>
