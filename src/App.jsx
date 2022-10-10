@@ -22,7 +22,6 @@ import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from "./components/Users/UserPanel/NavbarUser";
 
-
 function App() {
   const { pathname } = useLocation();
   if (pathname.includes("/admin")) {
@@ -59,7 +58,6 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
           <Route exact path="/seats" component={Seats} />
-          <Route exact path="/slider" component={Slider} />
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
