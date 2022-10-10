@@ -18,7 +18,7 @@
     
             
         .searchbar{
-            padding-right: 19.5rem;
+            padding-right: 11px;
         }
 
         
@@ -34,6 +34,7 @@
             width: 45px;
             height: 45px;
             border-radius: 50%;
+            margin: 0 10px;
         }
 
         .profile{
@@ -83,16 +84,19 @@
     }
 
     .navLogo{
-            cursor: pointer;
-            color: $primary-color;
-            margin-left: 1rem;
-            animation: 3.5s lights infinite;
-            transition: .2s linear;
+
+        cursor: pointer;
+        color: $primary-color;
+        margin-left: 1rem;
+        animation: 3.5s lights infinite;
+        transition: .2s linear;
+
         &:hover{
             transform: scale(1.08);
         }
     }
     .navLogo:hover{
+
         cursor: pointer;
         box-shadow: none;
     }
