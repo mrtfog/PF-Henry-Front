@@ -56,9 +56,20 @@ export function takenTickets(id, title){
     return {type:'TAKEN_TICKETS', payload: {id, title}}
 }
 
+export function selectedReservation(reservation){
+    
+    return {type:'SELECTED_RESERVATION', payload: reservation}
+}
+
+
 export function addToCartDisplay(display){
     
     return {type:'ADD_TO_CART_DISPLAY', payload: display}
+}
+
+export function selectSeatsDisplay(display){
+    
+    return {type:'SELECT_SEATS_DISPLAY', payload: display}
 }
 
 export function addToCart(payload){

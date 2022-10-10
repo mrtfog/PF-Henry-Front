@@ -8,7 +8,7 @@ export default function AddToCartPopUp() {
 
     const dispatch = useDispatch()
 
-    const display = useSelector( state => state.cartReducer.display)
+    const display = useSelector( state => state.cartReducer.displayCart)
     const movie = useSelector( state => state.cartReducer.takenTickets)
     const showtimes = useSelector ( state => state.cartReducer.showtime)
 
@@ -82,7 +82,7 @@ export default function AddToCartPopUp() {
                     <input type="number" className={style.count} value={value}/>
                     <span className={style.plus} onClick={() => setValue(value + 1)}><p>+</p></span>
                 </div>
-                <button type='submit' onClick={() => handleSubmit()}>Go to cart</button>
+                <button type='submit' onClick={() => handleSubmit()}>Add to cart</button>
 
             </div>
         )
