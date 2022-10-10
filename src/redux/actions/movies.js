@@ -23,9 +23,10 @@ export function getUpcoming(){
     return async(dispatch)=>{
   
         try{
-            const {data} = await axios.get(`https://pf-henry-back.herokuapp.com/api/upcoming`)
-    
+
+            const { data } = await axios.get('https://pf-henry-back.herokuapp.com/api/upcoming')
             return dispatch({type: 'GET_UPCOMING', payload: data})
+
         }
 
         catch(e){

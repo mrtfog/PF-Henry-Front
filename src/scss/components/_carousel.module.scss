@@ -19,17 +19,17 @@
        
         position:absolute;
         background-image: linear-gradient(to top,
-        rgba(20, 21, 24, 1),
-        rgba(20, 21, 24, .5),
-        rgba(20, 21, 24, .2),   
-        rgba(20, 21, 24, .1),   
-        transparent,
-        transparent,
-        transparent,
-        rgba(20, 21, 24, .1),   
-        rgba(20, 21, 24, .2),   
-        rgba(20, 21, 24, .5),
-        rgba(20, 21, 24, 1));
+                        rgba(20, 21, 24, 1),
+                        rgba(20, 21, 24, .5),
+                        rgba(20, 21, 24, .2),   
+                        rgba(20, 21, 24, .1),   
+                        transparent,
+                        transparent,
+                        transparent,
+                        rgba(20, 21, 24, .1),   
+                        rgba(20, 21, 24, .2),   
+                        rgba(20, 21, 24, .5),
+                        rgba(20, 21, 24, 1));
         height: 100%;
         width:100%;
     }
@@ -41,7 +41,6 @@
     }
 
     .carouselBtnPrev{
-        
             position:absolute;
             left: 1%;
             font-size: 4em;
@@ -53,18 +52,12 @@
             cursor: pointer;
             transition: .2s linear;
             &:hover{
-
-             
                 text-shadow: 0 0 20px rgba(0, 0, 0, 1 ),
-                            0 0 25px rgba(0, 0, 0, 1 );    
+                             0 0 25px rgba(0, 0, 0, 1 );    
                 color: white;
             
             }
-           
-            
-          
-        
-      
+
     }
     .carouselBtnNext{
         position:absolute;
@@ -79,7 +72,7 @@
         transition: .2s linear;
         &:hover{
             text-shadow: 0 0 20px rgba(0, 0, 0, 1 ),
-                        0 0 25px rgba(0, 0, 0, 1 );    
+                         0 0 25px rgba(0, 0, 0, 1 );    
             color: white;
         }
     }

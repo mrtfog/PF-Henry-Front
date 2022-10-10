@@ -2,7 +2,7 @@
 @import '../abstracts/mixins';
 
 .navMain{
-    
+    height: 70px;
     display:flex;
     align-items: center;
     justify-content: space-between;
@@ -34,6 +34,7 @@
             height: 45px;
             border-radius: 50%;
             margin: 0 10px;
+            cursor: pointer;
         }
 
         .profile{
@@ -46,8 +47,9 @@
             position: absolute;
             flex-direction: column;
             justify-content: center;
-            top: 14vh;
+            top: 80px;
             right: 20px;
+            border: 1px solid $primary-color;
             background-color: $background-color;
             width: 20vw;
             height: 25vh;
