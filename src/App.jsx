@@ -12,7 +12,7 @@ import Register from "./components/Users/Register";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
-import LogIn from './components/Users/Login'
+import LogIn from "./components/Users/Login";
 import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import EditProfile from "./components/Users/UserPanel/EditProfile";
@@ -22,13 +22,12 @@ import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
 import { useAuth } from "./components/contexts/AuthContext";
 import Movies from "./components/Movies/Movies";
 import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
-import Sales from './components/AdminPanel/Statistics/Sales';
+import Sales from "./components/AdminPanel/Statistics/Sales";
 import "./_app.scss";
-
 
 function App() {
   const { pathname } = useLocation();
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
 
   if (pathname.includes("/admin")) {
     return (
@@ -37,7 +36,11 @@ function App() {
         <Switch>
           <Route exact path="/admin/statistics/graphics" component={Graphics} />
           <Route exact path="/admin/statistics/sales" component={Sales} />
-          <Route exact path="/admin/statistics/subscriptions" component={Subscriptions} />
+          <Route
+            exact
+            path="/admin/statistics/subscriptions"
+            component={Subscriptions}
+          />
           <Route exact path="/admin/showTime" component={ShowTime} />
           <Route exact path="/admin/users" component={Users} />
           <Route exact path="/admin/bookings" component={Bookings} />
@@ -59,13 +62,13 @@ function App() {
   if (!pathname.includes("/admin") || !pathname.includes("/profile")) {
     return (
       <div className="App">
-        {pathname.includes("/register") ? null : <Navbar /> }
-        {currentUser ?
-        <>
-        <AddToPlaylistPopUp />
-        <SelectSeatsPopUp />
-        </>
-       : null}
+        {pathname.includes("/register") ? null : <Navbar />}
+        {currentUser ? (
+          <>
+            <AddToPlaylistPopUp />
+            <SelectSeatsPopUp />
+          </>
+        ) : null}
         <AddToCartPopUp />
 
         <Switch>
