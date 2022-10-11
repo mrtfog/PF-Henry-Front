@@ -1,13 +1,190 @@
 @import '../../abstracts/variables';
 @import '../../abstracts/mixins';
 
-.container_users{
+
+.mainContainer{
+    margin-top:8%;
+    margin-left: 15%;
     width:100%;
     color:$text-color-white;
     font-family: $font;
-    margin-left: 15%;
-    height:100vh;
-    div{
-        margin:3rem;
+    height: auto;
+
+        .titleContainer{
+            margin-bottom:3em;
+
+            h2{
+                font-size: 2rem;
+                text-shadow: none;
+            }
+            
+        }
+
+        .infoContainer{
+            .subInfoContainer{
+                margin-bottom: 4em;
+                h3{
+                    font-size: 1.5rem;
+                    margin-bottom: 1.5em;
+                    text-shadow: none;
+                }
+
+                .subtitlesContainer{
+                    padding-left: 4em;
+                    width: 40%;
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    font-family: $font;
+                    font-weight: 600;
+                    text-shadow: none;
+                    margin-left: 14em;
+                    .subtitle1{
+                        grid-column: 1/2;
+                    }
+                    .subtitle2{
+                        grid-column: 2/3;
+                    }
+                    .subtitle3{
+                        grid-column: 3/4;
+                    }
+                }
+            }
+            .cardsContainer{
+                overflow-y: scroll;
+                overflow-x: visible;
+                height: 50vh;
+                border: solid white;
+                width: 70%;
+                padding: 2em;
+                margin: 1em;
+                border-radius: 25px;
+            }
+
+            .fieldsContainer{
+                display: flex;
+                flex-direction: row;
+                justify-content: left;
+                align-items: center;
+                height: auto;
+                width: 65%;
+                padding-right: 2em;
+                //border-radius: 25px;
+                //border-style: solid;
+
+                .field{
+                    position:relative;
+                    display: flex;
+                    flex-direction:column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1em;
+                    overflow: hidden;
+                    width: 30%;
+
+                    img{
+                        border-style: none;
+                        height: 160px;
+                        min-width: 160px;
+                        border-radius: 50%;
+                        
+                       
+                    }
+                    .pencilPhoto{
+                 
+                        
+                        position:absolute;
+                        margin:auto;
+                        bottom:20px;
+
+                        svg{
+                            scale: 1;
+                            fill: $primary-color;
+                        }
+                    }
+
+                    .pencilIcon{
+                 
+                        
+                        position:absolute;
+                        right:35%;
+                        bottom:20px;
+
+                        svg{
+                            scale: 1;
+                            fill: $primary-color;
+                        }
+                    }
+
+                    span{
+                        border-style: none;
+                    }
+
+                    label{
+                        display: block;
+                        color: white;
+                        text-align: left;
+                        font-size: 1rem;
+                        margin-top: 0.65rem;
+                        margin-bottom: 0
+                    }
+
+                    select {
+                        @include select;
+                        margin-top: 0;
+                    }
+
+                    .inputContainer{
+                        width: 100%;
+                        position: relative;
+
+                        input{
+                            border-style: none;
+                            min-width: 90%;
+                            @include select;
+                            margin-left: 0;
+                            margin-right: 0;
+                            text-align: left;
+                            padding-left: 1rem;
+                            color: $background-color;
+        
+                            &:hover, &:focus, &:active{
+                                background-color: white;
+                                color: $background-color;
+                            }
+                        }
+
+                        .pencilIcon{
+                            scale: 0.65;
+                            position: absolute;
+                            right: 1em;
+                            bottom: 0.5em;
+                        }
+                    }
+
+                }
+            }
+        }
+
+
     }
-    }
+
+
+
+    /*
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(70deg, rgb(255, 49, 90), rgb(73, 122, 166) 75%);
+    width: 100%;
+    height: 9vh;
+    margin: 15px;
+    padding: 0 20px;
+    border-radius: 10px;
+    transition: 0.3s linear;
+    box-shadow: 6px 4px 8px black;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 5px;
+    text-decoration: none; 
+    */

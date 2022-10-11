@@ -2,7 +2,7 @@ import React from "react";
 // import style from "../../scss/components/AdminPanel/_users.module.scss";
 import CardsUser from "./CardsUser";
 
-import style from "../../scss/components/Users/UserPanel/_editProfile.module.scss";
+import style from "../../scss/components/AdminPanel/_users.module.scss";
 const Users = () => {
   const avatar =
     "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac=";

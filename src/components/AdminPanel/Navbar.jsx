@@ -237,7 +237,7 @@ const NavbarAdmin = () => {
             <span>Showtimes</span>
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink to="/admin/bookings" className={style.link}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +277,7 @@ const NavbarAdmin = () => {
             </svg>
             <span>Bookings</span>
           </NavLink>
-        </li>
+        </li> */}
 
         <li>
           <NavLink to="/" className={style.link}>
