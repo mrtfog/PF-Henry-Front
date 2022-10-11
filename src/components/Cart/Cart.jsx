@@ -2,8 +2,14 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../scss/components/Cart/_cart.module.scss";
 import { getCart, selectSeatsDisplay, selectedReservation } from "../../redux/actions/cart";
+import { useAuth } from "../contexts/AuthContext";
+import { useHistory } from "react-router-dom";
 
 export default function Cart() {
+
+  const {currentUser} = useAuth()
+  const history = useHistory()
+
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cartReducer.cart);
@@ -14,6 +20,10 @@ export default function Cart() {
 
   function handleOnClick(r){
 
+    if(!currentUser){
+      alert('To select your seats you need be logged in')
+      history.push('/login')
+    }
     dispatch(selectSeatsDisplay('flex'))
     dispatch(selectedReservation(r))
   }
