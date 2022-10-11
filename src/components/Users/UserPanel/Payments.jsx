@@ -59,6 +59,7 @@ function Payments() {
                 <div className={style.subtitle2}>Date</div>
                 <div className={style.subtitle3}>Amount</div>
             </div>
+            <div className={style.cardsContainer}>
             {
               fakeState && fakeState.map((e)=>{
                 return (
@@ -73,6 +74,8 @@ function Payments() {
                   )
                 })
               }
+            </div>
+
         </div>
       </div>
     </div>

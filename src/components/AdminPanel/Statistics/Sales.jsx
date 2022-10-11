@@ -9,6 +9,9 @@ function Payments() {
     {saleType:'Subscription', paymentDate: '01/10/2020', amount: '3,250.99', btnLink: '#', userId: '776'},
     {saleType:'Ticket', paymentDate: '05/10/2020', amount: '950.99', btnLink: '#', userId: '603'},
     {saleType:'Ticket', paymentDate: '07/10/2020', amount: '1,901.98', btnLink: '#', userId: '039'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
   ]
 
 
@@ -16,7 +19,7 @@ function Payments() {
     <div className={style.mainContainer}>
 
       <div className={style.titleContainer}>
-        <h2>Sales information
+        <h2>Total sales record
         </h2>
       </div>
 
@@ -52,28 +55,30 @@ function Payments() {
             </div>
         </div>
 
-        <div className={style.subInfoContainer}>
+          <div className={style.subInfoContainer}>
             <div className={style.subtitlesContainer}>
                 <div className={style.subtitle1}>Type</div>
                 <div className={style.subtitle2}>Date</div>
                 <div className={style.subtitle3}>Amount</div>
                 <div className={style.subtitle4}>User ID</div>
             </div>
+            <div className={style.cardsContainer}>
             {
               fakeState && fakeState.map((e)=>{
                 return (
-                  <div className={style.card}>
-                      <CardsAdmin 
+                  
+                      <CardsAdmin className= {style.cards}
                             saleType={e.saleType}
                             paymentDate={e.paymentDate} 
                             amount={e.amount}
                             userId={e.userId}
                             btnLink={e.btnLink}>
                         </CardsAdmin>
-                  </div>
+   
                   )
                 })
               }
+            </div>
         </div>
       </div>
     </div>

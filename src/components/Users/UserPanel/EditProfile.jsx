@@ -131,11 +131,13 @@ function EditProfile() {
             <div className={style.subtitle2}>Date</div>
             <div className={style.subtitle3}>Amount</div>
           </div>
-          <CardPayments
-            status="ACTIVE"
-            date="08/08/2022"
-            amount="3,000.99"
-          ></CardPayments>
+          <div className={style.cardsContainer}>
+            <CardPayments
+              status="ACTIVE"
+              date="08/08/2022"
+              amount="3,000.99"
+            ></CardPayments>
+          </div>
         </div>
       </div>
     </div>

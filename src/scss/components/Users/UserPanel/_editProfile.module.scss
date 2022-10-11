@@ -31,7 +31,8 @@
 
                 .subtitlesContainer{
                     padding-left: 4em;
-                    width: 46%;
+                    width: 47%;
+                    margin-left: 2em;
                     display: grid;
                     grid-template-columns: 1fr 1fr 1fr;
                     font-family: $font;
@@ -49,6 +50,15 @@
                     }
 
                 }
+            }
+
+            .cardsContainer{
+                overflow-y: scroll;
+                overflow-x: visible;
+                height: 50vh;
+                width: 70%;
+                margin: 1em;
+                border-radius: 25px;
             }
             .fieldsContainer{
                 display: flex;
