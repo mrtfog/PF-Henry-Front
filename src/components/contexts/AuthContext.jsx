@@ -16,9 +16,18 @@ export function AuthProvider({children}) {
     const [loading, setLoading] = useState(true)
 
 
-    function signInWithGoogle(){
+    async function signInWithGoogle(){
         const provider = new GoogleAuthProvider();
         signInWithRedirect(auth, provider)
+
+        try{
+
+            await axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: currentUser, reservations: [] })
+        }
+        catch(e){
+
+            console.log(e)
+        }
 
     }
 

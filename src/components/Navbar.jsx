@@ -101,6 +101,10 @@ export default function Navbar() {
           :
 
           <>
+            <NavLink to="/cart">
+              <button onClick={()=> setDisplay('none')}>Cart</button>
+            </NavLink>
+
             <NavLink to="/register">
               <button className={style.btn_primary} onClick={handleUserPopUp}>Sign Up</button>
             </NavLink>
