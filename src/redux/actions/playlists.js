@@ -1,28 +1,28 @@
 import axios from "axios";
 
-export function getUserPlaylists(){
+// export function getUserPlaylists(){
 
-    return {type:'GET_USER_PLAYLISTS'}
-}
-
-// export function getUserPlaylist(userId){
-
-//     return async(dispatch)=>{
-
-//         try{
-    
-//             let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser/${userId}`)
-    
-//             return dispatch({type: 'GET_USER_PLAYLISTS', payload: data})
-//         }
-
-//         catch(e){
-
-//             console.log(e)
-//         }
-
-//     }
+//     return {type:'GET_USER_PLAYLISTS'}
 // }
+
+export function getUserPlaylists(userUid){
+
+    return async(dispatch)=>{
+
+        try{
+    
+            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser/${userUid}`, { headers: {'user': userUid } })
+    
+            return dispatch({type: 'GET_USER_PLAYLISTS', payload: data})
+        }
+
+        catch(e){
+
+            console.log(e)
+        }
+
+    }
+}
 
 export function getPlaylist(id){
 
@@ -53,13 +53,13 @@ export function getPlaylistMovies(movies){
     }
 }
 
-export function createNewPlaylist(playlist){  // playlist = {name:'', userId:''}
+export function createNewPlaylist(playlist, userUid){  
 
     return async(dispatch)=>{
 
         try{
 
-            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist)
+            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist, {headers: {'user': userUid }})
 
             return dispatch({type: 'CREATE_NEW_PLAYLIST'})
 
@@ -72,13 +72,13 @@ export function createNewPlaylist(playlist){  // playlist = {name:'', userId:''}
     }
 }
 
-export function addMovieToPlaylist(movieId, playlistId){
+export function addMovieToPlaylist(movieId, playlistId, userUid){
 
     return async(dispatch)=>{
 
         try{
 
-            await axios.get(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`)
+            await axios.post(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`, {headers: {'user': userUid }})
 
             return dispatch({type: 'ADD_MOVIE_TO_PLAYLIST'})
 
@@ -91,13 +91,13 @@ export function addMovieToPlaylist(movieId, playlistId){
     }
 }
 
-export function removeMovieFromPlaylist(movieId, playlistId){
+export function removeMovieFromPlaylist(movieId, playlistId, userUid){
 
     return async(dispatch)=>{
 
         try{
 
-            await axios.get(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`)
+            await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, {headers: {'user': userUid }})
 
             return dispatch({type: 'REMOVE_MOVIE_FROM_PLAYLIST'})
 

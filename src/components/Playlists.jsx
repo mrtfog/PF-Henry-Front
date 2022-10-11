@@ -4,15 +4,24 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getUserPlaylists } from '../redux/actions/playlists'
 import style from '../scss/components/_playlists.module.scss'
+import { useAuth } from './contexts/AuthContext'
 
 export default function Playlist() {
 
+    const {currentUser} = useAuth()
     const dispatch = useDispatch()
     const playlists = useSelector(state => state.playlistsReducer.playlists)
 
     useEffect(()=>{
-        dispatch(getUserPlaylists())
-    }, [])
+        
+        dispatch(getUserPlaylists(currentUser.uid))
+        
+    }, [currentUser])
+
+    useEffect(()=>{
+        console.log(playlists)
+    }, [playlists])
+
 
     return (
 
@@ -24,7 +33,7 @@ export default function Playlist() {
             </div>
 
             <div className={style.playlists}>
-                {playlists ? 
+                {/* {playlists ? 
                 
                 playlists.map(p=>{
 
@@ -42,10 +51,11 @@ export default function Playlist() {
                     )
                 })
             :
-            <p>You haven't created a Playlists yet</p> }
+            <p>You haven't created a Playlists yet</p> } */}
 
             </div>
 
         </div>
     )
 }
+

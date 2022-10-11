@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase'
 import axios from 'axios'
-import {getAuth, GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile} from 'firebase/auth'
+import {getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile, getRedirectResult} from 'firebase/auth'
 
 const AuthContext = React.createContext()
 
@@ -15,20 +15,22 @@ export function AuthProvider({children}) {
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
+    const authh = getAuth()
 
-    async function signInWithGoogle(){
+
+    function signInWithGoogle(){
+        
         const provider = new GoogleAuthProvider();
+
         signInWithRedirect(auth, provider)
 
-        try{
+        // getRedirectResult(auth)
 
-            await axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: currentUser, reservations: [] })
-        }
-        catch(e){
+        // .then((result)=>{
+        //     axios.post('https://pf-henry-back.herokuapp.com/user/register', result.user)
+        // } )
 
-            console.log(e)
-        }
-
+        // .catch(e => console.log(e))
     }
 
     async function signUp(email, password, username){
@@ -62,7 +64,6 @@ export function AuthProvider({children}) {
     
     function logOut(){
 
-        sessionStorage.clear()
         return signOut(auth)
 
     }
@@ -81,6 +82,13 @@ export function AuthProvider({children}) {
     useEffect(()=>{
 
         console.log(currentUser)
+
+        try{
+            axios.post('https://pf-henry-back.herokuapp.com/user/register', {user: currentUser, reservations: []})
+        }
+        catch(e){
+            console.log(e)
+        }
 
     }, [currentUser])
 

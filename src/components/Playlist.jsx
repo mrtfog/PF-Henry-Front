@@ -6,9 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, removeMovieFromPlaylist } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
+import { useAuth } from './contexts/AuthContext'
 
 export default function Playlist(){
 
+    const {currentUser} = useAuth()
     const dispatch = useDispatch()
 
     const {id} = useParams()
@@ -36,7 +38,7 @@ export default function Playlist(){
 
     function handleMovieDelete(movieId, title){
 
-        dispatch(removeMovieFromPlaylist(movieId, id))
+        dispatch(removeMovieFromPlaylist(movieId, id, currentUser.uid))
         alert(`"${title}" was successfully removed from the playlist`)
         setTimeout(()=> dispatch(getPlaylistMovies(playlist.movies)), 1000)
     }
