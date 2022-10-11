@@ -32,7 +32,7 @@ function CardAdmin({
       </span>
 
       <span>
-        ${amount}{" "}
+        USD ${amount}{" "}
         {/*Monto del ultimo pago realizado, si la traemos desde el estado.*/}
       </span>
 
