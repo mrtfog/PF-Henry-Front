@@ -1,91 +1,92 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase'
 import axios from 'axios'
-import {getAuth, GoogleAuthProvider,signInWithPopup, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile} from 'firebase/auth'
+import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile, getRedirectResult } from 'firebase/auth'
 
 const AuthContext = React.createContext()
 
-export function useAuth(){
+export function useAuth() {
     return useContext(AuthContext)
 }
 
 
-export function AuthProvider({children}) {
+export function AuthProvider({ children }) {
 
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
 
+    const authh = getAuth()
 
-    async function signInWithGoogle(){
+
+    function signInWithGoogle() {
+
         const provider = new GoogleAuthProvider();
+
         signInWithRedirect(auth, provider)
 
-        try{
+        // getRedirectResult(auth)
 
-            await axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: currentUser, reservations: [] })
-        }
-        catch(e){
+        // .then((result)=>{
+        //     axios.post('https://pf-henry-back.herokuapp.com/user/register', result.user)
+        // } )
 
-            console.log(e)
-        }
-
+        // .catch(e => console.log(e))
     }
 
-    async function signUp(email, password, username){
+    async function signUp(email, password, username) {
 
         createUserWithEmailAndPassword(auth, email, password)
 
-        onAuthStateChanged(auth, (user)=>{
+        onAuthStateChanged(auth, (user) => {
 
             updateProfile(user, {
-                displayName: username 
+                displayName: username
             })
+
+            axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: { ...user, displayName: username }, reservations: [] })
+
         })
 
-        try{
-
-            await axios.post('https://pf-henry-back.herokuapp.com/user/register', currentUser)
-        }
-        catch(e){
-
-            console.log(e)
-        }
-
     }
 
-    function logIn(email, password){
+    function logIn(email, password) {
 
         signInWithEmailAndPassword(auth, email, password)
-        
+
     }
 
-    
-    function logOut(){
 
-        sessionStorage.clear()
+    function logOut() {
+
         return signOut(auth)
 
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        const unsubscribe = onAuthStateChanged( auth, (user) =>{
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             setCurrentUser(user)
             setLoading(false)
         })
-    
+
         return unsubscribe
 
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        console.log(currentUser)
+
+        try {
+            console.log("uwu")
+        }
+        catch (e) {
+            console.log(e)
+        }
 
     }, [currentUser])
 
-    
-    let value={
+
+    let value = {
         currentUser,
         signUp,
         logIn,
