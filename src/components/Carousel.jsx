@@ -55,11 +55,19 @@ function Carousel() {
     <div
       className={style.carouselContainer}
       style={{
-        backgroundImage: `url(${selectedImage ? selectedImage : img})`,
+        backgroundImage: `url(${
+          selectedImage ? selectedImage.backdrop_path : img
+        })`,
         zIndex: addPlaylistDisplay === "none" ? 0 : -1,
       }}
     >
       <div className={style.overlay}></div>
+      {selectedImage && (
+        <span className={style.spanTitle}>
+          <p>{selectedImage && selectedImage.title}</p>
+          <button>Watch Now</button>
+        </span>
+      )}
       <button className={style.carouselBtnPrev} onClick={previous}>
         &#10092;
       </button>
