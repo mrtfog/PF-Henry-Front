@@ -8,64 +8,64 @@ const initialState = {
 
 }
 
-export default function playlistReducer(state = initialState, action){
+export default function playlistReducer(state = initialState, action) {
 
-    switch(action.type){
+    switch (action.type) {
 
         case 'GET_USER_PLAYLISTS':
-            return{
+            return {
                 ...state,
                 playlists: action.payload.length ? action.payload : []
             }
 
         case 'GET_PLAYLIST':
 
-            return{
+            return {
                 ...state,
-                // selectedPlaylist: state.playlists.filter(p => p._id === action.payload).shift()
+                selectedPlaylist: state.playlists.filter(p => p._id === action.payload).shift()
             }
 
         case 'GET_PLAYLIST_MOVIES':
-            return{
+            return {
                 ...state,
                 movies: action.payload
             }
 
         case 'CREATE_NEW_PLAYLIST':
-            return{
+            return {
                 ...state
             }
 
         case 'ADD_MOVIE_TO_PLAYLIST':
-            return{
+            return {
                 ...state
             }
 
         case 'REMOVE_MOVIE_FROM_PLAYLIST':
-            return{
+            return {
                 ...state
             }
 
         case 'CLEAR_PLAYLIST_MOVIES':
-            return{
+            return {
                 ...state,
                 movies: {}
             }
 
         case 'ADD_TO_PLAYLIST_DISPLAY':
-            return{
+            return {
                 ...state,
                 formDisplay: action.payload
             }
 
         case 'SELECTED_MOVIE':
-            return{
+            return {
                 ...state,
                 selectedMovie: action.payload
             }
 
         default:
-            return {...state}
+            return { ...state }
 
     }
 }

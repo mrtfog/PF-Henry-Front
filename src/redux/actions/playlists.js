@@ -5,18 +5,16 @@ import axios from "axios";
 //     return {type:'GET_USER_PLAYLISTS'}
 // }
 
-export function getUserPlaylists(userUid){
+export function getUserPlaylists(userUid) {
+    return async (dispatch) => {
 
-    return async(dispatch)=>{
+        try {
 
-        try{
-    
-            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser/${userUid}`, { headers: {'user': userUid } })
-    
-            return dispatch({type: 'GET_USER_PLAYLISTS', payload: data})
+            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/getByUser/${userUid}`, { headers: { 'user': userUid } })
+            return dispatch({ type: 'GET_USER_PLAYLISTS', payload: data })
         }
 
-        catch(e){
+        catch (e) {
 
             console.log(e)
         }
@@ -24,28 +22,28 @@ export function getUserPlaylists(userUid){
     }
 }
 
-export function getPlaylist(id){
+export function getPlaylist(id) {
 
-    return {type:'GET_PLAYLIST', payload: id}
+    return { type: 'GET_PLAYLIST', payload: id }
 }
 
-export function getPlaylistMovies(movies){
+export function getPlaylistMovies(movies) {
 
-    return async(dispatch)=>{
+    return async (dispatch) => {
 
-        try{
-            const promises = movies.map(async(id) =>{
+        try {
+            if (movies) {
+                const promises = movies.map(async (id) => {
 
-                let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/api/${id}`)
-                return data
-            })
-    
-            let promiseAll = await Promise.all(promises)
-    
-            return dispatch({type: 'GET_PLAYLIST_MOVIES', payload: promiseAll})
+                    let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/api/${id}`)
+                    return data
+                })
+                let promiseAll = await Promise.all(promises)
+                return dispatch({ type: 'GET_PLAYLIST_MOVIES', payload: promiseAll })
+            }
         }
 
-        catch(e){
+        catch (e) {
 
             console.log(e)
         }
@@ -53,18 +51,18 @@ export function getPlaylistMovies(movies){
     }
 }
 
-export function createNewPlaylist(playlist, userUid){  
+export function createNewPlaylist(playlist) {
 
-    return async(dispatch)=>{
+    return async (dispatch) => {
 
-        try{
+        try {
 
-            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist, {headers: {'user': userUid }})
+            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist, { headers: { 'user': playlist.userId } })
 
-            return dispatch({type: 'CREATE_NEW_PLAYLIST'})
+            return dispatch({ type: 'CREATE_NEW_PLAYLIST' })
 
         }
-        catch(e){
+        catch (e) {
 
             console.log(e)
 
@@ -72,18 +70,18 @@ export function createNewPlaylist(playlist, userUid){
     }
 }
 
-export function addMovieToPlaylist(movieId, playlistId, userUid){
+export function addMovieToPlaylist(movieId, playlistId, userUid) {
 
-    return async(dispatch)=>{
+    return async (dispatch) => {
 
-        try{
+        try {
 
-            await axios.post(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`, {headers: {'user': userUid }})
+            if (movieId && playlistId && userUid) await axios.put(`https://pf-henry-back.herokuapp.com/addMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': userUid } })
 
-            return dispatch({type: 'ADD_MOVIE_TO_PLAYLIST'})
+            return dispatch({ type: 'ADD_MOVIE_TO_PLAYLIST' })
 
         }
-        catch(e){
+        catch (e) {
 
             console.log(e)
 
@@ -91,18 +89,18 @@ export function addMovieToPlaylist(movieId, playlistId, userUid){
     }
 }
 
-export function removeMovieFromPlaylist(movieId, playlistId, userUid){
+export function removeMovieFromPlaylist(movieId, playlistId, userUid) {
 
-    return async(dispatch)=>{
+    return async (dispatch) => {
 
-        try{
+        try {
 
-            await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, {headers: {'user': userUid }})
+            await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, { headers: { 'user': userUid } })
 
-            return dispatch({type: 'REMOVE_MOVIE_FROM_PLAYLIST'})
+            return dispatch({ type: 'REMOVE_MOVIE_FROM_PLAYLIST' })
 
         }
-        catch(e){
+        catch (e) {
 
             console.log(e)
 
@@ -110,17 +108,17 @@ export function removeMovieFromPlaylist(movieId, playlistId, userUid){
     }
 }
 
-export function clearPlaylistMovies(){
+export function clearPlaylistMovies() {
 
-    return {type:'CLEAR_PLAYLIST_MOVIES'}
+    return { type: 'CLEAR_PLAYLIST_MOVIES' }
 }
 
-export function addToPlaylistDisplay(display){
+export function addToPlaylistDisplay(display) {
 
-    return {type:'ADD_TO_PLAYLIST_DISPLAY', payload: display}
+    return { type: 'ADD_TO_PLAYLIST_DISPLAY', payload: display }
 }
 
-export function selectedMovie(id,title){
+export function selectedMovie(id, title) {
 
-    return {type:'SELECTED_MOVIE', payload: {id, title}}
+    return { type: 'SELECTED_MOVIE', payload: { id, title } }
 }
