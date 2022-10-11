@@ -15,7 +15,9 @@ export default function showtimesReducer(state = initialState, action) {
             
             return {
                 ...state,
+                cart: JSON.parse(sessionStorage.getItem('cart')).length ? JSON.parse(sessionStorage.getItem('cart')) : []
             };
+
         case 'TAKEN_TICKETS':
             
             return {
@@ -57,29 +59,33 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 displayCart: action.payload
             };
+
         case 'SELECT_SEATS_DISPLAY':
 
-        return{
-            ...state,
-            displaySeats: action.payload
-        }
+            return{
+                ...state,
+                displaySeats: action.payload
+            }
 
 
         case 'GET_SHOWTIME_BY_MOVIE_ID':
             
-        return{
-            ...state,
-            showtime: action.payload
-        }
+            return{
+                ...state,
+                showtime: action.payload
+            }
 
         case 'ADD_TO_CART':
 
-        return{
-            ...state,
-            cart: [...state.cart, action.payload]
-        }
+            sessionStorage.cart= JSON.stringify([...state.cart, action.payload])
+        
+            return{
+                ...state,
+                cart: [...state.cart, action.payload]
+            }
 
         case 'POST_RESERVATION':
+            
             return{
                 ...state
             }

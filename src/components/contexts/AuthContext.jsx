@@ -53,6 +53,7 @@ export function AuthProvider({children}) {
     
     function logOut(){
 
+        sessionStorage.clear()
         return signOut(auth)
 
     }
