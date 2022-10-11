@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
-import SearchBar from "../components/SearchBar";
 import { useLocation } from "react-router-dom";
 import style from "../scss/components/_navbar.module.scss";
 import { useAuth } from "./contexts/AuthContext";
-import GoogleSignIn from "./Users/GoogleSignIn";
 import userIMG from '../assets/user.png'
 
 export default function Navbar() {
@@ -16,6 +14,7 @@ export default function Navbar() {
 
   const [display, setDisplay] = useState('none')
 
+
   const changeColor = () => {
     if (window.scrollY >= 60) {
       setColor(true);
@@ -25,27 +24,28 @@ export default function Navbar() {
     }
   };
 
+
+
   async function handleLogOut(){
 
     try{
-
       await logOut()
-
       history.push('/')
-
     }
     catch(e){
-
       console.log(e)
-
     }
+
   }
 
   function handleUserPopUp(){
 
     display === 'none' ? setDisplay('flex') : setDisplay('none')
   }
+
+  /*======================== EVENT STICKY BAR ======================== */
   window.addEventListener("scroll", changeColor);
+
   return (
     <nav
       className={style.navMain}
@@ -58,28 +58,28 @@ export default function Navbar() {
             }
           : { backgroundColor: "transparent", transition: ".4s linear" }
       }
-      // style={{ backgroundColor: "rgba(0,0,0,0.8)" }}
     >
       <Link to="/" className={style.navLogo}>
         <h2 onClick={()=> setDisplay('none')} >HPFC</h2>
       </Link>
 
       <div className={style.navBtnContainer}>
-        <div className={style.searchbar}>
-          {pathname === "/" ? <SearchBar /> : null}
-        </div>
         
         {pathname === "/login" ? null :
         (
           currentUser ? 
 
             <>
+              <NavLink to="/movies">
+                {pathname === "/movies" ? null : <button onClick={()=> setDisplay('none')}>Movies</button>}
+              </NavLink>
+
               <NavLink to="/playlists">
-                <button onClick={()=> setDisplay('none')}>My playlist</button>
+                {pathname === "/playlists" ? null : <button onClick={()=> setDisplay('none')}>My playlist</button>}
               </NavLink>
               
               <NavLink to="/cart">
-                <button onClick={()=> setDisplay('none')}>Cart</button>
+                {pathname === "/cart" ? null : <button onClick={()=> setDisplay('none')}>Cart</button>}
               </NavLink>
 
               <img onClick={handleUserPopUp} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg'/>
