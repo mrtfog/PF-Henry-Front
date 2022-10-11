@@ -186,12 +186,10 @@
     button{
         @include btn-primary;
         &:disabled{
+            background-color: rgba(255, 255, 255, .3);
+            border-color: rgba(255, 255, 255, .5);
             cursor: not-allowed;
-            background-color: rgba(255, 255, 255, .5);
-            border-color: rgba(255, 255, 255, .8);
-            &:hover{
-                transform: scale(1);
-            }
+            transform: scale(1);
         }
     }
 

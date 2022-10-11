@@ -66,7 +66,7 @@ export default function AddToCartPopUp() {
         }
         
         else{
-            setValue(value)
+            setValue(1)
             dispatch(addToCart({...selectedShowtime, movieId: movie.id, tickets: value}))
             alert('Reservation added to cart')
             dispatch(addToCartDisplay('none'))
@@ -86,7 +86,7 @@ export default function AddToCartPopUp() {
                 <h3>Choose showtime</h3>
 
                 <select onChange={(e)=> handleSelectChange(e.target.value)}>
-                    <option defaultValue="prueba"></option>
+                    <option disabled>Select showtime</option>
                     {
                     showtimes.length ? showtimes.map((p, index) =>{
                         return <option key={p._id} value={index}>
@@ -101,7 +101,7 @@ export default function AddToCartPopUp() {
                 <div className={style.counter}>
                     <span className={style.minus} onClick={() => value <= 1 ? setValue(value) : setValue(value - 1)}><p>-</p></span>
                     <input type="number" className={style.count} value={value}/>
-                    <span className={style.plus} onClick={() => setValue(value + 1)}><p>+</p></span>
+                    <span className={style.plus} onClick={() => setValue( value < 10 ? value +1 : value)}><p>+</p></span>
                 </div>
                 <button type='submit' onClick={() => handleSubmit()}>Add to cart</button>
 

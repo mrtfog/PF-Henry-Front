@@ -276,7 +276,7 @@ export default function Seats({reservation}) {
                     <p><span className='spanTitle'>Your Seats Selection:</span>
                     <br />
                     <br />
-                        {seatsSelected.length? <span className='lastSpan'>{seatsSelected.join(' • ')}</span> : <p>No seats selected yet</p>}</p>
+                        {seatsSelected.length ? <span className='lastSpan'>{seatsSelected.join(' • ')}</span> : <p>No seats selected yet</p>}</p>
                 </div>
             </div>
 

@@ -84,6 +84,22 @@ export default function showtimesReducer(state = initialState, action) {
                 cart: [...state.cart, action.payload]
             }
 
+        case 'CLEAR_CART':
+            return{
+                ...state,
+                cart: []
+            }
+            
+        case 'CLEAR_CART_BY_MOVIE':
+
+            let deletedMovie = state.cart.filter( m => {
+                if(m.showtimeId !== action.payload) return m
+            })
+            return{
+                ...state,
+                cart: deletedMovie
+            }
+
         case 'POST_RESERVATION':
             
             return{

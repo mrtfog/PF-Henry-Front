@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../scss/components/Cart/_cart.module.scss";
-import { getCart, selectSeatsDisplay, selectedReservation } from "../../redux/actions/cart";
+import { getCart, selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie } from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 
@@ -18,6 +18,7 @@ export default function Cart() {
     dispatch(getCart());
   }, []);
 
+
   function handleOnClick(r){
 
     if(!currentUser){
@@ -28,12 +29,20 @@ export default function Cart() {
     dispatch(selectedReservation(r))
   }
 
+  function handleOnClickReset(){
+    dispatch(clearCart())
+  }
+
+  function handleOnClickDeleteMovie(showtimeId){
+    dispatch(clearCartByMovie(showtimeId))
+  }
+
 
   return (
     <div className={style.container_cart}>
       <div className={style.title}>
         <h2>My Cart</h2>
-        <button className={style.clearCart}>Clear cart</button>
+        <button className={style.clearCart} onClick={handleOnClickReset}>Clear cart</button>
       </div>
 
       <div className={style.cart}>
@@ -56,14 +65,15 @@ export default function Cart() {
                     .substring(0, 17)}
                   Hs
                 </p>
+                <div className={style.seatPicker}>
                 {
-                  r.seatsId ? <span>Seats selected: <br/> {r.seatsId.join('-') }</span>: <p onClick={() => handleOnClick(r)}>Select your seats</p>
+                  r.seatsId ? <span>Seats selected: <br/> {r.seatsId.join('-') }</span>: <button onClick={() => handleOnClick(r)}>Select your seats</button>
                 }
-
-                <p>Amount</p>
+                </div>
+                <p>${Number(r.tickets) * 9.99}</p>
 
                 <div>
-                  <button className={style.delete}>X</button>
+                  <button className={style.delete} onClick={() => handleOnClickDeleteMovie(r.showtimeId)}>X</button>
                 </div>
               </div>
             );
@@ -75,13 +85,16 @@ export default function Cart() {
 
       <div className={style.footerBtn}>
         <div className={style.addCombo}>
-          <h3 style={{ color: "white" }}>Add combo</h3>
+          {/* <h3 style={{ color: "white" }}>Add combo</h3> */}
         </div>
-        <div className={style.paymentGateway}>
+        <div className={style.paymentGateway} >
           <form action="http://localhost:8082/payment/payment" method="POST">
             <input type="hidden" name="title" value="Minnios"></input>
             <input type="hidden" name="price" value="780"></input>
-            <button type="submit" className={style.btn_finish}>
+            <h2>Total: ${cart.reduce( (acc, cur) => {
+                return acc= acc + cur.tickets * 9.99
+            }, 0).toFixed(2)}</h2>
+            <button type="submit" className={style.btn_finish} disabled={cart.length > 0  ? false : true}>
               Buy Now
             </button>
           </form>
