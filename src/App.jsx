@@ -1,6 +1,6 @@
-import "./_app.scss";
-import Home from "./components/Home";
 import { Route, Switch } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import Home from "./components/Home";
 import MovieDetail from "./components/MovieDetail";
 import Navbar from "./components/Navbar";
 import ShowTime from "./components/Forms/ShowTime";
@@ -9,7 +9,6 @@ import Playlist from "./components/Playlist";
 import Graphics from "./components/AdminPanel/Statistics/Graphics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
-import { useLocation } from "react-router-dom";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
@@ -23,7 +22,9 @@ import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
 import { useAuth } from "./components/contexts/AuthContext";
 import Movies from "./components/Movies/Movies";
 import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
-import Sales from './components/AdminPanel/Statistics/Sales'
+import Sales from './components/AdminPanel/Statistics/Sales';
+import "./_app.scss";
+
 
 function App() {
   const { pathname } = useLocation();

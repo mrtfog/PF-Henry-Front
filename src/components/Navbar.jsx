@@ -92,6 +92,10 @@ export default function Navbar() {
                     <button className={style.profile} onClick={()=> setDisplay('none')}> My Profile</button>
                   </NavLink>
 
+                  <NavLink to="/admin">
+                    <button onClick={()=> setDisplay('none')}> Admin Dashboard</button>
+                  </NavLink>
+
                   <button onClick={()=> handleLogOut()}>Log Out</button>
 
               </div>
