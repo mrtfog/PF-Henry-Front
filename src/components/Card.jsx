@@ -5,8 +5,11 @@ import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
 import { addToCartDisplay, takenTickets } from '../redux/actions/cart'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { useAuth } from './contexts/AuthContext'
 
 export default function Card({img, rating, title, id}) {
+
+  const {currentUser} = useAuth()
 
 
   const url = "https://image.tmdb.org/t/p/original" + img
@@ -20,6 +23,7 @@ export default function Card({img, rating, title, id}) {
 
   function handleAddToList(){
 
+    if(!currentUser) return alert('To add a movie to your playlist you need to be logged in')
     dispatch(addToPlaylistDisplay('flex'))
     dispatch(selectedMovie(id, title))
 

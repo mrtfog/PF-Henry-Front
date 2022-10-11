@@ -21,9 +21,12 @@ import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from "./components/Users/UserPanel/NavbarUser";
 import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
+import { useAuth } from "./components/contexts/AuthContext";
 
 function App() {
   const { pathname } = useLocation();
+  const {currentUser} = useAuth()
+
   if (pathname.includes("/admin")) {
     return (
       <div className="AppAdmin">
@@ -52,9 +55,14 @@ function App() {
     return (
       <div className="App">
         {pathname.includes("/register") ? null : <Navbar /> }
+        {currentUser ?
+        <>
         <AddToPlaylistPopUp />
-        <AddToCartPopUp />
         <SelectSeatsPopUp />
+        </>
+       : null}
+        <AddToCartPopUp />
+
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
