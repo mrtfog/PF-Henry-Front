@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 
 export default function Cart() {
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
   const history = useHistory()
 
   const dispatch = useDispatch();
@@ -16,12 +16,13 @@ export default function Cart() {
 
   useEffect(() => {
     dispatch(getCart());
+    validateConfirm(cart)
   }, []);
 
 
-  function handleOnClick(r){
+  function handleOnClick(r) {
 
-    if(!currentUser){
+    if (!currentUser) {
       alert('To select your seats you need be logged in')
       history.push('/login')
     }
@@ -29,13 +30,35 @@ export default function Cart() {
     dispatch(selectedReservation(r))
   }
 
-  function handleOnClickReset(){
+  function handleOnClickReset() {
     dispatch(clearCart())
   }
 
-  function handleOnClickDeleteMovie(showtimeId){
+  function handleOnClickDeleteMovie(showtimeId) {
     dispatch(clearCartByMovie(showtimeId))
   }
+
+  const validateConfirm = (cart) => {
+    const bool = cart.length > 0 ? true : false
+    let seatsBool = true
+
+    if (cart.length) {
+
+      for (const r of cart) {
+
+        if (r.seatsId) {
+          if (r.tickets !== r.seatsId.length) seatsBool = false
+        } else {
+          seatsBool = false
+        }
+
+      }
+
+    }
+    return bool && seatsBool
+
+  }
+
 
 
   return (
@@ -66,9 +89,9 @@ export default function Cart() {
                   Hs
                 </p>
                 <div className={style.seatPicker}>
-                {
-                  r.seatsId ? <span>Seats selected: <br/> {r.seatsId.join('-') }</span>: <button onClick={() => handleOnClick(r)}>Select your seats</button>
-                }
+                  {
+                    r.seatsId ? <span>Seats selected: <br /> {r.seatsId.join('-')}</span> : <button onClick={() => handleOnClick(r)}>Select your seats</button>
+                  }
                 </div>
                 <p>${Number(r.tickets) * 9.99}</p>
 
@@ -88,13 +111,13 @@ export default function Cart() {
           {/* <h3 style={{ color: "white" }}>Add combo</h3> */}
         </div>
         <div className={style.paymentGateway} >
-          <form action="http://localhost:8082/payment/payment" method="POST">
-            <input type="hidden" name="title" value="Minnios"></input>
+          <form action="http://pf-henry-back.herokuapp.com/payment/payment" method="POST">
+            <input type="hidden" name="title" value="Mininos"></input>
             <input type="hidden" name="price" value="780"></input>
-            <h2>Total: ${cart.reduce( (acc, cur) => {
-                return acc= acc + cur.tickets * 9.99
+            <h2>Total: ${cart.reduce((acc, cur) => {
+              return acc = acc + cur.tickets * 9.99
             }, 0).toFixed(2)}</h2>
-            <button type="submit" className={style.btn_finish} disabled={cart.length > 0  ? false : true}>
+            <button type="submit" className={style.btn_finish} disabled={!validateConfirm(cart)}>
               Buy Now
             </button>
           </form>
