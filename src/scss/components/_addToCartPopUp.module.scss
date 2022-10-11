@@ -85,6 +85,10 @@
 
        button{
         @include btn-primary;
+        &:disabled{
+            background-color: transparent;
+            cursor: not-allowed;
+        }
        }
 
 }

@@ -94,7 +94,7 @@ export function removeMovieFromPlaylist(movieId, playlistId, userUid) {
 
         try {
 
-            await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, { headers: { 'user': userUid } })
+            await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': userUid } })
 
             return dispatch({ type: 'REMOVE_MOVIE_FROM_PLAYLIST' })
 
