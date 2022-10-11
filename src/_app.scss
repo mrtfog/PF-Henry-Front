@@ -2,6 +2,11 @@
 @import './scss/abstracts/variables';
 @import './scss/base/reset';
 
+
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     font-family: $font;
     overflow-x: hidden;
