@@ -21,7 +21,10 @@ import NavbarUser from "./components/Users/UserPanel/NavbarUser";
 import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
 import { useAuth } from "./components/contexts/AuthContext";
 import Movies from "./components/Movies/Movies";
+import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
+import Sales from './components/AdminPanel/Statistics/Sales';
 import "./_app.scss";
+
 
 function App() {
   const { pathname } = useLocation();
@@ -33,6 +36,8 @@ function App() {
         <NavbarAdmin />
         <Switch>
           <Route exact path="/admin/statistics/graphics" component={Graphics} />
+          <Route exact path="/admin/statistics/sales" component={Sales} />
+          <Route exact path="/admin/statistics/subscriptions" component={Subscriptions} />
           <Route exact path="/admin/showTime" component={ShowTime} />
           <Route exact path="/admin/users" component={Users} />
           <Route exact path="/admin/bookings" component={Bookings} />

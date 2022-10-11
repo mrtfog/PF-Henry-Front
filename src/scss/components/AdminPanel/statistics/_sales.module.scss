@@ -31,14 +31,13 @@
 
                 .subtitlesContainer{
                     padding-left: 4em;
-                    width: 47%;
-                    margin-left: 2em;
+                    width: 44%;
                     display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
                     font-family: $font;
                     font-weight: 600;
                     text-shadow: none;
-
+                    margin-left: 5em;
                     .subtitle1{
                         grid-column: 1/2;
                     }
@@ -48,18 +47,23 @@
                     .subtitle3{
                         grid-column: 3/4;
                     }
+                    .subtitle4{
+                        grid-column: 4/5;
+                    }
 
                 }
             }
-
             .cardsContainer{
                 overflow-y: scroll;
                 overflow-x: visible;
                 height: 50vh;
+                border: solid white;
                 width: 70%;
+                padding: 2em;
                 margin: 1em;
                 border-radius: 25px;
             }
+
             .fieldsContainer{
                 display: flex;
                 flex-direction: row;
@@ -74,8 +78,9 @@
                 .field{
                     position:relative;
                     display: flex;
-                    flex-direction: column;
+                    flex-direction:column;
                     align-items: center;
+                    justify-content: center;
                     gap: 1em;
                     overflow: hidden;
                     width: 30%;
@@ -119,9 +124,17 @@
                     }
 
                     label{
-                        width: 100%;
+                        display: block;
+                        color: white;
                         text-align: left;
-                        border-style: none;
+                        font-size: 1rem;
+                        margin-top: 0.65rem;
+                        margin-bottom: 0
+                    }
+
+                    select {
+                        @include select;
+                        margin-top: 0;
                     }
 
                     .inputContainer{

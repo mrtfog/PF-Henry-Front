@@ -1,15 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 //import style from '../../../scss/components/Users/UserPanel/_payments.module.scss'
-import CardPayments from './Card'
-import style from '../../../scss/components/Users/UserPanel/_editProfile.module.scss'
+import CardsAdmin from '../CardsAdmin'
+import style from '../../../scss/components/AdminPanel/statistics/_sales.module.scss'
 
 function Payments() {
 
   const fakeState = [
-    {type:'Subscription', date: '01/10/2020', amount: '3,250.99', ticket: '#'},
-    {type:'Ticket', date: '05/10/2020', amount: '950.99', ticket: '#'},
-    {type:'Ticket', date: '07/10/2020', amount: '1,901.98', ticket: '#'},
+    {saleType:'Subscription', paymentDate: '01/10/2020', amount: '3,250.99', btnLink: '#', userId: '776'},
+    {saleType:'Ticket', paymentDate: '05/10/2020', amount: '950.99', btnLink: '#', userId: '603'},
+    {saleType:'Ticket', paymentDate: '07/10/2020', amount: '1,901.98', btnLink: '#', userId: '039'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
+    {saleType:'Subscrition', paymentDate: '10/10/2020', amount: '3,250.99', btnLink: '#', userId: '407'},
   ]
 
 
@@ -17,7 +19,7 @@ function Payments() {
     <div className={style.mainContainer}>
 
       <div className={style.titleContainer}>
-        <h2>Your payments
+        <h2>Total sales record
         </h2>
       </div>
 
@@ -53,29 +55,30 @@ function Payments() {
             </div>
         </div>
 
-        <div className={style.subInfoContainer}>
+          <div className={style.subInfoContainer}>
             <div className={style.subtitlesContainer}>
                 <div className={style.subtitle1}>Type</div>
                 <div className={style.subtitle2}>Date</div>
                 <div className={style.subtitle3}>Amount</div>
+                <div className={style.subtitle4}>User ID</div>
             </div>
             <div className={style.cardsContainer}>
             {
               fakeState && fakeState.map((e)=>{
                 return (
-                  <div className={style.card}>
-                      <CardPayments 
-                          paymentType={e.type}
-                          date={e.date} 
-                          amount={e.amount}
-                          ticket={e.ticket}>
-                        </CardPayments>
-                  </div>
+                  
+                      <CardsAdmin className= {style.cards}
+                            saleType={e.saleType}
+                            paymentDate={e.paymentDate} 
+                            amount={e.amount}
+                            userId={e.userId}
+                            btnLink={e.btnLink}>
+                        </CardsAdmin>
+   
                   )
                 })
               }
             </div>
-
         </div>
       </div>
     </div>
