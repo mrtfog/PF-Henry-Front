@@ -6,7 +6,6 @@ import Navbar from "./components/Navbar";
 import ShowTime from "./components/Forms/ShowTime";
 import Playlists from "./components/Playlists";
 import Playlist from "./components/Playlist";
-import Seats from "./components/SeatPicker";
 import Graphics from "./components/AdminPanel/Statistics/Graphics";
 import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
@@ -21,6 +20,7 @@ import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";
 import NavbarUser from "./components/Users/UserPanel/NavbarUser";
 import SelectSeatsPopUp from "./components/Cart/SelectSeatsPopUp";
+import Movies from "./components/Movies/Movies";
 
 function App() {
   const { pathname } = useLocation();
@@ -58,7 +58,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/movies/:id" component={MovieDetail} />
-          <Route exact path="/seats" component={Seats} />
+          <Route exact path="/movies" component={Movies} />
           <Route exact path="/playlists" component={Playlists} />
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
