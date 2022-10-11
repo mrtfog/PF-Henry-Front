@@ -15,12 +15,14 @@ export default function AddToCartPopUp() {
     const movie = useSelector(state => state.cartReducer.takenTickets)
     const showtimes = useSelector(state => state.cartReducer.showtime)
     const cart = useSelector(state => state.cartReducer.cart)
+    const cartShowtimesIds = Array.from(new Set(cart.map(s=>s.showtimeId)))
 
 
 
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
 
     const [value, setValue] = useState(1)
+    const [selectValue, setSelectValue] = useState('') 
 
     const [selectedShowtime, setSelectedShowtime] = useState({})
 
@@ -39,6 +41,9 @@ export default function AddToCartPopUp() {
 
     function handleDisplay() {
         dispatch(addToCartDisplay('none'))
+        setValue(1)
+        setSelectedShowtime('')
+        setSelectValue('')
     }
 
     function handleSelectChange(index) {
@@ -52,25 +57,24 @@ export default function AddToCartPopUp() {
             roomId: showtimes[index].roomId,
         })
 
+        setSelectValue(index)
     }
-
+    
     function handleSubmit() {
-        const filteredMovie = cart.filter((f) => {
-            return f.showtimeId === selectedShowtime.showtimeId
-        })
-        if (filteredMovie.length) {
+        
+        if (cartShowtimesIds.includes(selectedShowtime.showtimeId)) {
             alert('You already selected this showtime, check your cart')
-            dispatch(addToCartDisplay('none'))
             history.push('/cart')
-            filteredMovie = ''
         } else {
-            setValue(1)
             dispatch(addToCart({ ...selectedShowtime, movieId: movie.id, tickets: value }))
             alert('Reservation added to cart')
-            dispatch(addToCartDisplay('none'))
         }
-
-
+        
+        dispatch(addToCartDisplay('none'))
+        setSelectedShowtime('')
+        setSelectValue('')
+        setValue(1)
+        
     }
 
 
@@ -83,8 +87,8 @@ export default function AddToCartPopUp() {
                 <hr></hr>
                 <h3>Choose showtime</h3>
 
-                <select onChange={(e) => handleSelectChange(e.target.value)}>
-                    <option selected disabled>Select showtime</option>
+                <select value = {selectValue} onChange={(e) => handleSelectChange(e.target.value)}>
+                    <option value = ''>Select showtime</option>
                     {
                         showtimes.length ? showtimes.map((p, index) => {
                             return <option key={p._id} value={index}>
@@ -101,7 +105,7 @@ export default function AddToCartPopUp() {
                     <input type="number" className={style.count} value={value} />
                     <span className={style.plus} onClick={() => setValue(value < 10 ? value + 1 : value)}><p>+</p></span>
                 </div>
-                <button type='submit' onClick={() => handleSubmit()}>Add to cart</button>
+                <button type='submit' disabled={selectValue===''? true : false} onClick={() => handleSubmit()}>Add to cart</button>
 
             </div>
         )

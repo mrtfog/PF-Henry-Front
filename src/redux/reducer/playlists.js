@@ -49,7 +49,7 @@ export default function playlistReducer(state = initialState, action) {
         case 'CLEAR_PLAYLIST_MOVIES':
             return {
                 ...state,
-                movies: {}
+                movies: []
             }
 
         case 'ADD_TO_PLAYLIST_DISPLAY':

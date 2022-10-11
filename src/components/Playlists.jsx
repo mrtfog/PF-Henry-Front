@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getUserPlaylists } from '../redux/actions/playlists'
+import { addToPlaylistDisplay, getUserPlaylists } from '../redux/actions/playlists'
 import style from '../scss/components/_playlists.module.scss'
 import { useAuth } from './contexts/AuthContext'
 
@@ -25,7 +25,7 @@ export default function Playlist() {
 
             <div className={style.titleAndButton}>
                 <h2>My Playlists</h2>
-                <button className={style.addPlaylistButton}>Add New Playlist</button>
+                <button onClick={()=> dispatch(addToPlaylistDisplay('flex'))}className={style.addPlaylistButton}>Add New Playlist</button>
             </div>
 
             <div className={style.playlists}>
@@ -47,7 +47,7 @@ export default function Playlist() {
                         )
                     })
                     :
-                    <p style={{color: '#fff'}}>You haven't created a Playlists yet</p>}
+                    <p>You haven't created a Playlists yet</p>}
 
             </div>
 
