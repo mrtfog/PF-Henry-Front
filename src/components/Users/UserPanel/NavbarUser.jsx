@@ -1,10 +1,25 @@
 import React from "react";
 import style from "../../../scss/components/Users/UserPanel/_navbarUser.module.scss";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 const NavbarUser = () => {
-  const { currentUser } = useAuth();
+
+  const history = useHistory()
+  const {currentUser, logOut} =  useAuth()
+
+  async function handleLogOut(){
+
+    try{
+      await logOut()
+      history.push('/')
+    }
+    catch(e){
+      console.log(e)
+    }
+
+  }
+
   return (
     <nav className={style.mainNav}>
       <ul>
@@ -66,21 +81,6 @@ const NavbarUser = () => {
                   <path d="M946.812,428.258c0-22.1-17.9-40-40-40h-42.7h-687.3c-22.1,0-40,17.9-40,40v276.5h199.7h610.3V428.258L946.812,428.258z" />
                 </g>
               </g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
             </svg>
             <span>Payments</span>
           </NavLink>
@@ -103,7 +103,7 @@ const NavbarUser = () => {
                 fill="#030D45"
               />
             </svg>
-            <span>LogOut</span>
+            <span onClick={()=> handleLogOut()}>LogOut</span>
           </NavLink>
         </li>
       </ul>

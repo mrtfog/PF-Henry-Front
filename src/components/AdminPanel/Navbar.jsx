@@ -1,14 +1,30 @@
 import React from "react";
 import style from "../../scss/components/AdminPanel/_navbar.module.scss";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 
 const NavbarAdmin = () => {
-  const { currentUser } = useAuth();
+  const {currentUser, logOut} =  useAuth()
   const [isShown, setIsShown] = useState(false);
   const divIcon = document.querySelector(".divIcon");
   console.log(divIcon);
+
+  const history = useHistory()
+  
+
+  async function handleLogOut(){
+
+    try{
+      await logOut()
+      history.push('/')
+    }
+    catch(e){
+      console.log(e)
+    }
+
+  }
+
 
   return (
     <nav className={style.mainNav}>
@@ -66,21 +82,6 @@ const NavbarAdmin = () => {
                 <path d="M15.004,160.247v77.152c0,5.247,4.253,9.5,9.5,9.5h42c5.247,0,9.5-4.253,9.5-9.5v-98.695l-48.102,19.069   c-4.233,1.679-8.597,2.474-12.889,2.474C15.01,160.247,15.007,160.247,15.004,160.247z" />
                 <path d="M20.532,139.182l149.037-59.084l22.223-8.81l-0.998,2.309c-3.287,7.604,0.213,16.434,7.817,19.72   c7.6,3.287,16.433-0.212,19.72-7.817l15.473-35.8c3.287-7.604-0.213-16.434-7.817-19.72l-35.799-15.473   c-7.608-3.292-16.434,0.214-19.72,7.817c-3.287,7.604,0.213,16.434,7.817,19.72l2.807,1.213l-22.446,8.898L9.476,111.293   c-7.701,3.053-11.469,11.771-8.416,19.473C4.11,138.459,12.821,142.237,20.532,139.182z" />
               </g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
-              <g></g>
             </svg>
             <span>Statistics</span>
             <div
@@ -105,21 +106,7 @@ const NavbarAdmin = () => {
                     d="M142.238,492.432c-9.79,0-19.588-3.736-27.05-11.209c-14.945-14.934-14.945-39.162,0-54.098l180.9-180.909   l-180.9-180.91c-14.945-14.935-14.945-39.163,0-54.098c14.926-14.944,39.172-14.944,54.098,0l207.96,207.958   c14.943,14.935,14.943,39.164,0,54.1l-207.96,207.957C161.824,488.697,152.026,492.432,142.238,492.432z"
                   />
                 </g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
-                <g></g>
+
               </svg>
             </div>
           </NavLink>
@@ -310,7 +297,7 @@ const NavbarAdmin = () => {
                 fill="#030D45"
               />
             </svg>
-            <span>LogOut</span>
+            <span onClick={()=> handleLogOut()}>LogOut</span>
           </NavLink>
         </li>
       </ul>
