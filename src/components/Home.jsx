@@ -26,12 +26,32 @@ export default function Home() {
 
     const arrayBillboardMovies = useSelector(state => state.showtimesReducer.billboard)
     const arrayUpcomingMovies = useSelector(state => state.moviesReducer.upcoming)
+    
+    const horrorFilms = movies.filter((m) => {
+      return m.genres.includes(27)
+    }).slice(0, 20)
+
+    const actionFilms = movies.filter((m) => {
+      return m.genres.includes(28)
+    }).slice(0, 20)
+
+    const mostPopular = movies.sort( ( a, b ) => {
+      if(a.rating < b.rating){
+        return 1
+      } else {
+        return -1
+      }
+    }).slice(0, 10)
+  
 
   return (
     <div className={style.container_home}>
         <Carousel></Carousel>
         <Slider title='Billboard' movies={arrayBillboardMovies}></Slider>
         <Slider title='Upcomings' movies={arrayUpcomingMovies}></Slider>
+        <Slider title='Just for Halloween season 🎃' movies={horrorFilms}></Slider>
+        <Slider title="Top 10 rated 💯" movies={mostPopular}></Slider>
+        <Slider title="You're the  disease, and i'm the cure 💥" movies={actionFilms}></Slider>
         <Footer />
     </div>
   )

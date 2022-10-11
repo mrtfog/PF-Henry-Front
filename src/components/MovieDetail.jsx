@@ -6,9 +6,12 @@ import { getMovieReviews } from '../redux/actions/reviews'
 import { useParams } from 'react-router-dom'
 import { resetMovieDetail, getMovieDetail } from '../redux/actions/movies'
 import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
+import { useAuth } from './contexts/AuthContext'
 
 
 export default function MovieDetail() {
+
+    const {currentUser} = useAuth()
 
     const {id}= useParams()
     const dispatch = useDispatch()
@@ -78,7 +81,14 @@ export default function MovieDetail() {
             <div className={style.details}>
 
                 <div className={style.section}>
+                    {currentUser ?
                     <YouTube className={style.trailer} opts={{width: '850', height: '480'}}videoId={movie.videos ? (movie.videos.results.length > 0 ? movie.videos.results[0].key : '44A-KNz2U-w') : undefined}/>
+                    :
+                    <>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 24 24" fill='#ffffff80'><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
+                        <p>To watch the movie you need to be logged in</p>
+                    </>}
+
                 </div>
 
                 <div className={style.section}>
