@@ -79,3 +79,11 @@ export function addToCart(payload){
 export function selectedSeats(seatsId, userId, showtimeId){
       return {type: 'SELECTED_SEATS', payload: {seatsId, userId, showtimeId}}
 }
+
+export function clearCart(){
+      return {type: 'CLEAR_CART'}
+}
+
+export function clearCartByMovie(payload){
+      return {type: 'CLEAR_CART_BY_MOVIE', payload}
+}

@@ -47,7 +47,7 @@ export default function Playlist() {
                         )
                     })
                     :
-                    <p>You haven't created a Playlists yet</p>}
+                    <p style={{color: '#fff'}}>You haven't created a Playlists yet</p>}
 
             </div>
 
