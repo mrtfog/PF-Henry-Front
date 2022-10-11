@@ -10,12 +10,11 @@ export function getUserPlaylists(userUid) {
 
         try {
 
-            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/getByUser/${userUid}`, { headers: { 'user': userUid } })
+            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser/${userUid}`, { headers: { 'user': userUid } })
             return dispatch({ type: 'GET_USER_PLAYLISTS', payload: data })
         }
 
         catch (e) {
-
             console.log(e)
         }
 
@@ -76,7 +75,7 @@ export function addMovieToPlaylist(movieId, playlistId, userUid) {
 
         try {
 
-            if (movieId && playlistId && userUid) await axios.put(`https://pf-henry-back.herokuapp.com/addMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': userUid } })
+            if (movieId && playlistId && userUid) await axios.put(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': userUid } })
 
             return dispatch({ type: 'ADD_MOVIE_TO_PLAYLIST' })
 
