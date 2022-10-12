@@ -24,6 +24,7 @@ import Movies from "./components/Movies/Movies";
 import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
 import Sales from "./components/AdminPanel/Statistics/Sales";
 import "./_app.scss";
+import Rooms from "./components/AdminPanel/Rooms";
 
 function App() {
   const { pathname } = useLocation();
@@ -44,6 +45,7 @@ function App() {
           <Route exact path="/admin/showTime" component={ShowTime} />
           <Route exact path="/admin/users" component={Users} />
           <Route exact path="/admin/bookings" component={Bookings} />
+          <Route exact path="/admin/rooms" component={Rooms} />
         </Switch>
       </div>
     );

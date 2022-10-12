@@ -20,10 +20,11 @@ export function getAllRooms() {
 
 export function postNewRoom(room, currentUser){
     //{number: 1, rows:5, columns: 10}
+
     return async(dispatch)=>{
 
         try{
-            await axios.post('https://pf-henry-back.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
+            await axios.post('http://localhost:8082/room/post', room, {headers: { "user": currentUser.accessToken}})
             return dispatch({type:'POST_NEW_ROOM'})
         }
         catch(e){

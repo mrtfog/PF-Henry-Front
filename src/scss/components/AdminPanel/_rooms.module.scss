@@ -1,0 +1,129 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+
+.mainContainer{
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 15em;
+    margin-top:8%;
+    margin-left: 15%;
+    color: white;
+    font-family: $font;
+
+
+    h2{
+        font-size: 2rem;
+        text-shadow: none;
+        margin-bottom:2em;
+    }
+
+    h3{
+        font-size: 1.5rem;
+    }
+
+    .subtitleContainer{
+        p{
+            span{
+                font-weight: 600;
+                font-size: 1.2rem;
+                text-shadow: 0 0 10px $primary-color;
+                margin-left: 1em;
+                padding: 0.5em 1em;
+                border-radius: 15px;
+                border-bottom: solid 2px $primary-color;
+            }
+        }
+    }
+    form {
+
+        .inputContainer{
+            .malditoLabel{
+                display: block;
+                color: white;
+                text-align: left;
+                font-size: 1rem;
+                margin-top: 3rem;
+                margin-bottom: .5rem;           
+            }
+
+            select{
+                @include select;
+                width: 100%;
+                margin-bottom: 2rem;
+            }
+        }
+
+
+        button{
+            @include btn-primary;
+        }
+    }
+
+    .roomCardsContainer{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        gap: 1em;
+        .roomCard{
+            display: flex;
+            background-color: white;
+            text-align: center;
+            font-weight: 500;
+            color: $background-color;
+            padding: 0.2em;
+            padding-left:1em;
+            border-radius: 25px;
+            transition: all 0.2s linear;
+            animation-name: rotates;
+            animation-duration: 0.8s;
+            width: 20vw;
+            min-width: min-content;
+            
+            &:hover{
+                transform: scale(1.05);
+            }
+
+            p{
+                span{
+                    color: $primary-color;
+                    font-weight: 600;
+                }
+            }
+
+        }
+
+    }
+}
+
+
+@keyframes wiggle {
+
+    0% { transform: rotate(0deg); }
+    50% { transform: rotate(0deg); }
+    55% { transform: rotate(2deg); }
+    65% { transform: rotate(-2deg); }
+   80% { transform: rotate(0deg); }
+   100% { transform: rotate(0deg); }
+
+    
+}
+
+@keyframes rotates {
+    0%   {transform: rotate(0deg)}
+    25%  {
+        transform: rotate(1deg);
+        border: 2px solid $primary-color;
+        box-shadow: 0 0.1rem 0.7rem $primary-color;  
+    }
+    50%  {transform: rotate(-1deg)}
+    75%  {transform: rotate(1deg)}
+    100% {
+        transform: rotate(0deg);
+        border: 2px solid $secondary-color;
+        box-shadow: 0 0.1rem 0.7rem $secondary-color;  
+
+    }
+}
