@@ -55,6 +55,7 @@ export default function AddToCartPopUp() {
             dateTime: showtimes[index].dateTime,
             format: showtimes[index].format,
             roomId: showtimes[index].roomId,
+            ticketPrice: showtimes[index].ticketPrice
         })
 
         setSelectValue(index)
