@@ -20,7 +20,6 @@ export function getAllShowtimes() {
 }
   
 export function postShowtime(values, currentUser){
-
     return async(dispatch)=>{
 
         try{

@@ -18,7 +18,11 @@ export default function ShowTime() {
   const functions = useSelector((state) => state.showtimesReducer.showtimes);
   const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
 
-  const rooms = roomsBackend ? roomsBackend.map((e) => { return {value: e.id, label: `Room N° ${e.number}`}}) : []
+  
+  const rooms = roomsBackend ? roomsBackend.map((e) => { 
+
+    const type = e.rows <= 10 ? 'Small' : e.rows === 15 ? 'Regular' : 'Premiere'
+    return {value: e.id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
 
 
 
@@ -57,7 +61,8 @@ export default function ShowTime() {
 
   useEffect(() => {
     dispatch(getAllRooms())
-    console.log(rooms)
+    console.log(roomsBackend)
+    console.log('Showtime ->', functions)
     document.getElementById("functionsDiv").scrollTo(0, -1000000);
   }, [functions]);
 
@@ -223,7 +228,8 @@ export default function ShowTime() {
             <input 
               onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}} 
               value={formik.values.ticketPrice} 
-              type="number" 
+              type="number"
+              step=".01"
               min="1"/>
           </div>
 
