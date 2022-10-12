@@ -95,7 +95,7 @@ export default function Cart() {
                     </button>
                   )}
                 </div>
-                <p>${Number(r.tickets) * 9.99}</p>
+                <p>${Number(r.tickets) * r.ticketPrice}</p>
 
                 <div>
                   <button
@@ -124,11 +124,12 @@ export default function Cart() {
           >
             <input type="hidden" name="title" value="Mininos"></input>
             <input type="hidden" name="price" value="780"></input>
+
             <h2>
               Total: $
               {cart
                 .reduce((acc, cur) => {
-                  return (acc = acc + cur.tickets * 9.99);
+                  return (acc = acc + cur.tickets * cur.ticketPrice);
                 }, 0)
                 .toFixed(2)}
             </h2>
