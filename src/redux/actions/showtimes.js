@@ -1,6 +1,8 @@
 import axios from 'axios';
 
+
 export function getAllShowtimes() {
+    
 
     return async (dispatch) => {
 
@@ -17,13 +19,13 @@ export function getAllShowtimes() {
     };
 }
   
-export function postShowtime(payload){
+export function postShowtime(values, currentUser){
 
     return async(dispatch)=>{
 
         try{
 
-            await axios.post('https://pf-henry-back.herokuapp.com/showtime/post', payload)
+            await axios.post('https://pf-henry-back.herokuapp.com/showtime/post', values, {headers: { "user": currentUser.accessToken}})
             
             return dispatch({type:'POST_SHOWTIME'})
         }
@@ -32,7 +34,6 @@ export function postShowtime(payload){
         }
 
     }
-
 }
 
 export function getBillboardMovies(movies){
@@ -57,4 +58,5 @@ export function getBillboardMovies(movies){
         }
 
     }
+
 }
