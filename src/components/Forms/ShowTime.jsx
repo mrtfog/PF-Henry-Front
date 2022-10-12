@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions/movies";
-import { getAllShowtimes, postShowtime } from "../../redux/actions/showtimes";
+import { getAllShowtimes, logicDeleteShowtime, postShowtime } from "../../redux/actions/showtimes";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
 import validate from "./ValidationFunction";
@@ -60,10 +60,16 @@ export default function ShowTime() {
   });
 
   useEffect(() => {
-    console.log(formik.values)
     dispatch(getAllRooms())
     document.getElementById("functionsDiv").scrollTo(0, -1000000);
-  }, [formik.values, functions]);
+  }, []);
+
+
+  function handleDelete(e, f){
+    const showtimeId = f._id
+    dispatch(logicDeleteShowtime(showtimeId, currentUser))
+    setTimeout(()=>{ dispatch(getAllShowtimes())}, 500 )
+  }
 
   return (
     <div className={style.container}>
@@ -72,14 +78,19 @@ export default function ShowTime() {
           <h2>Movie showtimes</h2>
 
           <div className={style.functions} id="functionsDiv">
+
             {functions.length > 0 ? (
               functions.map((f, index) => {
-                console.log(f)
                 return (
                   <div key={index} className={style.function}>
                     <div>
+                    <button 
+                      className={style.closeBtn}
+                      onClick={(e)=> handleDelete(e, f)}
+                      >X</button>
                       <img
                         src={"https://image.tmdb.org/t/p/original" + f.image}
+                        alt={`Poster movie of ${f.movieTitle}`}
                       />
                     </div>
                     <div>
