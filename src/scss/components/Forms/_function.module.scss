@@ -158,10 +158,12 @@
                     }
                 }
                 .Date{
+                    margin-top:1em;
                     display: flex;
                     flex-direction:row;
                     justify-content: space-around;
                     width: 100%;
+
                   
                    
                     
@@ -176,6 +178,8 @@
                         align-items: center;
                         text-align: center;
                         justify-content: center;
+                        border-top: solid 1px rgba(255, 255, 255, 0.397);
+                        border-left: solid 1px rgba(255, 255, 255, 0.397);
                     
                         
                         label{
@@ -198,6 +202,8 @@
                         text-align: center;
                         justify-content: center;
                         margin-left:2rem; 
+                        border-top: solid 1px rgba(255, 255, 255, 0.397);
+                        border-left: solid 1px rgba(255, 255, 255, 0.397);
                     
                         
                         label{
@@ -239,6 +245,33 @@
                     }
                 }
                 
+            }
+
+            .inputNumber{
+                input {
+                    @include select;
+                    width: 99.5%;
+                    //margin: 0;
+                    padding: 0;
+                    height: 2.5em;
+                    background-color: white;
+                    margin-bottom: 2em;
+
+                    &:focus{
+                        background-color: white;
+                        color: $background-color;
+                    }
+
+                    &:hover{
+                        background-color: white;
+                        color: $background-color;
+                    }
+    
+                }
+
+                label  {
+                    color: white;
+                }
             }
         
             button{

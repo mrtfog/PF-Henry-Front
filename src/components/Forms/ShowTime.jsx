@@ -7,16 +7,21 @@ import style from "../../scss/components/Forms/_function.module.scss";
 import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
+import { useAuth } from "../contexts/AuthContext";
+import { getAllRooms } from "../../redux/actions/rooms";
 
 export default function ShowTime() {
+
+  const {currentUser} = useAuth()
+
   const movies = useSelector((state) => state.moviesReducer.movies);
   const functions = useSelector((state) => state.showtimesReducer.showtimes);
-  const roomOptions = [
-    { value: "1", label: "Movie theater 1" },
-    { value: "2", label: "Movie theater 2" },
-    { value: "3", label: "Movie theater 3" },
-    { value: "4", label: "Movie theater 4" },
-  ];
+  const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
+
+  const rooms = roomsBackend ? roomsBackend.map((e) => { return {value: e.id, label: `Room N° ${e.number}`}}) : []
+
+
+
   const formatOptions = [
     { value: "2D-Translated", label: "2D-Translated" },
     { value: "2D-Subtitled", label: "2D-Subtitled" },
@@ -36,10 +41,12 @@ export default function ShowTime() {
       dateTime: null,
       roomId: "",
       format: "",
+      ticketPrice: "",
     },
+
     validate,
     onSubmit: (values, { resetForm }) => {
-      dispatch(postShowtime(values));
+      dispatch(postShowtime(values, currentUser));
       alert("Show created");
       dispatch(getAllShowtimes());
       resetForm({
@@ -49,6 +56,8 @@ export default function ShowTime() {
   });
 
   useEffect(() => {
+    dispatch(getAllRooms())
+    console.log(rooms)
     document.getElementById("functionsDiv").scrollTo(0, -1000000);
   }, [functions]);
 
@@ -180,7 +189,7 @@ export default function ShowTime() {
               name="roomId"
               label="Select a movie theater"
               value={formik.values.roomId}
-              options={roomOptions}
+              options={rooms}
               onChange={(e) => formik.setFieldValue("roomId", e.target.value)}
             />
           </div>
@@ -193,12 +202,31 @@ export default function ShowTime() {
             </label>
             <Select
               name="format"
-              label="Select a format"
+              label='Select format'
               value={formik.values.format}
               options={formatOptions}
               onChange={(e) => formik.setFieldValue("format", e.target.value)}
             />
           </div>
+          <div className={style.inputNumber}>
+            <label>
+                Select price
+            </label>
+            {/* <Select
+              name='ticketPrice'
+              label='Set a price'
+              value={formik.values.ticketPrice}
+              options={fakePrices}
+              onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}}
+            /> */}
+
+            <input 
+              onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}} 
+              value={formik.values.ticketPrice} 
+              type="number" 
+              min="1"/>
+          </div>
+
           <button
             disabled={Object.keys(formik.errors).length !== 0 ? true : false}
             type="submit"

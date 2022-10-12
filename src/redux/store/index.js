@@ -7,6 +7,7 @@ import showtimesReducer from '../reducer/showtimes'
 import playlistsReducer from '../reducer/playlists'
 import usersReducer from '../reducer/users'
 import cartReducer from '../reducer/cart'
+import roomReducer from '../reducer/rooms'
 
 const rootReducer = combineReducers({
 
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   showtimesReducer: showtimesReducer,
   playlistsReducer: playlistsReducer,
   usersReducer: usersReducer,
-  cartReducer: cartReducer
+  cartReducer: cartReducer,
+  roomReducer: roomReducer,
 
 })
 
