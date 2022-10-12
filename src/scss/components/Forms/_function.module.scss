@@ -36,6 +36,7 @@
             .functions{
 
                 display: flex;
+
                 width: 80%;
                 flex-direction: column-reverse;
                 justify-items: center;
@@ -46,6 +47,8 @@
                 border-radius: 30px;
                 background-color: rgb(10, 10, 12);
                 overflow-y: scroll;
+
+
                 .notFound{
                     display:flex;
                     flex-direction: column;
@@ -63,7 +66,7 @@
                 }
                 
                 .function{
-
+                    position: relative;
                     width: 80%;
                     padding: 20px;
                     display: flex;
@@ -78,6 +81,30 @@
 
                     animation-name: rotates;
                     animation-duration: 0.8s;
+
+                    
+                    .closeBtn{
+                        position: absolute;
+                        top: .3em;
+                        right: .5em;
+                        color: $primary-color;
+                        transition: all 0.2s linear;
+                        padding: 0.2em 0.35em;
+                        border-radius: 100%;
+                        background-color: rgba(255, 255, 255, 0);
+                        font-weight: 600;
+                        font-size: 0.95rem;
+
+                        cursor: pointer;
+
+                        &:hover{
+                            text-shadow: 0 0 10px $primary-color;
+                            transform: scale(1.1);
+                            background-color: $primary-color;
+                            color:white;
+                            font-weight: 400;
+                        }
+                    }
 
                     div{
 

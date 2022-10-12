@@ -57,5 +57,19 @@ export function getBillboardMovies(movies){
         }
 
     }
+}
 
+export function logicDeleteShowtime(id, currentUser){
+    return async(dispatch)=>{
+
+        try{
+
+            await axios.delete(`https://pf-henry-back.herokuapp.com/showtime/endById/${id}`, {headers: { "user": currentUser.accessToken}})
+            
+            return dispatch({type:'DELETE_SHOWTIME'})
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
 }
