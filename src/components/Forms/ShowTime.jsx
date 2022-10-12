@@ -22,7 +22,7 @@ export default function ShowTime() {
   const rooms = roomsBackend ? roomsBackend.map((e) => { 
 
     const type = e.rows <= 10 ? 'Small' : e.rows === 15 ? 'Regular' : 'Premiere'
-    return {value: e.id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
+    return {value: e._id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
 
 
 
@@ -60,11 +60,10 @@ export default function ShowTime() {
   });
 
   useEffect(() => {
+    console.log(formik.values)
     dispatch(getAllRooms())
-    console.log(roomsBackend)
-    console.log('Showtime ->', functions)
     document.getElementById("functionsDiv").scrollTo(0, -1000000);
-  }, [functions]);
+  }, [formik.values, functions]);
 
   return (
     <div className={style.container}>
@@ -75,6 +74,7 @@ export default function ShowTime() {
           <div className={style.functions} id="functionsDiv">
             {functions.length > 0 ? (
               functions.map((f, index) => {
+                console.log(f)
                 return (
                   <div key={index} className={style.function}>
                     <div>
@@ -95,7 +95,7 @@ export default function ShowTime() {
                       <p>
                         <span>Movie Theater:</span>
                         <br />
-                        {f.roomId}
+                        {f.roomId ? rooms.find(r => r.value === f.roomId).label : ''} 
                       </p>
                       <p>
                         <span>Format:</span>
