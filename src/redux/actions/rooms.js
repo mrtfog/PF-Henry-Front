@@ -24,7 +24,7 @@ export function postNewRoom(room, currentUser){
     return async(dispatch)=>{
 
         try{
-            await axios.post('http://localhost:8082/room/post', room, {headers: { "user": currentUser.accessToken}})
+            await axios.post('https://pf-henry-back.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
             return dispatch({type:'POST_NEW_ROOM'})
         }
         catch(e){
