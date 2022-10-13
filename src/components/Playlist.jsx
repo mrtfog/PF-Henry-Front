@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, removeMovieFromPlaylist } from '../redux/actions/playlists'
+import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, getUserPlaylists, removeMovieFromPlaylist } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
 import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
@@ -18,17 +18,26 @@ export default function Playlist() {
     const { id } = useParams()
 
     const playlist = useSelector(state => state.playlistsReducer.selectedPlaylist)
+    const playlists = useSelector(state => state.playlistsReducer.playlists)
     const movies = useSelector(state => state.playlistsReducer.movies)
 
     useEffect(() => {
 
+        playlists.length ?  dispatch(getPlaylist(id)): dispatch(getUserPlaylists(currentUser))
+    }, [])
+
+    useEffect(()=>{
+
         dispatch(getPlaylist(id))
 
-    }, [id])
+    }, [playlists.length ? id : playlists])
 
     useEffect(() => {
+        
         if (playlist) dispatch(getPlaylistMovies(playlist.moviesId))
+
         return () => dispatch(clearPlaylistMovies())
+        
     }, [playlist])
 
     const [randomMovie, setRandomMovie] = useState(false)
@@ -37,7 +46,7 @@ export default function Playlist() {
 
     function handleMovieDelete(movieId, title) {
 
-        dispatch(removeMovieFromPlaylist(movieId, id, currentUser.uid))
+        dispatch(removeMovieFromPlaylist(movieId, id, currentUser))
         Swal.fire({
             text:`"${title}" was successfully removed from the playlist`,
             icon: 'success',
@@ -94,11 +103,11 @@ export default function Playlist() {
                         <h2>{playlist.name}</h2>
                         <h4>{playlist.contributors ?
                             playlist.contributors.map(u => u.username).join(' • ')
-                            : playlist.userId}</h4>
+                            : currentUser.displayName}</h4>
                         <h4>Movies: {playlist.moviesId ? playlist.moviesId.length : "0 :c"}</h4>
                         <div>
                             <p>Not sure what to watch?</p>
-                            <button className={style.button} onClick={handleRandomMovieSelect}>Choose Randomly</button>
+                            <button disabled={playlist.moviesId.length > 0 ? false : true } className={style.button} onClick={handleRandomMovieSelect}>Choose Randomly</button>
                         </div>
 
                     </div>

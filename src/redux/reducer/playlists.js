@@ -22,7 +22,7 @@ export default function playlistReducer(state = initialState, action) {
 
             return {
                 ...state,
-                selectedPlaylist: state.playlists.filter(p => p._id === action.payload).shift()
+                selectedPlaylist: state.playlists.find(p => p._id === action.payload)
             }
 
         case 'GET_PLAYLIST_MOVIES':
@@ -43,10 +43,11 @@ export default function playlistReducer(state = initialState, action) {
 
         case 'REMOVE_MOVIE_FROM_PLAYLIST':
             return {
-                ...state
+                ...state            
             }
 
         case 'CLEAR_PLAYLIST_MOVIES':
+            
             return {
                 ...state,
                 movies: []

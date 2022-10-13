@@ -29,6 +29,14 @@
             justify-content: center;
             .button{
                 @include btn-secondary;
+
+                &:disabled{
+                    cursor: not-allowed;
+
+                    &:hover{
+                        background-color: $background-color;
+                    }
+                }
             }
 
         }
@@ -43,7 +51,11 @@
         justify-content: center;
         align-items: center;
         width: 65vw;
- 
+
+        p{
+            color: $text-color-white;
+        }
+        
         .movie{
             width: 70vw;
             @include playlist;

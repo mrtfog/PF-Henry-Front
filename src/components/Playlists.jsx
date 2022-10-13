@@ -14,7 +14,7 @@ export default function Playlist() {
 
     useEffect(() => {
 
-        dispatch(getUserPlaylists(currentUser.uid))
+        dispatch(getUserPlaylists(currentUser))
 
     }, [currentUser])
 
