@@ -1,6 +1,7 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import style from '../../scss/components/Cart/_selectSeatsPopUp.module.scss'
 import { selectSeatsDisplay } from "../../redux/actions/cart";
+import { getAllRooms } from '../../redux/actions/rooms'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from '../PopUpTemplate';
 import SeatPicker from '../SeatPicker'
@@ -11,6 +12,14 @@ export default function SelectSeatsPopUp() {
     const display = useSelector( state => state.cartReducer.displaySeats)
     const reservation = useSelector( state => state.cartReducer.selectedReservation)
 
+    const movieTheaters = useSelector ( state => state.roomReducer.rooms)
+
+
+
+    useEffect(() => {
+      dispatch(getAllRooms())
+    }, [])
+    
 
 
     function handleDisplay(){
@@ -24,7 +33,7 @@ export default function SelectSeatsPopUp() {
 
             <div className={style.container_selectSeats}>
                 
-                <SeatPicker reservation={reservation}/>
+                <SeatPicker reservation={reservation} movieTheaters={movieTheaters}/>
 
             </div>
         )
