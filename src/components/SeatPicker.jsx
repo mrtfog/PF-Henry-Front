@@ -275,7 +275,7 @@ function seatsRowDivs(arr){
 
             }
 
-
+            //////// !userId
         } else if (ele.hasOwnProperty('userId') && ele.userId!==userId){
 
             return(

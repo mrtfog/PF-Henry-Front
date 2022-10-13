@@ -40,7 +40,8 @@ export default function showtimesReducer(state = initialState, action) {
         case 'POST_SHOWTIME':
             
             return{
-                ...state
+                ...state,
+                showtimes: [...state.showtimes, action.payload]
             }
         
         case 'UPDATE_SHOWTIME':
@@ -50,9 +51,9 @@ export default function showtimesReducer(state = initialState, action) {
             }
 
         case 'DELETE_SHOWTIME':
-        
             return{
-                ...state
+                ...state,
+                showtimes: state.showtimes.filter(s=> s._id !== action.payload)
             }
 
         default:

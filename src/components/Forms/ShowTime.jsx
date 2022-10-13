@@ -23,7 +23,7 @@ export default function ShowTime() {
   
   const rooms = roomsBackend ? roomsBackend.map((e) => { 
 
-    const type = e.rows <= 10 ? 'Small' : e.rows === 15 ? 'Regular' : 'Premiere'
+    const type = e.columns <= 8 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
     return {value: e._id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
 
 
@@ -40,6 +40,8 @@ export default function ShowTime() {
     dispatch(getMovies());
     dispatch(getAllShowtimes());
   }, [dispatch]);
+
+
 
   const formik = useFormik({
     initialValues: {
