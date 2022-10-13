@@ -58,7 +58,6 @@ export default function ShowTime() {
         icon: 'success',
         iconColor: '#497aa6',
         showCloseButton: true,
-        showDenyButton: true,
         confirmButtonText: 'Continue',
         allowEnterKey: false,
         customClass: {
@@ -81,9 +80,38 @@ export default function ShowTime() {
 
 
   function handleDelete(e, f){
-    const showtimeId = f._id
-    dispatch(logicDeleteShowtime(showtimeId, currentUser))
-    setTimeout(()=>{ dispatch(getAllShowtimes())}, 500 )
+
+    Swal.fire({
+      title:'Are you sure you want to delete this showtime?',
+      html: `<div>
+        <p><span style='font-weight: 700;'>Movie:</span> ${f.movieTitle}</p>
+        <p><span style='font-weight: 700;'>DateTime:</span> ${new Date(f.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}hs</p>
+        <p><span style='font-weight: 700;'>Movie Theater:</span> ${f.roomId ? rooms.find(r => r.value === f.roomId).label : ''}</p>
+        <p><span style='font-weight: 700;'>Format:</span> ${f.format}</p>
+      </div>`,
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      showDenyButton: true,
+      confirmButtonText: 'Yes, I am sure',
+      denyButtonText: 'No, cancel delete',
+      allowEnterKey: false,
+      customClass: {
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton'
+      }
+    })
+    .then((result=>{
+
+      if(result.isConfirmed){
+
+        const showtimeId = f._id
+        dispatch(logicDeleteShowtime(showtimeId, currentUser))
+        setTimeout(()=>{ dispatch(getAllShowtimes())}, 600 )
+      }
+    }))
   }
 
   return (
