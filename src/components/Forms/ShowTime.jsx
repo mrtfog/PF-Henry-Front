@@ -23,7 +23,7 @@ export default function ShowTime() {
   
   const rooms = roomsBackend ? roomsBackend.map((e) => { 
 
-    const type = e.columns <= 8 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
+    const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
     return {value: e._id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
 
 
