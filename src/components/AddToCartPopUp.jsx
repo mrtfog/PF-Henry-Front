@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
-import { getShowtimeByMovieId, addToCartDisplay, addToCart } from '../redux/actions/cart'
+import { getShowtimeByMovieId, addToCartDisplay, addToCart, postCart } from '../redux/actions/cart'
 import { useHistory } from 'react-router-dom'
+import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js';
 
 
 export default function AddToCartPopUp() {
-
+    const { currentUser } = useAuth();
     const history = useHistory()
 
     const dispatch = useDispatch()
@@ -88,9 +89,11 @@ export default function AddToCartPopUp() {
                     history.push('/cart')
                 }
             })
+            
 
         } else {
             dispatch(addToCart({ ...selectedShowtime, movieId: movie.id, tickets: value }))
+            if(currentUser.uid) dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type:'standard' }, currentUser.accessToken))
             Swal.fire({
                 text:'Reservation added to cart',
                 icon: 'success',
@@ -110,6 +113,7 @@ export default function AddToCartPopUp() {
             .then((result)=>{
     
                 if(result.isConfirmed){
+
                     history.push(`/cart`)
                     dispatch(addToCartDisplay('none'))                
                 }
@@ -139,7 +143,7 @@ export default function AddToCartPopUp() {
                         showtimes.length ? showtimes.map((p, index) => {
                             return <option key={p._id} value={index}>
 
-                                {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format}
+                                {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format} • ${p.ticketPrice}
                             </option>
                         })
                             : <option disabled>You don't have any showtime</option>}

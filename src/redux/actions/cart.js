@@ -1,4 +1,5 @@
 import axios from "axios";
+import { updateCurrentUser } from "firebase/auth";
 
 export function getCart() {
 
@@ -31,13 +32,13 @@ export function getShowtimeByMovieId(id) {
 }
 
 
-export function postCart(payload) {
+export function postCart(payload, accestoken) {
 
     return async (dispatch) => {
 
         try {
 
-            await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload)
+            await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
 
             return dispatch({ type: 'POST_RESERVATION' })
 
@@ -87,3 +88,26 @@ export function clearCart() {
 export function clearCartByMovie(payload) {
     return { type: 'CLEAR_CART_BY_MOVIE', payload }
 }
+
+
+
+
+
+
+//future dispatch seats to back
+
+// export function selectedSeats(seatsId, userId, showtimeId, reservationId) {
+//     return async (dispatch) => {
+        
+//         try {
+            
+//             await axios.post('https://pf-henry-back.herokuapp.com/reservation/setUserSeats', {reservationId, seatsLocations: seatsId})
+            
+//             return dispatch({ type: 'SELECTED_SEATS', payload: { seatsId, userId, showtimeId } })
+            
+//         } catch (e) {
+//             console.log(e)
+//         }
+//     }
+   
+// }
