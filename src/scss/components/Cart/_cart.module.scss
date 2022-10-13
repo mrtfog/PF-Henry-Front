@@ -121,6 +121,8 @@
         width: 100vw;
         
         .paymentGateway{
+          
+           
             form{
                 width: 70vw;
                 padding: 0;
@@ -130,12 +132,12 @@
                 flex-direction: row;
                 align-items: center;
                 justify-content: flex-end;
-
                 h2{
                     font-size: 32px;
                     margin-right: 1.5rem;
                     color: $text-color-white;
                 }
+              
                 button{
                     @include btn-primary;
                     position: relative;

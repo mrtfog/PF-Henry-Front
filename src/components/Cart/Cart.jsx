@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../scss/components/Cart/_cart.module.scss";
 import {
@@ -10,9 +10,12 @@ import {
 } from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
 export default function Cart() {
   const { currentUser } = useAuth();
+  const [total, setTotal] = useState();
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -23,6 +26,15 @@ export default function Cart() {
     dispatch(getCart());
     validateConfirm(cart);
   }, []);
+  useEffect(() => {
+    setTotal(
+      cart
+        .reduce((acc, cur) => {
+          return (acc = acc + cur.tickets * cur.ticketPrice);
+        }, 0)
+        .toFixed(2)
+    );
+  }, [cart]);
 
   function handleOnClick(r) {
     if (!currentUser) {
@@ -56,7 +68,26 @@ export default function Cart() {
     }
     return bool && seatsBool;
   };
-
+  // const handleSubmit = async (e) => {
+  //   // e.preventDeafult();
+  //   console.log(currentUser?.uid);
+  //   const userUid = currentUser?.uid;
+  //   const form = {
+  //     title: toString(
+  //       cart.length
+  //         ? cart.map((r) => {
+  //             return r.movieTitle;
+  //           })
+  //         : null
+  //     ),
+  //     price: total,
+  //   };
+  //   try {
+  //     await axios.post("http://localhost:8082/payment/payment", form);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
   return (
     <div className={style.container_cart}>
       <div className={style.title}>
@@ -119,20 +150,23 @@ export default function Cart() {
         </div>
         <div className={style.paymentGateway}>
           <form
-            action="http://pf-henry-back.herokuapp.com/payment/payment"
+            action={`http://localhost:8082/payment/payment?userId=${currentUser?.uid}`}
             method="POST"
           >
-            <input type="hidden" name="title" value="Mininos"></input>
-            <input type="hidden" name="price" value="780"></input>
-
-            <h2>
-              Total: $
-              {cart
-                .reduce((acc, cur) => {
-                  return (acc = acc + cur.tickets * cur.ticketPrice);
-                }, 0)
-                .toFixed(2)}
-            </h2>
+            {/* <form onSubmit={handleSubmit}> */}
+            <input
+              type="hidden"
+              name="title"
+              value={
+                cart.length
+                  ? cart.map((r) => {
+                      return r.movieTitle;
+                    })
+                  : ""
+              }
+            ></input>
+            <input type="hidden" name="price" value={total}></input>
+            <h2>Total: ${total}</h2>
             <button
               type="submit"
               className={style.btn_finish}
