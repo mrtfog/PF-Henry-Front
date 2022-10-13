@@ -9,6 +9,8 @@ import style from '../../scss/components/Users/_register.module.scss'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import GoogleSignIn from './GoogleSignIn'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 export default function Register() {
 
@@ -54,11 +56,47 @@ export default function Register() {
 
     useEffect(()=>{
         if (registerStatus === 201) {
-            alert(`User creation result was ${registerStatus} -> Successfully`)
-            history.push('/login')
+            Swal.fire({
+                text: 'Your registration was completed successfully',
+                icon: 'success',
+                iconColor: '#497aa6',
+                showCloseButton: true,
+                confirmButtonText: 'Log In',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+            .then((result)=>{
+    
+                if(result.isConfirmed){
+
+                    history.push('/login')
+                }
+            })
+            
         }
         
-        if (registerStatus && registerStatus !== 201) alert(`User creation result was ${registerStatus} -> Something went wrong :(`)
+        if (registerStatus && registerStatus !== 201){
+
+            Swal.fire({
+                text:'Something went wrong',
+                icon: 'error',
+                iconColor: '#497aa6',
+                confirmButtonText: 'Try Again',
+                showCloseButton: true,
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+        }
 
 
     }, [registerStatus])

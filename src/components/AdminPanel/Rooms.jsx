@@ -33,9 +33,9 @@ const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
     const [selectValue, setSelectValue] = useState('')
 
     const roomTypes = {
-       small: { columns: 10, rows: 10 },
-       medium: { columns: 15, rows: 15 },
-       big: { columns: 20, rows: 20 }
+       small: { columns: 10, rows: 7 },
+       medium: { columns: 12, rows: 7 },
+       big: { columns: 15, rows: 7 }
     }
     
     function handleSelect(e) {

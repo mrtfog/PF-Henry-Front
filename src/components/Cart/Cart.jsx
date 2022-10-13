@@ -10,17 +10,27 @@ import {
 } from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
-import axios from "axios";
+import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
 
 export default function Cart() {
   const { currentUser } = useAuth();
   const [total, setTotal] = useState();
+
+  const querystring = window.location.search;
+  const searchParams = new URLSearchParams(querystring);
+  const status = searchParams.get("status");
+  console.log(status);
 
   const history = useHistory();
 
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cartReducer.cart);
+  useEffect(() => {
+    if (status === "failed") {
+      handleOnPayment();
+    }
+  }, []);
 
   useEffect(() => {
     dispatch(getCart());
@@ -35,22 +45,106 @@ export default function Cart() {
         .toFixed(2)
     );
   }, [cart]);
-
+  function handleOnPayment() {
+    Swal.fire({
+      title: "Transaction failed",
+      text: "Please try again",
+      icon: "error",
+      showClass: {
+        popup: "animate__animated animate__fadeInDown",
+      },
+      hideClass: {
+        popup: "animate__animated animate__fadeOutUp",
+      },
+      showCloseButton: true,
+      showDenyButton: false,
+      denyButtonText: false,
+      confirmButtonText: "Continue",
+      allowEnterKey: false,
+      customClass: {
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return;
+      }
+    });
+  }
   function handleOnClick(r) {
     if (!currentUser) {
-      alert("To select your seats you need be logged in");
-      history.push("/login");
+      Swal.fire({
+        text: "To select your seats you need be logged in",
+        icon: "info",
+        iconColor: "#497aa6",
+        showCloseButton: true,
+        showDenyButton: true,
+        denyButtonText: "Continue",
+        confirmButtonText: "Log In",
+        allowEnterKey: false,
+        customClass: {
+          popup: "Alert",
+          closeButton: "closeButton",
+          confirmButton: "confirmButton",
+          denyButton: "denyButton",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push(`/login`);
+        }
+      });
     }
+
     dispatch(selectSeatsDisplay("flex"));
     dispatch(selectedReservation(r));
   }
 
   function handleOnClickReset() {
-    dispatch(clearCart());
+    Swal.fire({
+      text: "Are you sure you want to clear the cart?",
+      icon: "question",
+      iconColor: "#497aa6",
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: "Cancel",
+      confirmButtonText: "Yes, I am sure",
+      allowEnterKey: false,
+      customClass: {
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCart());
+      }
+    });
   }
 
-  function handleOnClickDeleteMovie(showtimeId) {
-    dispatch(clearCartByMovie(showtimeId));
+  function handleOnClickDeleteMovie(showtime) {
+    Swal.fire({
+      text: `Are you sure you want to remove '${showtime.movieTitle}' from your cart?`,
+      icon: "question",
+      iconColor: "#497aa6",
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: "No, go back to cart",
+      confirmButtonText: "Yes, I am sure",
+      allowEnterKey: false,
+      customClass: {
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(clearCartByMovie(showtime.showtimeId));
+      }
+    });
   }
 
   const validateConfirm = (cart) => {
@@ -131,7 +225,7 @@ export default function Cart() {
                 <div>
                   <button
                     className={style.delete}
-                    onClick={() => handleOnClickDeleteMovie(r.showtimeId)}
+                    onClick={() => handleOnClickDeleteMovie(r)}
                   >
                     X
                   </button>
@@ -150,7 +244,7 @@ export default function Cart() {
         </div>
         <div className={style.paymentGateway}>
           <form
-            action={`http://localhost:8082/payment/payment?userId=${currentUser?.uid}`}
+            action={`https://hpfc.netlify.app/payment/payment?userId=${currentUser?.uid}`}
             method="POST"
           >
             {/* <form onSubmit={handleSubmit}> */}

@@ -4,6 +4,8 @@ import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
 import { getShowtimeByMovieId, addToCartDisplay, addToCart } from '../redux/actions/cart'
 import { useHistory } from 'react-router-dom'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js';
+
 
 export default function AddToCartPopUp() {
 
@@ -64,11 +66,54 @@ export default function AddToCartPopUp() {
     function handleSubmit() {
         
         if (cartShowtimesIds.includes(selectedShowtime.showtimeId)) {
-            alert('You already selected this showtime, check your cart')
-            history.push('/cart')
+            Swal.fire({
+                text:'You already selected this showtime, check your cart',
+                icon: 'warning',
+                iconColor: '#497aa6',
+                showCloseButton: true,
+                confirmButtonText: 'Go to cart',
+                denyButtonText:'Continue',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+            .then((result)=>{
+    
+                if(result.isConfirmed){
+
+                    history.push('/cart')
+                }
+            })
+
         } else {
             dispatch(addToCart({ ...selectedShowtime, movieId: movie.id, tickets: value }))
-            alert('Reservation added to cart')
+            Swal.fire({
+                text:'Reservation added to cart',
+                icon: 'success',
+                iconColor: '#497aa6',
+                showCloseButton: true,
+                showDenyButton: true,
+                denyButtonText: 'Continue',
+                confirmButtonText: 'Go to cart',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+            .then((result)=>{
+    
+                if(result.isConfirmed){
+                    history.push(`/cart`)
+                    dispatch(addToCartDisplay('none'))                
+                }
+            })
         }
         
         dispatch(addToCartDisplay('none'))
