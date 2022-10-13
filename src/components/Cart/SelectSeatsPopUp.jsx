@@ -15,6 +15,12 @@ export default function SelectSeatsPopUp() {
     const movieTheaters = useSelector ( state => state.roomReducer.rooms)
     const showtime = useSelector(state=> state.showtimesReducer.showtimes).filter(s=>s._id===reservation.showtimeId)
 
+    const rooms = movieTheaters ? movieTheaters.map((e) => { 
+
+        const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
+        return {value: e._id, label: `N° ${e.number} - Size: ${type}`}}) : []
+
+
     console.log('Showtime en popup', showtime)
     useEffect(() => {
       dispatch(getAllRooms())
@@ -34,7 +40,7 @@ export default function SelectSeatsPopUp() {
 
             <div className={style.container_selectSeats}>
                 
-                <SeatPicker reservation={reservation} movieTheaters={movieTheaters} showtime={showtime}/>
+                <SeatPicker reservation={reservation} movieTheaters={movieTheaters} showtime={showtime} rooms={rooms}/>
 
             </div>
         )

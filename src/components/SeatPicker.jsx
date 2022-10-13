@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import "../scss/components/_seatPicker.scss"
 import { useAuth } from './contexts/AuthContext'
 import { selectedSeats, selectSeatsDisplay } from '../redux/actions/cart'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
 let seatsReserved = 0
 
-export default function Seats({reservation, movieTheaters, showtime}) {
+export default function Seats({reservation, movieTheaters, showtime, rooms}) {
 
 
     let arraySeats = showtime[0].seats
@@ -43,7 +43,7 @@ export default function Seats({reservation, movieTheaters, showtime}) {
  /*======================= Submit de info a reducer ======================= */    
     
     function handleOnConfirmSeats(){
-        dispatch(selectedSeats(userId, reservation.showtimeId))
+        dispatch(selectedSeats(seatsSelected, userId, reservation.showtimeId, reservation._id))
         Swal.fire({
             text:'Seats correctly selected',
             icon: 'success',
@@ -59,6 +59,7 @@ export default function Seats({reservation, movieTheaters, showtime}) {
             }
         })
         dispatch(selectSeatsDisplay('none'))
+        seatsReserved = 0
     }
 
 
@@ -114,7 +115,6 @@ function handleClick(e){
             }
         }
     }
-
     setSelected(initialState)
 }
 
@@ -182,7 +182,7 @@ function seatsRowDivs(arr){
 
                     <p><span className='spanTitle'>Tickets: </span>{reservation.tickets}</p>
 
-                    <p><span className='spanTitle'>Movie Theater: </span>{reservation.roomId}</p>  
+                    <p><span className='spanTitle'>Movie Theater: <br/> </span>{reservation.roomId ? rooms.find(r => r.value === reservation.roomId).label : ''}</p>  
                     <p><span className='spanTitle'>Format: </span>{reservation.format}</p>
                     <p><span className='spanTitle'>Your Seats Selection:</span>
                     <br />
@@ -207,14 +207,19 @@ function seatsRowDivs(arr){
                     {selected.length ?
 
                     <div className='columnNumber'>
-                        <div className='blank' style={{margin: '4px'}}></div> 
+                       { indexHalls.secondHall=== 8?<div className='blank' style={{marginLeft: '75px'}}></div> 
+                                                 :indexHalls.secondHall=== 9
+                                                 ?<div className='blank' style={{marginLeft: '45px'}}></div> 
+                                                 :<div className='blank' style={{margin: '4px'}}></div> 
+                        
+                        }
                         {selected[selected.length - 1].map((c, index)=>{
                            
                             if(index === indexHalls.firstHall) 
                                { return <><div className='blank' style={{margin: '0 1.05rem'}}></div>
                                 <div className='blank'>{c.location.slice(1)}</div></>}
                             if(index === indexHalls.secondHall){
-                                return <><div className='blank' style={{margin: '0 .65rem'}}></div>
+                                return <><div className='blank' style={{margin: '0 .9rem'}}></div>
                                 <div className='blank'>{c.location.slice(1)}</div></>
                                 }
                             else{ 

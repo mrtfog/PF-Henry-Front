@@ -119,6 +119,7 @@ export default function Cart() {
       },
     }).then((result) => {
       if (result.isConfirmed) {
+        sessionStorage.clear()
         dispatch(clearCart());
       }
     });
@@ -234,7 +235,7 @@ export default function Cart() {
             );
           })
         ) : (
-          <p style={{ color: "#fff" }}>You haven't ticktes in your cart yet!</p>
+          <p style={{ color: "#fff" }}>You haven't got any ticktes in your cart yet!</p>
         )}
       </div>
 
