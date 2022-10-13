@@ -3,10 +3,11 @@ import style from '../scss/components/_movieDetail.module.scss'
 import YouTube from 'react-youtube'
 import { useSelector, useDispatch } from 'react-redux'
 import { getMovieReviews } from '../redux/actions/reviews'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { resetMovieDetail, getMovieDetail } from '../redux/actions/movies'
 import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
 import { useAuth } from './contexts/AuthContext'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
 export default function MovieDetail() {
@@ -15,6 +16,7 @@ export default function MovieDetail() {
 
     const {id}= useParams()
     const dispatch = useDispatch()
+    const history = useHistory()
 
     useEffect(()=>{
 
@@ -48,8 +50,36 @@ export default function MovieDetail() {
 
     function handleDisplay(){
 
-        dispatch(addToPlaylistDisplay('flex'))
-        dispatch(selectedMovie(movie.id, movie.title))
+        if(!currentUser){
+
+            return Swal.fire({
+              text:'To add a movie to your playlist you need to be logged in',
+              icon: 'info',
+              iconColor: '#497aa6',
+              showCloseButton: true,
+              showDenyButton: true,
+              denyButtonText: 'Continue',
+              confirmButtonText: 'Log In',
+              allowEnterKey: false,
+              customClass: {
+                popup: 'Alert',
+                closeButton: 'closeButton',
+                confirmButton: 'confirmButton',
+                denyButton: 'denyButton',
+              }
+            })
+            .then((result)=>{
+      
+              if(result.isConfirmed){
+                history.push(`/login`)
+              }
+            })
+      
+        }
+        else{
+            dispatch(addToPlaylistDisplay('flex'))
+            dispatch(selectedMovie(movie.id, movie.title))
+        }
 
     }
 

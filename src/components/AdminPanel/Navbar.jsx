@@ -3,6 +3,7 @@ import style from "../../scss/components/AdminPanel/_navbar.module.scss";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 const NavbarAdmin = () => {
   const { currentUser, logOut } = useAuth();
@@ -12,13 +13,27 @@ const NavbarAdmin = () => {
 
   const history = useHistory();
 
-  async function handleLogOut() {
-    try {
-      await logOut();
-      history.push("/");
-    } catch (e) {
-      console.log(e);
-    }
+  function handleLogOut() {
+
+    Swal.fire({
+      text:'Are you sure you want to log out?',
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      confirmButtonText: 'Yes, I am sure',
+      denyButtonText: 'No, stay logged in',
+      customClass: 'Alert'
+    })
+
+    .then((result)=>{
+
+      if(result.isConfirmed){
+        logOut()
+        .then(()=> history.push("/"))
+        .catch(e =>  console.log(e))
+      }
+  
+    })
   }
 
   return (
@@ -183,7 +198,7 @@ const NavbarAdmin = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/admin/showTime" className={style.link}>
+          <NavLink to="/admin/showtime" className={style.link}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"

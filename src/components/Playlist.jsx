@@ -7,6 +7,8 @@ import { useEffect } from 'react'
 import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, removeMovieFromPlaylist } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
 import { useAuth } from './contexts/AuthContext'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 export default function Playlist() {
 
@@ -27,7 +29,6 @@ export default function Playlist() {
     useEffect(() => {
         if (playlist) dispatch(getPlaylistMovies(playlist.moviesId))
         return () => dispatch(clearPlaylistMovies())
-
     }, [playlist])
 
     const [randomMovie, setRandomMovie] = useState(false)
@@ -37,7 +38,21 @@ export default function Playlist() {
     function handleMovieDelete(movieId, title) {
 
         dispatch(removeMovieFromPlaylist(movieId, id, currentUser.uid))
-        alert(`"${title}" was successfully removed from the playlist`)
+        Swal.fire({
+            text:`"${title}" was successfully removed from the playlist`,
+            icon: 'success',
+            iconColor: '#497aa6',
+            showCloseButton: true,
+            showDenyButton: true,
+            confirmButtonText: 'Continue',
+            allowEnterKey: false,
+            customClass: {
+                popup: 'Alert',
+                closeButton: 'closeButton',
+                confirmButton: 'confirmButton',
+                denyButton: 'denyButton',
+            }
+        })
         setTimeout(() => dispatch(getPlaylistMovies(playlist.moviesId)), 1000)
     }
 

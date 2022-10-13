@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import style from "../scss/components/_navbar.module.scss";
 import { useAuth } from "./contexts/AuthContext";
 import userIMG from '../assets/user.png'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 export default function Navbar() {
 
@@ -28,13 +29,31 @@ export default function Navbar() {
 
   async function handleLogOut(){
 
-    try{
-      await logOut()
-      history.push('/')
-    }
-    catch(e){
-      console.log(e)
-    }
+    Swal.fire({
+      text:'Are you sure you want to log out?',
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: 'No, stay logged in',
+      confirmButtonText: 'Yes, I am sure',
+      allowEnterKey: false,
+      customClass: {
+          popup: 'Alert',
+          closeButton: 'closeButton',
+          confirmButton: 'confirmButton',
+          denyButton: 'denyButton',
+      }
+    })
+    .then((result)=>{
+
+      if(result.isConfirmed){
+        logOut()
+        .then(()=> history.push('/'))
+        .catch(e => console.log(e))
+      }
+    })
+
 
   }
 

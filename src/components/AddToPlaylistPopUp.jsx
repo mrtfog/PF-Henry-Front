@@ -4,13 +4,16 @@ import { addMovieToPlaylist, addToPlaylistDisplay, createNewPlaylist, getUserPla
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToPlaylistPopUp.module.scss'
 import { useAuth } from './contexts/AuthContext'
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 export default function AddToPlaylistPopUp() {
 
     const dispatch = useDispatch()
 
     const {pathname} = useLocation()
+
+    const history = useHistory()
 
     const display = useSelector(state => state.playlistsReducer.formDisplay)
     const playlists = useSelector(state => state.playlistsReducer.playlists)
@@ -30,7 +33,29 @@ export default function AddToPlaylistPopUp() {
 
         e.preventDefault()
         dispatch(addMovieToPlaylist(movie.id, playlist, currentUser.uid))
-        alert('The movie was added to playlist successfully')
+        Swal.fire({
+            text:'The movie was added to playlist successfully',
+            icon: 'success',
+            iconColor: '#497aa6',
+            showCloseButton: true,
+            showDenyButton: true,
+            denyButtonText: 'Continue',
+            confirmButtonText: 'See my playlists',
+            allowEnterKey: false,
+            customClass: {
+                popup: 'Alert',
+                closeButton: 'closeButton',
+                confirmButton: 'confirmButton',
+                denyButton: 'denyButton',
+            }
+        })
+        .then((result)=>{
+
+            if(result.isConfirmed){
+                history.push(`/playlists`)
+                dispatch(addToPlaylistDisplay('none'))
+            }
+        })
         setPlaylist('')
         dispatch(addToPlaylistDisplay('none'))
     }
@@ -40,7 +65,49 @@ export default function AddToPlaylistPopUp() {
         e.preventDefault()
         dispatch(createNewPlaylist({ name: name, userId: currentUser.uid }))
         setName('')
-        alert('Playlist was created')
+
+        if(pathname.includes('/playlists')){
+
+            Swal.fire({
+                text:'Playlist was created',
+                icon: 'success',
+                iconColor: '#497aa6',
+                confirmButtonText: 'Close',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+        }
+        else{
+            
+            Swal.fire({
+                text:'Playlist was created',
+                icon: 'success',
+                iconColor: '#497aa6',
+                showCloseButton: true,
+                showDenyButton: true,
+                denyButtonText: 'Continue',
+                confirmButtonText: 'See my playlists',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
+            .then((result)=>{
+    
+                if(result.isConfirmed){
+                    history.push(`/playlists`)
+                    dispatch(addToPlaylistDisplay('none'))
+                }
+            })
+        }
         if(pathname.includes('/playlists')) dispatch(addToPlaylistDisplay('none'))
         dispatch(getUserPlaylists(currentUser.uid))
     

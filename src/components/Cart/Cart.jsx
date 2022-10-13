@@ -4,6 +4,8 @@ import style from "../../scss/components/Cart/_cart.module.scss";
 import { getCart, selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie } from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 export default function Cart() {
 
@@ -23,19 +25,84 @@ export default function Cart() {
   function handleOnClick(r) {
 
     if (!currentUser) {
-      alert('To select your seats you need be logged in')
-      history.push('/login')
+      
+      Swal.fire({
+        text: 'To select your seats you need be logged in',
+        icon: 'info',
+        iconColor: '#497aa6',
+        showCloseButton: true,
+        showDenyButton: true,
+        denyButtonText: 'Continue',
+        confirmButtonText: 'Log In',
+        allowEnterKey: false,
+        customClass: {
+          popup: 'Alert',
+          closeButton: 'closeButton',
+          confirmButton: 'confirmButton',
+          denyButton: 'denyButton',
+        }
+      })
+      .then((result)=>{
+
+        if(result.isConfirmed){
+          history.push(`/login`)
+        }
+      })
     }
+
     dispatch(selectSeatsDisplay('flex'))
     dispatch(selectedReservation(r))
   }
 
   function handleOnClickReset() {
-    dispatch(clearCart())
+    Swal.fire({
+      text: 'Are you sure you want to clear the cart?',
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: 'Cancel',
+      confirmButtonText: 'Yes, I am sure',
+      allowEnterKey: false,
+      customClass: {
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton',
+      }
+    })
+    .then((result)=>{
+
+      if(result.isConfirmed){
+        dispatch(clearCart())
+      }
+    })
+
   }
 
-  function handleOnClickDeleteMovie(showtimeId) {
-    dispatch(clearCartByMovie(showtimeId))
+  function handleOnClickDeleteMovie(showtime) {
+    Swal.fire({
+      text: `Are you sure you want to remove '${showtime.movieTitle}' from your cart?`,
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: 'No, go back to cart',
+      confirmButtonText: 'Yes, I am sure',
+      allowEnterKey: false,
+      customClass: {
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton',
+      }
+    })
+    .then((result)=>{
+
+      if(result.isConfirmed){
+        dispatch(clearCartByMovie(showtime.showtimeId))
+      }
+    })
   }
 
   const validateConfirm = (cart) => {
@@ -96,7 +163,7 @@ export default function Cart() {
                 <p>${Number(r.tickets) * r.ticketPrice}</p>
 
                 <div>
-                  <button className={style.delete} onClick={() => handleOnClickDeleteMovie(r.showtimeId)}>X</button>
+                  <button className={style.delete} onClick={() => handleOnClickDeleteMovie(r)}>X</button>
                 </div>
               </div>
             );

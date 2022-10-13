@@ -9,6 +9,8 @@ import Select from "./Select";
 import { useFormik } from "formik";
 import { useAuth } from "../contexts/AuthContext";
 import { getAllRooms } from "../../redux/actions/rooms";
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 export default function ShowTime() {
 
@@ -51,7 +53,20 @@ export default function ShowTime() {
     validate,
     onSubmit: (values, { resetForm }) => {
       dispatch(postShowtime(values, currentUser));
-      alert("Show created");
+      Swal.fire({
+        text:'Show created',
+        icon: 'success',
+        iconColor: '#497aa6',
+        showCloseButton: true,
+        showDenyButton: true,
+        confirmButtonText: 'Continue',
+        allowEnterKey: false,
+        customClass: {
+          popup: 'Alert',
+          closeButton: 'closeButton',
+          confirmButton: 'confirmButton',
+        }
+      })
       dispatch(getAllShowtimes());
       resetForm({
         values: "",
