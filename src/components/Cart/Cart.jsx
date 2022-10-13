@@ -244,7 +244,7 @@ export default function Cart() {
         </div>
         <div className={style.paymentGateway}>
           <form
-            action={`https://hpfc.netlify.app/payment/payment?userId=${currentUser?.uid}`}
+            action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`}
             method="POST"
           >
             {/* <form onSubmit={handleSubmit}> */}
