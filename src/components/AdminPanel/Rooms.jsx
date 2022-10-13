@@ -1,33 +1,28 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { getAllRooms, postNewRoom } from "../../redux/actions/rooms";
+import { getAllRooms, logicDeleteRoom, postNewRoom } from "../../redux/actions/rooms";
 import { useAuth } from '../contexts/AuthContext';
 
 import style from '../../scss/components/AdminPanel/_rooms.module.scss'
-import { useEffect } from 'react';
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 function Rooms() {
 
 const {currentUser} = useAuth()
 const dispatch = useDispatch()
-//const movies = useSelector((state) => state.moviesReducer.movies);
-//const functions = useSelector((state) => state.showtimesReducer.showtimes);
+
 const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
 
+/* Estas dos lineas es para saber cuál es el último numero de sala creada y seguir un orden */
+const lastRoom = roomsBackend ? roomsBackend[roomsBackend.length-1] : undefined
+const roomNumber = lastRoom ? lastRoom.number : undefined
 
-/*
-            Columns         Pasillo
-                🔽 
-                
-                 1 2 3 4 5 6  null  7 8 9 10
-    
-  Rows ->   A    1 2 3 4 5 6  null  7 8 9 10
-            B    1 2 3 4 5 6  null  7 8 9 10    
-            C    1 2 3 4 5 6  null  7 8 9 10
-            D    1 2 3 4 5 6  null  7 8 9 10
-            F    1 2 3 4 5 6  null  7 8 9 10
-            G    1 2 3 4 5 6  null  7 8 9 10                       
-*/
+/* Esto es para saber el tamaño de las salas que viene del backend y clasificarlas en Regular, Pemiere y Small*/
+const rooms = roomsBackend ? roomsBackend.map((e) => { 
+  const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
+  return {value: e._id, label: `Room N° ${e.number} - Size: ${type}`}
+  }) : []
+
 
     const [room, setRoom] = useState('')
     const [selectValue, setSelectValue] = useState('')
@@ -40,22 +35,68 @@ const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
     
     function handleSelect(e) {
         setRoom(roomTypes[e.target.value])
-        //console.log('Esto es selectValue ->', e.target.value)
         setSelectValue(e.target.value)
-        //console.log('Esto es room ->', roomTypes[e.target.value])
     }
 
     function handleSubmit() {
-        console.log('Esto es roomBackend ->', roomsBackend)
-        dispatch(postNewRoom({...room, number: roomsBackend.length+1}, currentUser))
-        console.log('Esto es lo que enviamos ->', {...room, number: roomsBackend.length+1})
+        Swal.fire({
+          text:'Movie theater created',
+          icon: 'success',
+          iconColor: '#497aa6',
+          showCloseButton: true,
+          confirmButtonText: 'Continue',
+          allowEnterKey: false,
+          customClass: {
+            popup: 'Alert',
+            closeButton: 'closeButton',
+            confirmButton: 'confirmButton',
+          }
+        })
+
+        dispatch(postNewRoom({...room, number: roomNumber+1}, currentUser))
         dispatch(getAllRooms())
+        setTimeout(() => window.location.reload(), 1000)
         setRoom('')
     }
+    
 
-    useEffect(()=>{
-        dispatch(getAllRooms());
-    },[roomsBackend])
+
+    function handleDelete(e, f){
+        Swal.fire({
+          title:'Are you sure you want to delete this movie theater?',
+          html: `<div>
+            <p><span style='font-weight: 700;'>Movie Theater:</span></br></br> ${f._id ? rooms.find(r => r.value === f._id).label : ''}</p>
+          </div>`,
+          icon: 'question',
+          iconColor: '#497aa6',
+          showCloseButton: true,
+          showDenyButton: true,
+          confirmButtonText: 'Yes, I am sure',
+          denyButtonText: 'No, cancel delete',
+          allowEnterKey: false,
+          customClass: {
+            popup: 'Alert',
+            closeButton: 'closeButton',
+            confirmButton: 'confirmButton',
+            denyButton: 'denyButton'
+          }
+        })
+        .then((result=>{
+    
+          if(result.isConfirmed){ 
+    
+            const showtimeId = f._id
+            dispatch(logicDeleteRoom(showtimeId, currentUser))
+            setTimeout(()=>{ dispatch(getAllRooms())}, 300 )
+            setTimeout(() => window.location.reload(), 1000)
+
+          }
+        }))
+      }
+
+      useEffect(()=>{
+        dispatch(getAllRooms())
+      }, [])
 
   return (
     <div className={style.mainContainer}>
@@ -63,7 +104,7 @@ const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
             <h2>Movie Theater Creation</h2>
             <div className={style.subtitleContainer}>
                     {
-                        <p>Create movie theater number: <span>{roomsBackend.length+1}</span></p>
+                        <p>Create movie theater number: <span>{roomNumber ? roomNumber + 1 : 'Loading...'}</span></p>
                     }
                 </div>
             <div className={style.inputContainer}>
@@ -82,12 +123,16 @@ const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
             <h2>Created Movie Theaters</h2>
             <div className={style.roomCardsContainer}>
             
-                {roomsBackend ? roomsBackend.map((e) => { 
+                {roomsBackend ? roomsBackend.map((f) => { 
 
-                const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
+                const type = f.columns <= 10 ? 'Small' : f.columns === 12 ? 'Regular' : 'Premiere'
             
                 return <div className={style.roomCard}>
-                    <p> Movie theater <span>N° {e.number}</span> - Size: <span>{type}</span></p>
+                    <p> Movie theater <span>N° {f.number}</span> - Size: <span>{type}</span></p>
+                    <button 
+                      className={style.closeBtn}
+                      onClick={(e)=> handleDelete(e, f)}
+                      >X</button>
                 </div>
 
                 }) : null }

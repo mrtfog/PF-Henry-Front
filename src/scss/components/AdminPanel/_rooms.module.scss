@@ -69,6 +69,7 @@
         gap: 1em;
         .roomCard{
             display: flex;
+            position: relative;
             background-color: white;
             text-align: center;
             font-weight: 500;
@@ -90,6 +91,30 @@
                 span{
                     color: $primary-color;
                     font-weight: 600;
+                }
+            }
+
+            .closeBtn{
+                position: absolute;
+                top: 0.75em;
+                right: .75em;
+                padding: .25rem .5rem;
+                color: $primary-color;
+                transition: all 0.2s linear;
+                border-radius: 100%;
+                color: $background-color;
+                background-color: white;
+                font-weight: 600;
+                font-size: 1.1rem;
+
+                cursor: pointer;
+
+                &:hover{
+                    text-shadow: 0 0 10px $primary-color;
+                    transform: scale(1.1);
+                    background-color: $primary-color;
+                    color:white;
+                    font-weight: 500;
                 }
             }
 
