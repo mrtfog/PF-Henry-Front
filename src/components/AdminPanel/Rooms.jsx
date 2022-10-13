@@ -84,7 +84,7 @@ const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
             
                 {roomsBackend ? roomsBackend.map((e) => { 
 
-                const type = e.rows <= 10 ? 'Small' : e.rows === 15 ? 'Regular' : 'Premiere'
+                const type = e.columns <= 8 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
             
                 return <div className={style.roomCard}>
                     <p> Movie theater <span>N° {e.number}</span> - Size: <span>{type}</span></p>

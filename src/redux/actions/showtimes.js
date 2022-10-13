@@ -26,7 +26,7 @@ export function postShowtime(values, currentUser){
 
             await axios.post('https://pf-henry-back.herokuapp.com/showtime/post', values, {headers: { "user": currentUser.accessToken}})
             
-            return dispatch({type:'POST_SHOWTIME'})
+            return dispatch({type:'POST_SHOWTIME', payload : values})
         }
         catch(e){
             console.log(e)
@@ -66,7 +66,7 @@ export function logicDeleteShowtime(id, currentUser){
 
             await axios.delete(`https://pf-henry-back.herokuapp.com/showtime/endById/${id}`, {headers: { "user": currentUser.accessToken}})
             
-            return dispatch({type:'DELETE_SHOWTIME'})
+            return dispatch({type:'DELETE_SHOWTIME', payload: id})
         }
         catch(e){
             console.log(e)
