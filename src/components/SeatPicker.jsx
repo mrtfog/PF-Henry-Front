@@ -4,6 +4,8 @@ import "../scss/components/_seatPicker.scss"
 import { useAuth } from './contexts/AuthContext'
 import { selectedSeats, selectSeatsDisplay } from '../redux/actions/cart'
 import { useDispatch } from 'react-redux'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 let seatsReserved = 0
 
@@ -151,7 +153,20 @@ export default function Seats({reservation}) {
     
     function handleOnConfirmSeats(){
         dispatch(selectedSeats(seatsId, userId, reservation.showtimeId))
-        alert('Seats correctly selected')
+        Swal.fire({
+            text:'Seats correctly selected',
+            icon: 'success',
+            iconColor: '#497aa6',
+            showCloseButton: true,
+            confirmButtonText: 'Continue',
+            allowEnterKey: false,
+            customClass: {
+                popup: 'Alert',
+                closeButton: 'closeButton',
+                confirmButton: 'confirmButton',
+                denyButton: 'denyButton',
+            }
+        })
         dispatch(selectSeatsDisplay('none'))
     }
 
@@ -165,7 +180,22 @@ export default function Seats({reservation}) {
         let seatSelected = e.target.innerText
         if(e.target.className === "seat seat--enabled"){
 
-            if (seatsReserved===tickets) return alert('All seats already selected')
+            if (seatsReserved===tickets){
+                return Swal.fire({
+                    text:'All seats already selected',
+                    icon: 'warning',
+                    iconColor: '#497aa6',
+                    showCloseButton: true,
+                    confirmButtonText: 'Continue',
+                    allowEnterKey: false,
+                    customClass: {
+                        popup: 'Alert',
+                        closeButton: 'closeButton',
+                        confirmButton: 'confirmButton',
+                        denyButton: 'denyButton',
+                    }
+                })
+            }
             e.target.className = "seat seat--selected"
             
             for (let i = 0; i < initialState.length; i++) {

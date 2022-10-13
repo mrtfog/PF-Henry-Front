@@ -1,11 +1,13 @@
 import React from 'react'
 import style from '../scss/components/_card.module.scss'
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
 import { addToCartDisplay, takenTickets } from '../redux/actions/cart'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { useAuth } from './contexts/AuthContext'
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 export default function Card({img, rating, title, id}) {
 
@@ -16,6 +18,8 @@ export default function Card({img, rating, title, id}) {
 
   const dispatch = useDispatch()
 
+  const history = useHistory()
+
   const addPlaylistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
   const showtimes = useSelector(state => state.showtimesReducer.showtimes)
   const billboardIds = Array.from(new Set(showtimes.map(s=>s.movieId)))
@@ -23,7 +27,32 @@ export default function Card({img, rating, title, id}) {
 
   function handleAddToList(){
 
-    if(!currentUser) return alert('To add a movie to your playlist you need to be logged in')
+    if(!currentUser){
+
+      return Swal.fire({
+        text:'To add a movie to your playlist you need to be logged in',
+        icon: 'info',
+        iconColor: '#497aa6',
+        showCloseButton: true,
+        showDenyButton: true,
+        denyButtonText: 'Continue',
+        confirmButtonText: 'Log In',
+        allowEnterKey: false,
+        customClass: {
+          popup: 'Alert',
+          closeButton: 'closeButton',
+          confirmButton: 'confirmButton',
+          denyButton: 'denyButton',
+        }
+      })
+      .then((result)=>{
+
+        if(result.isConfirmed){
+          history.push(`/login`)
+        }
+      })
+
+    }
     dispatch(addToPlaylistDisplay('flex'))
     dispatch(selectedMovie(id, title))
 
