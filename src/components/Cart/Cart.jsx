@@ -15,7 +15,7 @@ export default function Cart() {
   const dispatch = useDispatch();
 
   const cart = useSelector((state) => state.cartReducer.cart);
-
+  
   useEffect(() => {
     dispatch(getCart());
     validateConfirm(cart)

@@ -75,7 +75,7 @@
 
             .box {
 
-                width: 500px;
+                width: 600px;
                 height: fit-content;
                 border: solid 5px rgb(236, 235, 235);
                 border-color: rgb(252, 247, 247) transparent transparent transparent;
@@ -84,6 +84,21 @@
                 padding: 2rem;
                 padding-top: 3.5rem;
                 transform: translateY(180deg);
+
+                
+                .columnNumber{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-bottom: 10px;
+                    margin-left: 30px;
+
+                                        
+                    .blank {
+                        margin: 0 .67rem;
+                    }
+
+                }
 
                 .seat-picker__row {
                     font-family: $font;
@@ -135,14 +150,14 @@
                         text-align: center;
                         cursor: not-allowed;
 
-                        svg{
-                            fill: grey;
-                        }
+                            svg{
+                                fill: grey;
+                            }
 
-                        &:hover svg{
-                            fill: rgb(97, 97, 97);
+                            &:hover svg{
+                                fill: rgb(97, 97, 97);
+                            }
                         }
-                    }
 
                     .seat--selected {
                         background-repeat: no-repeat;
@@ -156,25 +171,15 @@
                         align-items: center;
                         text-align: center;
 
-                        svg{
-                            fill: $primary-color;
-                            filter: drop-shadow(0 0 10px $primary-color);
-                            z-index: -1;
-                        }
-                      
-                        &:hover svg {
-                          fill: $hprimary-color;
-                        }
-                    }
-
-                    .columnNumber{
-
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: center;
-                        align-items: center;
-                        margin-bottom: 10px;
-
+                            svg{
+                                fill: $primary-color;
+                                filter: drop-shadow(0 0 10px $primary-color);
+                                z-index: -1;
+                            }
+                        
+                            &:hover svg {
+                            fill: $hprimary-color;
+                            }
                     }
                 }
 
