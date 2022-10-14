@@ -26,11 +26,6 @@ export default function Movies() {
       setCurrentPage(1)
     }, [])
 
-
-    
-    
-
-
     const [currentPage, setCurrentPage]= useState(1);
     const [moviesPerPage, setMoviesPerPage]= useState(20);
 
@@ -39,10 +34,13 @@ export default function Movies() {
       window.scrollTo(0, 0);
     }, [currentPage])
 
+  
+
 
     const indexOfLastMovie = currentPage * moviesPerPage
     const indexOfFirstMovie = indexOfLastMovie - moviesPerPage
     const currentMovies = movies?.slice(indexOfFirstMovie, indexOfLastMovie)
+
 
     const paginado = function (pageNumber){
         setCurrentPage(pageNumber)

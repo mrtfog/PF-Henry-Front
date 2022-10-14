@@ -2,7 +2,7 @@ import React,{ useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../scss/components/_home.module.scss'
 import Carousel from './Carousel'
-import { getMovies } from '../redux/actions/movies'
+import { getMovies, getUpcoming } from '../redux/actions/movies'
 import { getAllShowtimes, getBillboardMovies } from '../redux/actions/showtimes'
 import Footer from './Footer'
 import Slider from './Slider'
@@ -15,22 +15,19 @@ export default function Home() {
     const movies = useSelector(state => state.moviesReducer.movies)
     const showtimes = useSelector(state => state.showtimesReducer.showtimes)
     const billboardIds = Array.from(new Set(showtimes.map(s=>s.movieId)))
-
-
-
-    useEffect(() => {
-      dispatch(getAllShowtimes());
-      dispatch(getBillboardMovies(billboardIds))
-    }, [movies])
-
-    useEffect(() => {
-      dispatch(getMovies())
-    }, [])
-    
-
     const arrayBillboardMovies = useSelector(state => state.showtimesReducer.billboard)
     const arrayUpcomingMovies = useSelector(state => state.moviesReducer.upcoming)
     
+    useEffect(() => {
+      if(movies.length > 0 && showtimes.length > 0) dispatch(getBillboardMovies(billboardIds))
+    }, [movies])
+    
+    useEffect(() => {
+      if(showtimes.length === 0) dispatch(getAllShowtimes());
+      dispatch(getMovies())
+      dispatch(getUpcoming())
+    }, [])
+
     const horrorFilms = movies.filter((m) => {
       return m.genres.includes(27)
     }).slice(0, 20)

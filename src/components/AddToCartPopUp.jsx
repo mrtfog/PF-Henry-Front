@@ -38,7 +38,7 @@ export default function AddToCartPopUp() {
 
 
     useEffect(() => {
-        dispatch(getShowtimeByMovieId(movie.id))
+        if(movie.id)dispatch(getShowtimeByMovieId(movie.id))
     }, [movie])
 
     function handleDisplay() {

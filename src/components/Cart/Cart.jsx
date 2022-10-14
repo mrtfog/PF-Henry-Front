@@ -57,7 +57,7 @@ export default function Cart() {
           }
         })
         if(currentUser)dispatch(addToCartThroughBack(cartItem))
-        // console.log('cartItem', cartItem)
+        console.log('cartItem', cartItem)
     }, [reservations, showtimes])
     
 
@@ -75,7 +75,7 @@ export default function Cart() {
     if(currentUser){
       //NO BORRAR EL SETTIMEOUT DE ABAJITO 
       setTimeout(() => {
-        dispatch(getReservationThroughBack( currentUser.accessToken ))
+        if( reservations.length === 0)dispatch(getReservationThroughBack( currentUser.accessToken ))
       }, 150);      
       dispatch(getAllShowtimes())
     }
