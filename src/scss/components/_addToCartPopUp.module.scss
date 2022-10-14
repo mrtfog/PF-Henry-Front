@@ -85,10 +85,15 @@
 
        button{
         @include btn-primary;
-        &:disabled{
-            background-color: transparent;
-            cursor: not-allowed;
-        }
-       }
+        position: relative;
+        width: 15vw;
+        max-height: 50px;
+            &:disabled{
+                background-color: rgba(255, 255, 255, .3);
+                border-color: rgba(255, 255, 255, .5);
+                cursor: not-allowed;
+                transform: scale(1);
+            }
+    }
 
 }
