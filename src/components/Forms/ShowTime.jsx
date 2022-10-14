@@ -72,6 +72,7 @@ export default function ShowTime() {
       resetForm({
         values: "",
       });
+      setTimeout(() => window.location.reload(), 1000)
     },
   });
 

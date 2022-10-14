@@ -18,6 +18,12 @@ export default function showtimesReducer(state = initialState, action) {
             return{
                 ...state
             }
+            
+        case 'DELETE_ROOM':
+
+            return{
+                ...state
+            }
         
         default:
             return {

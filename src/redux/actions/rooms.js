@@ -19,7 +19,6 @@ export function getAllRooms() {
 }
 
 export function postNewRoom(room, currentUser){
-    //{number: 1, rows:5, columns: 10}
 
     return async(dispatch)=>{
 
@@ -31,5 +30,22 @@ export function postNewRoom(room, currentUser){
             console.log(e)
         }
 
+    }
+}
+
+
+export function logicDeleteRoom(id, currentUser){
+
+    return async(dispatch)=>{
+
+        try{
+
+            await axios.delete(`http://localhost:8082/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
+            
+            return dispatch({type:'DELETE_ROOM', payload: id})
+        }
+        catch(e){
+            console.log(e)
+        }
     }
 }
