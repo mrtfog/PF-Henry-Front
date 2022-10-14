@@ -6,10 +6,7 @@ import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
-let seatsReserved = 0
-
 export default function Seats({reservation, movieTheaters, showtime, rooms}) {
-
 
     let arraySeats = showtime[0].seats
     const dispatch = useDispatch()
@@ -20,7 +17,6 @@ export default function Seats({reservation, movieTheaters, showtime, rooms}) {
     let userId = currentUser.uid
 
     const [seatsSelected, setSeatsSelected] = useState([])
-
 
     const selectedMovieTheater = movieTheaters?.find (r=>r._id=== reservation.roomId)
 
@@ -59,7 +55,6 @@ export default function Seats({reservation, movieTheaters, showtime, rooms}) {
             }
         })
         dispatch(selectSeatsDisplay('none'))
-        seatsReserved = 0
     }
 
 
@@ -72,8 +67,22 @@ function handleClick(e){
     let initialState = selected
     let seatSelected = e.target.innerText
     if(e.target.className === "seat seat--enabled"){
-
-        if (seatsReserved===tickets) return alert('All seats already selected')
+        if (seatsSelected.length === tickets) {
+            return Swal.fire({
+                text:'All seats already selected',
+                icon: 'warning',
+                iconColor: '#497aa6',
+                confirmButtonText: 'Continue',
+                showCloseButton: true,
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            
+        })}
         e.target.className = "seat seat--selected"
         
         for (let i = 0; i < initialState.length; i++) {
@@ -88,7 +97,6 @@ function handleClick(e){
                             location : initialState[i][j].location,
                             userId : userId
                         }
-                        seatsReserved=seatsReserved+1
                         setSeatsSelected(seatsSelected.concat(initialState[i][j].location))  
                     }
                 } else  continue
@@ -107,7 +115,6 @@ function handleClick(e){
                         initialState[i][j] = {                
                             location : initialState[i][j].location,
                         }
-                        seatsReserved=seatsReserved-1
                         setSeatsSelected(seatsSelected.filter(s=> s !==initialState[i][j].location))
                     }
 
@@ -237,7 +244,7 @@ function seatsRowDivs(arr){
             </div>
 
         </div>
-            <button onClick={handleOnConfirmSeats} disabled={seatsReserved < tickets ? true : false}>Confirm selection</button>
+            <button onClick={handleOnConfirmSeats} disabled={seatsSelected.length < tickets ? true : false}>Confirm selection</button>
         </div>
     );
 

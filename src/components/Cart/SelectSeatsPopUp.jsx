@@ -1,4 +1,4 @@
-import React,{ useEffect } from 'react'
+import React,{ useEffect, useState } from 'react'
 import style from '../../scss/components/Cart/_selectSeatsPopUp.module.scss'
 import { selectSeatsDisplay } from "../../redux/actions/cart";
 import { getAllRooms } from '../../redux/actions/rooms'
@@ -15,19 +15,16 @@ export default function SelectSeatsPopUp() {
     const movieTheaters = useSelector ( state => state.roomReducer.rooms)
     const showtime = useSelector(state=> state.showtimesReducer.showtimes).filter(s=>s._id===reservation.showtimeId)
 
+
     const rooms = movieTheaters ? movieTheaters.map((e) => { 
 
         const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
         return {value: e._id, label: `N° ${e.number} - Size: ${type}`}}) : []
 
-
-    console.log('Showtime en popup', showtime)
     useEffect(() => {
       dispatch(getAllRooms())
       dispatch(getAllShowtimes())
     }, [])
-    
-
 
     function handleDisplay(){
         dispatch(selectSeatsDisplay('none'))
