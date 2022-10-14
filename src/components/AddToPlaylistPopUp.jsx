@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addMovieToPlaylist, addToPlaylistDisplay, createNewPlaylist, getUserPlaylists } from '../redux/actions/playlists'
+import { addMovieToPlaylist, addToPlaylistDisplay, createNewPlaylist, getPlaylistMovies, getUserPlaylists } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToPlaylistPopUp.module.scss'
 import { useAuth } from './contexts/AuthContext'
@@ -25,22 +25,21 @@ export default function AddToPlaylistPopUp() {
     const [playlist, setPlaylist] = useState('')
 
     useEffect(() => {
-        dispatch(getUserPlaylists(currentUser.uid))
+        dispatch(getUserPlaylists(currentUser))
     }, [])
 
 
     function handleAddMovieToPlaylist(e) {
 
         e.preventDefault()
-        dispatch(addMovieToPlaylist(movie.id, playlist, currentUser.uid))
         Swal.fire({
-            text:'The movie was added to playlist successfully',
+            text:`"${movie.title}" was added to "${playlists.find(p => p._id === playlist).name}" playlist successfully`,
             icon: 'success',
             iconColor: '#497aa6',
             showCloseButton: true,
             showDenyButton: true,
             denyButtonText: 'Continue',
-            confirmButtonText: 'See my playlists',
+            confirmButtonText: 'Go to playlist',
             allowEnterKey: false,
             customClass: {
                 popup: 'Alert',
@@ -52,27 +51,30 @@ export default function AddToPlaylistPopUp() {
         .then((result)=>{
 
             if(result.isConfirmed){
-                history.push(`/playlists`)
-                dispatch(addToPlaylistDisplay('none'))
+                history.push(`/playlists/${playlist}`)
             }
+
         })
-        setPlaylist('')
+        dispatch(addMovieToPlaylist(movie.id, playlist, currentUser))
         dispatch(addToPlaylistDisplay('none'))
+        setPlaylist('')
+
     }
 
     function handleCreatePlaylist(e) {
 
         e.preventDefault()
-        dispatch(createNewPlaylist({ name: name, userId: currentUser.uid }))
+        dispatch(createNewPlaylist({ name: name, userId: currentUser.uid }, currentUser))
         setName('')
 
         if(pathname.includes('/playlists')){
 
             Swal.fire({
-                text:'Playlist was created',
+                text:`"${name}" playlist was created successfully`,
                 icon: 'success',
                 iconColor: '#497aa6',
-                confirmButtonText: 'Close',
+                confirmButtonText: 'Continue',
+                showCloseButton: true,
                 allowEnterKey: false,
                 customClass: {
                     popup: 'Alert',
@@ -85,7 +87,7 @@ export default function AddToPlaylistPopUp() {
         else{
             
             Swal.fire({
-                text:'Playlist was created',
+                text:`"${name}" playlist was created successfully`,
                 icon: 'success',
                 iconColor: '#497aa6',
                 showCloseButton: true,
@@ -109,7 +111,7 @@ export default function AddToPlaylistPopUp() {
             })
         }
         if(pathname.includes('/playlists')) dispatch(addToPlaylistDisplay('none'))
-        dispatch(getUserPlaylists(currentUser.uid))
+        dispatch(getUserPlaylists(currentUser))
     
     }
 

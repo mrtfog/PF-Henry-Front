@@ -22,7 +22,7 @@ export default function playlistReducer(state = initialState, action) {
 
             return {
                 ...state,
-                selectedPlaylist: state.playlists.filter(p => p._id === action.payload).shift()
+                selectedPlaylist: action.payload
             }
 
         case 'GET_PLAYLIST_MOVIES':
@@ -38,18 +38,15 @@ export default function playlistReducer(state = initialState, action) {
 
         case 'ADD_MOVIE_TO_PLAYLIST':
             return {
-                ...state
+                ...state,
+                selectedPlaylist: action.payload
             }
 
         case 'REMOVE_MOVIE_FROM_PLAYLIST':
             return {
-                ...state
-            }
-
-        case 'CLEAR_PLAYLIST_MOVIES':
-            return {
                 ...state,
-                movies: []
+                selectedPlaylist: action.payload.list,
+                movies: state.movies.filter(m => m.id !== action.payload.movieId)
             }
 
         case 'ADD_TO_PLAYLIST_DISPLAY':
@@ -62,6 +59,14 @@ export default function playlistReducer(state = initialState, action) {
             return {
                 ...state,
                 selectedMovie: action.payload
+            }
+
+        case "CLEAR_SELECTED_PLAYLIST":
+
+            return {
+                ...state,
+                selectedPlaylist: {},
+                movies: []
             }
 
         default:
