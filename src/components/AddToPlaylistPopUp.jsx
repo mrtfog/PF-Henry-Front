@@ -32,7 +32,6 @@ export default function AddToPlaylistPopUp() {
     function handleAddMovieToPlaylist(e) {
 
         e.preventDefault()
-        dispatch(addMovieToPlaylist(movie.id, playlist, currentUser))
         Swal.fire({
             text:`"${movie.title}" was added to "${playlists.find(p => p._id === playlist).name}" playlist successfully`,
             icon: 'success',
@@ -53,15 +52,12 @@ export default function AddToPlaylistPopUp() {
 
             if(result.isConfirmed){
                 history.push(`/playlists/${playlist}`)
-                setPlaylist('')
             }
 
-            if(result.isDenied){
-                
-                setPlaylist('')
-            }
         })
+        dispatch(addMovieToPlaylist(movie.id, playlist, currentUser))
         dispatch(addToPlaylistDisplay('none'))
+        setPlaylist('')
 
     }
 

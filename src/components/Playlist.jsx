@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import { clearPlaylistMovies, getPlaylist, getPlaylistMovies, getUserPlaylists, removeMovieFromPlaylist } from '../redux/actions/playlists'
+import { clearSelectedPlaylist, getPlaylist, getPlaylistMovies, removeMovieFromPlaylist } from '../redux/actions/playlists'
 import PopUpTemplate from './PopUpTemplate'
 import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
@@ -18,27 +18,17 @@ export default function Playlist() {
     const { id } = useParams()
 
     const playlist = useSelector(state => state.playlistsReducer.selectedPlaylist)
-    const playlists = useSelector(state => state.playlistsReducer.playlists)
     const movies = useSelector(state => state.playlistsReducer.movies)
 
     useEffect(() => {
+        dispatch(getPlaylist(id, currentUser))
+        return () => dispatch(clearSelectedPlaylist())
 
-        playlists.length ?  dispatch(getPlaylist(id)): dispatch(getUserPlaylists(currentUser))
-    }, [])
+    }, [id])
 
-    useEffect(()=>{
-
-        dispatch(getPlaylist(id))
-
-    }, [playlists.length ? id : playlists])
-
-    useEffect(() => {
-        
-        if (playlist) dispatch(getPlaylistMovies(playlist.moviesId))
-
-        return () => dispatch(clearPlaylistMovies())
-        
-    }, [playlist])
+    if (!movies.length && playlist.moviesId) {
+        dispatch(getPlaylistMovies(playlist.moviesId))
+    }
 
     const [randomMovie, setRandomMovie] = useState(false)
     const [display, setDisplay] = useState('none')
@@ -46,14 +36,13 @@ export default function Playlist() {
 
     function handleMovieDelete(movieId, title) {
 
-        dispatch(removeMovieFromPlaylist(movieId, id, currentUser))
         Swal.fire({
-            text:`"${title}" was successfully removed from the playlist`,
-            icon: 'success',
+            text: `Do you want to remove "${title}" from this playlist?`,
+            icon: 'question',
             iconColor: '#497aa6',
             showCloseButton: true,
             showDenyButton: true,
-            confirmButtonText: 'Continue',
+            confirmButtonText: 'Confirm',
             allowEnterKey: false,
             customClass: {
                 popup: 'Alert',
@@ -61,6 +50,12 @@ export default function Playlist() {
                 confirmButton: 'confirmButton',
                 denyButton: 'denyButton',
             }
+        }).then((result) => {
+
+            if (result.isConfirmed) {
+                dispatch(removeMovieFromPlaylist(movieId, id, currentUser))
+            }
+
         })
         setTimeout(() => dispatch(getPlaylistMovies(playlist.moviesId)), 1000)
     }
