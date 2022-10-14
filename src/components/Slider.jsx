@@ -1,20 +1,14 @@
 import React, { useRef, useEffect} from "react";
 import style from '../scss/components/_slider.module.scss'
 import Card from "./Card";
-import { useDispatch, useSelector } from 'react-redux';
-import { getUpcoming } from '../redux/actions/movies';
+import { useSelector } from 'react-redux';
 import Loader from './Loader'
 
 export default function Slider({ movies, title }) {
-    const dispatch = useDispatch()
     const ref = useRef(null)
     const nav = ref.current
 
-    useEffect(() => {        
-        dispatch(getUpcoming())
-      }, [])
-      
-      
+    
 function handleOnClick(e){
 
 
@@ -22,10 +16,6 @@ function handleOnClick(e){
   
 }
 
-
-
-// const allMovies = useSelector(state=>state.moviesReducer.movies)
-// let movies = allMovies?.slice(0, 20)
 const msg = useSelector(state => state.moviesReducer.msg)
   return (
       <div className={style.titleContainer}>
