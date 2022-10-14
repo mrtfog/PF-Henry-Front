@@ -1,31 +1,79 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import style from "../../scss/components/Cart/_cart.module.scss";
-import {
-  getCart,
-  selectSeatsDisplay,
-  selectedReservation,
-  clearCart,
-  clearCartByMovie,
-} from "../../redux/actions/cart";
+import { getCart, selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie, getReservationThroughBack, addToCartThroughBack} from "../../redux/actions/cart";
+import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { useAuth } from "../contexts/AuthContext";
 import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
 
 export default function Cart() {
+
+
+
   const { currentUser } = useAuth();
   const [total, setTotal] = useState();
+
 
   const querystring = window.location.search;
   const searchParams = new URLSearchParams(querystring);
   const status = searchParams.get("status");
-  console.log(status);
+
+
+
 
   const history = useHistory();
 
   const dispatch = useDispatch();
 
-  const cart = useSelector((state) => state.cartReducer.cart);
+  const cart = useSelector( (state) => state.cartReducer.cart);
+  const reservations = useSelector ( (state) => state.cartReducer.reservationBack)
+  const showtimes = useSelector ( (state) => state.showtimesReducer.showtimes)
+  const movieTheaters = useSelector ( (state) => state.roomReducer.rooms)
+  
+
+  const rooms = movieTheaters ? movieTheaters.map((e) => { 
+
+    const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
+    return {value: e._id, label: `N° ${e.number}`}}) : []
+  
+    let cartItem = {}
+
+    useEffect(() => {
+      cartItem = reservations?.map( (r) => {
+        const showtime = showtimes?.find( (s) => s._id === r.showtimeId)    
+        return {
+            showtimeId: r.showtimeId,
+            movieTitle: showtime.movieTitle,
+            image: showtime.image,
+            dateTime: showtime.dateTime,
+            format: showtime.format,
+            roomId: showtime.roomId,
+            ticketPrice: showtime.ticketPrice,
+            movieId: showtime.movieId,
+            tickets: r.price / showtime.ticketPrice,
+            roomId: showtime.roomId
+          }
+        })
+        // console.log('cartItem', cartItem)
+    }, [reservations, showtimes])
+    
+
+
+
+    // {
+    //   deleted:false
+    //   payed:false
+    //   price:10
+    //   seatLocations:[]
+    //   showtimeId:"634829f8d7d0cd3127d1f672"
+    //   type:"standard"
+    //   userId:"uqEN5RT1Gbg6i6woHRRBc7bKpN43"
+    //   _id:"63487aaf764ae23ddb2ceb63"
+
+    // }
+
+
   useEffect(() => {
     if (status === "failed") {
       handleOnPayment();
@@ -33,9 +81,17 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
+    if(currentUser){
+      dispatch(getReservationThroughBack( currentUser.accessToken ))
+      dispatch(addToCartThroughBack(cartItem))
+      dispatch(getAllShowtimes())
+    }
     dispatch(getCart());
     validateConfirm(cart);
+
+    return () => dispatch(clearCart())
   }, []);
+
   useEffect(() => {
     setTotal(
       cart
@@ -199,7 +255,7 @@ export default function Cart() {
               <div className={style.movies}>
                 <img src={"https://image.tmdb.org/t/p/original" + r.image} />
                 <h3>{r.movieTitle}</h3>
-                <p>Movie Theater {r.room}</p>
+                <p>Movie Theater {r.roomId ? rooms.find( mt => mt.value === r.roomId).label : ''}</p>
                 <p>
                   {r.format} • {r.tickets} tickets
                 </p>

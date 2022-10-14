@@ -31,6 +31,24 @@ export function getShowtimeByMovieId(id) {
 
 }
 
+export function getReservationThroughBack(accestoken) {
+
+    return async (dispatch) => {
+
+        try {
+            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/reservation/getByUser`, { headers: { 'user': accestoken } })
+            
+            return dispatch({ type: 'GET_RESERVATION_THROUGH_BACK', payload: data })
+
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
+}
+
+
 
 export function postCart(payload, accestoken) {
 
@@ -75,6 +93,10 @@ export function selectSeatsDisplay(display) {
 
 export function addToCart(payload) {
     return { type: 'ADD_TO_CART', payload }
+}
+
+export function addToCartThroughBack(payload) {
+    return { type: 'ADD_TO_CART_THROUGH_BACK', payload }
 }
 
 export function selectedSeats(seatsId, userId, showtimeId) {
