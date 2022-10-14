@@ -1,3 +1,5 @@
+import { startOfDay } from "date-fns";
+
 const initialState = {    
     cart : [],
     displayCart: 'none',
@@ -5,6 +7,7 @@ const initialState = {
     selectedReservation: {},
     takenTickets: {},
     showtime: [],
+    reservationBack: []
 }
   
 export default function showtimesReducer(state = initialState, action) {
@@ -106,6 +109,18 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state
             }
 
+
+        case 'GET_RESERVATION_THROUGH_BACK':
+            return {
+                ...state,
+                reservationBack: action.payload
+            }
+
+        case 'ADD_TO_CART_THROUGH_BACK':
+            return{
+                ...state,
+                cart:  [...state.cart, ...action.payload]
+            }
 
         default:
             return {

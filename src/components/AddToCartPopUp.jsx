@@ -131,8 +131,9 @@ export default function AddToCartPopUp() {
     function selectPlaylistDiv() {
 
         return (
-
+            
             <div className={style.container_addToCartPU}>
+                
                 <h2>Add<span>'{movie.title}'</span>tickets to cart</h2>
                 <hr></hr>
                 <h3>Choose showtime</h3>
