@@ -1,8 +1,8 @@
-import React,{useState, useEffect} from 'react'
+import React,{ useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import style from '../scss/components/_home.module.scss'
 import Carousel from './Carousel'
-import { getGenre } from '../redux/actions/movies'
+import { getMovies } from '../redux/actions/movies'
 import { getAllShowtimes, getBillboardMovies } from '../redux/actions/showtimes'
 import Footer from './Footer'
 import Slider from './Slider'
@@ -19,10 +19,14 @@ export default function Home() {
 
 
     useEffect(() => {
-      dispatch(getGenre())
       dispatch(getAllShowtimes());
       dispatch(getBillboardMovies(billboardIds))
     }, [movies])
+
+    useEffect(() => {
+      dispatch(getMovies())
+    }, [])
+    
 
     const arrayBillboardMovies = useSelector(state => state.showtimesReducer.billboard)
     const arrayUpcomingMovies = useSelector(state => state.moviesReducer.upcoming)
@@ -43,12 +47,12 @@ export default function Home() {
       }
     }).slice(0, 10)
   
-
   return (
     <div className={style.container_home}>
         <Carousel></Carousel>
         <Slider title='Billboard' movies={arrayBillboardMovies}></Slider>
         <Slider title='Upcomings' movies={arrayUpcomingMovies}></Slider>
+
         <Slider title='Just for Halloween season 🎃' movies={horrorFilms}></Slider>
         <Slider title="Top 10 rated 💯" movies={mostPopular}></Slider>
         <Slider title="You're the  disease, and i'm the cure 💥" movies={actionFilms}></Slider>

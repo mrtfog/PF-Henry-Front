@@ -2,7 +2,7 @@ import React, { useRef, useEffect} from "react";
 import style from '../scss/components/_slider.module.scss'
 import Card from "./Card";
 import { useDispatch, useSelector } from 'react-redux';
-import { getMovies, getUpcoming } from '../redux/actions/movies';
+import { getUpcoming } from '../redux/actions/movies';
 import Loader from './Loader'
 
 export default function Slider({ movies, title }) {
@@ -10,12 +10,9 @@ export default function Slider({ movies, title }) {
     const ref = useRef(null)
     const nav = ref.current
 
-    useEffect(() => {
-
-        dispatch(getMovies())
+    useEffect(() => {        
         dispatch(getUpcoming())
-        
-      }, [dispatch])
+      }, [])
       
       
 function handleOnClick(e){
