@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from 'react'
 import { auth } from '../../firebase'
 import axios from 'axios'
 import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile, getRedirectResult } from 'firebase/auth'
+import { clearCart } from '../../redux/actions/cart'
+import { useDispatch } from 'react-redux'
 
 const AuthContext = React.createContext()
 
@@ -11,6 +13,8 @@ export function useAuth() {
 
 
 export function AuthProvider({ children }) {
+
+    const dispatch = useDispatch()
 
     const [currentUser, setCurrentUser] = useState()
     const [loading, setLoading] = useState(true)
@@ -57,7 +61,8 @@ export function AuthProvider({ children }) {
 
 
     function logOut() {
-
+        dispatch(clearCart())
+        sessionStorage.clear()
         return signOut(auth)
 
     }

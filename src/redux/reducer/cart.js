@@ -15,7 +15,6 @@ export default function showtimesReducer(state = initialState, action) {
     switch (action.type) {
         
         case 'GET_CART':
-            
             return {
                 ...state,
                 cart: JSON.parse(sessionStorage.getItem('cart')).length ? JSON.parse(sessionStorage.getItem('cart')) : []
@@ -81,7 +80,6 @@ export default function showtimesReducer(state = initialState, action) {
         case 'ADD_TO_CART':
 
             sessionStorage.cart= JSON.stringify([...state.cart, action.payload])
-        
             return{
                 ...state,
                 cart: [...state.cart, action.payload]
@@ -119,7 +117,18 @@ export default function showtimesReducer(state = initialState, action) {
         case 'ADD_TO_CART_THROUGH_BACK':
             return{
                 ...state,
-                cart:  [...state.cart, ...action.payload]
+                cart:  [...state.cart , ...action.payload.filter(r => !state.cart.some( res => r.showtimeId === res.showtimeId))]
+                
+                // state.cart?.filter(r => !action.payload.some( res => r.showtimeId === res.showtimeId))
+                
+                // state.cart?.filter( (r) => {
+                //     return action.payload.some( res => {
+                //         if(r.showtimeId !== res.showtimeId) {
+                //             return res
+                //         }  
+                        
+                //     } )
+                // } )
             }
 
         default:

@@ -1,11 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions/movies";
-import {
-  getAllShowtimes,
-  logicDeleteShowtime,
-  postShowtime,
-} from "../../redux/actions/showtimes";
+import { getAllShowtimes, logicDeleteShowtime, postShowtime} from "../../redux/actions/showtimes";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
 import validate from "./ValidationFunction";

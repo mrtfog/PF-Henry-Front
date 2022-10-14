@@ -29,6 +29,7 @@ export default function Cart() {
   const cart = useSelector( (state) => state.cartReducer.cart);
   const reservations = useSelector ( (state) => state.cartReducer.reservationBack)
   const showtimes = useSelector ( (state) => state.showtimesReducer.showtimes)
+
   const movieTheaters = useSelector ( (state) => state.roomReducer.rooms)
   
 
@@ -55,23 +56,10 @@ export default function Cart() {
             roomId: showtime.roomId
           }
         })
+        if(currentUser)dispatch(addToCartThroughBack(cartItem))
         // console.log('cartItem', cartItem)
     }, [reservations, showtimes])
     
-
-
-
-    // {
-    //   deleted:false
-    //   payed:false
-    //   price:10
-    //   seatLocations:[]
-    //   showtimeId:"634829f8d7d0cd3127d1f672"
-    //   type:"standard"
-    //   userId:"uqEN5RT1Gbg6i6woHRRBc7bKpN43"
-    //   _id:"63487aaf764ae23ddb2ceb63"
-
-    // }
 
 
   useEffect(() => {
@@ -80,16 +68,20 @@ export default function Cart() {
     }
   }, []);
 
+
+  
+
   useEffect(() => {
     if(currentUser){
-      dispatch(getReservationThroughBack( currentUser.accessToken ))
-      dispatch(addToCartThroughBack(cartItem))
+      //NO BORRAR EL SETTIMEOUT DE ABAJITO 
+      setTimeout(() => {
+        dispatch(getReservationThroughBack( currentUser.accessToken ))
+      }, 150);      
       dispatch(getAllShowtimes())
     }
     dispatch(getCart());
     validateConfirm(cart);
-
-    return () => dispatch(clearCart())
+    return () => {if(!currentUser) dispatch(clearCart())  }
   }, []);
 
   useEffect(() => {

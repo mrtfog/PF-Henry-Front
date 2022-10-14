@@ -21,7 +21,6 @@ export default function AddToCartPopUp() {
     const cartShowtimesIds = Array.from(new Set(cart.map(s=>s.showtimeId)))
 
 
-
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
 
     const [value, setValue] = useState(1)

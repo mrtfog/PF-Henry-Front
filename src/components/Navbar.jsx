@@ -5,8 +5,13 @@ import style from "../scss/components/_navbar.module.scss";
 import { useAuth } from "./contexts/AuthContext";
 import userIMG from '../assets/user.png'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import { clearCart } from "../redux/actions/cart";
+import { useDispatch } from "react-redux";
 
 export default function Navbar() {
+
+
+  const dispatch = useDispatch()
 
   const {currentUser, logOut} =  useAuth()
   const history = useHistory()
