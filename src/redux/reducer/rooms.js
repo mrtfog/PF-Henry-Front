@@ -16,15 +16,16 @@ export default function showtimesReducer(state = initialState, action) {
         case 'POST_NEW_ROOM':
             
             return{
-                ...state
+                ...state,
+                rooms: [...state.rooms, action.payload]
             }
             
         case 'DELETE_ROOM':
-
             return{
-                ...state
+                ...state,
+                rooms: state.rooms.filter(room=> room._id.toString() !== action.payload)
             }
-        
+            
         default:
             return {
                 ...state,
