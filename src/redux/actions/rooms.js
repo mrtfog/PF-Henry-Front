@@ -23,8 +23,8 @@ export function postNewRoom(room, currentUser){
     return async(dispatch)=>{
 
         try{
-            await axios.post('https://pf-henry-back.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
-            return dispatch({type:'POST_NEW_ROOM'})
+            const {data} = await axios.post('https://pf-henry-back.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
+            return dispatch({type:'POST_NEW_ROOM', payload: data})
         }
         catch(e){
             console.log(e)
@@ -35,13 +35,12 @@ export function postNewRoom(room, currentUser){
 
 
 export function logicDeleteRoom(id, currentUser){
-
+    
     return async(dispatch)=>{
 
         try{
 
             await axios.delete(`http://localhost:8082/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
-            
             return dispatch({type:'DELETE_ROOM', payload: id})
         }
         catch(e){

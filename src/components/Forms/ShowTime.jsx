@@ -1,32 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions/movies";
-import { getAllShowtimes, logicDeleteShowtime, postShowtime } from "../../redux/actions/showtimes";
+import {
+  getAllShowtimes,
+  logicDeleteShowtime,
+  postShowtime,
+} from "../../redux/actions/showtimes";
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
 import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
 import { useAuth } from "../contexts/AuthContext";
-import { getAllRooms } from "../../redux/actions/rooms";
-import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
-
+import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
 
 export default function ShowTime() {
-
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth();
 
   const movies = useSelector((state) => state.moviesReducer.movies);
   const functions = useSelector((state) => state.showtimesReducer.showtimes);
-  const roomsBackend = useSelector((state)=> state.roomReducer.rooms)
+  const roomsBackend = useSelector((state) => state.roomReducer.rooms);
 
-  
-  const rooms = roomsBackend ? roomsBackend.map((e) => { 
-
-    const type = e.columns <= 10 ? 'Small' : e.columns === 12 ? 'Regular' : 'Premiere'
-    return {value: e._id, label: `Room N° ${e.number} - Size: ${type}`}}) : []
-
-
+  const rooms = roomsBackend
+    ? roomsBackend.map((e) => {
+        const type =
+          e.columns <= 10 ? "Small" : e.columns === 12 ? "Regular" : "Premiere";
+        return { value: e._id, label: `Room N° ${e.number} - Size: ${type}` };
+      })
+    : [];
 
   const formatOptions = [
     { value: "2D-Translated", label: "2D-Translated" },
@@ -36,12 +37,12 @@ export default function ShowTime() {
   ];
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getMovies());
     dispatch(getAllShowtimes());
+    document.getElementById("functionsDiv").scrollTo(0, -1000000);
   }, [dispatch]);
-
-
 
   const formik = useFormik({
     initialValues: {
@@ -55,66 +56,63 @@ export default function ShowTime() {
     validate,
     onSubmit: (values, { resetForm }) => {
       dispatch(postShowtime(values, currentUser));
+
       Swal.fire({
-        text:'Show created',
-        icon: 'success',
-        iconColor: '#497aa6',
+        text: "Show created",
+        icon: "success",
+        iconColor: "#497aa6",
         showCloseButton: true,
-        confirmButtonText: 'Continue',
+        confirmButtonText: "Continue",
         allowEnterKey: false,
         customClass: {
-          popup: 'Alert',
-          closeButton: 'closeButton',
-          confirmButton: 'confirmButton',
+          popup: "Alert",
+          closeButton: "closeButton",
+          confirmButton: "confirmButton",
+        },
+      }).then((result) => {
+        if (result.isConfirmed) {
+          document.getElementById("functionsDiv").scrollTo(0, -1000000);
+          resetForm({ values: "" });
         }
-      })
-      dispatch(getAllShowtimes());
-      resetForm({
-        values: "",
       });
-      setTimeout(() => window.location.reload(), 1000)
     },
   });
 
-  useEffect(() => {
-    dispatch(getAllRooms())
-    document.getElementById("functionsDiv").scrollTo(0, -1000000);
-  }, []);
-
-
-  function handleDelete(e, f){
-
+  function handleDelete(e, f) {
     Swal.fire({
-      title:'Are you sure you want to delete this showtime?',
+      title: "Are you sure you want to delete this showtime?",
       html: `<div>
         <p><span style='font-weight: 700;'>Movie:</span> ${f.movieTitle}</p>
-        <p><span style='font-weight: 700;'>DateTime:</span> ${new Date(f.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}hs</p>
-        <p><span style='font-weight: 700;'>Movie Theater:</span> ${f.roomId ? rooms.find(r => r.value === f.roomId).label : ''}</p>
+        <p><span style='font-weight: 700;'>DateTime:</span> ${new Date(
+          f.dateTime
+        )
+          .toLocaleString()
+          .replace(",", " -")
+          .substring(0, 17)}hs</p>
+        <p><span style='font-weight: 700;'>Movie Theater:</span> ${
+          f.roomId ? rooms.find((r) => r.value === f.roomId).label : ""
+        }</p>
         <p><span style='font-weight: 700;'>Format:</span> ${f.format}</p>
       </div>`,
-      icon: 'question',
-      iconColor: '#497aa6',
+      icon: "question",
+      iconColor: "#497aa6",
       showCloseButton: true,
       showDenyButton: true,
-      confirmButtonText: 'Yes, I am sure',
-      denyButtonText: 'No, cancel delete',
+      confirmButtonText: "Yes, I am sure",
+      denyButtonText: "No, cancel delete",
       allowEnterKey: false,
       customClass: {
-        popup: 'Alert',
-        closeButton: 'closeButton',
-        confirmButton: 'confirmButton',
-        denyButton: 'denyButton'
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        const showtimeId = f._id;
+        dispatch(logicDeleteShowtime(showtimeId, currentUser));
       }
-    })
-    .then((result=>{
-
-      if(result.isConfirmed){
-
-        const showtimeId = f._id
-        dispatch(logicDeleteShowtime(showtimeId, currentUser))
-        setTimeout(()=>{ dispatch(getAllShowtimes())}, 600 )
-      }
-    }))
+    });
   }
 
   return (
@@ -124,16 +122,17 @@ export default function ShowTime() {
           <h2>Movie showtimes</h2>
 
           <div className={style.functions} id="functionsDiv">
-
             {functions.length > 0 ? (
               functions.map((f, index) => {
                 return (
                   <div key={index} className={style.function}>
                     <div>
-                    <button 
-                      className={style.closeBtn}
-                      onClick={(e)=> handleDelete(e, f)}
-                      >X</button>
+                      <button
+                        className={style.closeBtn}
+                        onClick={(e) => handleDelete(e, f)}
+                      >
+                        X
+                      </button>
                       <img
                         src={"https://image.tmdb.org/t/p/original" + f.image}
                         alt={`Poster movie of ${f.movieTitle}`}
@@ -152,7 +151,9 @@ export default function ShowTime() {
                       <p>
                         <span>Movie Theater:</span>
                         <br />
-                        {f.roomId ? rooms.find(r => r.value === f.roomId).label : ''} 
+                        {f.roomId
+                          ? rooms.find((r) => r.value === f.roomId).label
+                          : ""}
                       </p>
                       <p>
                         <span>Format:</span>
@@ -264,16 +265,14 @@ export default function ShowTime() {
             </label>
             <Select
               name="format"
-              label='Select format'
+              label="Select format"
               value={formik.values.format}
               options={formatOptions}
               onChange={(e) => formik.setFieldValue("format", e.target.value)}
             />
           </div>
           <div className={style.inputNumber}>
-            <label>
-                Select price
-            </label>
+            <label>Select price</label>
             {/* <Select
               name='ticketPrice'
               label='Set a price'
@@ -282,12 +281,15 @@ export default function ShowTime() {
               onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}}
             /> */}
 
-            <input 
-              onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}} 
-              value={formik.values.ticketPrice} 
+            <input
+              onChange={(e) => {
+                formik.setFieldValue("ticketPrice", e.target.value);
+              }}
+              value={formik.values.ticketPrice}
               type="number"
               step=".01"
-              min="1"/>
+              min="1"
+            />
           </div>
 
           <button
