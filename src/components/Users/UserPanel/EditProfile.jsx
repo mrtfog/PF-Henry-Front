@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import CardPayments from "./Card";
 import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
 import { useAuth } from "../../contexts/AuthContext";
-function EditProfile() {
-  const { currentUser } = useAuth();
+import UploadImg from "../../Cloudinary/UploadImage";
+
+
+  function EditProfile() {
+    const { currentUser } = useAuth();
+
   return (
     <div className={style.mainContainer}>
       <div className={style.titleContainer}>
@@ -19,17 +23,18 @@ function EditProfile() {
           <h3>Information</h3>
           <div className={style.fieldsContainer}>
             <div className={style.field}>
-              <img
+              <img 
                 src={
                   currentUser.photoURL
                     ? currentUser.photoURL
                     : "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="
                 }
               />
-              <Link to="#" className={style.pencilPhoto}>
+              <UploadImg currentUser= {currentUser}/>
+              {/* <Link to="#" className={style.pencilPhoto}>
                 {" "}
-                {/*En este span va el lapiz de editar */}
-                <svg
+                En este span va el lapiz de editar
+                <svg 
                   enablBackground="new 0 0 29 30"
                   height="30px"
                   id="Layer_1"
@@ -52,7 +57,7 @@ function EditProfile() {
                     <polygon points="0,30 7.088,30 0,22.28  " />
                   </g>
                 </svg>
-              </Link>
+              </Link> */}
             </div>
 
             <div className={style.field}>
