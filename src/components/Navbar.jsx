@@ -116,7 +116,7 @@ export default function Navbar() {
                     <button className={style.profile} onClick={()=> setDisplay('none')}> My Profile</button>
                   </NavLink>
 
-                  <NavLink to="/admin">
+                  <NavLink to="/admin/statistics/graphics">
                     <button onClick={()=> setDisplay('none')}> Admin Dashboard</button>
                   </NavLink>
 
