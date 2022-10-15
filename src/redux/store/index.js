@@ -21,9 +21,11 @@ const rootReducer = combineReducers({
 
 })
 
+const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25});
+
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(thunk)),
+    composeEnhancers(applyMiddleware(thunk)),
 );
 
 export default store;
