@@ -25,6 +25,8 @@ import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
 import Sales from "./components/AdminPanel/Statistics/Sales";
 import "./_app.scss";
 import Rooms from "./components/AdminPanel/Rooms";
+import Review from "./components/Forms/Review";
+import WebsiteReviews from "./components/WebsiteReviews";
 
 function App() {
   const { pathname } = useLocation();
@@ -69,6 +71,7 @@ function App() {
           <>
             <AddToPlaylistPopUp />
             <SelectSeatsPopUp />
+            <Review />
           </>
         ) : null}
         <AddToCartPopUp />
@@ -82,6 +85,7 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/cart" component={Cart} />
+          <Route exact path="/reviews" component={WebsiteReviews} />
         </Switch>
       </div>
     );

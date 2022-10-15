@@ -1,9 +1,6 @@
 @import '../abstracts/variables';
 @import '../abstracts/mixins';
 
-body{
-    width: 100%;
-}
 .container_movieDetail{
 
     color: #f5f5f5;
@@ -118,6 +115,19 @@ body{
 
         }
 
+        .titleAndButton{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+
+            .sideButton{
+                @include btn-primary;
+                position: absolute;
+                right: 14vw;
+            }
+        }
         .review_container{
 
             width: 100%;
@@ -126,7 +136,6 @@ body{
             padding: 30px;
             flex-wrap: wrap;
             justify-content: center;
-            // align-items: center;
 
             .no_reviews{
 
@@ -140,47 +149,6 @@ body{
                     margin-top: 20px;
                 }
             }
-
-            .review{
-
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-                align-items: center;
-                width: 22vw;
-                min-height: 15vw;
-                height: fit-content;
-                border: 2px solid  $secondary-color;
-                border-radius: 10px;
-                transition: 0.2s transform linear;
-                margin: 30px;
-
-                p{
-                    text-align: center;
-                    span{
-                        margin-bottom: 50px;
-                    }
-    
-                }
-                .text{
-                    padding: 5px 20px;
-                    font-style: italic;
-                    text-align: justify;
-                }
-
-                &:hover{
-                    transform: scale(1.05);
-                    box-shadow: 0 0.1rem 0.7rem $secondary-color;  
-                }
-            }
-
-            .stars{
-                padding: 20px;
-                color: $primary-color;
-                font-size: 1.2rem;
-                position: relative;
-            }
-
         }
 
     }

@@ -18,17 +18,55 @@ export function getMovieReviews(id){
     }
 }
 
-export function postReview(payload){
+export function postMovieReview(payload, currentUser){
 
     return async(dispatch)=>{
 
         try{
-            await axios.post('https://pf-henry-back.herokuapp.com/review/post', payload)
+            const {data} = await axios.post('https://pf-henry-back.herokuapp.com/review/post', payload, {headers: {'user': currentUser.accessToken}})
             
-            return dispatch({type: 'POST_REVIEW'})
+            return dispatch({type: 'POST_MOVIE_REVIEW', payload: data})
         }
         catch(e){
             console.log(e)
         }
     }
+}
+
+export function postWebsiteReview(payload, currentUser){
+
+    return async(dispatch)=>{
+
+        try{
+            const {data} = await axios.post('https://pf-henry-back.herokuapp.com/review/postWebsite', payload, {headers: {'user': currentUser.accessToken}})
+            
+            return dispatch({type: 'POST_WEBSITE_REVIEW', payload: data})
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+}
+
+export function getWebsiteReviews(){
+
+    return async(dispatch)=>{
+
+        try{
+
+            const { data } = await axios.get(`https://pf-henry-back.herokuapp.com/review/getAllWebsite`)
+
+            return dispatch({ type: 'GET_WEBSITE_REVIEWS', payload: data })
+        }
+        catch(e){
+
+            console.log(e)
+        }
+
+    }
+}
+
+export function setFormDisplay(display){
+
+    return {type: 'SET_FORM_DISPLAY', payload: display}
 }

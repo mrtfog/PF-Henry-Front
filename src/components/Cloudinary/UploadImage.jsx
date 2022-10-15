@@ -20,6 +20,9 @@ export default function UploadImg({ currentUser }) {
           updateProfile(currentUser, {
             photoURL: result.info.url
           })
+          .then(()=>{
+            window.location.reload()
+          })
         }
       }
     );
