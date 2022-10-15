@@ -26,6 +26,8 @@ import Sales from "./components/AdminPanel/Statistics/Sales";
 import "./_app.scss";
 import Rooms from "./components/AdminPanel/Rooms";
 
+import NewCart from "./components/Cart/NewCart";
+
 function App() {
   const { pathname } = useLocation();
   const { currentUser } = useAuth();
@@ -81,7 +83,7 @@ function App() {
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={LogIn} />
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/cart" component={/* Cart */NewCart} />
         </Switch>
       </div>
     );

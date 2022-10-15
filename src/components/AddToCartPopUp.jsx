@@ -18,13 +18,13 @@ export default function AddToCartPopUp() {
     const movie = useSelector(state => state.cartReducer.takenTickets)
     const showtimes = useSelector(state => state.cartReducer.showtime)
     const cart = useSelector(state => state.cartReducer.cart)
-    const cartShowtimesIds = Array.from(new Set(cart.map(s=>s.showtimeId)))
+    const cartShowtimesIds = Array.from(new Set(cart.map(s => s.showtimeId)))
 
 
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
 
     const [value, setValue] = useState(1)
-    const [selectValue, setSelectValue] = useState('') 
+    const [selectValue, setSelectValue] = useState('')
 
     const [selectedShowtime, setSelectedShowtime] = useState({})
 
@@ -38,7 +38,7 @@ export default function AddToCartPopUp() {
 
 
     useEffect(() => {
-        if(movie.id)dispatch(getShowtimeByMovieId(movie.id))
+        if (movie.id) dispatch(getShowtimeByMovieId(movie.id))
     }, [movie])
 
     function handleDisplay() {
@@ -62,17 +62,17 @@ export default function AddToCartPopUp() {
 
         setSelectValue(index)
     }
-    
+
     function handleSubmit() {
-        
+
         if (cartShowtimesIds.includes(selectedShowtime.showtimeId)) {
             Swal.fire({
-                text:'You already selected this showtime, check your cart',
+                text: 'You already selected this showtime, check your cart',
                 icon: 'warning',
                 iconColor: '#497aa6',
                 showCloseButton: true,
                 confirmButtonText: 'Go to cart',
-                denyButtonText:'Continue',
+                denyButtonText: 'Continue',
                 allowEnterKey: false,
                 customClass: {
                     popup: 'Alert',
@@ -81,20 +81,20 @@ export default function AddToCartPopUp() {
                     denyButton: 'denyButton',
                 }
             })
-            .then((result)=>{
-    
-                if(result.isConfirmed){
+                .then((result) => {
 
-                    history.push('/cart')
-                }
-            })
-            
+                    if (result.isConfirmed) {
+
+                        history.push('/cart')
+                    }
+                })
+
 
         } else {
             dispatch(addToCart({ ...selectedShowtime, movieId: movie.id, tickets: value }))
-            if(currentUser.uid) dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type:'standard' }, currentUser.accessToken))
+            if (currentUser.uid) dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }, currentUser.accessToken))
             Swal.fire({
-                text:'Reservation added to cart',
+                text: 'Reservation added to cart',
                 icon: 'success',
                 iconColor: '#497aa6',
                 showCloseButton: true,
@@ -109,36 +109,36 @@ export default function AddToCartPopUp() {
                     denyButton: 'denyButton',
                 }
             })
-            .then((result)=>{
-    
-                if(result.isConfirmed){
+                .then((result) => {
 
-                    history.push(`/cart`)
-                    dispatch(addToCartDisplay('none'))                
-                }
-            })
+                    if (result.isConfirmed) {
+
+                        history.push(`/cart`)
+                        dispatch(addToCartDisplay('none'))
+                    }
+                })
         }
-        
+
         dispatch(addToCartDisplay('none'))
         setSelectedShowtime('')
         setSelectValue('')
         setValue(1)
-        
+
     }
 
 
     function selectPlaylistDiv() {
 
         return (
-            
+
             <div className={style.container_addToCartPU}>
-                
+
                 <h2>Add<span>'{movie.title}'</span>tickets to cart</h2>
                 <hr></hr>
                 <h3>Choose showtime</h3>
 
-                <select value = {selectValue} onChange={(e) => handleSelectChange(e.target.value)}>
-                    <option value = ''>Select showtime</option>
+                <select value={selectValue} onChange={(e) => handleSelectChange(e.target.value)}>
+                    <option value=''>Select showtime</option>
                     {
                         showtimes.length ? showtimes.map((p, index) => {
                             return <option key={p._id} value={index}>
@@ -155,7 +155,7 @@ export default function AddToCartPopUp() {
                     <input type="number" className={style.count} value={value} />
                     <span className={style.plus} onClick={() => setValue(value < 10 ? value + 1 : value)}><p>+</p></span>
                 </div>
-                <button type='submit' disabled={selectValue===''? true : false} onClick={() => handleSubmit()}>Add to cart</button>
+                <button type='submit' disabled={selectValue === '' ? true : false} onClick={() => handleSubmit()}>Add to cart</button>
 
             </div>
         )

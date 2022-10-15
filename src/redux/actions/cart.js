@@ -1,6 +1,45 @@
 import axios from "axios";
 import { updateCurrentUser } from "firebase/auth";
 
+export function getReservations(accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            const { data } = await axios.get("http://pf-henry-back.herokuapp.com/reservation/getByUser", { headers: { "user": accessToken } })
+            return dispatch({ type: "NEW_GET_RESERVATIONS", payload: data })
+
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function getCart() {
 
     return async (dispatch) => {
@@ -37,7 +76,7 @@ export function getReservationThroughBack(accestoken) {
 
         try {
             let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/reservation/getByUser`, { headers: { 'user': accestoken } })
-            
+
             return dispatch({ type: 'GET_RESERVATION_THROUGH_BACK', payload: data })
 
         } catch (e) {
@@ -99,9 +138,9 @@ export function addToCartThroughBack(payload) {
     return { type: 'ADD_TO_CART_THROUGH_BACK', payload }
 }
 
-export function selectedSeats(seatsId, userId, showtimeId) {
-    return { type: 'SELECTED_SEATS', payload: { seatsId, userId, showtimeId } }
-}
+// export function selectedSeats(seatsId, userId, showtimeId) {
+//     return { type: 'SELECTED_SEATS', payload: { seatsId, userId, showtimeId } }
+// }
 
 export function clearCart() {
     return { type: 'CLEAR_CART' }
@@ -118,18 +157,18 @@ export function clearCartByMovie(payload) {
 
 //future dispatch seats to back
 
-// export function selectedSeats(seatsId, userId, showtimeId, reservationId) {
-//     return async (dispatch) => {
-        
-//         try {
-            
-//             await axios.post('https://pf-henry-back.herokuapp.com/reservation/setUserSeats', {reservationId, seatsLocations: seatsId})
-            
-//             return dispatch({ type: 'SELECTED_SEATS', payload: { seatsId, userId, showtimeId } })
-            
-//         } catch (e) {
-//             console.log(e)
-//         }
-//     }
-   
-// }
+export function selectedSeats(accessToken, showtimeId, seatLocations) {
+    return async (dispatch) => {
+
+        try {
+
+            const { data } = await axios.put('https://pf-henry-back.herokuapp.com/reservation/setUserSeats', { showtimeId, seatLocations }, { headers: { "user": accessToken } })
+
+            return dispatch({ type: 'SELECTED_SEATS', payload: data })
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
+}
