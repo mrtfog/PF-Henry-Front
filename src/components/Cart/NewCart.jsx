@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { getReservations } from '../../redux/actions/cart'
+import { getReservations, clearNewReservations } from '../../redux/actions/cart'
 import { getAllShowtimes } from '../../redux/actions/showtimes'
 import { getAllRooms } from '../../redux/actions/rooms'
 import { selectSeatsDisplay, selectedReservation } from '../../redux/actions/cart'
@@ -15,14 +15,19 @@ const NewCart = () => {
   const dispatch = useDispatch()
   const { currentUser } = useAuth()
 
-  const reservations = useSelector(state => state.cartReducer.newReservations)
+  let reservations = useSelector(state => state.cartReducer.newReservations)
   const showtimes = useSelector(state => state.showtimesReducer.showtimes)
   const rooms = useSelector(state => state.roomReducer.rooms)
 
+  if (!currentUser) reservations = JSON.parse(sessionStorage.getItem("newCart"))
+
   useEffect(() => {
-    dispatch(getReservations(currentUser.accessToken))
+    if (currentUser) dispatch(getReservations(currentUser.accessToken))
     dispatch(getAllShowtimes())
     dispatch(getAllRooms())
+
+    return () => dispatch(clearNewReservations())
+
   }, [])
 
   function handleOnClick(r) {
@@ -62,7 +67,7 @@ const NewCart = () => {
 
     if (reservShowtime && reservRoom) {
       return {
-        reservationId: r._id.toString(),
+        reservationId: r._id ? r._id.toString() : undefined,
         price: r.price,
         title: reservShowtime.movieTitle,
         image: reservShowtime.image,
@@ -80,8 +85,6 @@ const NewCart = () => {
   }) : undefined
 
 
-  console.log(displayReservations)
-
   return (
     <div>
 
@@ -95,20 +98,23 @@ const NewCart = () => {
                 <img src={"https://image.tmdb.org/t/p/original" + r.image} alt="" />
                 <h1>{r.title}</h1>
 
-                {r.seatLocations.join(" - ")}
+                {r.seatLocations ? r.seatLocations.join(" - ") : null}
 
                 <p>{r.roomNumber}</p>
                 <p>{r.format}</p>
                 <p>{r.dateTime}</p>
                 <p>{r.price}</p>
 
-                <button disabled={currentUser ? false : true} onClick={() => { handleOnClick(r) }}>Choose Seat</button>
+                {
+                  r.seatLocations && r.seatLocations.length !== 0 ? null : <button disabled={currentUser ? false : true} onClick={() => { handleOnClick(r) }}>Choose Seat</button>
+                }
+
               </div>
 
             )
           }
 
-        }) : <h1>You got nothing</h1>
+        }) : <h1>Empty cart</h1>
       }
 
 

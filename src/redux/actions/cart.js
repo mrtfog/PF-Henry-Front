@@ -17,6 +17,13 @@ export function getReservations(accessToken) {
     }
 }
 
+export function clearNewReservations() {
+
+    return async dispatch => {
+        return dispatch({type: "CLEAR_NEW_RESERVATIONS"})
+    }
+
+}
 
 
 

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile, getRedirectResult } from 'firebase/auth'
 import { clearCart } from '../../redux/actions/cart'
 import { useDispatch } from 'react-redux'
+import { postCart } from '../../redux/actions/cart'
 
 const AuthContext = React.createContext()
 
@@ -43,20 +44,21 @@ export function AuthProvider({ children }) {
 
         onAuthStateChanged(auth, (user) => {
 
-            updateProfile(user, {
-                displayName: username
-            })
+            if (user) {
 
-            axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: { ...user, displayName: username }, reservations: [] })
+                updateProfile(user, {
+                    displayName: username
+                })
 
+                axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: { ...user, displayName: username }, reservations: [] })
+
+            }
         })
 
     }
 
     function logIn(email, password) {
-
         signInWithEmailAndPassword(auth, email, password)
-
     }
 
 
@@ -64,7 +66,6 @@ export function AuthProvider({ children }) {
         dispatch(clearCart())
         sessionStorage.clear()
         return signOut(auth)
-
     }
 
     useEffect(() => {
@@ -83,8 +84,19 @@ export function AuthProvider({ children }) {
 
         try {
             console.log("uwu")
-        }
-        catch (e) {
+            const sessionCart = JSON.parse(sessionStorage.getItem("newCart")) || []
+
+            if (sessionCart.length && currentUser) {
+
+                for (const reserv of sessionCart) {
+                    dispatch(postCart({ ...reserv, userId: currentUser.uid }, currentUser.accessToken))
+                }
+
+                sessionStorage.clear()
+            }
+
+
+        } catch (e) {
             console.log(e)
         }
 

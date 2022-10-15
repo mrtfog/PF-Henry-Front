@@ -29,8 +29,12 @@ import Rooms from "./components/AdminPanel/Rooms";
 import NewCart from "./components/Cart/NewCart";
 
 function App() {
+
   const { pathname } = useLocation();
   const { currentUser } = useAuth();
+
+  if (!currentUser) if (!JSON.parse(sessionStorage.getItem("newCart"))) sessionStorage.setItem("newCart", JSON.stringify([]))
+
 
   if (pathname.includes("/admin")) {
     return (

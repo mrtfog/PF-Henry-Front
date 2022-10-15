@@ -91,8 +91,14 @@ export default function AddToCartPopUp() {
 
 
         } else {
-            dispatch(addToCart({ ...selectedShowtime, movieId: movie.id, tickets: value }))
-            if (currentUser.uid) dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }, currentUser.accessToken))
+
+            if (currentUser) {
+                dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }, currentUser.accessToken))
+            } else {
+                const sessionCart = JSON.parse(sessionStorage.getItem("newCart"))
+                sessionStorage.setItem("newCart", JSON.stringify([...sessionCart, { showtimeId: selectedShowtime.showtimeId, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }]))
+            }
+
             Swal.fire({
                 text: 'Reservation added to cart',
                 icon: 'success',

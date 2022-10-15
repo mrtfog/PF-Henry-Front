@@ -11,7 +11,6 @@ const initialState = {
 
     /* ===== ESTO LO HIZO EL INVESIL DE LUSIANO ===== */
     newReservations: [],
-
     /* ===== */
 }
 
@@ -29,6 +28,11 @@ export default function showtimesReducer(state = initialState, action) {
                 newReservations: action.payload
             }
 
+        case "CLEAR_NEW_RESERVATIONS":
+            return {
+                ...state,
+                newReservations: []
+            }
 
         /* ===== */
 
