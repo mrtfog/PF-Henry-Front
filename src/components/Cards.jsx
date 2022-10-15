@@ -9,10 +9,11 @@ export default function Cards({page}) {
 
     const dispatch = useDispatch()
     const msg = useSelector(state => state.moviesReducer.msg)
+    const movies = useSelector(state => state.moviesReducer.movies)
 
     useEffect(() => {
 
-      dispatch(getMovies())
+      if(movies.length === 0) dispatch(getMovies())
       
     }, [dispatch])
     
