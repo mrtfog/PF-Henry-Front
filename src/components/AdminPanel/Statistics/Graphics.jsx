@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import BarChart from "./BarChart";
-// import { UserData } from "./Data";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,8 +23,6 @@ const Graphics = () => {
       return -1;
     });
 
-  console.log(showtimesDate);
-
   const movieTheaters = useSelector((state) => state.roomReducer.rooms).length;
 
   const count = {};
@@ -43,16 +40,23 @@ const Graphics = () => {
       {
         label: "Showtimes amount",
         data: countByAmount,
-        backgroundColor: ["rgb(255, 49, 90)", "rgb(73, 122, 166)"],
+        backgroundColor: ["rgb(255, 49, 90)", "rgb(73, 122, 166)", "rgb(153, 89, 132)", "rgb(98, 85, 151)", "rgb(0, 186, 191)", "rgb(214, 244, 255)", "rgb(226, 158, 33)", "rgb(0, 82, 72)", "rgb(0, 76, 140)", "#73BC82", "rgb(115, 188, 130)", "rgb(150, 87, 39)"],
         borderColor: "rgba(236, 233, 233, 0.589)",
         borderWidth: 2,
       },
     ],
-  };
+  };  
+
 
   useEffect(() => {
     if (!showtimes.length) dispatch(getAllShowtimes());
   }, []);
+
+  const [graphicSelected, setGraphicSelected] = useState('BarChartUser')
+
+  console.log('graphicSelected',graphicSelected)
+
+
 
   return (
     <div className={style.container_statistics}>
@@ -90,8 +94,8 @@ const Graphics = () => {
               {new Date(showtimesDate[0])
                 .toLocaleString()
                 .replace(",", " -")
-                .substring(0, 50)}
-              Hr
+                }
+                  Hr
             </span>
 
         </div>
@@ -106,26 +110,36 @@ const Graphics = () => {
               {new Date(showtimesDate[showtimesDate.length - 1])
                 .toLocaleString()
                 .replace(",", " -")
-                .substring(0, 50)}
-              Hr
+               }
+                 Hr
             </span>
 
         </div>
       </div>
-      <div></div>
       <div className={style.divGraphics}>
-        <div style={{ width: 400 }}>
-          <h3>Bar chart User</h3>
-          <BarChart chartData={graphics} />
+
+        <div className={style.graphicsNav}>
+          <h3 onClick={() => setGraphicSelected('BarChartUser')} className={graphicSelected === 'BarChartUser' ? `${style.selectedNavButton}` : ''}>Bar chart User</h3>
+          <h3 onClick={() => setGraphicSelected('LineChartUser')} className={graphicSelected === 'LineChartUser' ? `${style.selectedNavButton}` : ''}>Line chart User</h3>
+          <h3 onClick={() => setGraphicSelected('ShowtimesPerMovie')} className={graphicSelected === 'ShowtimesPerMovie' ? `${style.selectedNavButton}` : ''}>Showtimes per movies</h3>
         </div>
-        <div style={{ width: 400 }}>
-          <h3>Line chart User</h3>
-          <LineChart chartData={graphics} />
+
+        <div className={style.graphics}>
+               {graphicSelected === 'BarChartUser' ? 
+                <div style={{ width: 600 }}>
+                  <BarChart chartData={graphics} />
+                </div> : 
+                graphicSelected === 'LineChartUser' ?                 
+                  <div style={{ width: 600 }}>
+                    <LineChart chartData={graphics} />
+                  </div> :
+                  <div style={{ width: 350 }}>
+                    <PieChart chartData={graphics} />
+                  </div>
+              }
+
         </div>
-        <div style={{ width: 300 }}>
-          <h3>Pie chart User</h3>
-          <PieChart chartData={graphics} />
-        </div>
+
       </div>
     </div>
   );
