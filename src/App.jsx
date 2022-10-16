@@ -25,6 +25,8 @@ import Subscriptions from "./components/AdminPanel/Statistics/Subscriptions";
 import Sales from "./components/AdminPanel/Statistics/Sales";
 import "./_app.scss";
 import Rooms from "./components/AdminPanel/Rooms";
+import Review from "./components/Forms/Review";
+import WebsiteReviews from "./components/WebsiteReviews";
 
 import NewCart from "./components/Cart/NewCart";
 
@@ -75,6 +77,7 @@ function App() {
           <>
             <AddToPlaylistPopUp />
             <SelectSeatsPopUp />
+            <Review />
           </>
         ) : null}
         <AddToCartPopUp />
@@ -87,7 +90,12 @@ function App() {
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={LogIn} />
+<<<<<<< HEAD
           <Route exact path="/cart" component={/* Cart */NewCart} />
+=======
+          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/reviews" component={WebsiteReviews} />
+>>>>>>> 8256a61c6bbd232f4dc8e7eadbae99fa7186c0c4
         </Switch>
       </div>
     );

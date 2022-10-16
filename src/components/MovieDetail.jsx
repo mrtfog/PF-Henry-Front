@@ -2,12 +2,13 @@ import React, { useEffect } from 'react'
 import style from '../scss/components/_movieDetail.module.scss'
 import YouTube from 'react-youtube'
 import { useSelector, useDispatch } from 'react-redux'
-import { getMovieReviews } from '../redux/actions/reviews'
+import { getMovieReviews, setFormDisplay } from '../redux/actions/reviews'
 import { useHistory, useParams } from 'react-router-dom'
 import { resetMovieDetail, getMovieDetail } from '../redux/actions/movies'
 import { addToPlaylistDisplay, selectedMovie } from '../redux/actions/playlists'
 import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import ReviewTemplate from './ReviewTemplate'
 
 
 export default function MovieDetail() {
@@ -33,20 +34,8 @@ export default function MovieDetail() {
     const movieReviews = useSelector(state => state.reviewsReducer.movieReviews)
     const playlistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
 
-    const urlPoster = 'https://image.tmdb.org/t/p/original' + movie.poster_path
     const urlBanner = 'https://image.tmdb.org/t/p/original' + movie.backdrop_path
 
-    function getStars(num){
-        let stars = ''
-
-        while(num > 0){
-
-            stars += '★'
-            num--
-        } 
-
-        return stars
-    }
 
     function handleDisplay(){
 
@@ -122,21 +111,18 @@ export default function MovieDetail() {
                 </div>
 
                 <div className={style.section}>
-                    <h3>Reviews</h3>
+                    <div className={style.titleAndButton}>
+                        <h3>Reviews</h3>
+                        {movieReviews.length ? <button className={style.sideButton} onClick={()=> dispatch(setFormDisplay('flex'))}>Add Review</button> : null}
+                    </div>
                     <hr />
                     <div className={style.review_container}>
 
-                        {movieReviews.length > 0 ? movieReviews.map(r =>{
-
-                            return(<div className={style.review}>
-                                <p><span className={style.stars}>{getStars(r.stars)}</span><br/> {r.stars}/10</p>
-                                <p className={style.text}>"{r.description}"</p>
-                            </div>)
-                        }) 
+                        {movieReviews.length > 0 ? movieReviews.map(r => <ReviewTemplate stars={r.stars} description={r.description} username={r.username} key={r._id} />) 
                         :
                         <div className={style.no_reviews}>
                         <p>The movie "{movie.title}" doesn't have reviews yet</p>
-                        <button>Add Review</button>
+                        <button onClick={()=> dispatch(setFormDisplay('flex'))}>Add Review</button>
                         </div>}
 
                     </div>

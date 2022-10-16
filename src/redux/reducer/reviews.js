@@ -1,7 +1,10 @@
 
 const initialState = {
 
-  movieReviews: []
+    movieReviews: [],
+    websiteReviews: [],
+    formDisplay: 'none',
+    websiteReviews: [],
 
 };
 
@@ -16,10 +19,34 @@ export default function reviewsReducer(state = initialState, action) {
                 movieReviews: action.payload
             }
 
-        case 'POST_REVIEW':
+        case 'POST_MOVIE_REVIEW':
 
             return{
-                ...state
+                ...state,
+                movieReviews: [...state.movieReviews, action.payload]
+            }
+
+                
+        case 'POST_WEBSITE_REVIEW':
+
+            return{
+                ...state,
+                websiteReviews: [...state.websiteReviews, action.payload]
+            }
+
+
+        case 'SET_FORM_DISPLAY':
+
+            return{
+                ...state,
+                formDisplay: action.payload
+            }
+
+        case 'GET_WEBSITE_REVIEWS':
+
+            return{
+                ...state,
+                websiteReviews: action.payload
             }
 
         default:
@@ -28,5 +55,6 @@ export default function reviewsReducer(state = initialState, action) {
             };
     }
 }
+
 
   
