@@ -121,7 +121,7 @@ export default function MovieDetail() {
                         {movieReviews.length > 0 ? movieReviews.map(r => <ReviewTemplate stars={r.stars} description={r.description} username={r.username} key={r._id} />) 
                         :
                         <div className={style.no_reviews}>
-                        <p>The movie "{movie.title}" doesn't have reviews yet</p>
+                        <p>The movie '{movie.title}' doesn't have reviews yet</p>
                         <button onClick={()=> dispatch(setFormDisplay('flex'))}>Add Review</button>
                         </div>}
 

@@ -48,7 +48,7 @@ export default function Playlist() {
                         )
                     })
                     :
-                    <p>You haven't created a Playlists yet</p>}
+                    <p>You have not created a playlist yet</p>}
 
             </div>
 
