@@ -85,14 +85,9 @@ export default function Cart() {
   }, []);
 
   useEffect(() => {
-    setTotal(
-      cart
-        .reduce((acc, cur) => {
-          return (acc = acc + cur.tickets * cur.ticketPrice);
-        }, 0)
-        .toFixed(2)
-    );
-  }, [cart]);
+    setTotal(cart.reduce((acc, cur) => acc = acc + cur.tickets * cur.ticketPrice), 0).toFixed(2);
+  }, [cart])
+
   function handleOnPayment() {
     Swal.fire({
       title: "Transaction failed",

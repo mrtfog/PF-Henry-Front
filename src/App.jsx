@@ -28,9 +28,15 @@ import Rooms from "./components/AdminPanel/Rooms";
 import Review from "./components/Forms/Review";
 import WebsiteReviews from "./components/WebsiteReviews";
 
+import NewCart from "./components/Cart/NewCart";
+
 function App() {
+
   const { pathname } = useLocation();
   const { currentUser } = useAuth();
+
+  if (!currentUser) if (!JSON.parse(sessionStorage.getItem("newCart"))) sessionStorage.setItem("newCart", JSON.stringify([]))
+
 
   if (pathname.includes("/admin")) {
     return (
@@ -84,7 +90,7 @@ function App() {
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={LogIn} />
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/cart" component={/* Cart */NewCart} />
           <Route exact path="/reviews" component={WebsiteReviews} />
         </Switch>
       </div>
