@@ -90,12 +90,9 @@ function App() {
           <Route exact path="/playlists/:id" component={Playlist} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={LogIn} />
-<<<<<<< HEAD
-          <Route exact path="/cart" component={/* Cart */NewCart} />
-=======
-          <Route exact path="/cart" component={Cart} />
+          <Route exact path="/cart" component={NewCart} />
           <Route exact path="/reviews" component={WebsiteReviews} />
->>>>>>> 8256a61c6bbd232f4dc8e7eadbae99fa7186c0c4
+
         </Switch>
       </div>
     );

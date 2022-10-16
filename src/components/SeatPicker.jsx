@@ -21,7 +21,6 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms }) {
 
     const selectedMovieTheater = movieTheaters ? movieTheaters.find(r => r._id === reservation.roomId) : undefined
 
-
     let indexHalls = setIndexHalls()
 
     function setIndexHalls() {
@@ -92,7 +91,7 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms }) {
                 })
             }
             e.target.className = "seat seat--selected"
-
+            
             for (let i = 0; i < initialState.length; i++) {
 
                 for (let j = 0; j < initialState[i].length; j++) {
@@ -196,7 +195,8 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms }) {
                             .substring(0, 18)}
                             Hs</p>
 
-                        <p><span className='spanTitle'>Tickets: </span>{reservation.tickets}</p>
+                        <p><span className='spanTitle'>Tickets: </span>{reservation.ticketAmount}</p>
+
 
                         <p><span className='spanTitle'>Movie Theater: <br /> </span>{reservation.roomId ? rooms.find(r => r.value === reservation.roomId).label : ''}</p>
                         <p><span className='spanTitle'>Format: </span>{reservation.format}</p>

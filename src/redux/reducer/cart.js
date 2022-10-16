@@ -51,7 +51,7 @@ export default function showtimesReducer(state = initialState, action) {
         case 'GET_CART':
             return {
                 ...state,
-                cart: JSON.parse(sessionStorage.getItem('cart')).length ? JSON.parse(sessionStorage.getItem('cart')) : []
+                newCart: JSON.parse(sessionStorage.getItem('newCart')).length ? JSON.parse(sessionStorage.getItem('newCart')) : []
             };
 
         case 'TAKEN_TICKETS':
