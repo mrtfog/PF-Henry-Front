@@ -32,7 +32,7 @@
                 text-shadow: 0 0 10px $primary-color;
                 margin-left: 1em;
                 padding: 0.5em 1em;
-                border-radius: 15px;
+                border-radius: 10px;
                 border-bottom: solid 2px $primary-color;
             }
         }
@@ -66,17 +66,20 @@
         display: flex;
         flex-direction: column-reverse;
         justify-content: center;
+        align-items: center;
         gap: 1em;
         .roomCard{
             display: flex;
-            position: relative;
-            background-color: white;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
             text-align: center;
+            background-color: white;
             font-weight: 500;
             color: $background-color;
             padding: 0.2em;
             padding-left:1em;
-            border-radius: 25px;
+            border-radius: 10px;
             transition: all 0.2s linear;
             animation-name: rotates;
             animation-duration: 0.8s;
@@ -95,26 +98,22 @@
             }
 
             .closeBtn{
-                position: absolute;
-                top: 0.75em;
-                right: .75em;
-                padding: .25rem .5rem;
+                padding: 0 1em;
+                height: 30px;
                 color: $primary-color;
                 transition: all 0.2s linear;
-                border-radius: 100%;
+                border-radius: 5px;
                 color: $background-color;
-                background-color: white;
+                background-color: transparent;
                 font-weight: 600;
                 font-size: 1.1rem;
 
                 cursor: pointer;
 
                 &:hover{
-                    text-shadow: 0 0 10px $primary-color;
-                    transform: scale(1.1);
-                    background-color: $primary-color;
-                    color:white;
-                    font-weight: 500;
+                    transform: scale(1.15);
+                    color:$primary-color;
+                    font-weight: 600;
                 }
             }
 
@@ -140,14 +139,14 @@
     0%   {transform: rotate(0deg)}
     25%  {
         transform: rotate(1deg);
-        border: 2px solid $primary-color;
+        // border: 2px solid $primary-color;
         box-shadow: 0 0.1rem 0.7rem $primary-color;  
     }
     50%  {transform: rotate(-1deg)}
     75%  {transform: rotate(1deg)}
     100% {
         transform: rotate(0deg);
-        border: 2px solid $secondary-color;
+        // border: 2px solid $secondary-color;
         box-shadow: 0 0.1rem 0.7rem $secondary-color;  
 
     }
