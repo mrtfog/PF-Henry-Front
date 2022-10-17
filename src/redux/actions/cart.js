@@ -7,7 +7,7 @@ export function getReservations(accessToken) {
 
         try {
 
-            const { data } = await axios.get("http://pf-henry-back.herokuapp.com/reservation/getByUser", { headers: { "user": accessToken } })
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/reservation/getByUser", { headers: { "user": accessToken } })
             return dispatch({ type: "NEW_GET_RESERVATIONS", payload: data })
 
         } catch (e) {
