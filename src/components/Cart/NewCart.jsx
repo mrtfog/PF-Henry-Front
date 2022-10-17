@@ -9,7 +9,6 @@ import { useEffect } from 'react'
 import Swal from 'sweetalert2'
 import { useHistory } from 'react-router-dom'
 import style from '../../scss/components/Cart/_cart.module.scss'
-import Loader from '../Loader'
 
 const NewCart = () => {
 
@@ -18,28 +17,23 @@ const NewCart = () => {
     const { currentUser } = useAuth()
 
     const [total, setTotal] = useState();
-
+    
     let reservations = useSelector(state => state.cartReducer.newReservations)
     const showtimes = useSelector(state => state.showtimesReducer.showtimes)
     const rooms = useSelector(state => state.roomReducer.rooms)
-
+    
     if (!currentUser) reservations = JSON.parse(sessionStorage.getItem("newCart"))
 
     useEffect(() => {
 
-        if (currentUser) dispatch(getReservations(currentUser.accessToken))
+        if (currentUser && !reservations.length) dispatch(getReservations(currentUser.accessToken))
         else dispatch(getCart())
-        dispatch(getAllShowtimes())
-        dispatch(getAllRooms())
+        if(!showtimes.length)dispatch(getAllShowtimes())
+        if(!rooms.length) dispatch(getAllRooms())
 
         return () => dispatch(clearNewReservations())
 
     }, [])
-
-    
-    useEffect(()=>{
-
-    }, [reservations])
 
 
     function handleOnClick(r) {
@@ -103,10 +97,13 @@ const NewCart = () => {
     console.log('reservations', reservations)
     console.log('showtimes', showtimes)
     console.log('displayReservations', displayReservations)
+    console.log('sessionStorage.newCart', sessionStorage.newCart)
 
     
     useEffect(() => {
         if(reservations.length) setTotal(reservations.reduce((acc, cur)=> acc += cur.price * cur.ticketAmount, 0).toFixed(2));
+        if (currentUser && !reservations.length) dispatch(getReservations(currentUser.accessToken))
+        else dispatch(getCart())
     }, [reservations])
 
 
@@ -163,6 +160,7 @@ const NewCart = () => {
             if (result.isConfirmed) {
                 sessionStorage.clear()
                 dispatch(clearCart());
+                reservations=[]
             }
         });
     }
@@ -187,7 +185,7 @@ const NewCart = () => {
         })
         .then((result) => {
             if (result.isConfirmed) {
-                dispatch(clearCartByMovie(showtime.showtimeId));
+               if(!currentUser) dispatch(clearCartByMovie(showtime.showtimeId));
             }
         });
     }

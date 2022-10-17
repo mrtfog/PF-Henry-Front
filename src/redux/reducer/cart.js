@@ -1,7 +1,7 @@
 import { startOfDay } from "date-fns";
 
 const initialState = {
-    cart: [],
+    newCart: [],
     displayCart: 'none',
     displaySeats: 'none',
     selectedReservation: {},
@@ -119,46 +119,85 @@ export default function showtimesReducer(state = initialState, action) {
 
         case 'ADD_TO_CART':
 
-            sessionStorage.cart = JSON.stringify([...state.cart, action.payload])
+            sessionStorage.cart = JSON.stringify([...state.newCart, action.payload])
             return {
                 ...state,
-                cart: [...state.cart, action.payload]
+                newCart: [...state.newCart, action.payload]
             }
 
         case 'CLEAR_CART':
             return {
                 ...state,
-                cart: []
+                newCart: []
             }
 
         case 'CLEAR_CART_BY_MOVIE':
 
-            let deletedMovie = state.cart.filter(m => {
+            sessionStorage.newCart = JSON.stringify(state.newCart.filter(m => {
                 if (m.showtimeId !== action.payload) return m
-            })
+            }))
             return {
                 ...state,
-                cart: deletedMovie
+                newCart: state.newCart.filter(m => {
+                    if (m.showtimeId !== action.payload) return m
+                })
             }
-
-        case 'POST_RESERVATION':
-
-            return {
-                ...state
-            }
-
-
-        case 'GET_RESERVATION_THROUGH_BACK':
+            
+        case "GET_ALL_RESERVATIONS":
             return {
                 ...state,
-                reservationBack: action.payload
+                allReservations: action.payload,
+            };
+            case "ORDERED_BY":
+            const { buttonName, orderType } = action.payload;
+            let orderedReservations;
+        
+            if (buttonName === "amount" && orderType === true) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.price > b.price) return -1;
+                if (a.price < b.price) return 1;
+                else return 0;
+                });
+            } else if (buttonName === "amount" && orderType === false) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.price > b.price) return 1;
+                if (a.price < b.price) return -1;
+                else return 0;
+                });
             }
-
-        case 'ADD_TO_CART_THROUGH_BACK':
-            return {
-                ...state,
-                cart: [...state.cart, ...action.payload.filter(r => !state.cart.some(res => r.showtimeId === res.showtimeId))]
+        
+            if (buttonName === "date" && orderType === true) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.payedAt > b.payedAt) return -1;
+                if (a.payedAt < b.payedAt) return 1;
+                else return 0;
+                });
+            } else if (buttonName === "date" && orderType === false) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.payedAt > b.payedAt) return 1;
+                if (a.payedAt < b.payedAt) return -1;
+                else return 0;
+                });
             }
+        
+            if (buttonName === "type" && orderType === true) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.type > b.type) return -1;
+                if (a.type < b.type) return 1;
+                else return 0;
+                });
+            } else if (buttonName === "type" && orderType === false) {
+                orderedReservations = state.allReservations.sort(function (a, b) {
+                if (a.type > b.type) return 1;
+                if (a.type < b.type) return -1;
+                else return 0;
+                });
+            }
+          
+                return {
+                  ...state,
+                  allReservations: orderedReservations,
+                };
 
         default:
             return {
