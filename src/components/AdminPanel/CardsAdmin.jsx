@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import style from "../../scss/components/Users/UserPanel/_card.module.scss";
+import style from "../../scss/components/AdminPanel/_cardsAdmin.module.scss";
 
 function CardAdmin({
   subscriptionStatus,
@@ -13,7 +13,7 @@ function CardAdmin({
 }) {
   return (
     <div className={style.card}>
-      <Link className={style.type}>
+      <div className={style.type}>
         {subscriptionStatus ? (
           <span>
             {subscriptionStatus}{" "}
@@ -25,7 +25,7 @@ function CardAdmin({
             {/*Y sino, renderiza el tipo de transacción, es decir "ticket" o "suscrición"*/}
           </span>
         ) : null}
-      </Link>
+      </div>
 
       <span>
         {paymentDate} {/*Fecha en la que se realizó el pago*/}
@@ -40,17 +40,6 @@ function CardAdmin({
         {userId}{" "}
         {/*Id del usuario que realizó la transacción o la suscripción*/}
       </span>
-
-      <Link to={btnLink ? btnLink : "#"} className={style.deleteBtn}>
-        {" "}
-        {/* Tenemos que pasarle un btnLink para que el componente nos redirija a algun lado*/}
-        <span>
-          {" "}
-          {/* btnText indica un el texto que debe tener el botón, pero tiene que venir con una que sea btnLink para indicar el lugar
-            a donde te lleva ese botón, sino por defecto será un botón que diga "View details" y no te lleve a ningun lado (por ahora)*/}
-          {btnText ? btnText : "View details"}
-        </span>
-      </Link>
     </div>
   );
 }
