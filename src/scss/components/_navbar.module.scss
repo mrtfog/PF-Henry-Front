@@ -119,6 +119,7 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
+            scale: 0.8;
 
             .burgerBar{
                 width: 100%;
@@ -128,15 +129,16 @@
             }
             /* Clicked */
             .clicked:nth-child(1){
-                transform: rotate(45deg) translate(0.95em, 0);
+                transform: rotate(45deg) translate(0.95em, 0) scale(0.9);
                 transition: ease-out 0.5s;
             }
             .clicked:nth-child(2){
+                display: none;
                 transform: scale(0.1);
                 transition: ease-out 0.5s;
             }
             .clicked:nth-child(3){
-                transform: rotate(135deg) translate(-1em, 0.2em);
+                transform: rotate(135deg) translate(-1em, 0.2em) scale(0.9);
                 transition: ease-out 0.5s;
             }
 
@@ -153,10 +155,10 @@
         .menu{
             display: flex;
             flex-direction: column;
-            width: 100%;
+            width: 85vw;
             background-color: $background-color;
             position: absolute;
-            top: 4em;
+            top: 4.3em;
             right: 0;
             z-index: -1;
             padding-bottom: 2em;
@@ -181,12 +183,14 @@
             .userPopUp{
                 font-size: 1rem;
                 height: auto;
-                margin-left: 25%;
-                margin-right: 30%;
-                top: 22em;
+                top: 21em;
                 right: 0;
-                width: auto;
+                width: 85vw;
+                border-radius: 0;
+                border: none;
                 background-color:$background-color;
+                padding: 0;
+                padding-bottom: 1.5em;
 
                 button{
                     font-size: 0.9rem;
