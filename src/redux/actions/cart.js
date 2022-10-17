@@ -17,6 +17,9 @@ export function getReservations(accessToken) {
     }
 }
 
+
+
+
 export function clearNewReservations() {
 
     return async dispatch => {
@@ -25,6 +28,25 @@ export function clearNewReservations() {
 
 }
 
+
+export function getAllReservations(currentUser) {
+    return async (dispatch) => {
+      try {
+        const  {data} = await axios.get(
+          "https://pf-henry-back.herokuapp.com/reservation/getAll",
+          { headers: { user: currentUser.accessToken } }
+        );
+  
+        return dispatch({ type: "GET_ALL_RESERVATIONS", payload: data });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  }
+  
+export function orderedBy(buttonName, orderType){
+    return ({ type: 'ORDERED_BY', payload: {buttonName, orderType} });
+}
 
 
 
