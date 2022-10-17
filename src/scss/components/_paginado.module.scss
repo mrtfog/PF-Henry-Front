@@ -1,52 +1,51 @@
-@import '../abstracts/variables';
+@import "../abstracts/variables";
 
-
-
-.container_pagination{
-
-    margin: 50px 0;
-    .prev_next{
-        padding: 0 20px;
-        transition: .2s linear;
-        &:hover{
-            color: $hprimary-color;
-        }
+.container_pagination {
+  margin: 50px 0;
+  .prev_next {
+    padding: 0 20px;
+    transition: 0.2s linear;
+    &:hover {
+      color: $hprimary-color;
     }
-    
-    .button {
-    
-        font-size: 17px;
-        font-family: $font;
-        font-weight: 400;
-        background-color: $background-color;
-        color: rgb(255, 255, 255);
-        border-radius: 6px;
-        cursor: pointer;
+  }
 
-        p{
-    
-            height: 10px;
-            padding: 0 .8rem;
-            transition: .2s linear;
-            &:hover{
-                color: $hprimary-color;
-            }
-        }
-    
+  .button {
+    font-size: 17px;
+    font-family: $font;
+    font-weight: 400;
+    background-color: $background-color;
+    color: rgb(255, 255, 255);
+    border-radius: 6px;
+    cursor: pointer;
+
+    p {
+      height: 10px;
+      padding: 0 0.8rem;
+      transition: 0.2s linear;
+      &:hover {
+        color: $hprimary-color;
+      }
     }
-    .buttonCurr {
-        font-family: $font;
-        background-color: $primary-color;
-        color: rgb(0, 0, 0);
-        border-radius: 6px;
-        cursor: pointer;
-    
-        p{
-            height: 10px;
-            padding: 0 .8rem;
-        }
+  }
+  .buttonCurr {
+    font-family: $font;
+    background-color: $primary-color;
+    color: rgb(0, 0, 0);
+    border-radius: 6px;
+    cursor: pointer;
+
+    p {
+      height: 10px;
+      padding: 0 0.8rem;
     }
-    
-}    
+  }
 
-
+  @media screen and (max-width:576px){
+    width: 90vw;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+}

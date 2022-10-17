@@ -181,9 +181,11 @@
             display: inherit;
 
             .userPopUp{
+                position: relative;
                 font-size: 1rem;
                 height: auto;
-                top: 21em;
+                z-index: -1;
+                top: 0;
                 right: 0;
                 width: 85vw;
                 border-radius: 0;
