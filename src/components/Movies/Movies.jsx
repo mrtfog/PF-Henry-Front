@@ -21,7 +21,7 @@ export default function Movies() {
 
   useEffect(() => {
     setCurrentPage(1);
-  }, []);
+  }, [movies]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [moviesPerPage, setMoviesPerPage] = useState(20);
