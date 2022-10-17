@@ -27,16 +27,17 @@ import "./_app.scss";
 import Rooms from "./components/AdminPanel/Rooms";
 import Review from "./components/Forms/Review";
 import WebsiteReviews from "./components/WebsiteReviews";
+import Subscription from "./components/Subscription";
 
 import NewCart from "./components/Cart/NewCart";
 
 function App() {
-
   const { pathname } = useLocation();
   const { currentUser } = useAuth();
 
-  if (!currentUser) if (!JSON.parse(sessionStorage.getItem("newCart"))) sessionStorage.setItem("newCart", JSON.stringify([]))
-
+  if (!currentUser)
+    if (!JSON.parse(sessionStorage.getItem("newCart")))
+      sessionStorage.setItem("newCart", JSON.stringify([]));
 
   if (pathname.includes("/admin")) {
     return (
@@ -92,7 +93,7 @@ function App() {
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/cart" component={NewCart} />
           <Route exact path="/reviews" component={WebsiteReviews} />
-
+          <Route exact path="/subscribe" component={Subscription} />
         </Switch>
       </div>
     );
