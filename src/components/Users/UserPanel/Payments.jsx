@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-//import style from '../../../scss/components/Users/UserPanel/_payments.module.scss'
+import style from '../../../scss/components/Users/UserPanel/_payments.module.scss'
 import CardPayments from "./Card";
-import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
+// import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
 import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserPayments } from "../../../redux/actions/users";
+import { useAuth } from "../../contexts/AuthContext";
 
 function Payments() {
-  const fakeState = [
-    {
-      type: "Subscription",
-      date: "01/10/2020",
-      amount: "3,250.99",
-      ticket: "#",
-    },
-    { type: "Ticket", date: "05/10/2020", amount: "950.99", ticket: "#" },
-    { type: "Ticket", date: "07/10/2020", amount: "1,901.98", ticket: "#" },
-  ];
+
+  const dispatch = useDispatch()
+
+  const {currentUser} = useAuth()
+
+  const userPayments = useSelector(state => state.usersReducer.userPayments)
+
+  useEffect(()=>{
+    if(!userPayments.length) dispatch(getUserPayments(currentUser))
+  }, [dispatch])
+
+  console.log(userPayments)
   const querystring = window.location.search;
   const searchParams = new URLSearchParams(querystring);
   const status = searchParams.get("status");
@@ -92,22 +97,25 @@ function Payments() {
           </div>
         </div>
 
-        <div className={style.subInfoContainer}>
-          <div className={style.subtitlesContainer}>
-            <div className={style.subtitle1}>Type</div>
-            <div className={style.subtitle2}>Date</div>
-            <div className={style.subtitle3}>Amount</div>
-          </div>
-          <div className={style.cardsContainer}>
-            {fakeState &&
-              fakeState.map((e) => {
+          <div className={style.cardsContainer}> 
+          <div className={style.subInfoContainer}>
+            <div className={style.subtitlesContainer}>
+              <div className={style.subtitle1}>Type</div>
+              <div className={style.subtitle2}>Title</div>
+              <div className={style.subtitle3}>Date</div>
+              <div className={style.subtitle4}>Tickets</div>
+              <div className={style.subtitle5}>Amount</div>
+            </div>
+            {userPayments &&
+              userPayments.map((e) => {
                 return (
                   <div className={style.card}>
                     <CardPayments
-                      paymentType={e.type}
-                      date={e.date}
-                      amount={e.amount}
-                      ticket={e.ticket}
+                      title={e.movieTitle}
+                      paymentType={e.type === 'standard' ? 'ticket' : 'subscription'}
+                      date={e.payedAt}
+                      amount={e.price}
+                      ticket={e.ticketAmount}
                     ></CardPayments>
                   </div>
                 );

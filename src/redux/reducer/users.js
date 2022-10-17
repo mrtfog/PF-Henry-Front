@@ -3,6 +3,7 @@ const initialState = {
     selectedUser: [],
     userSession: [],
     registerStatus:undefined,
+    userPayments: []
 };
   
 export default function showtimesReducer(state = initialState, action) {
@@ -37,6 +38,12 @@ export default function showtimesReducer(state = initialState, action) {
             return {
                 ...state,
                 registerStatus: undefined,
+            }
+
+        case 'GET_USER_PAYMENTS':
+            return{
+                ...state,
+                userPayments: action.payload
             }
   
         default:

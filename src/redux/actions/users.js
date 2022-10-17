@@ -63,3 +63,19 @@ export function clearRegisterStatus(){
         return dispatch({type:'CLEAR_REGISTER_STATUS'})
     }
 }
+
+export function getUserPayments(currentUser){
+
+    return async(dispatch)=>{
+
+        try{
+
+            const { data } = await axios.get('https://pf-henry-back.herokuapp.com/reservation/getPayedByUser', {headers: {'user': currentUser.accessToken}})
+
+            return dispatch({type: 'GET_USER_PAYMENTS', payload: data})
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+}
