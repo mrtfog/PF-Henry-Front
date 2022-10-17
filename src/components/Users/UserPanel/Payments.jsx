@@ -113,7 +113,7 @@ function Payments() {
                     <CardPayments
                       title={e.movieTitle}
                       paymentType={e.type === 'standard' ? 'ticket' : 'subscription'}
-                      date={e.payedAt}
+                      date={e.payedAt.slice(0,10)}
                       amount={e.price}
                       ticket={e.ticketAmount}
                     ></CardPayments>
