@@ -69,7 +69,7 @@ export default function AddToCartPopUp() {
             Swal.fire({
                 text: 'You already selected this showtime, check your cart',
                 icon: 'warning',
-                iconColor: '#497aa6',
+                iconColor: "#bf0d31",
                 showCloseButton: true,
                 confirmButtonText: 'Go to cart',
                 denyButtonText: 'Continue',

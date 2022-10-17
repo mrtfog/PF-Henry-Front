@@ -1,11 +1,8 @@
 
 const initialState = {
-
     movieReviews: [],
     websiteReviews: [],
     formDisplay: 'none',
-    websiteReviews: [],
-
 };
 
 export default function reviewsReducer(state = initialState, action) {
