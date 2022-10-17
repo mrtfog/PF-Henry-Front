@@ -7,6 +7,7 @@ import userIMG from '../assets/user.png'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import { clearCart } from "../redux/actions/cart";
 import { useDispatch } from "react-redux";
+import { is } from "date-fns/locale";
 
 export default function Navbar() {
 
@@ -67,8 +68,35 @@ export default function Navbar() {
     display === 'none' ? setDisplay('flex') : setDisplay('none')
   }
 
+  
+
   /*======================== EVENT STICKY BAR ======================== */
+
+  
   window.addEventListener("scroll", changeColor);
+
+  /* ======================== BURGER MENU SECTION ========================  */
+
+
+  /* To change burger classes */
+  const [burger, setBurgerClass] = useState(`${style.burgerBar} ${style.unclicked}`)
+  const [menu, setMenuClass] = useState(`${style.menu} ${style.hidden} ${style.navBtnContainer}`)
+  const [isMenuClicked, setIsMenuClicked] = useState(false)
+
+/* Toggle burger menu change */
+
+const updateMenu = () => {
+  if(!isMenuClicked){
+    setBurgerClass(`${style.burgerBar} ${style.clicked}`)
+    setMenuClass(`${style.menu} ${style.visible} ${style.navBtnContainer}` )
+  } else {
+    setBurgerClass(`${style.burgerBar} ${style.unclicked}`)
+    setMenuClass(`${style.menu} ${style.hidden} ${style.navBtnContainer}`)
+  }
+
+  setIsMenuClicked(!isMenuClicked)
+}
+
 
   return (
     <nav
@@ -87,7 +115,13 @@ export default function Navbar() {
         <h2 onClick={()=> setDisplay('none')} >HPFC</h2>
       </Link>
 
-      <div className={style.navBtnContainer}>
+      <div className={style.burgerMenu} onClick={updateMenu}>
+          <span className={burger}></span>
+          <span className={burger}></span>
+          <span className={burger}></span>
+      </div>
+
+      <div className={menu}>
         
         {pathname === "/login" ? null :
         (

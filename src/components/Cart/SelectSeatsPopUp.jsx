@@ -45,6 +45,6 @@ export default function SelectSeatsPopUp() {
 
     return (
         
-        <PopUpTemplate displayState={display} handleOnClose={handleDisplay} content={selectSeatsDiv()}/>
+        <PopUpTemplate width='85vw' height='90vh' top='5vh' displayState={display} handleOnClose={handleDisplay} content={selectSeatsDiv()}/>
     )
 }
