@@ -6,8 +6,8 @@ export function getUserById(id) {
         try {
             const { data } = await axios.get(`https://pf-henry-back.herokuapp.com/auth/${id}`);
             return dispatch({ type: "GET_USER_BY_ID", payload: data });
-        } 
-        
+        }
+
         catch (e) {
             console.log(e);
         }
@@ -20,36 +20,34 @@ export function getUserSession(id) {
         try {
             const { data } = await axios.get(`https://pf-henry-back.herokuapp.com/auth/success`);
             return dispatch({ type: "GET_USER_SESSION", payload: data });
-        } 
+        }
         catch (e) {
             console.log(e);
         }
     };
 }
 
-export function postLogIn(payload){
+export function postLogIn(payload) {
     return async (dispatch) => {
         try {
             const response = await axios.post(`https://pf-henry-back.herokuapp.com/auth/login`, payload);
-            return dispatch({ type: "POST_LOG_IN", payload: response});
-        } 
+            return dispatch({ type: "POST_LOG_IN", payload: response });
+        }
         catch (e) {
             console.log(e);
         }
     };
 }
 
+export function postNewUser(payload) {
 
-  
-export function postNewUser(payload){
+    return async (dispatch) => {
 
-    return async(dispatch)=>{
-
-        try{
-            const response = await axios.post('https://pf-henry-back.herokuapp.com/auth/register', payload, {withCredentials:true})
-            return dispatch({type:'POST_NEW_USER', payload: response.status})
+        try {
+            const response = await axios.post('https://pf-henry-back.herokuapp.com/auth/register', payload, { withCredentials: true })
+            return dispatch({ type: 'POST_NEW_USER', payload: response.status })
         }
-        catch(e){
+        catch (e) {
             alert(e.response.data)
         }
 
@@ -57,25 +55,41 @@ export function postNewUser(payload){
 
 }
 
-
-export function clearRegisterStatus(){
-    return (dispatch) =>{
-        return dispatch({type:'CLEAR_REGISTER_STATUS'})
+export function clearRegisterStatus() {
+    return (dispatch) => {
+        return dispatch({ type: 'CLEAR_REGISTER_STATUS' })
     }
 }
 
-export function getUserPayments(currentUser){
+export function getUserPayments(currentUser) {
 
-    return async(dispatch)=>{
+    return async (dispatch) => {
 
-        try{
+        try {
 
-            const { data } = await axios.get('https://pf-henry-back.herokuapp.com/reservation/getPayedByUser', {headers: {'user': currentUser.accessToken}})
+            const { data } = await axios.get('https://pf-henry-back.herokuapp.com/reservation/getPayedByUser', { headers: { 'user': currentUser.accessToken } })
 
-            return dispatch({type: 'GET_USER_PAYMENTS', payload: data})
+            return dispatch({ type: 'GET_USER_PAYMENTS', payload: data })
         }
-        catch(e){
+        catch (e) {
             console.log(e)
         }
     }
+}
+
+export function getUserRole(accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/user/role", { headers: { "user": accessToken } })
+            return dispatch({ type: "GET_USER_ROLE", payload: data })
+
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
 }
