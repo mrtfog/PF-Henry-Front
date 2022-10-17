@@ -29,7 +29,7 @@
     display: inline;
     border-radius: 8px;
     background-color: transparent;
-    border: 1px solid $primary-color;
+    border: 1.7px solid $primary-color;
     color: $text-color-white;
     transition: 0.2s linear;
     cursor: pointer;
@@ -39,6 +39,25 @@
         background-color: $primary-color;
         color: $text-color-white;
         border-radius: $primary-color;
+    }
+}
+@mixin btn-tertiary{
+    font-family: $font;
+    color: $text-color-white;
+    border-radius: 8px;
+    transition: 0.2s linear;
+    display: inline;
+    background: linear-gradient(345deg, $primary-color 10%, $secondary-color 33%, RGB(20, 21, 24) 66%, rgba(255, 255, 255, 0) 100%) 99% 50% / 400% 400%;
+    padding: .9em 1.5em ;
+    cursor: pointer;
+    border:2px solid transparent ;
+    &:hover{
+        background-position: 1% 50%;
+        border: 2px solid $primary-color;
+        color: rgb(255, 255, 255);
+        transition: all 0.5s ease 0s !important;
+     
+        // transform: scale(1.1);
     }
 }
 

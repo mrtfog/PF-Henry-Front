@@ -27,6 +27,7 @@ import "./_app.scss";
 import Rooms from "./components/AdminPanel/Rooms";
 import Review from "./components/Forms/Review";
 import WebsiteReviews from "./components/WebsiteReviews";
+import Subscription from "./components/Subscription";
 
 function App() {
   const { pathname } = useLocation();
@@ -86,6 +87,7 @@ function App() {
           <Route exact path="/login" component={LogIn} />
           <Route exact path="/cart" component={Cart} />
           <Route exact path="/reviews" component={WebsiteReviews} />
+          <Route exact path="/subscribe" component={Subscription} />
         </Switch>
       </div>
     );

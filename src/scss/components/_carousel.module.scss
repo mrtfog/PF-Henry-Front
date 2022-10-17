@@ -13,7 +13,7 @@
     margin-bottom: 2em;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 90% 30%;
+    background-position: 70% 20%;
     color:white;
     width: 100vw;
     
@@ -29,8 +29,9 @@
                         rgba(20, 21, 24, .1),  
                         rgba(20, 21, 24, .1),  
                         rgba(20, 21, 24, .1),   
-                        rgba(20, 21, 24, .2),   
-                        rgba(20, 21, 24, .5),
+                        rgba(20, 21, 24, .2),  
+                        rgba(20, 21, 24, .2),
+                        rgba(20, 21, 24, .2),
                         rgba(20, 21, 24, 1));
         height: 100%;
         width:100%;
@@ -46,21 +47,24 @@
         bottom: 10%;
        
         p{
-            font-size: 3rem;
+            font-size: 2.7rem;
             font-weight: 500;
             text-shadow: 0 0 4px rgba(255, 255, 255, 0.726);
-            letter-spacing: 1px;
+            letter-spacing: 0.7px;
             margin-bottom: 1rem;
+            
         }
 
     button{
-        @include btn-primary;
-        min-width:8rem;
-        width:8rem;
+        @include btn-tertiary;
+        min-width:12rem;
+        width:12rem;
         margin-left:0;
         margin-top: 0;
         font-weight: 600;
-        font-size: medium;
+        font-size: 1rem;
+        letter-spacing: .08em;
+        text-transform: uppercase;
     }
  
    
