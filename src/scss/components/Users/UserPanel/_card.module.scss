@@ -14,10 +14,12 @@
     margin: 1em 0;
     border-radius: 25px;
     font-family: $font;
+    height: 4rem;
 
     .type{
-        width: 15%;
+        width: 10%;
         text-align: left;
+        text-transform: capitalize;
         span{
             font-weight: 600;
             font-size: 1.1rem;
@@ -28,28 +30,10 @@
 
     span{
         width: 20%;
-        text-align: left;
+        text-align: center;
         color:$background-color;
-        font-weight: 600;
-        font-size: 1.1rem;
+        font-weight: 500;
+        font-size: 1rem;
     }
 
-    .deleteBtn{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 20%;
-        span{
-            @include btn-primary;
-            background-color: $background-color;
-            border-color: $background-color;
-            color: $text-color-white;
-            padding: 0.3rem 1rem;
-            display: flex;
-            flex-direction: column;
-            font-weight: 500;
-            width: auto;
-        }
-
-    }
 }
