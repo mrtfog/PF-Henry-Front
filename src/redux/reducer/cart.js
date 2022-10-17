@@ -34,6 +34,63 @@ export default function showtimesReducer(state = initialState, action) {
                 newReservations: []
             }
 
+
+            case "GET_ALL_RESERVATIONS":
+      return {
+        ...state,
+        allReservations: action.payload,
+      };
+    case "ORDERED_BY":
+      const { buttonName, orderType } = action.payload;
+      let orderedReservations;
+
+      if (buttonName === "amount" && orderType === true) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.price > b.price) return -1;
+          if (a.price < b.price) return 1;
+          else return 0;
+        });
+      } else if (buttonName === "amount" && orderType === false) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.price > b.price) return 1;
+          if (a.price < b.price) return -1;
+          else return 0;
+        });
+      }
+
+      if (buttonName === "date" && orderType === true) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.payedAt > b.payedAt) return -1;
+          if (a.payedAt < b.payedAt) return 1;
+          else return 0;
+        });
+      } else if (buttonName === "date" && orderType === false) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.payedAt > b.payedAt) return 1;
+          if (a.payedAt < b.payedAt) return -1;
+          else return 0;
+        });
+      }
+
+      if (buttonName === "type" && orderType === true) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.type > b.type) return -1;
+          if (a.type < b.type) return 1;
+          else return 0;
+        });
+      } else if (buttonName === "type" && orderType === false) {
+        orderedReservations = state.allReservations.sort(function (a, b) {
+          if (a.type > b.type) return 1;
+          if (a.type < b.type) return -1;
+          else return 0;
+        });
+      }
+
+      return {
+        ...state,
+        allReservations: orderedReservations,
+      };
+
         /* ===== */
 
 
