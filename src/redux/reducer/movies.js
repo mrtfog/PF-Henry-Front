@@ -23,6 +23,7 @@ export default function moviesReducer(state = initialState, action) {
         allMovies: filteredMovies,
         carousel: filteredMovies.slice(0, 5).map((e) => {
           return {
+            _id: e._id,
             title: e.title,
             backdrop_path: `https://image.tmdb.org/t/p/original${e.backdrop_path}`,
           };

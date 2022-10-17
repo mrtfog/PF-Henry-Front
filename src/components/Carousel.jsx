@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import style from "../scss/components/_carousel.module.scss";
 import img from "../assets/uncharted-poster.jpg";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 function Carousel() {
   /* Arreglo de images hardcodeado, acá irian las imagénes de poster de las películas en cartelera*/
   // const images = ['presencias-poster.jpg','thenorthman-poster.jpg','thor-poster.webp', 'uncharted-poster.jpg']
+  const history = useHistory()
 
   const images = useSelector((state) => state.moviesReducer.carousel);
   const addPlaylistDisplay = useSelector(
@@ -65,7 +67,7 @@ function Carousel() {
       {selectedImage && (
         <span className={style.spanTitle}>
           <p>{selectedImage && selectedImage.title}</p>
-          <button>Watch Now</button>
+          <button onClick={() => history.push(`/movies/${selectedImage._id}`)}>Watch Now</button>
         </span>
       )}
       <button className={style.carouselBtnPrev} onClick={previous}>
