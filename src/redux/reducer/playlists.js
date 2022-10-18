@@ -69,6 +69,12 @@ export default function playlistReducer(state = initialState, action) {
                 movies: []
             }
 
+        case 'DELETE_PLAYLIST':
+            return{
+                ...state,
+                playlists: state.playlists.filter(p => p._id !== action.payload)
+            }
+
         default:
             return { ...state }
 
