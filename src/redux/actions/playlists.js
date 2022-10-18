@@ -119,6 +119,25 @@ export function removeMovieFromPlaylist(movieId, playlistId, currentUser) {
     }
 }
 
+export function deletePlaylist(playlistId, currentUser) {
+
+    return async (dispatch) => {
+
+        try {
+
+            await axios.delete(`https://pf-henry-back.herokuapp.com/list/removeById/${playlistId}`, { headers: { 'user': currentUser.accessToken } })
+            
+            return dispatch({ type: 'DELETE_PLAYLIST', payload: playlistId})
+
+        }
+        catch (e) {
+
+            console.log(e)
+
+        }
+    }
+}
+
 export function clearPlaylistMovies() {
 
     return { type: 'CLEAR_PLAYLIST_MOVIES' }

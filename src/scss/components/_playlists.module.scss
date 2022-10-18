@@ -16,6 +16,10 @@
         width: 75%;
         margin: 8vh 0;
 
+        @media screen and (max-width: 570px){
+            width: 90%;
+        }
+
         h2{
             color: $text-color-white;
             align-self: flex-start;
@@ -23,6 +27,11 @@
     
         .addPlaylistButton{
             @include btn-secondary;
+
+            @media screen and (max-width: 570px){
+                font-size: 10px;
+                padding: 0.4rem 0.8rem;
+            }
         }
     }
 
@@ -37,31 +46,40 @@
  
         .playlist{
             width: 70vw;
-            @include playlist;
+            // @include playlist;
+            @include  btn-tertiary;
+            display: flex;
+            flex-direction: row;
+            margin: 20px;
             text-decoration: none;
             text-transform: capitalize;
+            
+            h4{
+                @media screen and (max-width: 570px){
+                    margin: 10px;
+                }
+            }
+
+            @media screen and (max-width: 570px){
+                width: 90vw;
+                padding: 5px;
+            }
 
             a{
-                width: 80%;
+                width: 95%;
                 height: 100%;
                 color: $text-color-white;
                 display: flex;
                 align-items: center;
+                justify-content: space-between;
             }
 
-            div{
-
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                color: $text-color-white;
-
-                .delete{
-                    @include btn-secondary;
-                    padding: 0.45rem 0.8rem;
-                    border: none;             
-                }
-
+            .delete{
+                position: relative;
+                @include btn-secondary;
+                padding: 0.45rem 0.8rem;
+                border: none;   
+                z-index: 5;          
             }
             
         }

@@ -78,7 +78,7 @@ export default function Playlist() {
                     <h2>{randomMovie.title}</h2>
                     <div className={style.buttons}>
                         <Link to={`/movies/${randomMovie.id}`}>
-                            <button>► Play</button>
+                            <button><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg> Play</button>
                         </Link>
                         <button className={style.button} onClick={handleRandomMovieSelect}>Try Again</button>
                     </div>
@@ -96,10 +96,14 @@ export default function Playlist() {
                 playlist ? Object.keys(playlist).length ?
                     <div className={style.titleAndButton}>
                         <h2>{playlist.name}</h2>
-                        <h4>{playlist.contributors ?
+                        {window.innerWidth > 570 ?
+                            <>
+                            <h4>{playlist.contributors ?
                             playlist.contributors.map(u => u.username).join(' • ')
                             : currentUser.displayName}</h4>
-                        <h4>Movies: {playlist.moviesId ? playlist.moviesId.length : "0 :c"}</h4>
+                            <h4>Movies: {playlist.moviesId ? playlist.moviesId.length : "0 :c"}</h4>
+                            </>
+                            : null}
                         <div>
                             <p>Not sure what to watch?</p>
                             <button disabled={playlist.moviesId.length > 0 ? false : true } className={style.button} onClick={handleRandomMovieSelect}>Choose Randomly</button>
@@ -117,16 +121,15 @@ export default function Playlist() {
                     movies.map(m => {
 
                         return (
-
-                            <div className={style.movie} key={m.id}>
+                            <div prop={window.innerWidth} className={style.movie} key={m.id}>
                                 <Link to={`/movies/${m.id}`}>
                                     <img src={'https://image.tmdb.org/t/p/original' + m.poster_path} />
                                     <h4>{m.title}</h4>
-                                    <h5>{m.runtime} min</h5>
+                                    <h5>{m.runtime} {window.innerWidth < 570 ? <br/> : null} min</h5>
                                 </Link>
                                 <div>
                                     <Link to={`/movies/${m.id}`}>
-                                        <button className={style.play}>► Play</button>
+                                        <button className={style.play}><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg> Play</button>
                                     </Link>
                                     <button className={style.delete} onClick={() => handleMovieDelete(m.id, m.title)}>X</button>
                                 </div>
