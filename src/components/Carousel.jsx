@@ -19,7 +19,6 @@ function Carousel() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(images[0]);
 
-  console.log(selectedImage)
   /* Lógica para que funcione el previous y el neext*/
   const selectNewImage = (index, images, next = true) => {
     const condition = next ? index < images.length - 1 : index > 0;
