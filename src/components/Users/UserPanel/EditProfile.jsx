@@ -11,8 +11,6 @@ function EditProfile() {
 
    const { currentUser, changePassword, changeUsername} = useAuth();
 
-   const [username, setUsername] = useState()
-
    return (
       <div className={style.mainContainer}>
          <div className={style.titleContainer}>
@@ -40,7 +38,7 @@ function EditProfile() {
                   <label>Username</label>
                   <div className={`${style.inputContainer} ${style.username}`}>
                      <p>{currentUser.displayName}</p>
-                     <span onClick={()=> changeUsername(username, currentUser)}className={style.pencilIcon}>
+                     <span onClick={()=> changeUsername(currentUser)}className={style.pencilIcon}>
                         {" "}
                         {/*En este span va el lapiz de editar */}
                         <svg
