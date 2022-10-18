@@ -5,6 +5,7 @@ const initialState = {
     displayCart: 'none',
     displaySeats: 'none',
     selectedReservation: {},
+    takenTickets: {},
     showtime: [],
 
     /* ===== ESTO LO HIZO EL INVESIL DE LUSIANO ===== */
@@ -139,6 +140,12 @@ export default function showtimesReducer(state = initialState, action) {
 
 
 
+        case 'TAKEN_TICKETS':
+
+            return {
+                ...state,
+                takenTickets: action.payload
+            };
 
         case 'SELECTED_RESERVATION':
             return {
