@@ -112,8 +112,6 @@ export function postCart(payload, accestoken) {
         try {
 
             const { data } = await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
-
-            console.log(data)
             return dispatch({ type: 'POST_RESERVATION' })
 
         } catch (e) {
