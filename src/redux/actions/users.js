@@ -93,3 +93,24 @@ export function getUserRole(accessToken) {
     }
 
 }
+
+export function getUserSubscription(currentUser) {
+
+    return async (dispatch) => {
+
+        try {
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/subscription/getByUser", { headers: { 'user': currentUser.accessToken } })
+            return dispatch({ type: "GET_USER_SUBSCRIPTION", payload: data })
+
+        } catch (e) {
+
+            if (e.response.data === "Error: This user is not subscribed!") {
+                return dispatch({ type: "GET_USER_SUBSCRIPTION", payload: {} })
+            }
+
+            console.log(e)
+        }
+
+    }
+
+}

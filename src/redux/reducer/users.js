@@ -2,32 +2,33 @@ const initialState = {
     users: [],
     selectedUser: [],
     userSession: [],
-    registerStatus:undefined,
+    registerStatus: undefined,
     userPayments: [],
-    userRole: undefined
+    userRole: undefined,
+    userSubscription: {}
 };
-  
+
 export default function showtimesReducer(state = initialState, action) {
-    
+
     switch (action.type) {
         case "GET_USER_BY_ID":
-            return{
+            return {
                 ...state,
                 selectedUser: action.payload
             }
 
         case "GET_USER_SESSION":
-            return{
+            return {
                 ...state,
                 userSession: action.payload
             }
-            
+
         case "POST_LOG_IN":
             return {
                 ...state,
                 userSession: action.payload,
             }
-            
+
         case "POST_NEW_USER":
 
             return {
@@ -42,21 +43,26 @@ export default function showtimesReducer(state = initialState, action) {
             }
 
         case 'GET_USER_PAYMENTS':
-            return{
+            return {
                 ...state,
                 userPayments: action.payload
             }
 
-            case "GET_USER_ROLE":
-                return {
-                    ...state,
-                    userRole: action.payload
-                }
-  
+        case "GET_USER_ROLE":
+            return {
+                ...state,
+                userRole: action.payload
+            }
+
+        case "GET_USER_SUBSCRIPTION":
+            return {
+                ...state,
+                userSubscription: action.payload
+            }
+
         default:
             return {
                 ...state,
             };
     }
 }
-  
