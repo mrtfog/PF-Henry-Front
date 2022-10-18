@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getReservations, clearNewReservations, getCart } from "../../redux/actions/cart";
+import { getReservations, clearNewReservations, getCart, deleteReservationBack } from "../../redux/actions/cart";
 import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { getAllRooms } from "../../redux/actions/rooms";
 import { selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie, } from "../../redux/actions/cart";
@@ -35,8 +35,9 @@ const NewCart = () => {
 
     return () => dispatch(clearNewReservations());
   }, []);
-  useEffect(() => {
 
+  useEffect(() => {
+    if (currentUser) dispatch(getReservations(currentUser.accessToken));
   }, [newCart]);
 
   function handleOnClick(r) {
@@ -191,7 +192,7 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-
+        if(currentUser)dispatch(deleteReservationBack({reservationId: showtime.reservationId}, currentUser.accessToken))
         if(!currentUser){
             dispatch(clearCartByMovie(showtime.showtimeId))
            let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)

@@ -7,7 +7,7 @@ const initialState = {
     selectedReservation: {},
     takenTickets: {},
     showtime: [],
-
+    allReservations: [],
     /* ===== ESTO LO HIZO EL INVESIL DE LUSIANO ===== */
     newReservations: [],
     /* ===== */
@@ -34,63 +34,64 @@ export default function showtimesReducer(state = initialState, action) {
             }
 
 
-            case "GET_ALL_RESERVATIONS":
-      return {
-        ...state,
-        allReservations: action.payload,
-      };
-    case "ORDERED_BY":
-      const { buttonName, orderType } = action.payload;
-      let orderedReservations;
+        case "GET_ALL_RESERVATIONS":
+        return {
+            ...state,
+            allReservations: action.payload,
+        };
 
-      if (buttonName === "amount" && orderType === true) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.price > b.price) return -1;
-          if (a.price < b.price) return 1;
-          else return 0;
-        });
-      } else if (buttonName === "amount" && orderType === false) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.price > b.price) return 1;
-          if (a.price < b.price) return -1;
-          else return 0;
-        });
-      }
+        case "ORDERED_BY":
+        const { buttonName, orderType } = action.payload;
+        let orderedReservations;
 
-      if (buttonName === "date" && orderType === true) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.payedAt > b.payedAt) return -1;
-          if (a.payedAt < b.payedAt) return 1;
-          else return 0;
-        });
-      } else if (buttonName === "date" && orderType === false) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.payedAt > b.payedAt) return 1;
-          if (a.payedAt < b.payedAt) return -1;
-          else return 0;
-        });
-      }
+        if (buttonName === "amount" && orderType === true) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.price > b.price) return -1;
+            if (a.price < b.price) return 1;
+            else return 0;
+            });
+        } else if (buttonName === "amount" && orderType === false) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.price > b.price) return 1;
+            if (a.price < b.price) return -1;
+            else return 0;
+            });
+        }
 
-      if (buttonName === "type" && orderType === true) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.type > b.type) return -1;
-          if (a.type < b.type) return 1;
-          else return 0;
-        });
-      } else if (buttonName === "type" && orderType === false) {
-        orderedReservations = state.allReservations.sort(function (a, b) {
-          if (a.type > b.type) return 1;
-          if (a.type < b.type) return -1;
-          else return 0;
-        });
-      }
+        if (buttonName === "date" && orderType === true) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.payedAt > b.payedAt) return -1;
+            if (a.payedAt < b.payedAt) return 1;
+            else return 0;
+            });
+        } else if (buttonName === "date" && orderType === false) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.payedAt > b.payedAt) return 1;
+            if (a.payedAt < b.payedAt) return -1;
+            else return 0;
+            });
+        }
 
-      return {
-        ...state,
-        allReservations: orderedReservations,
-      };
+        if (buttonName === "type" && orderType === true) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.type > b.type) return -1;
+            if (a.type < b.type) return 1;
+            else return 0;
+            });
+        } else if (buttonName === "type" && orderType === false) {
+            orderedReservations = state.allReservations.sort(function (a, b) {
+            if (a.type > b.type) return 1;
+            if (a.type < b.type) return -1;
+            else return 0;
+            });
+        }
 
-        /* ===== */
+        return {
+            ...state,
+            allReservations: orderedReservations,
+        };
+
+            /* ===== */
 
 
         
@@ -115,21 +116,21 @@ export default function showtimesReducer(state = initialState, action) {
                 newCart: [...state.newCart, action.payload]
             }
             
-            case 'CLEAR_CART':
-                return {
-                    ...state,
-                    newCart: []
-                }
-                
-            case 'CLEAR_CART_BY_MOVIE':
-    
-                let deletedMovie = state.newCart.filter(m => {
-                    if (m.showtimeId !== action.payload) return m
-                })
-                return {
-                    ...state,
-                    newCart: deletedMovie
-                }
+        case 'CLEAR_CART':
+            return {
+                ...state,
+                newCart: []
+            }
+            
+        case 'CLEAR_CART_BY_MOVIE':
+
+            let deletedMovie = state.newCart.filter(m => {
+                if (m.showtimeId !== action.payload) return m
+            })
+            return {
+                ...state,
+                newCart: deletedMovie
+            }
 
 
 
@@ -159,6 +160,12 @@ export default function showtimesReducer(state = initialState, action) {
                 newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload._id.toString()), action.payload]
             }
 
+        case  'DELETE_RESERVATION_BACK':
+
+            return {
+                ...state,
+                newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload.toString())]
+            }
 
         case 'ADD_TO_CART_DISPLAY':
 
@@ -181,8 +188,6 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state,
                 showtime: action.payload
             }
-
-
 
 
         case 'POST_RESERVATION':

@@ -42,7 +42,8 @@ export function getAllReservations(currentUser) {
       }
     };
   }
-  
+
+
 export function orderedBy(buttonName, orderType){
     return ({ type: 'ORDERED_BY', payload: {buttonName, orderType} });
 }
@@ -108,8 +109,9 @@ export function postCart(payload, accestoken) {
 
         try {
 
-            await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
+           const {data}= await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
 
+           console.log(data)
             return dispatch({ type: 'POST_RESERVATION' })
 
         } catch (e) {
@@ -175,3 +177,19 @@ export function selectedSeats(accessToken, showtimeId, seatLocations) {
     }
 
 }
+
+  
+export function deleteReservationBack(reservationId, accessToken) {
+    return async (dispatch) => {
+      try {
+        const  {data} = await axios.put(
+          "https://pf-henry-back.herokuapp.com/reservation/cancelById", reservationId, 
+          { headers: { 'user': accessToken } }
+        );
+            console.log(data)
+        return dispatch({ type: "DELETE_RESERVATION_BACK", payload: reservationId});
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  }

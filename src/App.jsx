@@ -13,7 +13,6 @@ import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
 import Users from "./components/AdminPanel/Users";
 import LogIn from "./components/Users/Login";
-import Cart from "./components/Cart/Cart";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import EditProfile from "./components/Users/UserPanel/EditProfile";
 import Payments from "./components/Users/UserPanel/Payments";

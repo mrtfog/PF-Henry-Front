@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
-import { getShowtimeByMovieId, addToCartDisplay, addToCart, postCart } from '../redux/actions/cart'
+import { getShowtimeByMovieId, addToCartDisplay, postCart } from '../redux/actions/cart'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js';
@@ -28,13 +28,6 @@ export default function AddToCartPopUp() {
 
     const [selectedShowtime, setSelectedShowtime] = useState({})
 
-
-
-    //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
-    //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
-    //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
-    //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
-    //======================= SE DEBE DEFINIR DONDE PASAR EL PRECIO ========================//
 
 
     useEffect(() => {
@@ -96,6 +89,7 @@ export default function AddToCartPopUp() {
                 dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }, currentUser.accessToken))
             } else {
                 const sessionCart = JSON.parse(sessionStorage.getItem("newCart"))
+                console.log(selectedShowtime)
                 sessionStorage.setItem("newCart", JSON.stringify([...sessionCart, { showtimeId: selectedShowtime.showtimeId, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }]))
             }
 
