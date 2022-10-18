@@ -35,8 +35,9 @@ const NewCart = () => {
 
     return () => dispatch(clearNewReservations());
   }, []);
-  useEffect(() => {
 
+  useEffect(() => {
+    if (currentUser) dispatch(getReservations(currentUser.accessToken));
   }, [newCart]);
 
   function handleOnClick(r) {
