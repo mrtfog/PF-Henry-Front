@@ -1,13 +1,12 @@
 import { startOfDay } from "date-fns";
 
 const initialState = {
-    cart: [],
+    newCart: [],
     displayCart: 'none',
     displaySeats: 'none',
     selectedReservation: {},
     takenTickets: {},
     showtime: [],
-    reservationBack: [],
 
     /* ===== ESTO LO HIZO EL INVESIL DE LUSIANO ===== */
     newReservations: [],
@@ -94,22 +93,52 @@ export default function showtimesReducer(state = initialState, action) {
         /* ===== */
 
 
-
-
-
-
-
-
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
         case 'GET_CART':
             return {
                 ...state,
                 newCart: JSON.parse(sessionStorage.getItem('newCart')).length ? JSON.parse(sessionStorage.getItem('newCart')) : []
             };
+        
+        
+        case 'ADD_TO_CART':
+
+            sessionStorage.cart = JSON.stringify([...state.newCart, action.payload])
+            return {
+                ...state,
+                newCart: [...state.newCart, action.payload]
+            }
+            
+            case 'CLEAR_CART':
+                return {
+                    ...state,
+                    newCart: []
+                }
+                
+            case 'CLEAR_CART_BY_MOVIE':
+    
+                let deletedMovie = state.newCart.filter(m => {
+                    if (m.showtimeId !== action.payload) return m
+                })
+                return {
+                    ...state,
+                    newCart: deletedMovie
+                }
+
+
+
+
+
+
+
+
+
 
         case 'TAKEN_TICKETS':
 
@@ -130,27 +159,6 @@ export default function showtimesReducer(state = initialState, action) {
                 newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload._id.toString()), action.payload]
             }
 
-        // case 'SELECTED_SEATS':
-
-        //     const { seatsId, userId, showtimeId } = action.payload
-
-        //     const reservation = state.cart.find((r) => {
-        //         return showtimeId === r.showtimeId
-        //     })
-
-        //     reservation.seatsId = seatsId
-        //     reservation.userId = userId
-
-        //     return {
-        //         ...state,
-        //         cart: state.cart.map(r => {
-        //             if (showtimeId === r.showtimeId) {
-        //                 return reservation
-        //             } else {
-        //                 return r
-        //             }
-        //         })
-        //     }
 
         case 'ADD_TO_CART_DISPLAY':
 
@@ -174,29 +182,8 @@ export default function showtimesReducer(state = initialState, action) {
                 showtime: action.payload
             }
 
-        case 'ADD_TO_CART':
 
-            sessionStorage.cart = JSON.stringify([...state.cart, action.payload])
-            return {
-                ...state,
-                cart: [...state.cart, action.payload]
-            }
 
-        case 'CLEAR_CART':
-            return {
-                ...state,
-                cart: []
-            }
-
-        case 'CLEAR_CART_BY_MOVIE':
-
-            let deletedMovie = state.cart.filter(m => {
-                if (m.showtimeId !== action.payload) return m
-            })
-            return {
-                ...state,
-                cart: deletedMovie
-            }
 
         case 'POST_RESERVATION':
 
@@ -204,18 +191,6 @@ export default function showtimesReducer(state = initialState, action) {
                 ...state
             }
 
-
-        case 'GET_RESERVATION_THROUGH_BACK':
-            return {
-                ...state,
-                reservationBack: action.payload
-            }
-
-        case 'ADD_TO_CART_THROUGH_BACK':
-            return {
-                ...state,
-                cart: [...state.cart, ...action.payload.filter(r => !state.cart.some(res => r.showtimeId === res.showtimeId))]
-            }
 
         default:
             return {

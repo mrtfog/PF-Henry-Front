@@ -8,7 +8,7 @@ export function getAllRooms() {
         try {
 
             const { data } = await axios.get("https://pf-henry-back.herokuapp.com/room/getAll");
-    
+           
             return dispatch({ type: "GET_ROOMS", payload: data });
         } 
         
