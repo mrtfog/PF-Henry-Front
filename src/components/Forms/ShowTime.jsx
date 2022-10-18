@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMovies } from "../../redux/actions/movies";
-import { getAllShowtimes, logicDeleteShowtime, postShowtime} from "../../redux/actions/showtimes";
+import { getAllShowtimes, logicDeleteShowtime, postShowtime } from "../../redux/actions/showtimes";
 import { getAllRooms } from '../../redux/actions/rooms'
 import { DatePicker, TimePicker } from "@material-ui/pickers";
 import style from "../../scss/components/Forms/_function.module.scss";
@@ -21,10 +21,10 @@ export default function ShowTime() {
 
   const rooms = roomsBackend
     ? roomsBackend.map((e) => {
-        const type =
-          e.columns <= 10 ? "Small" : e.columns === 12 ? "Regular" : "Premiere";
-        return { value: e._id, label: `Room N° ${e.number} - Size: ${type}` };
-      })
+      const type =
+        e.columns <= 10 ? "Small" : e.columns === 12 ? "Regular" : "Premiere";
+      return { value: e._id, label: `Room N° ${e.number} - Size: ${type}` };
+    })
     : [];
 
   const formatOptions = [
@@ -37,9 +37,9 @@ export default function ShowTime() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(!movies.length)dispatch(getMovies());
-    if(!functions.length)dispatch(getAllShowtimes());
-    if(!roomsBackend.length)dispatch(getAllRooms())
+    if (!movies.length) dispatch(getMovies());
+    if (!functions.length) dispatch(getAllShowtimes());
+    if (!roomsBackend.length) dispatch(getAllRooms())
   }, [dispatch]);
 
   const formik = useFormik({
@@ -53,6 +53,29 @@ export default function ShowTime() {
 
     validate,
     onSubmit: (values, { resetForm }) => {
+
+      if (!dateValidation(functions, values)) {
+
+        return Swal.fire({
+          text: "The new showtime date-time must be at least 3 hours later than the last showtime of the selected room",
+          icon: "error",
+          iconColor: "#bf0d31",
+          showCloseButton: true,
+          confirmButtonText: "Try again",
+          allowEnterKey: false,
+          customClass: {
+            popup: "Alert",
+            closeButton: "closeButton",
+            confirmButton: "confirmButton",
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            document.getElementById("functionsDiv").scrollTo(0, -1000000);
+          }
+        });
+
+      }
+
       dispatch(postShowtime(values, currentUser));
 
       Swal.fire({
@@ -82,13 +105,12 @@ export default function ShowTime() {
       html: `<div>
         <p><span style='font-weight: 700;'>Movie:</span> ${f.movieTitle}</p>
         <p><span style='font-weight: 700;'>DateTime:</span> ${new Date(
-          f.dateTime
-        )
+        f.dateTime
+      )
           .toLocaleString()
           .replace(",", " -")
           .substring(0, 17)}hs</p>
-        <p><span style='font-weight: 700;'>Movie Theater:</span> ${
-          f.roomId ? rooms.find((r) => r.value === f.roomId).label : ""
+        <p><span style='font-weight: 700;'>Movie Theater:</span> ${f.roomId ? rooms.find((r) => r.value === f.roomId).label : ""
         }</p>
         <p><span style='font-weight: 700;'>Format:</span> ${f.format}</p>
       </div>`,
@@ -113,14 +135,14 @@ export default function ShowTime() {
     });
   }
 
-  if(functions.length && roomsBackend.length){
+  if (functions.length && roomsBackend.length) {
 
     return (
       <div className={style.container}>
         <div className={style.functions_container}>
           <div>
             <h2>Movie showtimes</h2>
-  
+
             <div className={style.functions} id="functionsDiv">
               {functions.length > 0 ? (
                 functions.map((f, index) => {
@@ -181,10 +203,10 @@ export default function ShowTime() {
             </div>
           </div>
         </div>
-  
+
         <div className={style.formFunction}>
           <h2>Create new movie</h2>
-  
+
           <form onSubmit={formik.handleSubmit}>
             <div className={style.mainDivDate}>
               <label>
@@ -196,7 +218,7 @@ export default function ShowTime() {
               <div className={style.Date}>
                 <div className={style.minDivDate}>
                   <label>Date</label>
-  
+
                   <DatePicker
                     name="dateTime"
                     emptyLabel="Select a date"
@@ -207,7 +229,7 @@ export default function ShowTime() {
                     minDate={new Date()}
                   />
                 </div>
-  
+
                 <div className={style.minDivTime}>
                   <label>Time</label>
                   <TimePicker
@@ -220,7 +242,7 @@ export default function ShowTime() {
                 </div>
               </div>
             </div>
-  
+
             <div className={style.Select}>
               {/* <label>Films on the billboard</label> */}
               <label>
@@ -280,7 +302,7 @@ export default function ShowTime() {
                 options={fakePrices}
                 onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}}
               /> */}
-  
+
               <input
                 onChange={(e) => {
                   formik.setFieldValue("ticketPrice", e.target.value);
@@ -291,7 +313,7 @@ export default function ShowTime() {
                 min="1"
               />
             </div>
-  
+
             <button
               disabled={Object.keys(formik.errors).length !== 0 ? true : false}
               type="submit"
@@ -305,8 +327,50 @@ export default function ShowTime() {
 
   }
 
-  else{
+  else {
     return <Loader />
   }
-  
+
+}
+
+function dateValidation(functions, values) {
+
+  const filteredFunctions = functions.filter(f => f.roomId === values.roomId && new Date(f.dateTime).toDateString() === new Date(values.dateTime).toDateString())
+  const lastDate = getLastDate(filteredFunctions)
+
+  if (lastDate) {
+    return threeHourGap(lastDate, values.dateTime)
+  }
+
+  return true
+
+}
+
+function getLastDate(functions) {
+
+  if (!functions.length) return undefined
+
+  let lastDate = new Date(functions[0].dateTime)
+
+  for (const showtime of functions) {
+
+    if (lastDate < new Date(showtime.dateTime)) {
+      lastDate = new Date(showtime.dateTime)
+    }
+
+  }
+
+  return lastDate
+
+}
+
+function threeHourGap(lastDateInput, newDateInput) {
+
+  const lastDate = new Date(lastDateInput)
+  const newDate = new Date(newDateInput)
+
+  const dayInterval = (lastDate.getTime() - newDate.getTime()) / (1000 * 60 * 60)
+
+  return (dayInterval <= -3)
+
 }
