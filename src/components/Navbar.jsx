@@ -45,10 +45,10 @@ export default function Navbar() {
       confirmButtonText: 'Yes, I am sure',
       allowEnterKey: false,
       customClass: {
-          popup: 'Alert',
-          closeButton: 'closeButton',
-          confirmButton: 'confirmButton',
-          denyButton: 'denyButton',
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton',
       }
     })
     .then((result)=>{

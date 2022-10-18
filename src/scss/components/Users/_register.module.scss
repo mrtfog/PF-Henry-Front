@@ -180,7 +180,15 @@
                     justify-content: center;
                     text-align: left;
                     width: 100%;
-    
+                        
+                    input[type=password]::-ms-reveal {
+                        display: none;
+                    }
+                    input[type=password]::-ms-reveal {
+                        border: 1px solid transparent;
+                        border-radius: 50%;
+                        box-shadow: 0 0 3px currentColor;
+                    }
                     .passContainer{
                         position: relative;
                         flex-direction: row;
