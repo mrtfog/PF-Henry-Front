@@ -75,27 +75,8 @@ export default function ShowTime() {
         });
 
       }
-
       dispatch(postShowtime(values, currentUser));
-
-      Swal.fire({
-        text: "Show created",
-        icon: "success",
-        iconColor: "#497aa6",
-        showCloseButton: true,
-        confirmButtonText: "Continue",
-        allowEnterKey: false,
-        customClass: {
-          popup: "Alert",
-          closeButton: "closeButton",
-          confirmButton: "confirmButton",
-        },
-      }).then((result) => {
-        if (result.isConfirmed) {
-          document.getElementById("functionsDiv").scrollTo(0, -1000000);
-          resetForm({ values: "" });
-        }
-      });
+      resetForm({ values: "" });
     },
   });
 
