@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getReservations,
-  clearNewReservations,
-  getCart,
-} from "../../redux/actions/cart";
+import { getReservations, clearNewReservations, getCart } from "../../redux/actions/cart";
 import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { getAllRooms } from "../../redux/actions/rooms";
-import {
-  selectSeatsDisplay,
-  selectedReservation,
-  clearCart,
-  clearCartByMovie,
-} from "../../redux/actions/cart";
+import { selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie, } from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
 import style from "../../scss/components/Cart/_cart.module.scss";
-import Loader from "../Loader";
 
 const NewCart = () => {
   const history = useHistory();
@@ -31,22 +21,23 @@ const NewCart = () => {
   const [total, setTotal] = useState();
 
   let reservations = useSelector((state) => state.cartReducer.newReservations);
+  const newCart = useSelector((state)=> state.cartReducer.newCart)
   const showtimes = useSelector((state) => state.showtimesReducer.showtimes);
   const rooms = useSelector((state) => state.roomReducer.rooms);
 
-  if (!currentUser)
-    reservations = JSON.parse(sessionStorage.getItem("newCart"));
+  if (!currentUser)reservations = JSON.parse(sessionStorage.getItem("newCart"));
 
   useEffect(() => {
     if (currentUser) dispatch(getReservations(currentUser.accessToken));
     else dispatch(getCart());
     dispatch(getAllShowtimes());
-    dispatch(getAllRooms());
+    if(!rooms.length)dispatch(getAllRooms());
 
     return () => dispatch(clearNewReservations());
   }, []);
+  useEffect(() => {
 
-  useEffect(() => {}, [reservations]);
+  }, [newCart]);
 
   function handleOnClick(r) {
     if (!currentUser) {
@@ -75,6 +66,10 @@ const NewCart = () => {
       dispatch(selectedReservation(r));
     }
   }
+  console.log("reservations", reservations);
+  console.log("showtimes", showtimes);
+  console.log('rooms', rooms)
+  console.log('sessionStorage', JSON.parse(sessionStorage.newCart))
 
   const displayReservations = reservations.length
     ? reservations.map((r) => {
@@ -102,11 +97,11 @@ const NewCart = () => {
           };
         }
       })
-    : undefined;
+    : []
 
-  console.log("reservations", reservations);
-  console.log("showtimes", showtimes);
+
   console.log("displayReservations", displayReservations);
+
 
   useEffect(() => {
     if (reservations.length)
@@ -169,9 +164,12 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        sessionStorage.clear();
-        dispatch(clearCart());
-      }
+        
+          if(!currentUser){
+            sessionStorage.newCart = JSON.stringify([])
+            dispatch(clearCart());
+      }}
+              setTotal(0);
     });
   }
 
@@ -193,7 +191,13 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(clearCartByMovie(showtime.showtimeId));
+
+        if(!currentUser){
+            dispatch(clearCartByMovie(showtime.showtimeId))
+           let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)
+           console.log(sessionNewCart)
+            sessionStorage.newCart = JSON.stringify(sessionNewCart)
+        };
       }
     });
   }
@@ -220,7 +224,7 @@ const NewCart = () => {
 
   //////////////// componente ///////////////////////////////////////////
 
-  if (showtimes.length && displayReservations) {
+  if (showtimes.length && displayReservations && rooms.length) {
     return (
       <div className={style.container_cart}>
         <div className={style.title}>
