@@ -12,6 +12,7 @@
         flex-direction: row;
         max-width: 100vw;
         overflow: hidden;
+        margin-bottom: 10vh;
 
         .gradient{
             position: absolute;
@@ -19,6 +20,11 @@
             height: 82vh;
             background: radial-gradient(circle at top right, transparent,  $background-color 90vw);
             z-index: -10;
+
+            @media screen and (max-width: 570px){
+                height: 60vh;
+                background: radial-gradient(circle at top right, transparent,  $background-color 100vw);
+            }
         }
 
         .gradient_color{
@@ -31,6 +37,10 @@
             background-size: cover;
             background-position: center;
             z-index: -11;
+
+            @media screen and (max-width: 570px){
+                height: 59vh;
+            }
         }
 
         .info{
@@ -42,9 +52,17 @@
             flex-direction: column;
             justify-content: flex-end;
             bottom: 18vh;
+            @media screen and (max-width: 570px){
+                width: 80vw;
+                height: 60vh;
+                justify-content: center;
+            }
 
             h2{
                 font-size: 3em;
+                @media screen and (max-width: 570px){
+                    font-size: 2rem;
+                }
             }
             
             p{
@@ -59,12 +77,25 @@
 
                 button{
 
-                    @include btn-primary
+                    @include btn-primary;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-width: max-content;
+                    padding: 0.3rem 1rem;
+
+                    svg{
+                        fill: white;
+                        margin-right: 5px;
+                    }
                 }
 
                 .secondary_button{
 
-                    @include btn-secondary
+                    @include btn-secondary;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
                 }
 
             }
@@ -125,7 +156,11 @@
             .sideButton{
                 @include btn-primary;
                 position: absolute;
+                padding: 0.3rem 0.5rem;
                 right: 14vw;
+                svg{
+                    fill:#f5f5f5;
+                }
             }
         }
         .review_container{
@@ -147,6 +182,7 @@
 
                     @include btn-primary;
                     margin-top: 20px;
+
                 }
             }
         }

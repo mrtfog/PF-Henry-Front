@@ -63,7 +63,18 @@ export default function WebsiteReviews() {
         <div className={style.container}>
             <div className={style.titleAndButton}>
                 <h1>Reviews</h1>
-                {websiteReviews.length ? <button className={style.sideButton} onClick={onClickReview}>Add Review</button> : null}
+                {websiteReviews.length ? 
+                <button className={style.sideButton} onClick={onClickReview}>
+                    {window.innerWidth > 570 ? 
+                    'Add Review' 
+                    : <svg className={style.icon} version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="3px"
+                    width="20" height="20" viewBox="0 0 505 440" enableBackground="new 0 0 512 512" xmlSpace="preserve">
+                    <path d="M488.5,256c0,9.1-6.83,16.5-15.23,16.5H272.5v200.77c0,8.4-7.4,15.23-16.5,15.23c-9.1,0-16.5-6.83-16.5-15.23V272.5
+                    H38.73c-8.4,0-15.23-7.4-15.23-16.5c0-9.1,6.83-16.5,15.23-16.5H239.5V38.73c0-8.4,7.4-15.23,16.5-15.23
+                    c9.1,0,16.5,6.83,16.5,15.23V239.5h200.77C481.67,239.5,488.5,246.9,488.5,256z"/>
+                    </svg>}
+                    </button> 
+                : null}
             </div>
 
             <hr></hr>
