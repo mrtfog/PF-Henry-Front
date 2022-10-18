@@ -162,6 +162,8 @@ const NewCart = () => {
         if (!currentUser) {
           sessionStorage.newCart = JSON.stringify([])
           dispatch(clearCart());
+        } else {
+          dispatch(clearNewReservations(currentUser.accessToken))
         }
       }
       setTotal(0);

@@ -19,10 +19,12 @@ export function getReservations(accessToken) {
 
 
 
-export function clearNewReservations() {
+export function clearNewReservations(accessToken) {
 
     return async dispatch => {
-        return dispatch({type: "CLEAR_NEW_RESERVATIONS"})
+
+        axios.put("https://pf-henry-back.herokuapp.com/reservation/deleteByUser", {}, { headers: { "user": accessToken } })
+        return dispatch({ type: "CLEAR_NEW_RESERVATIONS" })
     }
 
 }
@@ -30,22 +32,22 @@ export function clearNewReservations() {
 
 export function getAllReservations(currentUser) {
     return async (dispatch) => {
-      try {
-        const  {data} = await axios.get(
-          "https://pf-henry-back.herokuapp.com/reservation/getAll",
-          { headers: { user: currentUser.accessToken } }
-        );
-  
-        return dispatch({ type: "GET_ALL_RESERVATIONS", payload: data });
-      } catch (e) {
-        console.log(e);
-      }
+        try {
+            const { data } = await axios.get(
+                "https://pf-henry-back.herokuapp.com/reservation/getAll",
+                { headers: { user: currentUser.accessToken } }
+            );
+
+            return dispatch({ type: "GET_ALL_RESERVATIONS", payload: data });
+        } catch (e) {
+            console.log(e);
+        }
     };
-  }
+}
 
 
-export function orderedBy(buttonName, orderType){
-    return ({ type: 'ORDERED_BY', payload: {buttonName, orderType} });
+export function orderedBy(buttonName, orderType) {
+    return ({ type: 'ORDERED_BY', payload: { buttonName, orderType } });
 }
 
 
@@ -109,9 +111,9 @@ export function postCart(payload, accestoken) {
 
         try {
 
-           const {data}= await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
+            const { data } = await axios.post('https://pf-henry-back.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
 
-           console.log(data)
+            console.log(data)
             return dispatch({ type: 'POST_RESERVATION' })
 
         } catch (e) {
@@ -178,18 +180,18 @@ export function selectedSeats(accessToken, showtimeId, seatLocations) {
 
 }
 
-  
+
 export function deleteReservationBack(reservationId, accessToken) {
     return async (dispatch) => {
-      try {
-        const  {data} = await axios.put(
-          "https://pf-henry-back.herokuapp.com/reservation/cancelById", reservationId, 
-          { headers: { 'user': accessToken } }
-        );
+        try {
+            const { data } = await axios.put(
+                "https://pf-henry-back.herokuapp.com/reservation/cancelById", reservationId,
+                { headers: { 'user': accessToken } }
+            );
 
-        return dispatch({ type: "DELETE_RESERVATION_BACK", payload: reservationId});
-      } catch (e) {
-        console.log(e);
-      }
+            return dispatch({ type: "DELETE_RESERVATION_BACK", payload: reservationId });
+        } catch (e) {
+            console.log(e);
+        }
     };
-  }
+}
