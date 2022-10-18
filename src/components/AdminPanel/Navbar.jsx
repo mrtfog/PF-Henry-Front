@@ -22,7 +22,12 @@ const NavbarAdmin = () => {
       showCloseButton: true,
       confirmButtonText: 'Yes, I am sure',
       denyButtonText: 'No, stay logged in',
-      customClass: 'Alert'
+      customClass: {
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton',
+      }
     })
 
     .then((result)=>{

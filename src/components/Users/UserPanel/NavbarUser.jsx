@@ -2,21 +2,40 @@ import React from "react";
 import style from "../../../scss/components/Users/UserPanel/_navbarUser.module.scss";
 import { NavLink, Link, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
+import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+
 
 const NavbarUser = () => {
 
   const history = useHistory()
   const {currentUser, logOut} =  useAuth()
 
-  async function handleLogOut(){
+  function handleLogOut(){
 
-    try{
-      await logOut()
-      history.push('/')
-    }
-    catch(e){
-      console.log(e)
-    }
+    Swal.fire({
+      text:'Are you sure you want to log out?',
+      icon: 'question',
+      iconColor: '#497aa6',
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: 'No, stay logged in',
+      confirmButtonText: 'Yes, I am sure',
+      allowEnterKey: false,
+      customClass: {
+          popup: 'Alert',
+          closeButton: 'closeButton',
+          confirmButton: 'confirmButton',
+          denyButton: 'denyButton',
+      }
+    })
+    .then((result)=>{
+
+      if(result.isConfirmed){
+        logOut()
+        .then(()=> history.push('/'))
+        .catch(e => console.log(e))
+      }
+    })
 
   }
 

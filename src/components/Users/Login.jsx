@@ -47,7 +47,6 @@ export default function Login() {
 
         e.preventDefault()
         logIn(input.email, input.password)
-        history.push('/')
 
     }
 
