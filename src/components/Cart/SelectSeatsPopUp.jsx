@@ -32,13 +32,13 @@ export default function SelectSeatsPopUp() {
     function handleDisplay() {
 
         Swal.fire({
-            text: 'Do you want to cancel the seat selection?',
+            text: 'Do you want to cancel your seats selection?',
             icon: 'question',
             iconColor: "#497aa6",
             showDenyButton: true,
             showCloseButton: true,
             confirmButtonText: 'Select seats',
-            denyButtonText: 'Cancel seleciton',
+            denyButtonText: 'Cancel selection',
             allowEnterKey: false,
             customClass: {
                 popup: 'Alert',
