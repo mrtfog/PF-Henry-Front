@@ -1,5 +1,4 @@
 import axios from "axios";
-import { updateCurrentUser } from "firebase/auth";
 
 export function getReservations(accessToken) {
 
@@ -17,6 +16,9 @@ export function getReservations(accessToken) {
     }
 }
 
+
+
+
 export function clearNewReservations() {
 
     return async dispatch => {
@@ -25,6 +27,25 @@ export function clearNewReservations() {
 
 }
 
+
+export function getAllReservations(currentUser) {
+    return async (dispatch) => {
+      try {
+        const  {data} = await axios.get(
+          "https://pf-henry-back.herokuapp.com/reservation/getAll",
+          { headers: { user: currentUser.accessToken } }
+        );
+  
+        return dispatch({ type: "GET_ALL_RESERVATIONS", payload: data });
+      } catch (e) {
+        console.log(e);
+      }
+    };
+  }
+  
+export function orderedBy(buttonName, orderType){
+    return ({ type: 'ORDERED_BY', payload: {buttonName, orderType} });
+}
 
 
 
@@ -77,22 +98,7 @@ export function getShowtimeByMovieId(id) {
 
 }
 
-export function getReservationThroughBack(accestoken) {
 
-    return async (dispatch) => {
-
-        try {
-            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/reservation/getByUser`, { headers: { 'user': accestoken } })
-
-            return dispatch({ type: 'GET_RESERVATION_THROUGH_BACK', payload: data })
-
-        } catch (e) {
-            console.log(e)
-        }
-
-    }
-
-}
 
 
 
@@ -141,13 +147,6 @@ export function addToCart(payload) {
     return { type: 'ADD_TO_CART', payload }
 }
 
-export function addToCartThroughBack(payload) {
-    return { type: 'ADD_TO_CART_THROUGH_BACK', payload }
-}
-
-// export function selectedSeats(seatsId, userId, showtimeId) {
-//     return { type: 'SELECTED_SEATS', payload: { seatsId, userId, showtimeId } }
-// }
 
 export function clearCart() {
     return { type: 'CLEAR_CART' }
@@ -160,9 +159,6 @@ export function clearCartByMovie(payload) {
 
 
 
-
-
-//future dispatch seats to back
 
 export function selectedSeats(accessToken, showtimeId, seatLocations) {
     return async (dispatch) => {

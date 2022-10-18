@@ -6,21 +6,26 @@ import { useAuth } from "./contexts/AuthContext";
 import userIMG from '../assets/user.png'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import { clearCart } from "../redux/actions/cart";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { is } from "date-fns/locale";
+import { useEffect } from "react";
+import { getUserRole } from "../redux/actions/users";
 
 export default function Navbar() {
 
-
   const dispatch = useDispatch()
+  const role = useSelector(state => state.usersReducer.userRole)
 
-  const {currentUser, logOut} =  useAuth()
+  const { currentUser, logOut } = useAuth()
   const history = useHistory()
   const { pathname } = useLocation();
   const [color, setColor] = useState(false);
 
   const [display, setDisplay] = useState('none')
 
+  useEffect(() => {
+    if (currentUser) dispatch(getUserRole(currentUser.accessToken))
+  }, [])
 
   const changeColor = () => {
     if (window.scrollY >= 60) {
@@ -31,12 +36,10 @@ export default function Navbar() {
     }
   };
 
-
-
-  async function handleLogOut(){
+  async function handleLogOut() {
 
     Swal.fire({
-      text:'Are you sure you want to log out?',
+      text: 'Are you sure you want to log out?',
       icon: 'question',
       iconColor: '#497aa6',
       showCloseButton: true,
@@ -45,34 +48,32 @@ export default function Navbar() {
       confirmButtonText: 'Yes, I am sure',
       allowEnterKey: false,
       customClass: {
-          popup: 'Alert',
-          closeButton: 'closeButton',
-          confirmButton: 'confirmButton',
-          denyButton: 'denyButton',
+        popup: 'Alert',
+        closeButton: 'closeButton',
+        confirmButton: 'confirmButton',
+        denyButton: 'denyButton',
       }
     })
-    .then((result)=>{
+      .then((result) => {
 
-      if(result.isConfirmed){
-        logOut()
-        .then(()=> history.push('/'))
-        .catch(e => console.log(e))
-      }
-    })
+        if (result.isConfirmed) {
+          logOut()
+            .then(() => history.push('/'))
+            .catch(e => console.log(e))
+        }
+      })
 
 
   }
 
-  function handleUserPopUp(){
+  function handleUserPopUp() {
 
     display === 'none' ? setDisplay('flex') : setDisplay('none')
   }
 
-  
-
   /*======================== EVENT STICKY BAR ======================== */
 
-  
+
   window.addEventListener("scroll", changeColor);
 
   /* ======================== BURGER MENU SECTION ========================  */
@@ -83,19 +84,19 @@ export default function Navbar() {
   const [menu, setMenuClass] = useState(`${style.menu} ${style.hidden} ${style.navBtnContainer}`)
   const [isMenuClicked, setIsMenuClicked] = useState(false)
 
-/* Toggle burger menu change */
+  /* Toggle burger menu change */
 
-const updateMenu = () => {
-  if(!isMenuClicked){
-    setBurgerClass(`${style.burgerBar} ${style.clicked}`)
-    setMenuClass(`${style.menu} ${style.visible} ${style.navBtnContainer}` )
-  } else {
-    setBurgerClass(`${style.burgerBar} ${style.unclicked}`)
-    setMenuClass(`${style.menu} ${style.hidden} ${style.navBtnContainer}`)
+  const updateMenu = () => {
+    if (!isMenuClicked) {
+      setBurgerClass(`${style.burgerBar} ${style.clicked}`)
+      setMenuClass(`${style.menu} ${style.visible} ${style.navBtnContainer}`)
+    } else {
+      setBurgerClass(`${style.burgerBar} ${style.unclicked}`)
+      setMenuClass(`${style.menu} ${style.hidden} ${style.navBtnContainer}`)
+    }
+
+    setIsMenuClicked(!isMenuClicked)
   }
-
-  setIsMenuClicked(!isMenuClicked)
-}
 
 
   return (
@@ -104,79 +105,83 @@ const updateMenu = () => {
       style={
         color
           ? {
-              backgroundColor: "#040405",
-              boxShadow: "0 0 10px rgba(255, 49, 90, 0.5)",
-              transition: ".4s linear",
-            }
+            backgroundColor: "#040405",
+            boxShadow: "0 0 10px rgba(255, 49, 90, 0.5)",
+            transition: ".4s linear",
+          }
           : { backgroundColor: "transparent", transition: ".4s linear" }
       }
     >
       <Link to="/" className={style.navLogo}>
-        <h2 onClick={()=> setDisplay('none')} >HPFC</h2>
+        <h2 onClick={() => setDisplay('none')} >HPFC</h2>
       </Link>
 
       <div className={style.burgerMenu} onClick={updateMenu}>
-          <span className={burger}></span>
-          <span className={burger}></span>
-          <span className={burger}></span>
+        <span className={burger}></span>
+        <span className={burger}></span>
+        <span className={burger}></span>
       </div>
 
       <div className={menu}>
-        
+
         {pathname === "/login" ? null :
-        (
-          currentUser ? 
+          (
+            currentUser ?
 
-            <>
-              <NavLink to="/movies">
-                {pathname === "/movies" ? null : <button onClick={()=> setDisplay('none')}>Movies</button>}
-              </NavLink>
+              <>
+                <NavLink to="/movies">
+                  {pathname === "/movies" ? null : <button onClick={() => setDisplay('none')}>Movies</button>}
+                </NavLink>
 
-              <NavLink to="/playlists">
-                {pathname === "/playlists" ? null : <button onClick={()=> setDisplay('none')}>My playlist</button>}
-              </NavLink>
-              
-              <NavLink to="/cart">
-                {pathname === "/cart" ? null : <button onClick={()=> setDisplay('none')}>Cart</button>}
-              </NavLink>
+                <NavLink to="/playlists">
+                  {pathname === "/playlists" ? null : <button onClick={() => setDisplay('none')}>My playlist</button>}
+                </NavLink>
 
-              <img onClick={handleUserPopUp} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg'/>
+                <NavLink to="/cart">
+                  {pathname === "/cart" ? null : <button onClick={() => setDisplay('none')}>Cart</button>}
+                </NavLink>
 
-              <div className={style.userPopUp} style={{display: display}}>
+                <img onClick={handleUserPopUp} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg' />
 
-                <h3>{currentUser.displayName}</h3>
+                <div className={style.userPopUp} style={{ display: display }}>
+
+                  <h3>{currentUser.displayName}</h3>
 
                   <NavLink to="/profile/edit">
-                    <button className={style.profile} onClick={()=> setDisplay('none')}> My Profile</button>
+                    <button className={style.profile} onClick={() => setDisplay('none')}> My Profile</button>
                   </NavLink>
 
-                  <NavLink to="/admin/statistics/graphics">
-                    <button onClick={()=> setDisplay('none')}> Admin Dashboard</button>
-                  </NavLink>
+                  {
+                    typeof role === "object" ?
+                      <NavLink to="/admin/statistics/graphics">
+                        <button onClick={() => setDisplay('none')}> Admin Dashboard</button>
+                      </NavLink>
+                      : null
+                  }
 
-                  <button onClick={()=> handleLogOut()}>Log Out</button>
+                  <button onClick={() => handleLogOut()}>Log Out</button>
 
-              </div>
+                </div>
 
-            </>
+              </>
 
-          :
+              :
 
-          <>
-            <NavLink to="/cart">
-              <button onClick={()=> setDisplay('none')}>Cart</button>
-            </NavLink>
+              <>
+                <NavLink to="/cart">
+                  <button onClick={() => setDisplay('none')}>Cart</button>
+                </NavLink>
 
-            <NavLink to="/register">
-              <button className={style.btn_primary} onClick={handleUserPopUp}>Sign Up</button>
-            </NavLink>
+                <NavLink to="/register">
+                  <button className={style.btn_primary} onClick={handleUserPopUp}>Sign Up</button>
+                </NavLink>
 
-            <NavLink to="/login">
-              <button className={style.btn_primary} onClick={handleUserPopUp}>Log in</button>
-            </NavLink>
-          </>
-          
-        )}
+                <NavLink to="/login">
+                  <button className={style.btn_primary} onClick={handleUserPopUp}>Log in</button>
+                </NavLink>
+              </>
+
+          )}
 
       </div>
     </nav>

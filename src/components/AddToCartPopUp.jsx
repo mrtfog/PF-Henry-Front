@@ -17,8 +17,8 @@ export default function AddToCartPopUp() {
     const display = useSelector(state => state.cartReducer.displayCart)
     const movie = useSelector(state => state.cartReducer.takenTickets)
     const showtimes = useSelector(state => state.cartReducer.showtime)
-    const cart = useSelector(state => state.cartReducer.cart)
-    const cartShowtimesIds = Array.from(new Set(cart.map(s => s.showtimeId)))
+    const newCart = useSelector(state => state.cartReducer.newCart)
+    const cartShowtimesIds = Array.from(new Set(newCart.map(s => s.showtimeId)))
 
 
     //==================ESTADO DEL CONTADOR / FUNCION SELECCIONADA ==================
@@ -69,7 +69,7 @@ export default function AddToCartPopUp() {
             Swal.fire({
                 text: 'You already selected this showtime, check your cart',
                 icon: 'warning',
-                iconColor: '#497aa6',
+                iconColor: "#bf0d31",
                 showCloseButton: true,
                 confirmButtonText: 'Go to cart',
                 denyButtonText: 'Continue',
