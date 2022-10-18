@@ -99,7 +99,7 @@ export function getUserSubscription(currentUser) {
     return async (dispatch) => {
 
         try {
-            const { data } = await axios.get("http://localhost:8082/subscription/getByUser", { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/subscription/getByUser", { headers: { 'user': currentUser.accessToken } })
             return dispatch({ type: "GET_USER_SUBSCRIPTION", payload: data })
 
         } catch (e) {
