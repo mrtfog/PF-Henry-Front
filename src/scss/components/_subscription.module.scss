@@ -126,19 +126,25 @@
         .infoDiv{
             width:100%;
             text-align: center;
-            padding: 10% 2rem 2rem 2rem;
+            margin:10% 2rem 2.2rem 2rem;
+            h2{
+                margin:0 10% 2.2rem 10%; 
+            }
             
         }
+     
+        
         .planDiv{
             width:100%;
             margin-bottom: 2rem;
             display:flex;
             justify-content: center;
-            gap:8rem;
+            gap:4rem;
             flex-wrap: wrap;
             @media (max-width: 1000px) {
                 .card{
-                    min-width:80%;
+                    min-width:70%;
+                    
                 }
             }
             .card{
