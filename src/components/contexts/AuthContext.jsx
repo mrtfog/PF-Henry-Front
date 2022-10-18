@@ -146,8 +146,9 @@ export function AuthProvider({ children }) {
                                         denyButton: 'denyButton',
                                     }
                                 })
-                                window.location.reload()
-
+                                .then(()=>{
+                                    window.location.reload()
+                                })
                     
                             })
                             .catch((e) =>{
