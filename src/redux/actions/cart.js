@@ -186,7 +186,7 @@ export function deleteReservationBack(reservationId, accessToken) {
           "https://pf-henry-back.herokuapp.com/reservation/cancelById", reservationId, 
           { headers: { 'user': accessToken } }
         );
-            console.log(data)
+
         return dispatch({ type: "DELETE_RESERVATION_BACK", payload: reservationId});
       } catch (e) {
         console.log(e);

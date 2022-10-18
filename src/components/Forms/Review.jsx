@@ -95,7 +95,7 @@ export default function Review() {
 
                 <div>
                     <label>Review: {formik.errors.description ? <span>{formik.errors.description}</span> : null}</label>
-                    <textarea name='description' value={formik.values.description} onChange={formik.handleChange} />
+                    <textarea maxLength='1000' name='description' value={formik.values.description} onChange={formik.handleChange} />
                 </div>
 
                 <button onClick={formik.handleSubmit} disabled={formik.values.description.trim() === '' ? true : false}>Submit</button>

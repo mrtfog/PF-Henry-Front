@@ -38,6 +38,8 @@
         align-items: center;
         padding: 1rem;
 
+
+
         label{
 
             margin-bottom: 1rem;
@@ -85,11 +87,8 @@
             font-family: $font;
             border: none;
             overflow-y: scroll;
+            resize: none;
 
-            ::-webkit-resizer{
-                resize: none;
-                background-color: transparent;
-            }
 
             &:focus{
                 border: none;
@@ -121,3 +120,5 @@
    100% { transform: rotate(0deg); }
     
 }
+
+

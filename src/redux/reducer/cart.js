@@ -1,5 +1,3 @@
-import { startOfDay } from "date-fns";
-
 const initialState = {
     newCart: [],
     displayCart: 'none',
@@ -91,15 +89,6 @@ export default function showtimesReducer(state = initialState, action) {
             allReservations: orderedReservations,
         };
 
-            /* ===== */
-
-
-        
-        
-        
-        
-        
-        
         
         case 'GET_CART':
             return {
@@ -116,69 +105,66 @@ export default function showtimesReducer(state = initialState, action) {
                 newCart: [...state.newCart, action.payload]
             }
             
-        case 'CLEAR_CART':
-            return {
-                ...state,
-                newCart: []
-            }
+            case 'CLEAR_CART':
+                return {
+                    ...state,
+                    newCart: []
+                }
             
-        case 'CLEAR_CART_BY_MOVIE':
+    
+            case 'TAKEN_TICKETS':
+    
+                return {
+                    ...state,
+                    takenTickets: action.payload
+                };
+    
+            case "SELECTED_SEATS":
+                return {
+                    ...state,
+                    newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload._id.toString()), action.payload]
+                }
+                
+            case  'DELETE_RESERVATION_BACK':
+                let {reservationId} = action.payload
+                return {
+                    ...state,
+                    newReservations: state.newReservations.filter(r => r._id.toString() !== reservationId)
+                }
+                
+            case 'ADD_TO_CART_DISPLAY':
+                
+                return {
+                    ...state,
+                    displayCart: action.payload
+                };
+            
+            case 'SELECT_SEATS_DISPLAY':
+                
+                return {
+                    ...state,
+                    displaySeats: action.payload
+                }
+                        
+    
+            case 'POST_RESERVATION':
+    
+                return {
+                    ...state
+                }
+                        /* ===== */
 
-            let deletedMovie = state.newCart.filter(m => {
-                if (m.showtimeId !== action.payload) return m
-            })
-            return {
-                ...state,
-                newCart: deletedMovie
-            }
 
-
-
-
-
-
-
-
-
-
-        case 'TAKEN_TICKETS':
-
-            return {
-                ...state,
-                takenTickets: action.payload
-            };
+        
+        
+        
+        
+        
 
         case 'SELECTED_RESERVATION':
             return {
                 ...state,
                 selectedReservation: action.payload
-            }
-
-        case "SELECTED_SEATS":
-            return {
-                ...state,
-                newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload._id.toString()), action.payload]
-            }
-
-        case  'DELETE_RESERVATION_BACK':
-
-            return {
-                ...state,
-                newReservations: [...state.newReservations.filter(r => r._id.toString() !== action.payload.toString())]
-            }
-
-        case 'ADD_TO_CART_DISPLAY':
-
-            return {
-                ...state,
-                displayCart: action.payload
-            };
-
-        case 'SELECT_SEATS_DISPLAY':
-
-            return {
-                ...state,
-                displaySeats: action.payload
             }
 
 
@@ -189,12 +175,6 @@ export default function showtimesReducer(state = initialState, action) {
                 showtime: action.payload
             }
 
-
-        case 'POST_RESERVATION':
-
-            return {
-                ...state
-            }
 
 
         default:

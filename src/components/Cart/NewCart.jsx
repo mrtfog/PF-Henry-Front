@@ -67,10 +67,6 @@ const NewCart = () => {
       dispatch(selectedReservation(r));
     }
   }
-  console.log("reservations", reservations);
-  console.log("showtimes", showtimes);
-  console.log('rooms', rooms)
-  console.log('sessionStorage', JSON.parse(sessionStorage.newCart))
 
   const displayReservations = reservations.length
     ? reservations.map((r) => {
@@ -99,9 +95,6 @@ const NewCart = () => {
         }
       })
     : []
-
-
-  console.log("displayReservations", displayReservations);
 
 
   useEffect(() => {
@@ -196,7 +189,7 @@ const NewCart = () => {
         if(!currentUser){
             dispatch(clearCartByMovie(showtime.showtimeId))
            let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)
-           console.log(sessionNewCart)
+
             sessionStorage.newCart = JSON.stringify(sessionNewCart)
         };
       }
@@ -251,7 +244,7 @@ const NewCart = () => {
                     <h3>{r.title}</h3>
                     <p>Movie Theater {r.roomNumber}</p>
                     <p>
-                      {r.format} • {r.tickets} tickets
+                      {r.format} • {r.ticketAmount} tickets
                     </p>
                     <p>{date.substring(0, date.length - 3)} Hs</p>
                     <div className={style.seatPicker}>
@@ -272,7 +265,7 @@ const NewCart = () => {
                         </button>
                       )}
                     </div>
-                    <p>${Number(r.ticketAmount) * Number(r.price)}</p>
+                    <p>${Number(r.price)}</p>
 
                     <div>
                       <button
@@ -287,7 +280,7 @@ const NewCart = () => {
               })
             ) : (
               <p style={{ color: "#fff" }}>
-                You haven't got any ticktes in your cart yet!
+                You have not got any ticktes in your cart yet!
               </p>
             )
           ) : null}
@@ -299,7 +292,6 @@ const NewCart = () => {
               action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`}
               method="POST"
             >
-              {/* <form onSubmit={handleSubmit}> */}
               <input
                 type="hidden"
                 name="name"
