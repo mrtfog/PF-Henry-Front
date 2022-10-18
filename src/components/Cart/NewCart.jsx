@@ -21,17 +21,17 @@ const NewCart = () => {
   const [total, setTotal] = useState();
 
   let reservations = useSelector((state) => state.cartReducer.newReservations);
-  const newCart = useSelector((state)=> state.cartReducer.newCart)
+  const newCart = useSelector((state) => state.cartReducer.newCart)
   const showtimes = useSelector((state) => state.showtimesReducer.showtimes);
   const rooms = useSelector((state) => state.roomReducer.rooms);
 
-  if (!currentUser)reservations = JSON.parse(sessionStorage.getItem("newCart"));
+  if (!currentUser) reservations = JSON.parse(sessionStorage.getItem("newCart"));
 
   useEffect(() => {
     if (currentUser) dispatch(getReservations(currentUser.accessToken));
     else dispatch(getCart());
     dispatch(getAllShowtimes());
-    if(!rooms.length)dispatch(getAllRooms());
+    if (!rooms.length) dispatch(getAllRooms());
 
     return () => dispatch(clearNewReservations());
   }, []);
@@ -70,30 +70,30 @@ const NewCart = () => {
 
   const displayReservations = reservations.length
     ? reservations.map((r) => {
-        const reservShowtime = showtimes
-          ? showtimes.find((s) => s._id.toString() === r.showtimeId)
-          : undefined;
-        const reservRoom = reservShowtime
-          ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
-          : undefined;
+      const reservShowtime = showtimes
+        ? showtimes.find((s) => s._id.toString() === r.showtimeId)
+        : undefined;
+      const reservRoom = reservShowtime
+        ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
+        : undefined;
 
-        if (reservShowtime && reservRoom) {
-          return {
-            reservationId: r._id ? r._id.toString() : undefined,
-            price: r.price,
-            title: reservShowtime.movieTitle,
-            image: reservShowtime.image,
-            format: reservShowtime.format,
-            dateTime: reservShowtime.dateTime,
-            roomNumber: reservRoom.number || undefined,
-            roomId: reservShowtime.roomId,
-            showtimeId: r.showtimeId,
-            ticketAmount: r.ticketAmount,
-            seats: reservShowtime.seats,
-            seatLocations: r.seatLocations,
-          };
-        }
-      })
+      if (reservShowtime && reservRoom) {
+        return {
+          reservationId: r._id ? r._id.toString() : undefined,
+          price: r.price,
+          title: reservShowtime.movieTitle,
+          image: reservShowtime.image,
+          format: reservShowtime.format,
+          dateTime: reservShowtime.dateTime,
+          roomNumber: reservRoom.number || undefined,
+          roomId: reservShowtime.roomId,
+          showtimeId: r.showtimeId,
+          ticketAmount: r.ticketAmount,
+          seats: reservShowtime.seats,
+          seatLocations: r.seatLocations,
+        };
+      }
+    })
     : []
 
 
@@ -158,12 +158,13 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        
-          if(!currentUser){
-            sessionStorage.newCart = JSON.stringify([])
-            dispatch(clearCart());
-      }}
-              setTotal(0);
+
+        if (!currentUser) {
+          sessionStorage.newCart = JSON.stringify([])
+          dispatch(clearCart());
+        }
+      }
+      setTotal(0);
     });
   }
 
@@ -185,12 +186,12 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        if(currentUser)dispatch(deleteReservationBack({reservationId: showtime.reservationId}, currentUser.accessToken))
-        if(!currentUser){
-            dispatch(clearCartByMovie(showtime.showtimeId))
-           let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)
+        if (currentUser) dispatch(deleteReservationBack({ reservationId: showtime.reservationId }, currentUser.accessToken))
+        if (!currentUser) {
+          dispatch(clearCartByMovie(showtime.showtimeId))
+          let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)
 
-            sessionStorage.newCart = JSON.stringify(sessionNewCart)
+          sessionStorage.newCart = JSON.stringify(sessionNewCart)
         };
       }
     });
