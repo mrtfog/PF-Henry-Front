@@ -43,7 +43,7 @@ const NewCart = () => {
   function handleOnClick(r) {
     if (!currentUser) {
       Swal.fire({
-        text: "To select your seats you need be logged in",
+        text: "To select your seats you need to be logged in",
         icon: "info",
         iconColor: "#497aa6",
         showCloseButton: true,
@@ -101,7 +101,7 @@ const NewCart = () => {
     if (reservations.length)
       setTotal(
         reservations
-          .reduce((acc, cur) => (acc += cur.price * cur.ticketAmount), 0)
+          .reduce((acc, cur) => (acc += cur.price), 0)
           .toFixed(2)
       );
   }, [reservations]);

@@ -6,18 +6,14 @@ import { useDispatch } from 'react-redux'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 
-export default function Seats({ reservation, movieTheaters, showtime, rooms }) {
+export default function Seats({ reservation, movieTheaters, showtime, rooms, seatsSelected, setSeatsSelected }) {
 
-    let arraySeats = showtime[0].seats
     const dispatch = useDispatch()
 
     let tickets = reservation.ticketAmount
     const { currentUser } = useAuth()
 
     let userId = currentUser.uid
-
-    const [seatsSelected, setSeatsSelected] = useState([])
-
 
     const selectedMovieTheater = movieTheaters ? movieTheaters.find(r => r._id === reservation.roomId) : undefined
 

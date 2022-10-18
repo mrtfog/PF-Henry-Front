@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import PopUpTemplate from './PopUpTemplate'
 import style from '../scss/components/_addToCartPopUp.module.scss'
 import { getShowtimeByMovieId, addToCartDisplay, postCart } from '../redux/actions/cart'
+import { getUserPayments } from '../redux/actions/users'
 import { useHistory } from 'react-router-dom'
 import { useAuth } from './contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js';
@@ -18,6 +19,7 @@ export default function AddToCartPopUp() {
     const movie = useSelector(state => state.cartReducer.takenTickets)
     const showtimes = useSelector(state => state.cartReducer.showtime)
     const newCart = useSelector(state => state.cartReducer.newCart)
+    const userPayments = useSelector(state => state.usersReducer.userPayments)
     const cartShowtimesIds = Array.from(new Set(newCart.map(s => s.showtimeId)))
 
 
@@ -28,10 +30,9 @@ export default function AddToCartPopUp() {
 
     const [selectedShowtime, setSelectedShowtime] = useState({})
 
-
-
     useEffect(() => {
         if (movie.id) dispatch(getShowtimeByMovieId(movie.id))
+        dispatch(getUserPayments(currentUser))
     }, [movie])
 
     function handleDisplay() {
@@ -77,19 +78,33 @@ export default function AddToCartPopUp() {
                 .then((result) => {
 
                     if (result.isConfirmed) {
-
                         history.push('/cart')
                     }
+
                 })
 
 
+        } else if (userPayments.filter(p => p.showtimeId === selectedShowtime.showtimeId).length !== 0) {
+            Swal.fire({
+                text: 'You already have a ticket for this showtime, check your profile',
+                icon: 'warning',
+                iconColor: "#bf0d31",
+                showCloseButton: true,
+                confirmButtonText: 'Ok',
+                allowEnterKey: false,
+                customClass: {
+                    popup: 'Alert',
+                    closeButton: 'closeButton',
+                    confirmButton: 'confirmButton',
+                    denyButton: 'denyButton',
+                }
+            })
         } else {
 
             if (currentUser) {
                 dispatch(postCart({ showtimeId: selectedShowtime.showtimeId, userId: currentUser.uid, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }, currentUser.accessToken))
             } else {
                 const sessionCart = JSON.parse(sessionStorage.getItem("newCart"))
-                console.log(selectedShowtime)
                 sessionStorage.setItem("newCart", JSON.stringify([...sessionCart, { showtimeId: selectedShowtime.showtimeId, price: selectedShowtime.ticketPrice * value, type: 'standard', ticketAmount: value }]))
             }
 
