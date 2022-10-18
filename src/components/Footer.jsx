@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import style from '../scss/components/_footer.module.scss'
 
 export default function Footer() {
@@ -8,7 +9,7 @@ export default function Footer() {
             <div className={`${style.left} ${style.box}`}>
                 <h2>About us</h2>
                 <div className={style.content}>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit molestias maiores officiis voluptatibus quaerat! Expedita saepe sunt id laboriosam possimus corrupti sint esse, facilis ducimus, aliquam dignissimos quidem ex corporis.</p>
+                    <p>We want to entertain the world. Whatever your taste, and no matter where you live, we give you access to best-in-class movies, both in our movie theaters and at home. Our subscribers control what they want to watch, when they want it, with no ads, in one simple subscription. We’re always looking to help you find your next favorite story.</p>
                     <div className={style.social}>
 
                         {/* ------------------------------------- FACEBOOK LOGO -------------------------------------*/}
@@ -44,7 +45,7 @@ export default function Footer() {
                 </div>
             </div>
             <div className={`${style.center} ${style.box}`}>
-                <h2>Address</h2>
+                <h2>Address & Contact</h2>
                 <div className={style.content}>
                     <div className={style.place}>
 
@@ -54,8 +55,10 @@ export default function Footer() {
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" height="40px" width="40px" fill="#000">
                             <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 256c-35.3 0-64-28.7-64-64s28.7-64 64-64s64 28.7 64 64s-28.7 64-64 64z"/></svg>
                         </span>
-                        <p className={style.text}>Madrid, Spain</p>
-
+                        <div>
+                            <p className={style.text}>Buenos Aires - Argentina</p>
+                            <p className={style.text}>Lima - Perú.</p>
+                        </div>  
                     </div>
 
                     {/* ------------------------------------- PHONE LOGO -------------------------------------*/}
@@ -83,15 +86,10 @@ export default function Footer() {
                 </div>
             </div>
             <div className={`${style.right} ${style.box}`}>
-                <h2>Do you wish to subscribe to our newsletter?</h2>
-                <div className={style.content}>
-                    <form action="#">
-                        <div className={style.email}>
-                            <div className={style.text}>Type your Email.</div>
-                            <input type="email" required/>
-                            <button type='submit'>Send</button>
-                        </div>
-                    </form>
+                <h2>Your opinion matters, <br/> help us to improve.</h2>
+                <div className={style.content}> 
+                    <h4>Leave us a review! </h4>
+                    <Link to='/reviews'><button className={style.reviewBtn}>Send</button></Link>
                 </div>
             </div>
         </div>
