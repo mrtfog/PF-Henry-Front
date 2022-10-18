@@ -26,6 +26,19 @@ export function postNewRoom(room, currentUser){
 
         try{
             const {data} = await axios.post('https://pf-henry-back.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
+            Swal.fire({
+                text: "Movie theater created",
+                icon: "success",
+                iconColor: "#497aa6",
+                showCloseButton: true,
+                confirmButtonText: "Continue",
+                allowEnterKey: false,
+                customClass: {
+                  popup: "Alert",
+                  closeButton: "closeButton",
+                  confirmButton: "confirmButton",
+                },
+              });
             return dispatch({type:'POST_NEW_ROOM', payload: data})
         }
         catch(e){

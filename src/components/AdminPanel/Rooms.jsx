@@ -46,19 +46,6 @@ function Rooms() {
   }
 
   function handleSubmit() {
-    Swal.fire({
-      text: "Movie theater created",
-      icon: "success",
-      iconColor: "#497aa6",
-      showCloseButton: true,
-      confirmButtonText: "Continue",
-      allowEnterKey: false,
-      customClass: {
-        popup: "Alert",
-        closeButton: "closeButton",
-        confirmButton: "confirmButton",
-      },
-    });
     dispatch(postNewRoom({ ...room, number: roomNumber + 1 }, currentUser));
     setRoom("");
   }
