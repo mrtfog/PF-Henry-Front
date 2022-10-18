@@ -1,7 +1,7 @@
 import style from "../scss/components/_subscription.module.scss";
 import React, { useState, useEffect } from "react";
 import img from "../assets/uncharted-poster.jpg";
-import video from "../assets/videoSubscribe.mp4";
+import video from "../assets/videoSubscribe.webm";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { useAuth } from "./contexts/AuthContext";
