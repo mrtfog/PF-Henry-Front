@@ -249,7 +249,7 @@ const NewCart = () => {
                     <p>
                       {r.format} • {r.ticketAmount} tickets
                     </p>
-                    <p>{date.substring(0, date.length - 3)} Hs</p>
+                    <p>{date.substring(0, date.length - 3)} Hr</p>
                     <div className={style.seatPicker}>
                       {currentUser ? (
                         r.seatLocations.length ? (
@@ -270,7 +270,7 @@ const NewCart = () => {
                     </div>
                     <p>${Number(r.price)}</p>
 
-                    <div>
+                    <div className={style.btnDelete}>
                       <button
                         className={style.delete}
                         onClick={() => handleOnClickDeleteMovie(r)}
