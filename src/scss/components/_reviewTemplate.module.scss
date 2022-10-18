@@ -16,6 +16,10 @@
     transition: 0.2s transform linear;
     margin: 30px;
 
+    @media screen and (max-width: 570px){
+        width: 75vw;
+    }
+
     p{
         text-align: center;
         color: #f5f5f5;

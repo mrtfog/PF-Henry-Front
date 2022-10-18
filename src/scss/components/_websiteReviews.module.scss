@@ -33,7 +33,12 @@
 
             @include btn-primary;
             position: absolute;
+            padding: 0.3rem 0.5rem;
             right: 10vw;
+
+            svg{
+                fill: #f5f5f5;
+            }
 
         }
     }
@@ -47,6 +52,8 @@
         align-items: center;
         width: 100vw;
         height: 60vh;
+        min-height: fit-content;
+        margin-bottom: 15vh;
 
         .noReviews{
             display: flex;
