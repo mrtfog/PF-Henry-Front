@@ -20,7 +20,6 @@ function Payments() {
     if(!userPayments.length) dispatch(getUserPayments(currentUser))
   }, [dispatch])
 
-  console.log(userPayments)
   const querystring = window.location.search;
   const searchParams = new URLSearchParams(querystring);
   const status = searchParams.get("status");
@@ -127,4 +126,4 @@ function Payments() {
   );
 }
 
-export default Payments;
+export default Payments

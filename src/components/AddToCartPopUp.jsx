@@ -138,15 +138,15 @@ export default function AddToCartPopUp() {
                 <h3>Choose showtime</h3>
 
                 <select value={selectValue} onChange={(e) => handleSelectChange(e.target.value)}>
-                    <option value=''>Select showtime</option>
+                    <option defaultValue=''>Select showtime</option>
                     {
                         showtimes.length ? showtimes.map((p, index) => {
                             return <option key={p._id} value={index}>
 
-                                {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 17)}Hs • {p.format} • ${p.ticketPrice}
+                                {new Date(p.dateTime).toLocaleString().replace(",", " -").substring(0, 18)}Hs • {p.format} • ${p.ticketPrice}
                             </option>
                         })
-                            : <option disabled>You don't have any showtime</option>}
+                            : <option disabled>You do not have any showtime</option>}
                 </select>
 
                 <h3>How many tickets?</h3>
