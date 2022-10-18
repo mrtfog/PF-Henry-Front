@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import img from "../assets/uncharted-poster.jpg";
 import video from "../assets/videoSubscribe.mp4";
 import Footer from "./Footer";
+import Swal from "sweetalert2";
+import { useAuth } from "./contexts/AuthContext";
 
 const LogoStar = () => {
   return (
@@ -32,6 +34,44 @@ const LogoStar = () => {
 };
 
 export default function Subscription() {
+  const querystring = window.location.search;
+  const searchParams = new URLSearchParams(querystring);
+  const status = searchParams.get("status");
+  const { currentUser } = useAuth();
+
+  function handleOnPayment() {
+    Swal.fire({
+      title: "Transaction failed",
+      text: "Please try again",
+      icon: "error",
+      showClass: {
+        popup: "animate_animated animate_fadeInDown",
+      },
+      hideClass: {
+        popup: "animate_animated animate_fadeOutUp",
+      },
+      showCloseButton: true,
+      showDenyButton: false,
+      denyButtonText: false,
+      confirmButtonText: "Continue",
+      allowEnterKey: false,
+      customClass: {
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        return;
+      }
+    });
+  }
+  useEffect(() => {
+    if (status === "failed") {
+      handleOnPayment();
+    }
+  }, []);
   return (
     <div className={style.subscriptionContainer}>
       <div className={style.firstContainer}>
@@ -43,7 +83,26 @@ export default function Subscription() {
               you
             </p>
             <div>
-              <button>SUBSCRIBE NOW</button>
+              <form
+                action={`https://pf-henry-back.herokuapp.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
+                method="POST"
+              >
+                {/* <form onSubmit={handleSubmit}> */}
+                <input
+                  type="hidden"
+                  name="name"
+                  value={currentUser?.displayName}
+                ></input>
+                <input
+                  type="hidden"
+                  name="email"
+                  value={currentUser?.email}
+                ></input>
+                <input type="hidden" name="title" value="subscription"></input>
+                <input type="hidden" name="price" value="30"></input>
+
+                <button type="submit">SUBSCRIBE NOW</button>
+              </form>
             </div>
           </div>
         </div>
@@ -112,7 +171,21 @@ export default function Subscription() {
             <strong>$ 30</strong>/month
           </p>
         </span>
-        <button>SUBSCRIBE NOW</button>
+        <form
+          action={`https://pf-henry-back.herokuapp.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
+          method="POST"
+        >
+          <input
+            type="hidden"
+            name="name"
+            value={currentUser?.displayName}
+          ></input>
+          <input type="hidden" name="email" value={currentUser?.email}></input>
+          <input type="hidden" name="title" value="subscription"></input>
+          <input type="hidden" name="price" value="30"></input>
+
+          <button type="submit">SUBSCRIBE NOW</button>
+        </form>
         <p>*Cancel your plan at any time</p>
       </div>
       <Footer />
