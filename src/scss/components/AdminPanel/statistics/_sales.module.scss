@@ -5,8 +5,8 @@
 .mainContainer{
     margin-top:8%;
     margin-left: 15%;
-    width:80vw;
-    color:$text-color-white;
+    width: 80vw;
+    color: $text-color-white;
     font-family: $font;
     height: auto;
 
@@ -35,9 +35,8 @@
                     justify-content: space-around;
                     align-items: center;
                     padding: 1em 0em;
-                    border-radius: 25px;
+                    border-radius: 10px;
                     font-family: $font;
-                    //gap: 1em;
                     width: 69.5%;
                     margin: 0;
 
@@ -74,7 +73,6 @@
                     overflow-x: visible;
                     height: 50vh;
                     width: 70%;
-                    //margin: 1em;
                     border-radius: 25px;
                     position: relative;
     
@@ -83,5 +81,77 @@
             }
         }
 
+
+
+        @media screen and (max-width: 580px){
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .titleContainer{
+                padding: 0;
+                margin: 0;
+
+                h2{
+                    font-size: 1.5rem;
+                }
+            }
+
+            .infoContainer{
+                width: 100vw;
+                .subInfoContainer{
+                    width: 100vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    
+                    .subtitlesContainer{
+                        padding: 0;
+                        margin: 0;
+
+                        height: 50px;
+                        display: flex;                    
+                        flex-direction: flex;
+                        justify-content: space-around;
+                        font-size: 15px;
+                        width: 97vw;
+
+                        div{
+                            display: flex;
+
+                            button{
+                                color: $primary-color;
+                                font-size: .8rem;
+                                font-weight: 600;
+                            }
+
+                        }
+                    }
+                    .cardsContainer{
+                        width: 100vw;
+                        margin-top: 1em;
+                        .allCardsContainer{
+                            margin: 0;
+                            padding: 0;
+
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            width: 97vw;
+                            overflow: hidden;
+                        }
+                    }
+                }
+
+
+            }
+
+        }
 
     }
