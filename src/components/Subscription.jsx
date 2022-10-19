@@ -77,10 +77,10 @@ export default function Subscription() {
       <div className={style.firstContainer}>
         <div className={style.infoDiv}>
           <div>
-            <h1>Welcome to HPFC premium</h1>
+            <h1>Welcome to Moviefy + video streaming</h1>
             <p>
-              Enjoy the best movies and exclusive benefits that HPFC brings to
-              you
+              Enjoy the best movies and exclusive benefits that Moviefy + brings
+              to you
             </p>
             <div>
               <form
