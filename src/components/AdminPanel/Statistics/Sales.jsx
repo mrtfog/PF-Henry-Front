@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import style from '../../../scss/components/Users/UserPanel/_payments.module.scss'
 import CardsAdmin from "../CardsAdmin";
 import style from "../../../scss/components/AdminPanel/statistics/_sales.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,6 +7,8 @@ import { useEffect } from "react";
 import { getAllReservations, orderedBy } from "../../../redux/actions/cart";
 
 function Payments() {
+
+  const screenWidth = document.body.clientWidth
 
   const dispatch = useDispatch();
   const allReservations = useSelector(
@@ -73,7 +74,7 @@ function Payments() {
                 {filters.amount ? "⬆" : "⬇"}
               </button>
             </div>
-            <div className={style.subtitle4}>User email</div>
+            <div className={style.subtitle4} style={screenWidth > 570 ? { display: 'flex' } : { display: 'none' }}>User email</div>
           </div>
           <div className={style.cardsContainer}>
             <div className={style.allCardsContainer}>
@@ -94,6 +95,7 @@ function Payments() {
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

@@ -11,6 +11,8 @@ function CardAdmin({
   btnText,
   btnLink,
 }) {
+
+  const screenWidth = document.body.clientWidth
   return (
     <div className={style.card}>
       <div className={style.type}>
@@ -36,7 +38,7 @@ function CardAdmin({
         {/*Monto del ultimo pago realizado, si la traemos desde el estado.*/}
       </span>
 
-      <span>
+      <span style={screenWidth > 570 ? { display: 'flex' } : { display: 'none' }}>
         {userId}{" "}
         {/*Id del usuario que realizó la transacción o la suscripción*/}
       </span>
