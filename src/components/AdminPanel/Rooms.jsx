@@ -25,10 +25,10 @@ function Rooms() {
   /* Esto es para saber el tamaño de las salas que viene del backend y clasificarlas en Regular, Pemiere y Small*/
   const rooms = roomsBackend
     ? roomsBackend.map((e) => {
-        const type =
-          e.columns <= 10 ? "Small" : e.columns === 12 ? "Regular" : "Premiere";
-        return { value: e._id, label: `Room N° ${e.number} - Size: ${type}` };
-      })
+      const type =
+        e.columns <= 10 ? "Small" : e.columns === 12 ? "Regular" : "Premiere";
+      return { value: e._id, label: `Room N° ${e.number} - Size: ${type}` };
+    })
     : [];
 
   const [room, setRoom] = useState("");
@@ -46,7 +46,7 @@ function Rooms() {
   }
 
   function handleSubmit() {
-    dispatch(postNewRoom({ ...room, number: roomNumber + 1 }, currentUser));
+    dispatch(postNewRoom({ ...room, number: roomNumber ? roomNumber + 1 : 1 }, currentUser));
     setRoom("");
   }
 
@@ -58,9 +58,8 @@ function Rooms() {
     Swal.fire({
       title: "Are you sure you want to delete this movie theater?",
       html: `<div>
-            <p><span style='font-weight: 700;'>Movie Theater:</span></br></br> ${
-              f._id ? rooms.find((r) => r.value === f._id).label : ""
-            }</p>
+            <p><span style='font-weight: 700;'>Movie Theater:</span></br></br> ${f._id ? rooms.find((r) => r.value === f._id).label : ""
+        }</p>
           </div>`,
       icon: "question",
       iconColor: "#497aa6",
@@ -124,29 +123,29 @@ function Rooms() {
         <div className={style.roomCardsContainer}>
           {roomsBackend
             ? roomsBackend.map((f) => {
-                const type =
-                  f.columns <= 10
-                    ? "Small"
-                    : f.columns === 12
+              const type =
+                f.columns <= 10
+                  ? "Small"
+                  : f.columns === 12
                     ? "Regular"
                     : "Premiere";
 
-                return (
-                  <div className={style.roomCard}>
-                    <p>
-                      {" "}
-                      Movie theater <span>N° {f.number}</span> - Size:{" "}
-                      <span>{type}</span>
-                    </p>
-                    <button
-                      className={style.closeBtn}
-                      onClick={(e) => handleDelete(e, f)}
-                    >
-                      X
-                    </button>
-                  </div>
-                );
-              })
+              return (
+                <div className={style.roomCard}>
+                  <p>
+                    {" "}
+                    Movie theater <span>N° {f.number}</span> - Size:{" "}
+                    <span>{type}</span>
+                  </p>
+                  <button
+                    className={style.closeBtn}
+                    onClick={(e) => handleDelete(e, f)}
+                  >
+                    X
+                  </button>
+                </div>
+              );
+            })
             : null}
         </div>
       </div>

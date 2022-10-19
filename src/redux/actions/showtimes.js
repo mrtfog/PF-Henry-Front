@@ -33,11 +33,8 @@ export function getAllShowtimes() {
 export function postShowtime(values, currentUser) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post(
-        "https://pf-henry-back.herokuapp.com/showtime/post",
-        values,
-        { headers: { user: currentUser.accessToken } }
-      );
+      const { data } = await axios.post("https://pf-henry-back.herokuapp.com/showtime/post", values, { headers: { user: currentUser.accessToken } });
+      
       Swal.fire({
         text: "Show created",
         icon: "success",
@@ -57,7 +54,7 @@ export function postShowtime(values, currentUser) {
       })
       return dispatch({ type: "POST_SHOWTIME", payload: data });
 
-      
+
 
     } catch (e) {
       console.log(e);
