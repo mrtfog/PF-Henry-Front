@@ -15,6 +15,13 @@ export default function Playlist() {
     const { currentUser } = useAuth()
     const dispatch = useDispatch()
 
+    const [screenWidth, setScreenWidth] = useState(document.body.clientWidth)
+
+    window.addEventListener('resize', ()=>{
+
+        setScreenWidth(document.body.clientWidth)
+    })
+
     const { id } = useParams()
 
     const playlist = useSelector(state => state.playlistsReducer.selectedPlaylist)
@@ -96,11 +103,9 @@ export default function Playlist() {
                 playlist ? Object.keys(playlist).length ?
                     <div className={style.titleAndButton}>
                         <h2>{playlist.name}</h2>
-                        {window.innerWidth > 570 ?
+                        {screenWidth > 570 ?
                             <>
-                            <h4>{playlist.contributors ?
-                            playlist.contributors.map(u => u.username).join(' • ')
-                            : currentUser.displayName}</h4>
+                            <h4>{currentUser.displayName}</h4>
                             <h4>Movies: {playlist.moviesId ? playlist.moviesId.length : "0 :c"}</h4>
                             </>
                             : null}
@@ -121,11 +126,11 @@ export default function Playlist() {
                     movies.map(m => {
 
                         return (
-                            <div prop={window.innerWidth} className={style.movie} key={m.id}>
+                            <div prop={screenWidth} className={style.movie} key={m.id}>
                                 <Link to={`/movies/${m.id}`}>
                                     <img src={'https://image.tmdb.org/t/p/original' + m.poster_path} />
-                                    <h4>{m.title}</h4>
-                                    <h5>{m.runtime} {window.innerWidth < 570 ? <br/> : null} min</h5>
+                                    <h4 style={m.title.length > 39 && screenWidth < 570 ? {fontSize: '10px', padding: '10px' } : null}>{m.title}</h4>
+                                    <h5>{m.runtime} {screenWidth < 570 ? <br/> : null} min</h5>
                                 </Link>
                                 <div>
                                     <Link to={`/movies/${m.id}`}>

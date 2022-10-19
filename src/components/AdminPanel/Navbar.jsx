@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../../scss/components/AdminPanel/_navbar.module.scss";
 
-import { NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
@@ -9,7 +9,14 @@ import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 const NavbarAdmin = () => {
   const { currentUser, logOut } = useAuth();
   const [isShown, setIsShown] = useState(false);
+  const [screenWidth, setScreenWidth] = useState(document.body.clientWidth)
 
+  window.addEventListener('resize', ()=>{
+
+    setScreenWidth(document.body.clientWidth)
+  })
+
+  const {pathname} = useLocation()
   const history = useHistory();
 
   function handleLogOut() {
@@ -61,7 +68,7 @@ const NavbarAdmin = () => {
           </NavLink>
         </li>
         <li className={style.statistics}>
-          <NavLink to="/admin/statistics/graphics" className={style.link}>
+          <NavLink to={screenWidth > 570 ? "/admin/statistics/graphics" : pathname} className={style.link} onClick={()=> setIsShown(isShown ? false : true)}>
             <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" viewBox="0 0 300.576 300.576" xmlSpace="preserve">
               <g>
                 <path d="M285.576,2.075c-8.284,0-15,6.716-15,15v251.426H19.15c-8.284,0-15,6.716-15,15s6.716,15,15,15h266.426   c8.284,0,15-6.716,15-15V17.075C300.576,8.791,293.86,2.075,285.576,2.075z" />
@@ -72,6 +79,7 @@ const NavbarAdmin = () => {
               </g>
             </svg>
             <span>Statistics</span>
+            {screenWidth > 570 ?
             <div className={style.divIcon} onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
               <svg className={!isShown ? style.dropDownIcon : style.dropFaceDown} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 492.432 492.432" xmlSpace="preserve">
                 <g id="XMLID_134_">
@@ -80,9 +88,10 @@ const NavbarAdmin = () => {
                 </g>
               </svg>
             </div>
+            : null}
           </NavLink>
           {isShown && (
-            <div className={style.dropDownMenu} onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)}>
+            <div className={style.dropDownMenu} onMouseEnter={() => setIsShown(true)} onMouseLeave={() => setIsShown(false)} onClick={screenWidth < 570 ? ()=> setIsShown(false) : null}>
               <ul>
                 <li>
                   <NavLink className={style.linkDropDown} to="/admin/statistics/graphics" style={{display: "flex",justifyContent: "center", alignContent: "center",height: "5rem",}}>
