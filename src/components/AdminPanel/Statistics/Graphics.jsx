@@ -104,7 +104,6 @@ const Graphics = () => {
     if (!graphicSubscriptions.length) dispatch(getGraphicSubscriptions(currentUser))
     if(!movieTheaters) dispatch(getAllRooms())
   }, []);
-  console.log(graphicReservations.filter(r => r.deleted === true && r.payed === true))
 
   const [graphicSelected, setGraphicSelected] = useState('BarChartUser')
 

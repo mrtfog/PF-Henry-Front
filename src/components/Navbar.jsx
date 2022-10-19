@@ -5,9 +5,7 @@ import style from "../scss/components/_navbar.module.scss";
 import { useAuth } from "./contexts/AuthContext";
 import userIMG from '../assets/user.png'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
-import { clearCart } from "../redux/actions/cart";
 import { useDispatch, useSelector } from "react-redux";
-import { is } from "date-fns/locale";
 import { useEffect } from "react";
 import { getUserRole } from "../redux/actions/users";
 

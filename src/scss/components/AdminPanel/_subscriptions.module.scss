@@ -1,5 +1,5 @@
-@import '../../../abstracts/variables';
-@import '../../../abstracts/mixins';
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
 
 
 .mainContainer{
@@ -52,6 +52,7 @@
                             font-weight: 600;
                         }
 
+    
                         &:first-child{
                             margin-left: 2em;
                             width: 10%;

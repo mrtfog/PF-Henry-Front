@@ -81,7 +81,7 @@ const NavbarUser = () => {
                 </g>
               </g>
             </svg>
-            <span>Payments</span>
+            <span>Tickets history</span>
           </NavLink>
         </li>
         <li>
