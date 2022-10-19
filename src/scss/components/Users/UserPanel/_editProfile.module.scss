@@ -31,7 +31,7 @@
 
             .subtitlesContainer{
                 padding-left: 4em;
-                width: 47%;
+                width: 76%;
                 margin-left: 2em;
                 display: grid;
                 grid-template-columns: 1fr 1fr 1fr;
@@ -43,12 +43,24 @@
                     grid-column: 1/2;
                 }
                 .subtitle2{
+                    margin-left: 22%;
                     grid-column: 2/3;
                 }
                 .subtitle3{
                     grid-column: 3/4;
                 }
 
+            }
+
+            .unsubscribedContainer {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                margin: 1rem;
+            }
+            .subButton {
+                @include btn-primary
             }
         }
 
