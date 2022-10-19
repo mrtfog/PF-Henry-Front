@@ -81,30 +81,30 @@ const NewCart = () => {
 
   const displayReservations = reservations.length
     ? reservations.map((r) => {
-        const reservShowtime = showtimes
-          ? showtimes.find((s) => s._id.toString() === r.showtimeId)
-          : undefined;
-        const reservRoom = reservShowtime
-          ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
-          : undefined;
+      const reservShowtime = showtimes
+        ? showtimes.find((s) => s._id.toString() === r.showtimeId)
+        : undefined;
+      const reservRoom = reservShowtime
+        ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
+        : undefined;
 
-        if (reservShowtime && reservRoom) {
-          return {
-            reservationId: r._id ? r._id.toString() : undefined,
-            price: r.price,
-            title: reservShowtime.movieTitle,
-            image: reservShowtime.image,
-            format: reservShowtime.format,
-            dateTime: reservShowtime.dateTime,
-            roomNumber: reservRoom.number || undefined,
-            roomId: reservShowtime.roomId,
-            showtimeId: r.showtimeId,
-            ticketAmount: r.ticketAmount,
-            seats: reservShowtime.seats,
-            seatLocations: r.seatLocations,
-          };
-        }
-      })
+      if (reservShowtime && reservRoom) {
+        return {
+          reservationId: r._id ? r._id.toString() : undefined,
+          price: r.price,
+          title: reservShowtime.movieTitle,
+          image: reservShowtime.image,
+          format: reservShowtime.format,
+          dateTime: reservShowtime.dateTime,
+          roomNumber: reservRoom.number || undefined,
+          roomId: reservShowtime.roomId,
+          showtimeId: r.showtimeId,
+          ticketAmount: r.ticketAmount,
+          seats: reservShowtime.seats,
+          seatLocations: r.seatLocations,
+        };
+      }
+    })
     : [];
 
   useEffect(() => {
@@ -346,8 +346,6 @@ const NewCart = () => {
         </div>
       </div>
     );
-  } else {
-    return <p>Empty Cart</p>;
   }
 };
 
