@@ -60,6 +60,13 @@ export default function showtimesReducer(state = initialState, action) {
                 userSubscription: action.payload
             }
 
+
+        case "CANCEL_USER_SUBSCRIPTION":
+            return {
+                ...state,
+                userSubscription: {}
+            }
+
         default:
             return {
                 ...state,

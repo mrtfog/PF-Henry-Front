@@ -112,5 +112,19 @@ export function getUserSubscription(currentUser) {
         }
 
     }
+}
+
+export function cancelUserPayment(currentUser) {
+
+    return async (dispatch) => {
+
+        try {
+            await axios.delete("https://pf-henry-back.herokuapp.com/subscription/cancelPayment", { headers: { 'user': currentUser.accessToken } })
+            return dispatch({ type: "CANCEL_USER_SUBSCRIPTION", payload: {} })
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
 
 }

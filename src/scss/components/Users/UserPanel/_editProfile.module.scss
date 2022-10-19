@@ -2,34 +2,35 @@
 @import '../../../abstracts/mixins';
 
 
-.mainContainer{
-    margin-top:8%;
+.mainContainer {
+    margin-top: 8%;
     margin-left: 15%;
-    width:100%;
-    color:$text-color-white;
+    width: 100%;
+    color: $text-color-white;
     font-family: $font;
     height: auto;
 
-    .titleContainer{
-        margin-bottom:3em;
+    .titleContainer {
+        margin-bottom: 3em;
 
-        h2{
+        h2 {
             font-size: 2rem;
             text-shadow: none;
         }
-        
+
     }
 
-    .infoContainer{
-        .subInfoContainer{
+    .infoContainer {
+        .subInfoContainer {
             margin-bottom: 4em;
-            h3{
+
+            h3 {
                 font-size: 1.5rem;
                 margin-bottom: 1.5em;
                 text-shadow: none;
             }
 
-            .subtitlesContainer{
+            .subtitlesContainer {
                 padding-left: 4em;
                 width: 76%;
                 margin-left: 2em;
@@ -39,14 +40,16 @@
                 font-weight: 600;
                 text-shadow: none;
 
-                .subtitle1{
+                .subtitle1 {
                     grid-column: 1/2;
                 }
+
                 .subtitle2{
                     margin-left: 22%;
                     grid-column: 2/3;
                 }
-                .subtitle3{
+
+                .subtitle3 {
                     grid-column: 3/4;
                 }
 
@@ -59,20 +62,39 @@
                 justify-content: space-around;
                 margin: 1rem;
             }
+            .unsubscribe {
+                background: none;
+                color: gray;
+                font-family: $font;
+                border: 1px solid $hprimary-color;
+                padding: .3rem;
+                border-radius: 7px;
+                position: absolute;
+                right: 0%;
+                transition: .2s;
+            }
+            
+            .unsubscribe:hover {
+                border: 3px solid $hprimary-color;
+            }
+
+
             .subButton {
                 @include btn-primary
             }
         }
 
-        .cardsContainer{
+        .cardsContainer {
             overflow-y: scroll;
             overflow-x: visible;
             height: 50vh;
             width: 70%;
             margin: 1em;
             border-radius: 25px;
+            position: relative;
         }
-        .fieldsContainer{
+
+        .fieldsContainer {
             display: flex;
             flex-direction: row;
             justify-content: flex-start;
@@ -84,8 +106,8 @@
             //border-radius: 25px;
             //border-style: solid;
 
-            .field{
-                position:relative;
+            .field {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -93,7 +115,7 @@
                 margin: 0 50px;
                 // width: 30%;
 
-                .imgContainer{
+                .imgContainer {
                     border-style: none;
                     height: 160px;
                     width: 160px;
@@ -102,63 +124,64 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    transition:0.5s linear;
+                    transition: 0.5s linear;
 
-                    .editImg{
-                        transition:0.5s linear;
-                        -webkit-transition:0.5s linear;
+                    .editImg {
+                        transition: 0.5s linear;
+                        -webkit-transition: 0.5s linear;
                         transition-delay: 0;
                         display: none;
                         position: absolute;
-                        background-color: rgba(73, 122, 166, 0.4),;
+                        background-color: rgba(73, 122, 166, 0.4), ;
                         height: 160px;
                         width: 160px;
                         border-radius: 50%;
                         justify-content: center;
                         align-items: center;
 
-                        svg{
+                        svg {
                             fill: $hprimary-color;
                         }
                     }
 
-                    &:hover .editImg{
+                    &:hover .editImg {
                         display: flex;
                     }
 
-                    img{
+                    img {
                         width: 100%;
 
                     }
-                    
-                }
-                .pencilPhoto{
-                
-                    
-                    position:absolute;
-                    margin:auto;
-                    bottom:20px;
 
-                    svg{
+                }
+
+                .pencilPhoto {
+
+
+                    position: absolute;
+                    margin: auto;
+                    bottom: 20px;
+
+                    svg {
                         scale: 1;
                         fill: $primary-color;
                     }
                 }
 
-                .pencilIcon{
-                
-                    
+                .pencilIcon {
+
+
                     position: relative;
                     left: 95%;
-                    bottom:20px;
+                    bottom: 20px;
 
-                    svg{
+                    svg {
                         scale: 1;
                         fill: $primary-color;
                     }
                 }
 
-                label{
+                label {
                     display: block;
                     color: white;
                     text-align: left;
@@ -172,29 +195,32 @@
                     margin-top: 0;
                 }
 
-                .username{
+                .username {
 
                     width: fit-content;
-                    svg{
+
+                    svg {
                         position: relative;
                         top: -7px;
                     }
-                    p{
+
+                    p {
                         height: fit-content;
                         padding: 0.8rem;
                         margin: 10px;
                     }
 
                 }
-                .inputContainer{
+
+                .inputContainer {
                     display: flex;
                     justify-content: center;
 
-                    button{
+                    button {
                         @include btn-primary;
                     }
 
-                    .pencilIcon{
+                    .pencilIcon {
                         scale: 0.65;
                         position: absolute;
                         right: 1em;
