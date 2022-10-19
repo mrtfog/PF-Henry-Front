@@ -56,26 +56,6 @@ const NavbarUser = () => {
           </div>
         </li>
         <li>
-          <NavLink to="/" className={style.link}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              id="magicoon-Filled"
-            >
-              <title>home</title>
-              <g id="home-Filled">
-                <path
-                  id="home-Filled-2"
-                  data-name="home-Filled"
-                  className="cls-1"
-                  d="M21.5,11.01V17A4.5,4.5,0,0,1,17,21.5H14.5V17a2.5,2.5,0,0,0-5,0V21.5H7A4.5,4.5,0,0,1,2.5,17V11.01a4.477,4.477,0,0,1,1.678-3.5l5-4.018a4.529,4.529,0,0,1,5.643,0l5,4.018A4.475,4.475,0,0,1,21.5,11.01Z"
-                />
-              </g>
-            </svg>
-            <span>Home</span>
-          </NavLink>
-        </li>
-        <li>
           <NavLink to="/profile/edit" className={style.link}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
               <path d="M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0S96 57.3 96 128s57.3 128 128 128zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H322.8c-3.1-8.8-3.7-18.4-1.4-27.8l15-60.1c2.8-11.3 8.6-21.5 16.8-29.7l40.3-40.3c-32.1-31-75.7-50.1-123.9-50.1H178.3zm435.5-68.3c-15.6-15.6-40.9-15.6-56.6 0l-29.4 29.4 71 71 29.4-29.4c15.6-15.6 15.6-40.9 0-56.6l-14.4-14.4zM375.9 417c-4.1 4.1-7 9.2-8.4 14.9l-15 60.1c-1.4 5.5 .2 11.2 4.2 15.2s9.7 5.6 15.2 4.2l60.1-15c5.6-1.4 10.8-4.3 14.9-8.4L576.1 358.7l-71-71L375.9 417z" />
@@ -102,6 +82,26 @@ const NavbarUser = () => {
               </g>
             </svg>
             <span>Payments</span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/" className={style.link}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              id="magicoon-Filled"
+            >
+              <title>home</title>
+              <g id="home-Filled">
+                <path
+                  id="home-Filled-2"
+                  data-name="home-Filled"
+                  className="cls-1"
+                  d="M21.5,11.01V17A4.5,4.5,0,0,1,17,21.5H14.5V17a2.5,2.5,0,0,0-5,0V21.5H7A4.5,4.5,0,0,1,2.5,17V11.01a4.477,4.477,0,0,1,1.678-3.5l5-4.018a4.529,4.529,0,0,1,5.643,0l5,4.018A4.475,4.475,0,0,1,21.5,11.01Z"
+                />
+              </g>
+            </svg>
+            <span>Home</span>
           </NavLink>
         </li>
         <li>
