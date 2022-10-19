@@ -12,12 +12,12 @@ function Payments() {
 
   const dispatch = useDispatch()
 
-  const {currentUser} = useAuth()
+  const { currentUser } = useAuth()
 
   const userPayments = useSelector(state => state.usersReducer.userPayments)
 
-  useEffect(()=>{
-    if(!userPayments.length) dispatch(getUserPayments(currentUser))
+  useEffect(() => {
+    if (!userPayments.length) dispatch(getUserPayments(currentUser))
   }, [dispatch])
 
   const querystring = window.location.search;
@@ -65,38 +65,8 @@ function Payments() {
       </div>
 
       <div className={style.infoContainer}>
-        <div className={style.subInfoContainer}>
-          <div className={style.fieldsContainer}>
-            <div className={style.field}>
-              <label>Filter by type</label>
-              <select>
-                <option value="Subscription">Subscription</option>
-                <option value="Ticket">Ticket</option>
-              </select>
-            </div>
 
-            <div className={style.field}>
-              <label>Order by date</label>
-              <select>
-                <option value="Most recent">Most recent</option>
-                <option value="Last 7 days">Las 7 days</option>
-                <option value="Last 15 days">Last 15 days</option>
-                <option value="Last month">Last month</option>
-                <option value="All">All</option>
-              </select>
-            </div>
-
-            <div className={style.field}>
-              <label>Order amount</label>
-              <select>
-                <option value="Ascending">Ascending</option>
-                <option value="Descending">Descending</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-          <div className={style.cardsContainer}> 
+        <div className={style.cardsContainer}>
           <div className={style.subInfoContainer}>
             <div className={style.subtitlesContainer}>
               <div className={style.subtitle1}>Type</div>
@@ -112,7 +82,7 @@ function Payments() {
                     <CardPayments
                       title={e.movieTitle}
                       paymentType={e.type === 'standard' ? 'ticket' : 'subscription'}
-                      date={e.payedAt.slice(0,10)}
+                      date={e.payedAt.slice(0, 10)}
                       amount={e.price}
                       ticket={e.ticketAmount}
                     ></CardPayments>
