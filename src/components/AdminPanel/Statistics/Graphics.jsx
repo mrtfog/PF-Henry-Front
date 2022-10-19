@@ -13,6 +13,8 @@ import { getAllRooms } from "../../../redux/actions/rooms";
 const Graphics = () => {
   const { currentUser } = useAuth()
 
+  const screenWidth = document.body.clientWidth
+
   const dispatch = useDispatch();
   const showtimes = useSelector((state) => state.showtimesReducer.showtimes);
   const graphicReservations = useSelector(state => state.graphicReducer.graphicReservations)
@@ -177,14 +179,14 @@ const Graphics = () => {
 
         <div className={style.graphics}>
           {graphicSelected === 'BarChartUser' ?
-            <div style={{ width: 600 }}>
+            <div style={ screenWidth > 570 ? { width: 600 } : {width: 370}}>
               <BarChart chartData={barChart} />
             </div> :
             graphicSelected === 'LineChartUser' ?
-              <div style={{ width: 600 }}>
+              <div style={ screenWidth > 570 ? { width: 600 } : {width: 370}}>
                 <LineChart chartData={lineChart} />
               </div> :
-              <div style={{ width: 350 }}>
+              <div style={ screenWidth > 570 ? { width: 350 } : {width: 300}}>
                 <PieChart chartData={graphics} />
               </div>
           }

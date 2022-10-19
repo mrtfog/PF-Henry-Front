@@ -3,114 +3,164 @@
 
 
 .container_statistics{
-width:auto;
-color:$text-color-white;
-font-family: $font;
-margin-left: 15%;
-height:100vh;
-    .title{
-        margin:3rem;
-
+  width:auto;
+  color:$text-color-white;
+  font-family: $font;
+  margin-left: 15%;
+  height:100vh;
   
-    }
-    .divGraphics{
-      padding: 0;
-      margin: 0;
+  @media screen and (max-width: 570px) {
 
-      margin-top: 2.5vh;
+    margin: 0;
+    margin-top: 270px; 
+    width: 100vw;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title{
+    margin:3rem;
+  }
+  .divGraphics{
+    padding: 0;
+    margin: 0;
+    margin-top: 2.5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 60vh;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border-bottom: 2px solid $primary-color;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+
+    @media screen and (max-width: 570px) {
+
+      max-width: 95vw;
+      padding: 0;
+      margin: 0 auto;
+      justify-content: center;
+      margin-bottom: 200px;
+    }
+
+    div{
+      margin:2rem 2rem 1rem 0;
+
+      @media screen and (max-width: 570px) {
+
+        margin: 15px 0;
+      }
+    }
+
+    .graphicsNav{
+      margin: 0;
+      padding: 0;
+
+      padding-top: 20px;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: center;
+      height: 40px;
+
+      @media screen and (max-width: 570px) {
+
+        font-size: 10px;
+      }
+
+      .selectedNavButton{
+        border-bottom: 2px solid $hsecondary-color;
+        &:hover{
+          border-bottom: 2px solid $hsecondary-color;
+        }
+      }
+
+      h3{
+        margin: 0 2em;
+        cursor: pointer;
+        transition: all .2s ;
+        &:hover{
+          border-bottom: 2px solid $primary-color;
+        }
+      }
+    }
+
+    .graphics{
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
       align-items: center;
-      height: 60vh;
+
+    }
+
+
+  }
+
+  .cardsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 5em;
+
+    
+    @media screen and (max-width: 570px) {
+
+      max-width: 90vw;
+      min-height: 35vh;
+      overflow-x: scroll;
+      padding: 30px 0;
+      gap: 2em;
+      margin-bottom: 80px;
+    }
+
+    .card{
+      width: 12vw;
       background-color: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: .5em 2em;
       border-radius: 10px;
       border-bottom: 2px solid $primary-color;
       box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
+    
+      @media screen and (max-width: 570px) {
 
+        min-width: 50vw;
+        height: 25vh;
 
-      div{
-        margin:2rem 2rem 1rem 0;
-      }
-
-      .graphicsNav{
-        margin: 0;
-        padding: 0;
-
-        padding-top: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        height: 40px;
-
-        .selectedNavButton{
-          border-bottom: 2px solid $hsecondary-color;
-          &:hover{
-            border-bottom: 2px solid $hsecondary-color;
-          }
-        }
-
-        h3{
-          margin: 0 2em;
-          cursor: pointer;
-          transition: all .2s ;
-          &:hover{
-            border-bottom: 2px solid $primary-color;
-          }
+        &:first-child{
+          margin-left: 890px;
         }
       }
 
-      .graphics{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+      h3{
+        font-size: 1.2rem;
+        font-weight: 400;
       }
 
-
-   }
-
-    .cardsContainer{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      gap: 5em;
-
-      .card{
-        width: 12vw;
-        background-color: rgba(255, 255, 255, 0.1);
-        color: white;
-        padding: .5em 2em;
-        border-radius: 10px;
-        border-bottom: 2px solid $primary-color;
-        box-shadow: 0px 0px 15px rgba(0,0,0,0.8);
-      
-        h3{
-          font-size: 1.2rem;
-          font-weight: 400;
-        }
-
-        p {
-          font-weight: 400;
-          color:  rgba(255, 255, 255, 0.678);
-          span{
-            padding-left: .3em;
-            font-size: 1.4rem;
-            color: white;
-            font-weight: 600;
-          }
-        }
-
-      }
-
-      .date{
-        p{
-          margin:0.5rem 0;
-        }
+      p {
+        font-weight: 400;
+        color:  rgba(255, 255, 255, 0.678);
         span{
-          font-size: 1.2rem;
+          padding-left: .3em;
+          font-size: 1.4rem;
+          color: white;
           font-weight: 600;
-          padding: 0;
         }
+      }
+
+    }
+
+    .date{
+      p{
+        margin:0.5rem 0;
+      }
+      span{
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 0;
       }
     }
+  }
 }

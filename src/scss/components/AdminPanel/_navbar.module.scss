@@ -41,6 +41,7 @@
         align-items: center;
         .statistics{
             position: relative;
+
             .dropDownMenu{
                 
                 position:absolute;
@@ -49,9 +50,18 @@
                 height:fit-content;
                 width: 100%;
                 z-index: 3;
-            
-                
 
+                @media screen and (max-width: 570px) {
+
+                    width: 50vw;
+                    border-radius: 10px;
+                    position: absolute;
+                    top: 5.5rem;
+
+                    a{
+                        width: 100%;
+                    }
+                }
                 ul{
                     list-style:none;
                     padding: 0;
@@ -273,6 +283,8 @@
             
         }
     }
+
+   
 }
    
    
