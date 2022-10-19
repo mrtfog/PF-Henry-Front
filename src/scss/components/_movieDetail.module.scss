@@ -120,8 +120,12 @@
             align-items: center;
             background-color: rgb(11, 12, 13);
             padding: 40px;
-            border-radius: 30px;
+            border-radius: 10px;
             margin-top: 8vh;
+
+            @media screen and (max-width: 570px){
+                width: 70vw;
+            }
 
             &:last-child{
                 margin-bottom: 8vh;

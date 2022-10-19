@@ -15,6 +15,8 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
 
     let userId = currentUser.uid
 
+    const screenWidth = document.body.clientWidth
+
     const selectedMovieTheater = movieTheaters ? movieTheaters.find(r => r._id === reservation.roomId) : undefined
 
     let indexHalls = setIndexHalls()
@@ -174,6 +176,8 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
 
         return row
     }
+
+
     return (
         <div className="container">
             <h1><span>'{reservation.title}'</span></h1>
@@ -194,12 +198,11 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
                         <p><span className='spanTitle'>Tickets: </span>{reservation.ticketAmount}</p>
 
 
-                        <p><span className='spanTitle'>Movie Theater: <br /> </span>{reservation.roomId ? rooms.find(r => r.value === reservation.roomId).label : ''}</p>
+                        <p><span className='spanTitle'>Movie Theater: {screenWidth > 570 ? <br /> : null}</span>{reservation.roomId ? rooms.find(r => r.value === reservation.roomId).label : ''}</p>
                         <p><span className='spanTitle'>Format: </span>{reservation.format}</p>
                         <p><span className='spanTitle'>Your Seats Selection:</span>
-                            <br />
-                            <br />
-                            {seatsSelected.length ? <span className='lastSpan'>{seatsSelected.join(' • ')}</span> : <p>No seats selected yet</p>}</p>
+                            {screenWidth > 570 ? <><br /> <br/></> : null} 
+                            {seatsSelected.length ? <span className='lastSpan'>{seatsSelected.join(' • ')}</span> : <span>No seats selected yet</span>}</p>
                     </div>
                 </div>
 
@@ -221,18 +224,18 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
                             <div className='columnNumber'>
                                 {indexHalls.secondHall === 8 ? <div className='blank' style={{ marginLeft: '75px' }}></div>
                                     : indexHalls.secondHall === 9
-                                        ? <div className='blank' style={{ marginLeft: '45px' }}></div>
-                                        : <div className='blank' style={{ margin: '4px' }}></div>
+                                    ? <div className='blank' style={screenWidth > 570 ? { marginLeft: '45px' } : { margin: '15px' }}></div>
+                                    : <div className='blank' style={screenWidth > 570 ? { margin: '4px' } : { margin: '7px' }}></div>
 
                                 }
                                 {selected[selected.length - 1].map((c, index) => {
 
                                     if (index === indexHalls.firstHall) {
-                                        return <><div className='blank' style={{ margin: '0 1.05rem' }}></div>
+                                        return <><div className='blank' style={screenWidth > 570 ?{ margin: '0 1.05rem' } : { margin: '0 0.45rem' }}></div>
                                             <div className='blank'>{c.location.slice(1)}</div></>
                                     }
                                     if (index === indexHalls.secondHall) {
-                                        return <><div className='blank' style={{ margin: '0 .9rem' }}></div>
+                                        return <><div className='blank' style={screenWidth > 570 ?{ margin: '0 0.9rem' } : { margin: '0 0.23rem' }}></div>
                                             <div className='blank'>{c.location.slice(1)}</div></>
                                     }
                                     else {

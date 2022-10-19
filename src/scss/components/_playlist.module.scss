@@ -116,6 +116,7 @@
                    width: 50px;
                 }
             }
+
             a{
                 width: 70%;
                 height: 100%;
@@ -124,7 +125,6 @@
                 justify-content: space-between;
                 display: flex;
                 color: $text-color-white;
-
             }
 
             div{
@@ -174,6 +174,10 @@
         width: 90%;
         justify-content: space-evenly;
 
+        @media screen and (max-width: 570px){
+            flex-direction: column;
+        }
+
         div{
             display: flex;
             flex-direction: column;
@@ -184,11 +188,20 @@
 
             img{
                 width: 250px;
+
+                @media screen and (max-width: 570px){
+                    width: auto;
+                    height: 40vh;
+                }
             }
 
             h2{
                 font-size: 2.3rem;
                 text-align: center;
+
+                @media screen and (max-width: 570px){
+                    font-size: 1.8rem;
+                }
             }
             
             .buttons{
