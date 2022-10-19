@@ -32,7 +32,7 @@ function Card({status, paymentType, amount, date, ticket, title}) {
         <span>
             ${amount} {/*Monto del ultimo pago realizado, si la traemos desde el estado.*/}
         </span>
-{/* 
+        {/* 
         <Link to={ticket ? ticket : '#'}className={style.deleteBtn}>
             <span>
                 {ticket ? 'Download' : 'Delete'}

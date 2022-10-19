@@ -1,10 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import CardPayments from "./Card";
 import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
 import { useAuth } from "../../contexts/AuthContext";
 import UploadImg from "../../Cloudinary/UploadImage";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelUserPayment, getUserSubscription } from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
@@ -29,13 +28,11 @@ function EditProfile() {
    return (
       <div className={style.mainContainer}>
          <div className={style.titleContainer}>
-            <h2>
-               Edit your profile
-               <span></span>
-            </h2>
+            <h2>Edit your profile</h2>
          </div>
 
          <div className={style.infoContainer}>
+
             <div className={style.subInfoContainer}>
                <h3>Information</h3>
                <div className={style.fieldsContainer}>
@@ -47,7 +44,6 @@ function EditProfile() {
                         </div>
                      </div>
                   </div>
-                  {/* </div> */}
 
                   <div className={style.field}>
                      <label>Username</label>
@@ -122,6 +118,7 @@ function EditProfile() {
                   </div>
                </div>
             </div>
+
          </div>
       </div>
    );

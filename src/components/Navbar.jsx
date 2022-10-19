@@ -115,12 +115,15 @@ export default function Navbar() {
       <Link to="/" className={style.navLogo}>
         <h2 onClick={() => setDisplay('none')} >Moviefy <span>+</span></h2>
       </Link>
+      {pathname === "/login" ? null :
 
-      <div className={style.burgerMenu} onClick={updateMenu}>
-        <span className={burger}></span>
-        <span className={burger}></span>
-        <span className={burger}></span>
-      </div>
+        <div className={style.burgerMenu} onClick={updateMenu}>
+          <span className={burger}></span>
+          <span className={burger}></span>
+          <span className={burger}></span>
+        </div>
+
+      }
 
       <div className={menu}>
 

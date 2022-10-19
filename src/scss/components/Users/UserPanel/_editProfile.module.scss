@@ -8,21 +8,17 @@
     width: 100%;
     color: $text-color-white;
     font-family: $font;
-    height: auto;
-
+    
     .titleContainer {
         margin-bottom: 3em;
-
         h2 {
             font-size: 2rem;
             text-shadow: none;
         }
-
     }
-
+    
     .infoContainer {
         .subInfoContainer {
-            margin-bottom: 4em;
 
             h3 {
                 font-size: 1.5rem;
@@ -64,9 +60,8 @@
             }
             .unsubscribe {
                 background: none;
-                color: gray;
+                color: rgba(255, 255, 255, .7);
                 font-family: $font;
-                border: 1px solid $hprimary-color;
                 padding: .3rem;
                 border-radius: 7px;
                 position: absolute;
@@ -103,8 +98,6 @@
             width: 70%;
             padding-right: 2em;
             margin: 1em;
-            //border-radius: 25px;
-            //border-style: solid;
 
             .field {
                 position: relative;
@@ -113,7 +106,6 @@
                 align-items: center;
                 gap: 1em;
                 margin: 0 50px;
-                // width: 30%;
 
                 .imgContainer {
                     border-style: none;
@@ -233,4 +225,74 @@
     }
 
 
+    @media screen and (max-width: 570px) {
+        padding: 0;
+        margin: 0;
+
+        .titleContainer{
+            margin-top: 5.8rem;
+            margin-left: 1.5rem;
+
+            h2{
+                font-size: 1.5rem;
+            }
+        }
+
+        .infoContainer{
+            .subInfoContainer{
+    //============ TITULO INFORMATION ============
+                max-height: 30vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 3em;
+
+                    h3 {
+                        font-size: 1rem;
+                        text-shadow: none;
+                    }
+    //============ CONTENEDOR DE INFORMACIÓN DE USUARIO ============
+                .fieldsContainer{
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .cardsContainer{
+
+                    overflow-x: hidden;
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+
+
+                    .unsubscribedContainer{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        h1{
+                            font-size: 1em;
+                        }
+                    }
+                }
+
+                .subtitlesContainer{
+                    width: 100%;
+                    
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    margin: 0;
+                    padding: 0;
+    
+                    .subtitle2{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
 }
