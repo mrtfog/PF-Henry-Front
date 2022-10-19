@@ -61,6 +61,7 @@ const Subscriptions = () => {
   const dispatch = useDispatch();
   const allSubscribers = useSelector((state)=> state.subscribeReducer.allSubscribers)
 
+
   useEffect(()=>{
     dispatch(getAllSubscribers(currentUser))
   }, [])
@@ -109,7 +110,7 @@ const Subscriptions = () => {
             <div className={style.subtitle3}>Last payment amount<button name="amount" onClick={onClick}>
                 {filters.amount ? "⬆" : "⬇"}
               </button></div>
-            <div className={style.subtitle4}>User ID</div>
+            <div className={style.subtitle4}>User email</div>
           </div>
           <div className={style.cardsContainer}>
             {allSubscribers &&
@@ -117,9 +118,9 @@ const Subscriptions = () => {
                 return (
                   <div key={i} className={style.card}>
                     <CardsAdmin
-                        subscriptionStatus={e.deleted ? 'Active' : 'Cancelled'}
+                        subscriptionStatus={e.deleted ? 'Cancelled' : 'Active'}
                         paymentDate={new Date(e.payments[e.payments.length-1].dateTime).toDateString()}
-                        userId={e.userId}
+                        userId={e.email}
                         amount={e.payments[e.payments.length-1].price}
                     ></CardsAdmin>
                   </div>
