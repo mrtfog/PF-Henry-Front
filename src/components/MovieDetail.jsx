@@ -24,7 +24,7 @@ export default function MovieDetail() {
 
     const screenWidth = document.body.clientWidth
     
-    const [subscriptionBoolean, setsubscriptionBoolean] = useState(false)
+    const [subscriptionBoolean, setsubscriptionBoolean] = useState(0)
 
     if (currentUser) {
       axios.get("https://pf-henry-back.herokuapp.com/subscription/hasActiveSubscription", { headers: { "user": currentUser.accessToken } }).then(r => { setsubscriptionBoolean(r.data) })
@@ -41,6 +41,7 @@ export default function MovieDetail() {
 
     }, [])
 
+    const [autoplay, setAutoplay] = useState(0)
 
     function handleMovieAlert(){
       
@@ -101,7 +102,7 @@ export default function MovieDetail() {
           }
         })
       }
-       
+
       else{
 
         dispatch(setFormDisplay('flex'))
@@ -109,6 +110,7 @@ export default function MovieDetail() {
     }
 
 
+    console.log(document.querySelector('.videoo'))
     const movie = useSelector(state => state.moviesReducer.movieDetail)
     const movieReviews = useSelector(state => state.reviewsReducer.movieReviews)
     const playlistDisplay = useSelector(state => state.playlistsReducer.formDisplay)
@@ -177,7 +179,7 @@ export default function MovieDetail() {
                     { screenWidth > 570 ? <p>{movie.overview}</p> : null}
                     <div className={style.buttons}>
                         {!billboard.includes(movie.id) ?
-                        <button onClick={!subscriptionBoolean ? ()=> handleMovieAlert() : null}><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>Play</button>
+                        <a href='#video'><button onClick={!subscriptionBoolean ? (e)=> handleMovieAlert(e) : null}><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>Play</button></a>
                         : 
                         <button onClick={handleAddToCart}><svg className={style.icon} version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                         viewBox="0 0 130 120" enableBackground="new 0 0 128 128" xmlSpace="preserve">
@@ -294,9 +296,9 @@ export default function MovieDetail() {
 
                 : null}
 
-                <div className={style.section}>
+                <div className={style.section} id='video'>
                     {subscriptionBoolean ?
-                    <YouTube className={style.trailer} opts={screenWidth > 576 ? {width: '850', height: '480'} : {width: '320', height: '200'}} videoId={movie.videos ? (movie.videos.results.length > 0 ? movie.videos.results[0].key : '44A-KNz2U-w') : undefined}/>
+                    <YouTube iframeClassName='videoo' className={style.trailer} opts={screenWidth > 576 ? {width: '850', height: '480'} : {width: '320', height: '200'}} videoId={movie.videos ? (movie.videos.results.length > 0 ? movie.videos.results[0].key : '44A-KNz2U-w') : undefined}/>
                     :
                     <>
                         <svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 24 24" fill='#ffffff80'><path d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"/></svg>
