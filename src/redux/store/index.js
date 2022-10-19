@@ -9,6 +9,7 @@ import usersReducer from '../reducer/users'
 import cartReducer from '../reducer/cart'
 import roomReducer from '../reducer/rooms'
 import graphicReducer from '../reducer/graphics';
+import subscribeReducer from '../reducer/subscribe'
 
 const rootReducer = combineReducers({
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   usersReducer: usersReducer,
   cartReducer: cartReducer,
   roomReducer: roomReducer,
-  graphicReducer: graphicReducer
+  graphicReducer: graphicReducer,
+  subscribeReducer: subscribeReducer,
 })
 
 const composeEnhancers = composeWithDevTools({ trace: true, traceLimit: 25});

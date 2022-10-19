@@ -42,13 +42,13 @@ export default function showtimesReducer(state = initialState, action) {
             const { buttonName, orderType } = action.payload;
             let orderedReservations;
 
-            if (buttonName === "amount" && orderType === true) {
+            if (buttonName === "amount" && orderType === false) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.price > b.price) return -1;
                     if (a.price < b.price) return 1;
                     else return 0;
                 });
-            } else if (buttonName === "amount" && orderType === false) {
+            } else if (buttonName === "amount" && orderType === true) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.price > b.price) return 1;
                     if (a.price < b.price) return -1;
@@ -56,13 +56,13 @@ export default function showtimesReducer(state = initialState, action) {
                 });
             }
 
-            if (buttonName === "date" && orderType === true) {
+            if (buttonName === "date" && orderType === false) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.payedAt > b.payedAt) return -1;
                     if (a.payedAt < b.payedAt) return 1;
                     else return 0;
                 });
-            } else if (buttonName === "date" && orderType === false) {
+            } else if (buttonName === "date" && orderType === true) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.payedAt > b.payedAt) return 1;
                     if (a.payedAt < b.payedAt) return -1;
@@ -70,13 +70,13 @@ export default function showtimesReducer(state = initialState, action) {
                 });
             }
 
-            if (buttonName === "type" && orderType === true) {
+            if (buttonName === "type" && orderType === false) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.type > b.type) return -1;
                     if (a.type < b.type) return 1;
                     else return 0;
                 });
-            } else if (buttonName === "type" && orderType === false) {
+            } else if (buttonName === "type" && orderType === true) {
                 orderedReservations = state.allReservations.sort(function (a, b) {
                     if (a.type > b.type) return 1;
                     if (a.type < b.type) return -1;

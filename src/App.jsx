@@ -11,7 +11,6 @@ import NavbarAdmin from "./components/AdminPanel/Navbar";
 import Register from "./components/Users/Register";
 import AddToPlaylistPopUp from "./components/AddToPlaylistPopUp";
 import Bookings from "./components/AdminPanel/Bookings";
-import Users from "./components/AdminPanel/Users";
 import LogIn from "./components/Users/Login";
 import AddToCartPopUp from "./components/AddToCartPopUp";
 import EditProfile from "./components/Users/UserPanel/EditProfile";
@@ -45,13 +44,8 @@ function App() {
         <Switch>
           <Route exact path="/admin/statistics/graphics" component={Graphics} />
           <Route exact path="/admin/statistics/sales" component={Sales} />
-          <Route
-            exact
-            path="/admin/statistics/subscriptions"
-            component={Subscriptions}
-          />
+          <Route exact path="/admin/statistics/subscriptions" component={Subscriptions}/>
           <Route exact path="/admin/showTime" component={ShowTime} />
-          <Route exact path="/admin/users" component={Users} />
           <Route exact path="/admin/bookings" component={Bookings} />
           <Route exact path="/admin/rooms" component={Rooms} />
         </Switch>

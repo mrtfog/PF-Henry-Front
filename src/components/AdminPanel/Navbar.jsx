@@ -1,6 +1,6 @@
 import React from "react";
 import style from "../../scss/components/AdminPanel/_navbar.module.scss";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { useState } from "react";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
@@ -8,8 +8,6 @@ import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 const NavbarAdmin = () => {
   const { currentUser, logOut } = useAuth();
   const [isShown, setIsShown] = useState(false);
-  const divIcon = document.querySelector(".divIcon");
-  console.log(divIcon);
 
   const history = useHistory();
 

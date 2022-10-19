@@ -61,7 +61,7 @@ function Payments() {
   return (
     <div className={style.mainContainer}>
       <div className={style.titleContainer}>
-        <h2>Your payments</h2>
+        <h2>Your tickets</h2>
       </div>
 
       <div className={style.infoContainer}>

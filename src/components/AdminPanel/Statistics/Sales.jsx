@@ -14,7 +14,6 @@ function Payments() {
     (state) => state.cartReducer.allReservations
   ).filter((r) => r.payed === true);
 
-  console.log(allReservations)
   const { currentUser } = useAuth();
 
   useEffect(() => {
@@ -63,7 +62,7 @@ function Payments() {
               </button>
             </div>
             <div className={style.subtitle2}>
-              Date{" "}
+              Payment date{" "}
               <button name="date" onClick={onClick}>
                 {filters.date? "⬆" : "⬇"}
               </button>
@@ -74,7 +73,7 @@ function Payments() {
                 {filters.amount ? "⬆" : "⬇"}
               </button>
             </div>
-            <div className={style.subtitle4}>User</div>
+            <div className={style.subtitle4}>User email</div>
           </div>
           <div className={style.cardsContainer}>
             <div className={style.allCardsContainer}>
