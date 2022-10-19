@@ -17,10 +17,18 @@
         background-color: $secondary-color;
     }
 
+    h2{
+        @media screen and (max-width: 570px){
+            padding: 0 10vw;
+            text-align: center;
+        }
+    }
+
     h2 span{
         color: $primary-color;
         text-shadow: 0 0 10px $primary-color;
         margin: 0 1rem;
+        
     }
 
     .addToPlaylist{
@@ -29,6 +37,10 @@
         flex-direction: row;
         align-items: center;
         width: 50%;
+
+        @media screen and (max-width: 570px){
+            width: 80vw;
+        }
 
         select{
             @include select;
@@ -53,6 +65,11 @@
         flex-direction: row;
         align-items: center;
         width: 50%;
+
+        
+        @media screen and (max-width: 570px){
+            width: 80vw;
+        }
 
         input{
             width: 100%;
