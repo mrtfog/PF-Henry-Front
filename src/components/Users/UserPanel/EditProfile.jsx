@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelUserPayment, getUserSubscription } from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function EditProfile() {
 
@@ -18,6 +19,29 @@ function EditProfile() {
    useEffect(() => {
       if (currentUser) dispatch(getUserSubscription(currentUser))
    }, [])
+
+   function handelUnsubscribe() {
+      Swal.fire({
+         text: "Do you want to cancel your subscription?",
+         icon: "question",
+         iconColor: "#497aa6",
+         showCloseButton: true,
+         showDenyButton: true,
+         denyButtonText: "Yes",
+         confirmButtonText: "No",
+         allowEnterKey: false,
+         customClass: {
+            popup: "Alert",
+            closeButton: "closeButton",
+            confirmButton: "confirmButton",
+            denyButton: "denyButton",
+         },
+      }).then((result) => {
+         if (result.isDenied) {
+            dispatch(cancelUserPayment(currentUser))
+         }
+      });
+   }
 
    const subInfo = subscription.payments ?
       {
@@ -107,7 +131,7 @@ function EditProfile() {
                         subInfo ?
                            <>
                               <CardPayments status={subInfo.status} date={new Date(subInfo.lastPayment.dateTime).toDateString()} amount={subInfo.lastPayment.price}></CardPayments>
-                              <button className={style.unsubscribe} onClick={() => dispatch(cancelUserPayment(currentUser))}>Unsubscribe</button>
+                              <button className={style.unsubscribe} onClick={handelUnsubscribe}>Unsubscribe</button>
                            </>
                            :
                            <div className={style.unsubscribedContainer}>
