@@ -107,7 +107,6 @@ function EditProfile() {
                         : null
                   }
                   <div className={style.cardsContainer}>
-
                      {
                         subInfo ?
                            <>
@@ -120,7 +119,6 @@ function EditProfile() {
                               <NavLink className={style.subButton} to="/subscribe">Subscribe now!</NavLink>
                            </div>
                      }
-
                   </div>
                </div>
             </div>

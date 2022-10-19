@@ -44,7 +44,7 @@
                     grid-column: 1/2;
                 }
 
-                .subtitle2 {
+                .subtitle2{
                     margin-left: 22%;
                     grid-column: 2/3;
                 }
@@ -62,7 +62,6 @@
                 justify-content: space-around;
                 margin: 1rem;
             }
-
             .unsubscribe {
                 background: none;
                 color: gray;
@@ -78,6 +77,7 @@
             .unsubscribe:hover {
                 border: 3px solid $hprimary-color;
             }
+
 
             .subButton {
                 @include btn-primary

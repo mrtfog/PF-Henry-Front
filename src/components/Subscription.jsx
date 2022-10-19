@@ -186,6 +186,7 @@ export default function Subscription() {
 
           <button type="submit">SUBSCRIBE NOW</button>
         </form>
+        <p>*Direct debit payments at the end of 30 days</p>
         <p>*Cancel your plan at any time</p>
       </div>
       <Footer />

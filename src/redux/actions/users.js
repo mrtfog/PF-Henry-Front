@@ -112,7 +112,6 @@ export function getUserSubscription(currentUser) {
         }
 
     }
-
 }
 
 export function cancelUserPayment(currentUser) {

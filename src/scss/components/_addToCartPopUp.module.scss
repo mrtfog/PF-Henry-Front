@@ -18,6 +18,13 @@
         background-color: $secondary-color;
     }
 
+    h2{
+        @media screen and (max-width: 570px){
+            padding: 0 10vw;
+            text-align: center;
+        }
+    }
+
     h2 span{
         color: $primary-color;
         text-shadow: 0 0 10px $primary-color;
@@ -29,6 +36,10 @@
         width: 50%;
         margin-right: 0;
         margin-left: 0;
+
+        @media screen and (max-width: 570px){
+            width: 80vw;
+        }
     }
 
     .counter{
@@ -56,10 +67,11 @@
                 transform: scale(1.10);
             }
         }
+
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
-        -webkit-appearance: none; 
-        margin: 0; 
+            -webkit-appearance: none; 
+            margin: 0; 
         }
 
         input[type=number] { -moz-appearance:textfield; }
@@ -83,17 +95,23 @@
         }
        }
 
-       button{
-        @include btn-primary;
-        position: relative;
-        width: 15vw;
-        max-height: 50px;
-            &:disabled{
-                background-color: rgba(255, 255, 255, .3);
-                border-color: rgba(255, 255, 255, .5);
-                cursor: not-allowed;
-                transform: scale(1);
-            }
+        button{
+            @include btn-primary;
+            position: relative;
+            width: 15vw;
+            max-height: 50px;
+
+                &:disabled{
+                    background-color: rgba(255, 255, 255, .3);
+                    border-color: rgba(255, 255, 255, .5);
+                    cursor: not-allowed;
+                    transform: scale(1);
+                }
+
+                @media screen and (max-width: 570px){
+                    width: 200px;
+                    margin-top: 30px;
+                }
     }
 
 }
