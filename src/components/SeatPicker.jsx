@@ -56,6 +56,8 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
                 denyButton: 'denyButton',
             }
         })
+        
+        setSeatsSelected([])
         dispatch(selectSeatsDisplay('none'))
     }
 
@@ -87,7 +89,7 @@ export default function Seats({ reservation, movieTheaters, showtime, rooms, sea
                 })
             }
             e.target.className = "seat seat--selected"
-            
+
             for (let i = 0; i < initialState.length; i++) {
 
                 for (let j = 0; j < initialState[i].length; j++) {

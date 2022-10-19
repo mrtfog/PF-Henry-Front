@@ -6,7 +6,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import UploadImg from "../../Cloudinary/UploadImage";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUserSubscription } from "../../../redux/actions/users";
+import { cancelUserPayment, getUserSubscription } from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
 
 function EditProfile() {
@@ -107,15 +107,20 @@ function EditProfile() {
                         : null
                   }
                   <div className={style.cardsContainer}>
+
                      {
                         subInfo ?
-                           <CardPayments status={subInfo.status} date={new Date(subInfo.lastPayment.dateTime).toDateString()} amount={subInfo.lastPayment.price}></CardPayments>
+                           <>
+                              <CardPayments status={subInfo.status} date={new Date(subInfo.lastPayment.dateTime).toDateString()} amount={subInfo.lastPayment.price}></CardPayments>
+                              <button className={style.unsubscribe} onClick={() => dispatch(cancelUserPayment(currentUser))}>Unsubscribe</button>
+                           </>
                            :
                            <div className={style.unsubscribedContainer}>
                               <h1>You are not subscribed!</h1>
                               <NavLink className={style.subButton} to="/subscribe">Subscribe now!</NavLink>
                            </div>
                      }
+
                   </div>
                </div>
             </div>
