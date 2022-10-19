@@ -83,7 +83,7 @@ export default function Review() {
 
             <div className={style.form_container}>
 
-                { pathname.includes(`/movies/${movie.id}`) ? <h2>Add review for <span>"{movie.title}"</span></h2> : <h2>Add your review</h2>}
+                { pathname.includes(`/movies/${movie.id}`) ? <h2>Add review for <span>'{movie.title}'</span></h2> : <h2>Add your review</h2>}
 
                 <hr></hr>
   
