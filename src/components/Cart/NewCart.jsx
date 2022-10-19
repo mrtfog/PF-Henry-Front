@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getReservations, clearNewReservations, getCart, deleteReservationBack } from "../../redux/actions/cart";
+import {
+  getReservations,
+  clearNewReservations,
+  getCart,
+  deleteReservationBack,
+} from "../../redux/actions/cart";
 import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { getAllRooms } from "../../redux/actions/rooms";
-import { selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie, } from "../../redux/actions/cart";
+import {
+  selectSeatsDisplay,
+  selectedReservation,
+  clearCart,
+  clearCartByMovie,
+} from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
@@ -21,11 +31,12 @@ const NewCart = () => {
   const [total, setTotal] = useState();
 
   let reservations = useSelector((state) => state.cartReducer.newReservations);
-  const newCart = useSelector((state) => state.cartReducer.newCart)
+  const newCart = useSelector((state) => state.cartReducer.newCart);
   const showtimes = useSelector((state) => state.showtimesReducer.showtimes);
   const rooms = useSelector((state) => state.roomReducer.rooms);
 
-  if (!currentUser) reservations = JSON.parse(sessionStorage.getItem("newCart"));
+  if (!currentUser)
+    reservations = JSON.parse(sessionStorage.getItem("newCart"));
 
   useEffect(() => {
     if (currentUser) dispatch(getReservations(currentUser.accessToken));
@@ -70,39 +81,36 @@ const NewCart = () => {
 
   const displayReservations = reservations.length
     ? reservations.map((r) => {
-      const reservShowtime = showtimes
-        ? showtimes.find((s) => s._id.toString() === r.showtimeId)
-        : undefined;
-      const reservRoom = reservShowtime
-        ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
-        : undefined;
+        const reservShowtime = showtimes
+          ? showtimes.find((s) => s._id.toString() === r.showtimeId)
+          : undefined;
+        const reservRoom = reservShowtime
+          ? rooms.find((r) => reservShowtime.roomId === r._id.toString())
+          : undefined;
 
-      if (reservShowtime && reservRoom) {
-        return {
-          reservationId: r._id ? r._id.toString() : undefined,
-          price: r.price,
-          title: reservShowtime.movieTitle,
-          image: reservShowtime.image,
-          format: reservShowtime.format,
-          dateTime: reservShowtime.dateTime,
-          roomNumber: reservRoom.number || undefined,
-          roomId: reservShowtime.roomId,
-          showtimeId: r.showtimeId,
-          ticketAmount: r.ticketAmount,
-          seats: reservShowtime.seats,
-          seatLocations: r.seatLocations,
-        };
-      }
-    })
-    : []
-
+        if (reservShowtime && reservRoom) {
+          return {
+            reservationId: r._id ? r._id.toString() : undefined,
+            price: r.price,
+            title: reservShowtime.movieTitle,
+            image: reservShowtime.image,
+            format: reservShowtime.format,
+            dateTime: reservShowtime.dateTime,
+            roomNumber: reservRoom.number || undefined,
+            roomId: reservShowtime.roomId,
+            showtimeId: r.showtimeId,
+            ticketAmount: r.ticketAmount,
+            seats: reservShowtime.seats,
+            seatLocations: r.seatLocations,
+          };
+        }
+      })
+    : [];
 
   useEffect(() => {
     if (reservations.length)
       setTotal(
-        reservations
-          .reduce((acc, cur) => (acc += cur.price), 0)
-          .toFixed(2)
+        reservations.reduce((acc, cur) => (acc += cur.price), 0).toFixed(2)
       );
   }, [reservations]);
   useEffect(() => {
@@ -158,12 +166,11 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-
         if (!currentUser) {
-          sessionStorage.newCart = JSON.stringify([])
+          sessionStorage.newCart = JSON.stringify([]);
           dispatch(clearCart());
         } else {
-          dispatch(clearNewReservations(currentUser.accessToken))
+          dispatch(clearNewReservations(currentUser.accessToken));
         }
       }
       setTotal(0);
@@ -188,13 +195,21 @@ const NewCart = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        if (currentUser) dispatch(deleteReservationBack({ reservationId: showtime.reservationId }, currentUser.accessToken))
+        if (currentUser)
+          dispatch(
+            deleteReservationBack(
+              { reservationId: showtime.reservationId },
+              currentUser.accessToken
+            )
+          );
         if (!currentUser) {
-          dispatch(clearCartByMovie(showtime.showtimeId))
-          let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(r => r.showtimeId !== showtime.showtimeId)
+          dispatch(clearCartByMovie(showtime.showtimeId));
+          let sessionNewCart = JSON.parse(sessionStorage.newCart).filter(
+            (r) => r.showtimeId !== showtime.showtimeId
+          );
 
-          sessionStorage.newCart = JSON.stringify(sessionNewCart)
-        };
+          sessionStorage.newCart = JSON.stringify(sessionNewCart);
+        }
       }
     });
   }
@@ -293,6 +308,7 @@ const NewCart = () => {
           <div className={style.paymentGateway}>
             <form
               action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`}
+              // action={`http://localhost:8082/payment/payment?userId=${currentUser?.uid}`}
               method="POST"
             >
               <input
