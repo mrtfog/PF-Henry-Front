@@ -113,7 +113,7 @@ export default function Navbar() {
       }
     >
       <Link to="/" className={style.navLogo}>
-        <h2 onClick={() => setDisplay('none')} >HPFC</h2>
+        <h2 onClick={() => setDisplay('none')} >Moviefy <span>+</span></h2>
       </Link>
 
       <div className={style.burgerMenu} onClick={updateMenu}>

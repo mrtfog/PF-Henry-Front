@@ -88,10 +88,20 @@
     .navLogo{
 
         cursor: pointer;
-        color: $primary-color;
+        // color: $primary-color;
+        color: white;
         margin-left: 1rem;
-        animation: 3.5s lights infinite;
+        animation: 3.5s lightsSpan infinite;
         transition: .2s linear;
+
+        span{
+            // color: white;
+            color: $primary-color;
+            animation: 3.5s lights infinite;
+            transition: .2s linear;
+            animation-delay: 0;
+            font-size: 1.9rem;
+        }
 
         &:hover{
             transform: scale(1.08);
@@ -208,4 +218,12 @@
     50%{ text-shadow: 0 0 10px $primary-color}
     75%{ text-shadow: 0 0 0px $primary-color}
     100%{ text-shadow: 0 0 10px $primary-color}
+}
+
+@keyframes lightsSpan{
+    0%{ text-shadow: 0 0 10px white}
+    25%{ text-shadow: 0 0 0px white}
+    50%{ text-shadow: 0 0 10px white}
+    75%{ text-shadow: 0 0 0px white}
+    100%{ text-shadow: 0 0 10px white}
 }
