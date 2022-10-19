@@ -64,9 +64,10 @@ export default function Navbar() {
 
   }
 
-  function handleUserPopUp() {
+  function handleUserPopUp(element) {
 
     display === 'none' ? setDisplay('flex') : setDisplay('none')
+    if(element !== 'photo') updateMenu()
   }
 
   /*======================== EVENT STICKY BAR ======================== */
@@ -94,6 +95,12 @@ export default function Navbar() {
     }
 
     setIsMenuClicked(!isMenuClicked)
+  }
+
+  function handleButtonClick(){
+
+    setDisplay('none')
+    updateMenu()
   }
 
 
@@ -131,31 +138,31 @@ export default function Navbar() {
 
               <>
                 <NavLink to="/movies">
-                  {pathname === "/movies" ? null : <button onClick={() => setDisplay('none')}>Movies</button>}
+                  {pathname === "/movies" ? null : <button onClick={() => handleButtonClick()}>Movies</button>}
                 </NavLink>
 
                 <NavLink to="/playlists">
-                  {pathname === "/playlists" ? null : <button onClick={() => setDisplay('none')}>My playlist</button>}
+                  {pathname === "/playlists" ? null : <button onClick={() => handleButtonClick()}>My playlist</button>}
                 </NavLink>
 
                 <NavLink to="/cart">
-                  {pathname === "/cart" ? null : <button onClick={() => setDisplay('none')}>Cart</button>}
+                  {pathname === "/cart" ? null : <button onClick={() => handleButtonClick()}>Cart</button>}
                 </NavLink>
 
-                <img onClick={handleUserPopUp} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg' />
+                <img onClick={()=> handleUserPopUp('photo')} src={currentUser.photoURL ? currentUser.photoURL : userIMG} alt='userImg' />
 
                 <div className={style.userPopUp} style={{ display: display }}>
 
                   <h3>{currentUser.displayName}</h3>
 
                   <NavLink to="/profile/edit">
-                    <button className={style.profile} onClick={() => setDisplay('none')}> My Profile</button>
+                    <button className={style.profile} onClick={() => handleButtonClick()}> My Profile</button>
                   </NavLink>
 
                   {
                     typeof role === "object" ?
                       <NavLink to="/admin/statistics/graphics">
-                        <button onClick={() => setDisplay('none')}> Admin Dashboard</button>
+                        <button onClick={() => handleButtonClick()}> Admin Dashboard</button>
                       </NavLink>
                       : null
                   }
@@ -170,7 +177,7 @@ export default function Navbar() {
 
               <>
                 <NavLink to="/cart">
-                  <button onClick={() => setDisplay('none')}>Cart</button>
+                  <button onClick={() => handleButtonClick()}>Cart</button>
                 </NavLink>
 
                 <NavLink to="/register">
