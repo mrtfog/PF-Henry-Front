@@ -70,7 +70,7 @@ export function logicDeleteRoom(id, currentUser){
 
         try{
 
-            await axios.delete(`http://localhost:8082/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
+            await axios.delete(`https://pf-henry-back.herokuapp.com/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
             return dispatch({type:'DELETE_ROOM', payload: id})
         }
         catch(e){
