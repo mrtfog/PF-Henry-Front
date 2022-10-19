@@ -58,6 +58,7 @@ const Graphics = () => {
 
   }
 
+
   const lineChart = {
     labels: ["Paid", "Past", "Cancelled"],
     datasets: [
@@ -102,7 +103,7 @@ const Graphics = () => {
     if (!showtimes.length) dispatch(getAllShowtimes());
     if (!graphicReservations.length) dispatch(getGraphicReservations(currentUser))
     if (!graphicSubscriptions.length) dispatch(getGraphicSubscriptions(currentUser))
-    if(!movieTheaters) dispatch(getAllRooms())
+    if (!movieTheaters) dispatch(getAllRooms())
   }, []);
 
   const [graphicSelected, setGraphicSelected] = useState('BarChartUser')

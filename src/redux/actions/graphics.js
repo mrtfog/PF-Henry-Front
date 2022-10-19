@@ -22,7 +22,7 @@ export function getGraphicSubscriptions(currentUser) {
 
         try {
 
-            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/reservation/getAll", { headers: { "user": currentUser.accessToken } })
+            const { data } = await axios.get("https://pf-henry-back.herokuapp.com/subscription/getAll", { headers: { "user": currentUser.accessToken } })
             return dispatch({ type: "GET_GRAPHIC_SUBSCRIPTIONS", payload: data })
 
         } catch (e) {
