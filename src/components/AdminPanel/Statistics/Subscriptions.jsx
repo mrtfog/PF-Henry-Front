@@ -10,8 +10,6 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useState } from "react";
 
 const Subscriptions = () => {
-  const avatar =
-    "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac=";
 
   const {currentUser} = useAuth()
   const dispatch = useDispatch();
