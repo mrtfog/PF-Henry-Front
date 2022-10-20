@@ -6,12 +6,9 @@ import { useAuth } from "../../contexts/AuthContext";
 import UploadImg from "../../Cloudinary/UploadImage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  cancelUserPayment,
-  getUserSubscription,
-} from "../../../redux/actions/users";
+import { cancelUserPayment, getUserSubscription} from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
-import Swal from "sweetalert2";
+
 
 function EditProfile() {
   const dispatch = useDispatch();
@@ -77,12 +74,6 @@ function EditProfile() {
          }
       });
    }
-
-   const subInfo = subscription.payments ?
-      {
-         status: "ACTIVE",
-         lastPayment: subscription.payments[subscription.payments.length - 1]
-      } : undefined
 
    return (
       <div className={style.mainContainer}>
@@ -166,7 +157,7 @@ function EditProfile() {
                         subInfo ?
                            <>
                               <CardPayments status={subInfo.status} date={new Date(subInfo.lastPayment.dateTime).toDateString()} amount={subInfo.lastPayment.price}></CardPayments>
-                              <button className={style.unsubscribe} onClick={handelUnsubscribe}>Unsubscribe</button>
+                              <button className={style.unsubscribe} onClick={handleOnClickUnsubscribe}>Unsubscribe</button>
                            </>
                            :
                            <div className={style.unsubscribedContainer}>
@@ -179,8 +170,6 @@ function EditProfile() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
   );
 }
 
