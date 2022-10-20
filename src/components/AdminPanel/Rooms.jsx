@@ -118,7 +118,7 @@ function Rooms() {
           Create
         </button>
       </form>
-      <div>
+      <div className={style.showtimesContainer}>
         <h2>Created Movie Theaters</h2>
         <div className={style.roomCardsContainer}>
           {roomsBackend
