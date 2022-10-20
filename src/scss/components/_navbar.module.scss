@@ -143,7 +143,11 @@
     @media screen and (max-width: 576px) {
         .navBtnContainer{
             display: none;
-
+            .cart{
+                span{
+                    top: 147px;
+                }
+            }
         }
 
         .burgerMenu{

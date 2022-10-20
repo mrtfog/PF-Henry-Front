@@ -1,6 +1,4 @@
 import React from "react";
-// import style from "../../scss/components/AdminPanel/_users.module.scss";
-//import CardsUser from "../CardsUser";
 import CardsAdmin from '../CardsAdmin'
 import style from "../../../scss/components/AdminPanel/_subscriptions.module.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +13,9 @@ const Subscriptions = () => {
   const dispatch = useDispatch();
   const allSubscribers = useSelector((state)=> state.subscribeReducer.allSubscribers)
 
+
+  
+  const screenWidth = document.body.clientWidth
 
   useEffect(()=>{
     dispatch(getAllSubscribers(currentUser))
@@ -64,7 +65,7 @@ const Subscriptions = () => {
             <div className={style.subtitle3}>Last payment amount<button name="amount" onClick={onClick}>
                 {filters.amount ? "⬆" : "⬇"}
               </button></div>
-            <div className={style.subtitle4}>User email</div>
+            <div className={style.subtitle4} style={screenWidth > 570 ? { display: 'flex' } : { display: 'none' }}>User email</div>
           </div>
           <div className={style.cardsContainer}>
             {allSubscribers &&
