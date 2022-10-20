@@ -26,6 +26,7 @@ export default function Home() {
       if(showtimes.length === 0) dispatch(getAllShowtimes());
       dispatch(getMovies())
       dispatch(getUpcoming())
+      window.scrollTo(0, 0);
     }, [])
 
     const horrorFilms = movies.filter((m) => {

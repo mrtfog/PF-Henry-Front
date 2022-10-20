@@ -51,8 +51,6 @@ function Carousel() {
 
   }
 
-  // if (images.length) selectNewImage(0, images)
-
   /* Con este useEffect hacemos que se vayan cambiando los sliders */
   useEffect(() => {
     const interval = setInterval(function test() {
