@@ -1,13 +1,14 @@
 import React from "react";
 import Swal from "sweetalert2";
 import CardPayments from "./Card";
-import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
-import { useAuth } from "../../contexts/AuthContext";
 import UploadImg from "../../Cloudinary/UploadImage";
+import { useAuth } from "../../contexts/AuthContext";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelUserPayment, getUserSubscription} from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
+import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
+import User from '../../../assets/user.png'
 
 
 function EditProfile() {
@@ -51,30 +52,6 @@ function EditProfile() {
     });
   }
 
-
-   function handelUnsubscribe() {
-      Swal.fire({
-         text: "Do you want to cancel your subscription?",
-         icon: "question",
-         iconColor: "#497aa6",
-         showCloseButton: true,
-         showDenyButton: true,
-         denyButtonText: "Yes",
-         confirmButtonText: "No",
-         allowEnterKey: false,
-         customClass: {
-            popup: "Alert",
-            closeButton: "closeButton",
-            confirmButton: "confirmButton",
-            denyButton: "denyButton",
-         },
-      }).then((result) => {
-         if (result.isDenied) {
-            dispatch(cancelUserPayment(currentUser))
-         }
-      });
-   }
-
    return (
       <div className={style.mainContainer}>
          <div className={style.titleContainer}>
@@ -88,7 +65,7 @@ function EditProfile() {
                <div className={style.fieldsContainer}>
                   <div className={style.field}>
                      <div className={style.imgContainer}>
-                        <img src={currentUser.photoURL ? currentUser.photoURL : "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="} />
+                        <img src={currentUser.photoURL ? currentUser.photoURL : User} />
                         <div className={style.editImg}>
                            <UploadImg currentUser={currentUser} />
                         </div>
