@@ -54,6 +54,12 @@ export default function showtimesReducer(state = initialState, action) {
                 userRole: action.payload
             }
 
+        case "CLEAR_USER_ROLE":
+            return {
+                ...state,
+                userRole: undefined
+            }
+
         case "GET_USER_SUBSCRIPTION":
             return {
                 ...state,

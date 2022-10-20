@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { postCart } from '../../redux/actions/cart'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import { useHistory } from 'react-router-dom'
+import { clearUserRole } from '../../redux/actions/users'
 
 const AuthContext = React.createContext()
 
@@ -76,6 +77,7 @@ export function AuthProvider({ children }) {
 
     function logOut() {
         dispatch(clearCart())
+        dispatch(clearUserRole())
         sessionStorage.clear()
         return signOut(auth)
     }
