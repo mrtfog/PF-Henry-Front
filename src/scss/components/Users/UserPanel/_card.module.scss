@@ -18,7 +18,7 @@
     overflow: hidden;
 
     .type{
-        width: 10%;
+        //width: 10%;
         text-align: left;
         text-transform: capitalize;
         span{
@@ -42,20 +42,38 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-evenly;
-        padding: 1em 0;
-        width: 80vw;
+        padding: 1em .5em;
+        margin: 0.5em;
+        width: 75vw;
+        height: min-content;
         
-
         span{
-            width: 20%;
             font-size: .85rem;
+            margin: 0;
         }
-
+        
+        span:nth-child(1){
+            width: 20%;
+            //margin-right: 40px;
+        }
+        span:nth-child(2){
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 600;
+            width: 30%;
+            //margin-right: 40px;
+        }
         span:nth-child(3){
-            margin-right: 40px;
+            width: 20%;
+            //margin-right: 40px;
         }
         span:nth-child(4){
-            margin-right: 15px;
+            width: 15%;
+            //margin-right: 15px;
+        }
+        span:nth-child(5){
+            width: 15%;
+            //margin-right: 15px;
         }
 
     }

@@ -1,166 +1,249 @@
-@import '../../../abstracts/variables';
-@import '../../../abstracts/mixins';
+@import "../../../abstracts/variables";
+@import "../../../abstracts/mixins";
 
+.mainContainer {
+  margin-top: 8%;
+  margin-left: 15%;
+  width: 100%;
+  color: $text-color-white;
+  font-family: $font;
+  height: auto;
 
-.mainContainer{
-    margin-top:8%;
-    margin-left: 15%;
-    width:100%;
-    color:$text-color-white;
-    font-family: $font;
-    height: auto;
+  .titleContainer {
+    margin-bottom: 3em;
 
-        .titleContainer{
-            margin-bottom:3em;
+    h2 {
+      font-size: 2rem;
+      text-shadow: none;
+    }
+  }
 
-            h2{
-                font-size: 2rem;
-                text-shadow: none;
-            }
-            
+  .infoContainer {
+    .subInfoContainer {
+      margin-bottom: 4em;
+      h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5em;
+        text-shadow: none;
+      }
+
+      .subtitlesContainer {
+        display: flex;
+        flex-direction: flex;
+        justify-content: space-between;
+        padding: 1em;
+        padding-left: 4em;
+        padding-right: 4em;
+        align-items: center;
+        margin: 1em 0;
+        border-radius: 25px;
+        font-family: $font;
+        gap: 1em;
+
+        div {
+          width: 20%;
+          text-align: center;
+
+          &:first-child {
+            text-align: left;
+            width: 10%;
+          }
+        }
+      }
+    }
+
+    .cardsContainer {
+      overflow-y: scroll;
+      overflow-x: visible;
+      height: 50vh;
+      width: 70%;
+      margin: 1em;
+      border-radius: 25px;
+    }
+    .fieldsContainer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      height: auto;
+      width: 65%;
+      padding-right: 2em;
+
+      .field {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1em;
+        overflow: hidden;
+        width: 30%;
+
+        img {
+          border-style: none;
+          height: 160px;
+          min-width: 160px;
+          border-radius: 50%;
+        }
+        .pencilPhoto {
+          position: absolute;
+          margin: auto;
+          bottom: 20px;
+
+          svg {
+            scale: 1;
+            fill: $primary-color;
+          }
         }
 
-        .infoContainer{
+        .pencilIcon {
+          position: absolute;
+          right: 35%;
+          bottom: 20px;
+
+          svg {
+            scale: 1;
+            fill: $primary-color;
+          }
+        }
+
+        label {
+          display: block;
+          color: white;
+          text-align: left;
+          font-size: 1rem;
+          margin-top: 0.65rem;
+          margin-bottom: 0;
+        }
+
+        select {
+          @include select;
+          margin-top: 0;
+        }
+
+        .inputContainer {
+          width: 100%;
+          position: relative;
+
+          input {
+            border-style: none;
+            min-width: 90%;
+            @include select;
+            margin-left: 0;
+            margin-right: 0;
+            text-align: left;
+            padding-left: 1rem;
+            color: $background-color;
+
+            &:hover,
+            &:focus,
+            &:active {
+              background-color: white;
+              color: $background-color;
+            }
+          }
+
+          .pencilIcon {
+            scale: 0.65;
+            position: absolute;
+            right: 1em;
+            bottom: 0.5em;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width:576px){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    margin: 0;
+
+    .titleContainer{
+        margin: 0;
+        margin-top: 6em;
+        width: 100%;
+
+        h2{
+            font-size: 1.8rem;
+            margin-left: 1em;
+        }
+    }
+
+    .infoContainer{
+        width: 90vw;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+        
+        .cardsContainer{
+            height: auto;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            overflow-y: visible;
+            overflow-x: visible;
+
             .subInfoContainer{
-                margin-bottom: 4em;
-                h3{
-                    font-size: 1.5rem;
-                    margin-bottom: 1.5em;
-                    text-shadow: none;
-                }
+                width: 90vw;
+                padding: 0;
 
                 .subtitlesContainer{
-
-                    display: flex;
-                    flex-direction: flex;
-                    justify-content: space-between;
-                    padding: 1em;
-                    padding-left:  4em;
-                    padding-right:  4em;
-                    align-items: center;
-                    margin: 1em 0;
-                    border-radius: 25px;
-                    font-family: $font;
+                    width: 85%;
+                    margin: 0;
+                    padding: 1em 0em;
+                    border-radius: 0;
                     gap: 1em;
+                    display: flex;
+                    flex-direction: row;
 
-                    div{
-                        width: 20%;
-                        text-align: center;
-
-                        &:first-child{
-                            text-align: left;
-                            width: 10%;
-                        }
+                    .subtitle1{
+                        display: none;
                     }
 
+                    &:nth-child(1){
+                        display: none;
+                        width: 15%;
+                        //margin-right: 40px;
+                    }
+
+                    &:nth-child(2){
+                        text-align: left;
+                        font-size: 0.8rem;
+                        font-weight: 600;
+                        width: 35%;
+                        //margin-right: 40px;
+                    }
+                    &:nth-child(3){
+                        width: 20%;
+                        //margin-right: 40px;
+                    }
+                    &:nth-child(4){
+                        width: 15%;
+                        //margin-right: 15px;
+                    }
+                    &:nth-child(5){
+                        width: 15%;
+                        //margin-right: 15px;
+                    }
                 }
-            }
 
-            .cardsContainer{
-                overflow-y: scroll;
-                overflow-x: visible;
-                height: 50vh;
-                width: 70%;
-                margin: 1em;
-                border-radius: 25px;
-            }
-            .fieldsContainer{
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                height: auto;
-                width: 65%;
-                padding-right: 2em;
 
-                .field{
-                    position:relative;
+                .card{
+                    margin: 0;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
-                    gap: 1em;
-                    overflow: hidden;
-                    width: 30%;
-
-                    img{
-                        border-style: none;
-                        height: 160px;
-                        min-width: 160px;
-                        border-radius: 50%;
-                        
-                       
-                    }
-                    .pencilPhoto{
-                 
-                        
-                        position:absolute;
-                        margin:auto;
-                        bottom:20px;
-
-                        svg{
-                            scale: 1;
-                            fill: $primary-color;
-                        }
-                    }
-
-                    .pencilIcon{
-                 
-                        
-                        position:absolute;
-                        right:35%;
-                        bottom:20px;
-
-                        svg{
-                            scale: 1;
-                            fill: $primary-color;
-                        }
-                    }
-
-                    label{
-                        display: block;
-                        color: white;
-                        text-align: left;
-                        font-size: 1rem;
-                        margin-top: 0.65rem;
-                        margin-bottom: 0
-                    }
-
-                    select {
-                        @include select;
-                        margin-top: 0;
-                    }
-
-                    .inputContainer{
-                        width: 100%;
-                        position: relative;
-
-                        input{
-                            border-style: none;
-                            min-width: 90%;
-                            @include select;
-                            margin-left: 0;
-                            margin-right: 0;
-                            text-align: left;
-                            padding-left: 1rem;
-                            color: $background-color;
-        
-                            &:hover, &:focus, &:active{
-                                background-color: white;
-                                color: $background-color;
-                            }
-                        }
-
-                        .pencilIcon{
-                            scale: 0.65;
-                            position: absolute;
-                            right: 1em;
-                            bottom: 0.5em;
-                        }
-                    }
-
+                    width: 95%;
+                    //background-color: red;    
                 }
             }
         }
-
-
     }
+
+  }
+}
