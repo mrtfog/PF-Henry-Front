@@ -1,6 +1,5 @@
 import React from "react";
-  import style from "../../scss/components/AdminPanel/_navbar.module.scss";
-// import style from "../../scss/components/Users/UserPanel/_navbarUser.module.scss";
+import style from "../../scss/components/AdminPanel/_navbar.module.scss";
 
 import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";

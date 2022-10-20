@@ -18,21 +18,36 @@
         
 
         .navLogo{
-            display: flex;
-            margin-left: 3.5em;
-            margin-top: 2em;
+
             cursor: pointer;
+            // color: $primary-color;
+            color: white;
+            margin-left: 1rem;
+            animation: 3.5s lightsSpan infinite;
+            transition: .2s linear;
 
-            h2{ 
+            h2{
                 font-size: 2rem;
-                color: $primary-color;
-                transition: all 0.2s linear;
-
-                &:hover{
-                    font-size: 2.1rem;
-                    text-shadow: 5px 5px 10px $secondary-color;
-                }
+                margin-left: 3.5rem;
             }
+    
+            span{
+                // color: white;
+                color: $primary-color;
+                animation: 3.5s lights infinite;
+                transition: .2s linear;
+                animation-delay: 0;
+                font-size: 1.9rem;
+            }
+    
+            &:hover{
+                transform: scale(1.08);
+            }
+        }
+        .navLogo:hover{
+    
+            cursor: pointer;
+            box-shadow: none;
         }
 
         h3{
@@ -248,11 +263,203 @@
                         font-size: 0.8rem;
                     }
                 }
-            
+                
+                .contact{
+                    color: rgb(182, 182, 182);
+                    font-size: 0.9rem;
+                    margin-top: 2rem;
+                }
             }
         }
 
     }
 
+    @media screen and (max-width:576px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100vw;
+    
+        .imageContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 4em;
+            background: none;
+            padding: 0;
+            margin-bottom: 1em;
+            width: 100%;
+            box-shadow: 0px 1px 10px #ff38608a;
+
+            .navLogo{
+
+                cursor: pointer;
+                // color: $primary-color;
+                color: white;
+                margin-left: 1rem;
+                animation: 3.5s lightsSpan infinite;
+                transition: .2s linear;
+
+                h2{
+                    font-size: 1.5rem;
+                    margin-left: 2rem;
+                }
+        
+                span{
+                    // color: white;
+                    color: $primary-color;
+                    animation: 3.5s lights infinite;
+                    transition: .2s linear;
+                    animation-delay: 0;
+                    font-size: 1.9rem;
+                }
+        
+                &:hover{
+                    transform: scale(1.08);
+                }
+            }
+            .navLogo:hover{
+        
+                cursor: pointer;
+                box-shadow: none;
+            }
+
+            // .navLogo{
+            //     display: flex;
+            //     flex-direction: column;
+            //     align-items: center;
+            //     margin: 0;
+            //     margin-left: 2em;
+            //     padding: 0;
+            //     cursor: pointer;
+    
+            //     h2{ 
+            //         font-size: 2rem;
+            //         color: $primary-color;
+            //         transition: all 0.2s linear;
+            //         margin: 0;
+    
+            //         &:hover{
+            //             font-size: 2.1rem;
+            //             text-shadow: 5px 5px 10px $secondary-color;
+            //         }
+            //     }
+            // }
+
+            h3{
+                display: none;
+            }
+        }
+
+        .formSideContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100vw;
+            box-shadow: none;
+
+            //background-color: #ff3860;
+
+            .formContainer{
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                width: 90vw;
+
+                form{
+                    //border: 2px solid $secondary-color;
+                    border-radius: 25px;
+                    width: 90%;
+                    margin: 0;
+                    padding: 1.5em;
+                    overflow: hidden;
+
+                    h1{
+                        font-size: 1.5rem;
+                        margin: 0;
+                        margin-bottom: 1em;
+                        padding: 0;
+                    }
+
+                    .inputContainer{
+                        input{
+                            background-color: rgba(43, 43, 43, 0.589);
+                            border: 1px;
+                        }
+
+                        .passContainer{
+                            position: relative;
+                            flex-direction: row;
+                            width: 100%;
+        
+                            .showButton{
+                                position: absolute;
+                                right: .5em;
+                                top: 0.65em;
+                                scale: 0.8;
+                                svg{
+                                    width: auto;
+                                    height: 25px;
+                                    fill: $secondary-color;
+                                }
+                            }
+                        }
+
+                        .errorMessage{
+                            height: fit-content;
+                            margin-bottom: 0em;
+                        }
+                    }
+
+                    .btnContainer{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        margin-top: 2rem;
+
+                        .primaryBtn{
+                            width: 100%;
+                            margin: 0;
+                        }
+                    }
+
+                    .linkToRegister{
+                        font-size: 0.9rem;
+
+                        span{
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .contact{
+                        line-height: 1.2rem;
+                        margin-top:3em;
+                        font-size: 0.8rem;
+                        color: rgb(182, 182, 182);
+                    }
+                }
+
+            }
+        }
+    }
+
 }
     
+@keyframes lights{
+    0%{ text-shadow: 0 0 10px $primary-color}
+    25%{ text-shadow: 0 0 0px $primary-color}
+    50%{ text-shadow: 0 0 10px $primary-color}
+    75%{ text-shadow: 0 0 0px $primary-color}
+    100%{ text-shadow: 0 0 10px $primary-color}
+}
+
+@keyframes lightsSpan{
+    0%{ text-shadow: 0 0 10px white}
+    25%{ text-shadow: 0 0 0px white}
+    50%{ text-shadow: 0 0 10px white}
+    75%{ text-shadow: 0 0 0px white}
+    100%{ text-shadow: 0 0 10px white}
+}

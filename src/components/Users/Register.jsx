@@ -96,9 +96,9 @@ export default function Register() {
   return (
     <div className={style.registerContainer}>
       <div className={style.imageContainer}>
-        <Link to="/" className={style.navLogo}>
-          <h2>HPFC</h2>
-        </Link>
+      <Link to="/" className={style.navLogo}>
+        <h2>Moviefy <span>+</span></h2>
+      </Link>
 
         <h3>Enjoy without spoilers</h3>
       </div>
