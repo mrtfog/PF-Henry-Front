@@ -1,8 +1,9 @@
 import React from "react";
 import style from "../../../scss/components/Users/UserPanel/_navbarUser.module.scss";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
+import User from '../../../assets/user.png'
 
 
 const NavbarUser = () => {
@@ -48,7 +49,7 @@ const NavbarUser = () => {
               src={
                 currentUser.photoURL
                   ? currentUser.photoURL
-                  : "https://media.istockphoto.com/photos/beautiful-woman-posing-against-dark-background-picture-id638756792?k=20&m=638756792&s=612x612&w=0&h=PAiwpR6vmkBlctx0kmvGKX3HsBcMdd2PFD4BlEEI7Ac="
+                  : User
               }
               alt="user-logo"
             ></img>
