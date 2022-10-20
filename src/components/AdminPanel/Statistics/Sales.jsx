@@ -8,7 +8,15 @@ import { getAllReservations, orderedBy } from "../../../redux/actions/cart";
 
 function Payments() {
 
-  const screenWidth = document.body.clientWidth
+  // const screenWidth = document.body.clientWidth
+
+  const [screenWidth, setScreenWidth] = useState(document.body.clientWidth)
+
+  window.addEventListener('resize', ()=>{
+
+    setScreenWidth(document.body.clientWidth)
+})
+
 
   const dispatch = useDispatch();
   const allReservations = useSelector(
