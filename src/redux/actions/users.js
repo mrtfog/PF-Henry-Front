@@ -94,6 +94,18 @@ export function getUserRole(accessToken) {
 
 }
 
+export function clearUserRole() {
+    return async dispatch => {
+
+        try {
+            return dispatch({ type: "CLEAR_USER_ROLE" })
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+}
+
 export function getUserSubscription(currentUser) {
 
     return async (dispatch) => {
