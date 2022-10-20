@@ -25,14 +25,6 @@
         padding: 2.5em 3em;
 
 
-        @media screen and (max-width: 570px) {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 1em 1.5em;
-        }
 
         h2{
             font-size: 2rem;
@@ -60,6 +52,8 @@
                     padding: 0.5rem 0.5rem;
                     width: auto;
                     text-align: left;
+                    border: none;
+                    background-color: rgba(58, 58, 58, 0.486);
                     color: $background-color;
                     font-size: 1rem;
 
@@ -106,7 +100,7 @@
                 .primaryBtn{
                     @include btn-primary;
                     font-size: 14px;
-                    width: 95%;
+                    width: 50%;
                     margin-top: 2em;
                     min-width: fit-content;
 
@@ -204,6 +198,24 @@
             color: white;
             margin-bottom: 2em;
             text-align: center;
+        }
+
+        @media screen and (max-width: 570px) {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1em 1.5em;
+
+            .contact{
+                display: flex;
+                flex-direction: row;
+                color: rgb(182, 182, 182);
+                font-size: 0.9rem;
+                margin-bottom: 1em;
+                text-align: center;
+            }
 
         }
     }

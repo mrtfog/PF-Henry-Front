@@ -1,24 +1,59 @@
 import React from "react";
+import Swal from "sweetalert2";
 import CardPayments from "./Card";
 import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
 import { useAuth } from "../../contexts/AuthContext";
 import UploadImg from "../../Cloudinary/UploadImage";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cancelUserPayment, getUserSubscription } from "../../../redux/actions/users";
+import {
+  cancelUserPayment,
+  getUserSubscription,
+} from "../../../redux/actions/users";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function EditProfile() {
+  const dispatch = useDispatch();
+  const subscription = useSelector(
+    (state) => state.usersReducer.userSubscription
+  );
 
-   const dispatch = useDispatch()
-   const subscription = useSelector(state => state.usersReducer.userSubscription)
+  const { currentUser, changePassword, changeUsername } = useAuth();
 
-   const { currentUser, changePassword, changeUsername } = useAuth();
+  useEffect(() => {
+    if (currentUser) dispatch(getUserSubscription(currentUser));
+  }, []);
 
-   useEffect(() => {
-      if (currentUser) dispatch(getUserSubscription(currentUser))
-   }, [])
+  const subInfo = subscription.payments
+    ? {
+        status: "ACTIVE",
+        lastPayment: subscription.payments[subscription.payments.length - 1],
+      }
+    : undefined;
+  function handleOnClickUnsubscribe() {
+    Swal.fire({
+      text: "Are you sure you want to unsubscribe?",
+      icon: "question",
+      iconColor: "#497aa6",
+      showCloseButton: true,
+      showDenyButton: true,
+      denyButtonText: "Cancel",
+      confirmButtonText: "Yes, I am sure",
+      allowEnterKey: false,
+      customClass: {
+        popup: "Alert",
+        closeButton: "closeButton",
+        confirmButton: "confirmButton",
+        denyButton: "denyButton",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(cancelUserPayment(currentUser));
+      }
+    });
+  }
+
 
    function handelUnsubscribe() {
       Swal.fire({
@@ -103,17 +138,17 @@ function EditProfile() {
                      </div>
                   </div>
 
-                  {currentUser.providerData[0].providerId !== 'google.com' ?
-
-                     <div className={style.field}>
-                        <label>Password</label>
-                        <div className={style.inputContainer}>
-                           <button onClick={() => changePassword(currentUser)}>Change Password</button>
-                        </div>
-                     </div>
-                     : null}
-
-               </div>
+            {currentUser.providerData[0].providerId !== "google.com" ? (
+              <div className={style.field}>
+                <label>Password</label>
+                <div className={style.inputContainer}>
+                  <button onClick={() => changePassword(currentUser)}>
+                    Change Password
+                  </button>
+                </div>
+              </div>
+            ) : null}
+          </div>
 
                <div className={style.subInfoContainer}>
                   <h3>Your subscription</h3>
@@ -142,10 +177,11 @@ function EditProfile() {
                   </div>
                </div>
             </div>
-
-         </div>
+          </div>
+        </div>
       </div>
-   );
+    </div>
+  );
 }
 
 export default EditProfile;

@@ -51,4 +51,12 @@
             height: 50%;
         }     
     }
+
+
+    @media screen and (max-width:576px){
+        width: 100%;
+        .btnText{
+            font-size: .9rem;
+        }
+    }
 }

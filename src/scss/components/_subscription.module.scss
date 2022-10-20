@@ -13,6 +13,8 @@
         height: fit-content;
        justify-content: center;
         flex-direction: row;
+        width:100vw;
+       
         
        .infoDiv{
         
@@ -20,9 +22,15 @@
         height: 500px;
         display: flex;
         align-items: center;
+        justify-content: center;
+        
         div{
-            margin:10%;
+            width:70%;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             p{
                 font-size: 1.3rem;
                 line-height: 2rem;
@@ -55,7 +63,11 @@
       
         video{
            height:100%;
-   
+           width: 100%;
+               position: absolute;
+             
+               background-size: cover;
+               object-fit: cover;
        
         
         }

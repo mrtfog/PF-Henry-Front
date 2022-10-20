@@ -1,19 +1,9 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  getReservations,
-  clearNewReservations,
-  getCart,
-  deleteReservationBack,
-} from "../../redux/actions/cart";
+import { getReservations, clearNewReservations, getCart, deleteReservationBack} from "../../redux/actions/cart";
 import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { getAllRooms } from "../../redux/actions/rooms";
-import {
-  selectSeatsDisplay,
-  selectedReservation,
-  clearCart,
-  clearCartByMovie,
-} from "../../redux/actions/cart";
+import { selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie} from "../../redux/actions/cart";
 import { useAuth } from "../contexts/AuthContext";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
@@ -113,6 +103,7 @@ const NewCart = () => {
         reservations.reduce((acc, cur) => (acc += cur.price), 0).toFixed(2)
       );
   }, [reservations]);
+
   useEffect(() => {
     if (status === "failed") {
       handleOnPayment();
@@ -210,6 +201,7 @@ const NewCart = () => {
 
           sessionStorage.newCart = JSON.stringify(sessionNewCart);
         }
+        setTotal(total -  showtime.price);
       }
     });
   }
@@ -234,16 +226,14 @@ const NewCart = () => {
     return bool && seatsBool;
   };
 
-  //////////////// componente ///////////////////////////////////////////
+  //======================== Componente ========================
 
   if (showtimes.length && displayReservations && rooms.length) {
     return (
       <div className={style.container_cart}>
         <div className={style.title}>
           <h2>My Cart</h2>
-          <button className={style.clearCart} onClick={handleOnClickReset}>
-            Clear cart
-          </button>
+          <button className={style.clearCart} onClick={handleOnClickReset}> Clear cart </button>
         </div>
 
         <div className={style.cart}>
@@ -256,14 +246,10 @@ const NewCart = () => {
 
                 return (
                   <div className={style.movies}>
-                    <img
-                      src={"https://image.tmdb.org/t/p/original" + r.image}
-                    />
+                    <img src={"https://image.tmdb.org/t/p/original" + r.image}/>
                     <h3>{r.title}</h3>
                     <p>Movie Theater {r.roomNumber}</p>
-                    <p>
-                      {r.format} • {r.ticketAmount} tickets
-                    </p>
+                    <p>{r.format} • {r.ticketAmount} tickets</p>
                     <p>{date.substring(0, date.length - 3)} Hr</p>
                     <div className={style.seatPicker}>
                       {currentUser ? (
@@ -273,74 +259,35 @@ const NewCart = () => {
                             Seats selected: <br /> {r.seatLocations.join("-")}
                           </span>
                         ) : (
-                          <button onClick={() => handleOnClick(r)}>
-                            Select your seats
-                          </button>
+                          <button onClick={() => handleOnClick(r)}>Select your seats</button>
                         )
                       ) : (
-                        <button onClick={() => handleOnClick(r)}>
-                          Select your seats
-                        </button>
+                        <button onClick={() => handleOnClick(r)}>Select your seats</button>
                       )}
                     </div>
                     <p>${Number(r.price)}</p>
 
                     <div className={style.btnDelete}>
-                      <button
-                        className={style.delete}
-                        onClick={() => handleOnClickDeleteMovie(r)}
-                      >
-                        X
-                      </button>
+                      <button className={style.delete} onClick={() => handleOnClickDeleteMovie(r)} > X  </button>
                     </div>
                   </div>
                 );
               })
             ) : (
-              <p style={{ color: "#fff" }}>
-                You have not got any ticktes in your cart yet!
-              </p>
+              <p style={{ color: "#fff" }}>You have not got any ticktes in your cart yet!</p>
             )
           ) : null}
         </div>
 
         <div className={style.footerBtn}>
           <div className={style.paymentGateway}>
-            <form
-              action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`}
-              // action={`http://localhost:8082/payment/payment?userId=${currentUser?.uid}`}
-              method="POST"
-            >
-              <input
-                type="hidden"
-                name="name"
-                value={currentUser?.displayName}
-              ></input>
-              <input
-                type="hidden"
-                name="email"
-                value={currentUser?.email}
-              ></input>
-              <input
-                type="hidden"
-                name="title"
-                value={
-                  displayReservations
-                    ? displayReservations.length
-                      ? displayReservations.map((r) => r.title)
-                      : ""
-                    : null
-                }
-              ></input>
+            <form action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`} method="POST">
+              <input type="hidden" name="name" value={currentUser?.displayName} ></input>
+              <input type="hidden" name="email" value={currentUser?.email} ></input>
+              <input type="hidden" name="title" value={ displayReservations ? displayReservations.length ? displayReservations.map((r) => r.title) : "" : null}></input>
               <input type="hidden" name="price" value={total}></input>
               <h2>Total: ${total}</h2>
-              <button
-                type="submit"
-                className={style.btn_finish}
-                disabled={!validateConfirm(displayReservations)}
-              >
-                Buy Now
-              </button>
+              <button type="submit"className={style.btn_finish} disabled={!validateConfirm(displayReservations)}>Buy Now</button>
             </form>
           </div>
         </div>
