@@ -105,7 +105,7 @@ const NavbarUser = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/" className={style.link}>
+          <div className={style.link}  onClick={() => handleLogOut()}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24px"
@@ -122,8 +122,8 @@ const NavbarUser = () => {
                 fill="#030D45"
               />
             </svg>
-            <span onClick={()=> handleLogOut()}>LogOut</span>
-          </NavLink>
+            <span>LogOut</span>
+          </div>
         </li>
       </ul>
     </nav>
