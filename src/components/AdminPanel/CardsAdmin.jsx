@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import style from "../../scss/components/AdminPanel/_cardsAdmin.module.scss";
 
@@ -12,7 +12,12 @@ function CardAdmin({
   btnLink,
 }) {
 
-  const screenWidth = document.body.clientWidth
+  const [screenWidth, setScreenWidth] = useState(document.body.clientWidth)
+
+  window.addEventListener('resize', ()=>{
+
+    setScreenWidth(document.body.clientWidth)
+})
   return (
     <div className={style.card}>
       <div className={style.type}>
