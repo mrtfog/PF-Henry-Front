@@ -5,6 +5,8 @@ import video from "../assets/videoSubscribe.webm";
 import Footer from "./Footer";
 import Swal from "sweetalert2";
 import { useAuth } from "./contexts/AuthContext";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const LogoStar = () => {
   return (
@@ -72,6 +74,10 @@ export default function Subscription() {
       handleOnPayment();
     }
   }, []);
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+    AOS.refresh();
+  }, []);
   return (
     <div className={style.subscriptionContainer}>
       <div className={style.firstContainer}>
@@ -121,7 +127,7 @@ export default function Subscription() {
           <h2>Learn more about the benefits of our monthly plan</h2>
         </div>
         <div className={style.planDiv}>
-          <div className={style.card}>
+          <div data-aos="fade-right" className={style.card}>
             <div className={style.titleDiv}>
               <span>Cinema</span>
               <div></div>
@@ -144,7 +150,7 @@ export default function Subscription() {
               <li></li>
             </ul>
           </div>
-          <div className={style.card}>
+          <div data-aos="fade-left" className={style.card}>
             <div className={style.titleDiv}>
               <span>Streaming</span>
               <div></div>
@@ -166,12 +172,13 @@ export default function Subscription() {
             </ul>
           </div>
         </div>
-        <span>
+        <span data-aos="fade-up">
           <p>
             <strong>$ 30</strong>/month
           </p>
         </span>
         <form
+          data-aos="fade-up"
           action={`https://pf-henry-back.herokuapp.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
           method="POST"
         >
@@ -186,8 +193,8 @@ export default function Subscription() {
 
           <button type="submit">SUBSCRIBE NOW</button>
         </form>
-        <p>*Direct debit payments at the end of 30 days</p>
-        <p>*Cancel your plan at any time</p>
+        <p data-aos="fade-up">*Direct debit payments at the end of 30 days</p>
+        <p data-aos="fade-up">*Cancel your plan at any time</p>
       </div>
       <Footer />
     </div>
