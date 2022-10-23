@@ -134,6 +134,12 @@ export default function Footer() {
             <Link to="/reviews">
               <button className={style.reviewBtn}>Send</button>
             </Link>
+            <h2>
+            Project members.
+            </h2>
+            <Link to="/about">
+              <button className={style.reviewBtn}>Click here!</button>
+            </Link>
           </div>
         </div>
       </div>
