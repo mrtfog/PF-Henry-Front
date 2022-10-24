@@ -76,15 +76,19 @@
     .titleContainer{
         h3{
             width: 70%;
+           
         }
         
     }
 
     .holder{
         margin:0;
-
+       .container_slider{
+        margin:0;
+       }
         .slideButtons{
             margin: 0;
+            font-size: 3rem;
         }
     }
   }
