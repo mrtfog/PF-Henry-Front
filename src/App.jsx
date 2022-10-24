@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import Home from "./components/Home";
+import About from "./components/About/About";
 import MovieDetail from "./components/MovieDetail";
 import Navbar from "./components/Navbar";
 import ShowTime from "./components/Forms/ShowTime";
@@ -87,6 +88,7 @@ function App() {
           <Route exact path="/cart" component={NewCart} />
           <Route exact path="/reviews" component={WebsiteReviews} />
           <Route exact path="/subscribe" component={Subscription} />
+          <Route exact path="/about" component={About} />
         </Switch>
       </div>
     );
