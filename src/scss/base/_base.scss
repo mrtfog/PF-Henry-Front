@@ -1,0 +1,62 @@
+@import '../abstracts/_variables';
+@import '../abstracts/mixins';
+
+body{
+    background-color: $background-color;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::selection{
+    background-color: $primary-color;
+    color: #fff;
+}
+
+::-webkit-scrollbar{
+
+    background-color: transparent;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: $secondary-color;
+    border-radius: 8px;
+
+    &:hover{
+        background-color: $hsecondary-color;
+    }
+
+}
+
+.swal2-container .Alert{
+
+    background-color: $background-color ;
+    box-shadow: 0 0 10px 2px $secondary-color;
+    border-radius: 10px;
+    color: #f5f5f5;
+    outline: none;
+
+    .swal2-icon{
+
+        margin-top: 0;
+    }
+    
+    .confirmButton{
+
+        @include btn-primary;
+    }
+    .denyButton{
+        @include btn-secondary;
+        // text-shadow: 0 0 10px $primary-color;
+        // color: $primary-color;
+        // border: none;
+    }
+    .closeButton{
+
+        @include btn-secondary;
+        border: none;
+        font-size: 25px;
+
+    }
+}

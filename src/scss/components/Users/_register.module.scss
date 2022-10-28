@@ -1,0 +1,465 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);
+
+.registerContainer{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        min-height: 100vh;
+        font-family: $font;
+        overflow: hidden;
+
+    .imageContainer{
+        grid-column:1/3;
+        background-image: url(../../../assets/uncharted-poster.jpg);
+        background-position: center left;
+        background-size: cover;
+        position: relative;
+        
+
+        .navLogo{
+
+            cursor: pointer;
+            // color: $primary-color;
+            color: white;
+            margin-left: 1rem;
+            animation: 3.5s lightsSpan infinite;
+            transition: .2s linear;
+
+            h2{
+                font-size: 2rem;
+                margin-left: 3.5rem;
+            }
+    
+            span{
+                // color: white;
+                color: $primary-color;
+                animation: 3.5s lights infinite;
+                transition: .2s linear;
+                animation-delay: 0;
+                font-size: 1.9rem;
+            }
+    
+            &:hover{
+                transform: scale(1.08);
+            }
+        }
+        .navLogo:hover{
+    
+            cursor: pointer;
+            box-shadow: none;
+        }
+
+        h3{
+            position: absolute;
+            bottom: 1em;
+            color: white;
+            font-size: 1.7rem;
+            margin-left: 2em;
+            align-self: flex-end;
+            text-shadow: 1px 1px 2px black
+        }
+
+    }
+
+    .formSideContainer{
+        grid-column: 3/6;
+        display: flex;
+        background-color:$background-color;
+        min-width: 100vh;
+        box-shadow: 0 0 10px rgba(255, 49, 90, 0.5);
+
+        .formContainer{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: auto;
+
+
+            form{
+                margin-top: 2em;
+                margin-left: 12%;
+                flex-direction: column;
+                justify-content: center;
+                width: 50%;
+                
+    
+                h1{
+                    color:white;
+                }
+    
+                .btnContainer{
+                    width: 100%;
+                    margin-top:1em;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 1em;
+    
+                    .primaryBtn{
+                        @include btn-primary;
+                        width: fit-content;
+                    }
+    
+                    span{
+                        color: white;
+                    }
+    
+                   .secondaryBtn{
+                        @include btn-secondary;
+                    }
+
+                    .googleBtn{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content:space-between;
+                        align-items: center;
+                        min-width: fit-content;
+                        margin: 10px;
+                        background-color:rgb(66 133 244);
+                        border-radius: 8px;
+                        height: 2.65rem;
+                        box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+                        overflow: hidden;
+
+                        .btnText{
+                            display: flex;
+                            justify-content: center;     
+                            align-items: center;                       
+                            width: 100%;
+                            height: 100%;
+
+                            a{  
+                                padding: 1rem;
+                                color: white;
+                                font-size: 14px;
+                                letter-spacing: 0.2px;
+                                font-family: $font;
+                            }
+                        }
+
+                        .googleIconWrapper{
+                            padding: 1rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: auto;
+                            height: 100%;
+                            border-radius: 2px;
+                            background-color: white;
+
+                            .googleIcon{
+                                width: auto;
+                                height: 50%;
+                            }     
+                        }
+
+                        &:hover{
+                            transform: scale(1.05);
+                            transition: 0.2s linear;
+                            background-color:rgb(46, 110, 214);
+                        }
+
+                        &:active{
+                            background:rgb(66 133 244);
+                        }  
+                    }
+
+                }
+
+                .linkToRegister{
+                    display: flex;
+                    flex-direction: row;
+                    gap: 0.5rem;
+                    justify-content: center;
+                    margin-top: 2em;
+                    margin-bottom: 1em;
+                    color: white;
+
+                    span{
+
+                        .Link{
+                            font-weight: 600;
+                            color: $primary-color;
+                            text-decoration: none;
+                        }
+                    }
+                }
+                .contact{
+                    display: flex;
+                    flex-direction: row;
+                    color: white;
+                    margin:0 0 3em 0;
+                    justify-content: center;
+                    text-align: center;
+
+                }
+    
+                .inputContainer{
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    text-align: left;
+                    width: 100%;
+                        
+                    input[type=password]::-ms-reveal {
+                        display: none;
+                    }
+
+                    .passContainer{
+                        position: relative;
+                        flex-direction: row;
+                        width: 100%;
+    
+                        .showButton{
+                            position: absolute;
+                            right: 2em;
+                            top: 0.75em;
+                            scale: 0.9;
+                            svg{
+                                width: auto;
+                                height: 25px;
+                                fill: $secondary-color;
+                            }
+                        }
+                    }
+    
+                    label {
+                        display: block;
+                        color: white;
+                        text-align: left;
+                        font-size: 1rem;
+                        margin-top: 0.65rem;
+                        margin-bottom: 0.5rem;
+                        width: 100%
+
+                    }
+    
+                    input{
+                        @include select;
+                        text-align: left;
+                        padding-left: 1rem;
+                        color: $background-color;
+                        width: 90%;
+    
+                        &:hover, &:focus, &:active{
+                            background-color: white;
+                            color: $background-color;
+                        }
+        
+                    }
+        
+                    .errorMessage{
+                        display: block;
+                        color: #ff3860;
+                        height: 13px;
+                        margin-top:5px;
+                        margin-left: 8px;
+                        animation: wiggle 1s linear;
+                        animation-duration: 0;
+                        display: inline-block;
+                        font-size: 0.8rem;
+                    }
+                }
+                
+                .contact{
+                    color: rgb(182, 182, 182);
+                    font-size: 0.9rem;
+                    margin-top: 2rem;
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width:576px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 100vw;
+    
+        .imageContainer{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 4em;
+            background: none;
+            padding: 0;
+            margin-bottom: 1em;
+            width: 100%;
+            box-shadow: 0px 1px 10px #ff38608a;
+
+            .navLogo{
+
+                cursor: pointer;
+                // color: $primary-color;
+                color: white;
+                margin-left: 1rem;
+                animation: 3.5s lightsSpan infinite;
+                transition: .2s linear;
+
+                h2{
+                    font-size: 1.5rem;
+                    margin-left: 2rem;
+                }
+        
+                span{
+                    // color: white;
+                    color: $primary-color;
+                    animation: 3.5s lights infinite;
+                    transition: .2s linear;
+                    animation-delay: 0;
+                    font-size: 1.9rem;
+                }
+        
+                &:hover{
+                    transform: scale(1.08);
+                }
+            }
+            .navLogo:hover{
+        
+                cursor: pointer;
+                box-shadow: none;
+            }
+
+            // .navLogo{
+            //     display: flex;
+            //     flex-direction: column;
+            //     align-items: center;
+            //     margin: 0;
+            //     margin-left: 2em;
+            //     padding: 0;
+            //     cursor: pointer;
+    
+            //     h2{ 
+            //         font-size: 2rem;
+            //         color: $primary-color;
+            //         transition: all 0.2s linear;
+            //         margin: 0;
+    
+            //         &:hover{
+            //             font-size: 2.1rem;
+            //             text-shadow: 5px 5px 10px $secondary-color;
+            //         }
+            //     }
+            // }
+
+            h3{
+                display: none;
+            }
+        }
+
+        .formSideContainer{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 100vw;
+            box-shadow: none;
+
+            //background-color: #ff3860;
+
+            .formContainer{
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                width: 90vw;
+
+                form{
+                    //border: 2px solid $secondary-color;
+                    border-radius: 25px;
+                    width: 90%;
+                    margin: 0;
+                    padding: 1.5em;
+                    overflow: hidden;
+
+                    h1{
+                        font-size: 1.5rem;
+                        margin: 0;
+                        margin-bottom: 1em;
+                        padding: 0;
+                    }
+
+                    .inputContainer{
+                        input{
+                            background-color: rgba(43, 43, 43, 0.589);
+                            border: 1px;
+                        }
+
+                        .passContainer{
+                            position: relative;
+                            flex-direction: row;
+                            width: 100%;
+        
+                            .showButton{
+                                position: absolute;
+                                right: .5em;
+                                top: 0.65em;
+                                scale: 0.8;
+                                svg{
+                                    width: auto;
+                                    height: 25px;
+                                    fill: $secondary-color;
+                                }
+                            }
+                        }
+
+                        .errorMessage{
+                            height: fit-content;
+                            margin-bottom: 0em;
+                        }
+                    }
+
+                    .btnContainer{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        margin-top: 2rem;
+
+                        .primaryBtn{
+                            width: 100%;
+                            margin: 0;
+                        }
+                    }
+
+                    .linkToRegister{
+                        font-size: 0.9rem;
+
+                        span{
+                            font-size: 1rem;
+                        }
+                    }
+
+                    .contact{
+                        line-height: 1.2rem;
+                        margin-top:3em;
+                        font-size: 0.8rem;
+                        color: rgb(182, 182, 182);
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+    
+@keyframes lights{
+    0%{ text-shadow: 0 0 10px $primary-color}
+    25%{ text-shadow: 0 0 0px $primary-color}
+    50%{ text-shadow: 0 0 10px $primary-color}
+    75%{ text-shadow: 0 0 0px $primary-color}
+    100%{ text-shadow: 0 0 10px $primary-color}
+}
+
+@keyframes lightsSpan{
+    0%{ text-shadow: 0 0 10px white}
+    25%{ text-shadow: 0 0 0px white}
+    50%{ text-shadow: 0 0 10px white}
+    75%{ text-shadow: 0 0 0px white}
+    100%{ text-shadow: 0 0 10px white}
+}

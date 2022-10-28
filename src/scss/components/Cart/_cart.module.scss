@@ -1,0 +1,240 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+
+.container_cart{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 75%;
+        margin: 2vh 0;
+        color: $text-color-white;
+
+        h2{
+            text-transform: capitalize;
+            font-size: 2rem;
+        }
+
+        button{
+            position: absolute;
+            right: 10%;
+            font-size: 1em;
+            margin-top: 7rem;
+            margin-bottom: 1em;
+            font-family: $font;
+            font-weight: 500;
+            display: inline;
+            border-radius: 8px;
+            background-color: transparent;
+            color: $text-color-white;
+            transition: 0.2s linear;
+            cursor: pointer;
+    
+            &:hover{
+                transform: scale(1.05);
+                text-shadow: 0 0 10px $hprimary-color,
+                             0 0 12px $hprimary-color;
+            }
+        }
+    
+    }
+
+
+    .cart{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80vw;
+        min-height: 60vh;
+
+        .movies{
+            margin-bottom: 20px ; 
+            @include btn-tertiary;
+            display: flex;
+            flex-direction: row;
+            width: 80vw;
+            height: 125px;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            text-decoration: none;
+
+
+            img{
+                width: 70px;
+                border-radius: 10px;
+                margin-left: 5px;
+            }
+            
+            @media screen and (max-width: 570px){
+                height: 500px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                background: linear-gradient(140deg, rgba(255, 255, 255, 0) 10%, $primary-color 33%, $secondary-color 66%, rgb(20, 21, 24) 100%, ) 99% 50% / 400% 400%;
+                img{
+                    height: 90px;
+                    position: relative;
+                    margin-top: 10px;
+                    border-radius: 10px;
+                    
+                }
+
+                h3{
+                    margin: 0;
+                    margin-top: 10px;
+                }
+
+
+
+            }
+
+
+            h3,p {
+                margin-left: 20px;
+                width: 80%;
+                height: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                display: flex;
+                color: $text-color-white;
+
+            }
+            .seatPicker{
+                display: flex;
+                width: 100%;
+                button{
+                    @include btn-primary
+                }
+                span{
+                    color: #fff;
+                    cursor: pointer;
+                    text-align: center;
+                    padding: .5rem;
+                    border-bottom: 2px solid $primary-color;
+                    border-radius: 10px;
+                    box-shadow:0 1px rgba(0, 0, 0, .5)
+                }
+
+                @media screen and (max-width: 570px){
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-start;
+                    margin-left: 60px;
+                }
+
+
+            }
+            
+                .btnDelete{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    button.delete{
+                        @include btn-secondary;
+                        padding: 0.4rem 0.6rem;
+                        border: none;
+                
+                    }
+                }
+            
+            @media screen and (max-width: 570px){
+                .btnDelete{
+                    width: 100%;        
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    button.delete{
+        
+                        @include btn-secondary;
+                        background-color: $hprimary-color;
+                        padding: 0.4rem 0.6rem;
+                        border: none;
+                        
+                    }
+                }
+               
+            }
+
+        }    
+        
+    }    
+
+
+
+    .footerBtn{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100vw;
+        
+        .paymentGateway{
+          
+            @media screen and (max-width: 570px){
+                padding: 0;
+                margin: 0;
+
+                display: flex;
+                flex-direction: row;
+            }
+            form{
+                width: 70vw;
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-end;
+                h2{
+                    font-size: 32px;
+                    margin-right: 1.5rem;
+                    color: $text-color-white;
+                }
+                @media screen and (max-width: 570px){
+                    text-align: center;
+                }
+              
+                button{
+                    @include btn-primary;
+                    position: relative;
+                    width: 15vw;
+                    max-height: 50px;
+                        &:disabled{
+                            background-color: rgba(255, 255, 255, .3);
+                            border-color: rgba(255, 255, 255, .5);
+                            cursor: not-allowed;
+                            transform: scale(1);
+                        }
+
+                    @media screen and (max-width: 570px){
+                        width: 40vw;
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+

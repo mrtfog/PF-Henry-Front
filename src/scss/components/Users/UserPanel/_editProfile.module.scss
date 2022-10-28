@@ -1,0 +1,298 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+
+
+.mainContainer {
+    margin-top: 8%;
+    margin-left: 15%;
+    width: 100%;
+    color: $text-color-white;
+    font-family: $font;
+    
+    .titleContainer {
+        margin-bottom: 3em;
+        h2 {
+            font-size: 2rem;
+            text-shadow: none;
+        }
+    }
+    
+    .infoContainer {
+        .subInfoContainer {
+
+            h3 {
+                font-size: 1.5rem;
+                margin-bottom: 1.5em;
+                text-shadow: none;
+            }
+
+            .subtitlesContainer {
+                padding-left: 4em;
+                width: 76%;
+                margin-left: 2em;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                font-family: $font;
+                font-weight: 600;
+                text-shadow: none;
+
+                .subtitle1 {
+                    grid-column: 1/2;
+                }
+
+                .subtitle2{
+                    margin-left: 22%;
+                    grid-column: 2/3;
+                }
+
+                .subtitle3 {
+                    grid-column: 3/4;
+                }
+
+            }
+
+            .unsubscribedContainer {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-around;
+                margin: 1rem;
+            }
+            .unsubscribe {
+                background: none;
+                color: rgba(255, 255, 255, .7);
+                font-family: $font;
+                padding: .3rem;
+                border-radius: 7px;
+                position: absolute;
+                right: 0%;
+                transition: .2s;
+            }
+            
+            .unsubscribe:hover {
+                border: 3px solid $hprimary-color;
+            }
+
+
+            .subButton {
+                @include btn-primary
+            }
+        }
+
+        .cardsContainer {
+            overflow-y: scroll;
+            overflow-x: visible;
+            height: 50vh;
+            width: 70%;
+            margin: 1em;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .fieldsContainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            height: auto;
+            width: 70%;
+            padding-right: 2em;
+            margin: 1em;
+
+            .field {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1em;
+                margin: 0 50px;
+
+                .imgContainer {
+                    border-style: none;
+                    height: 160px;
+                    width: 160px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    transition: 0.5s linear;
+
+                    .editImg {
+                        transition: 0.5s linear;
+                        -webkit-transition: 0.5s linear;
+                        transition-delay: 0;
+                        display: none;
+                        position: absolute;
+                        background-color: rgba(73, 122, 166, 0.4), ;
+                        height: 160px;
+                        width: 160px;
+                        border-radius: 50%;
+                        justify-content: center;
+                        align-items: center;
+
+                        svg {
+                            fill: $hprimary-color;
+                        }
+                    }
+
+                    &:hover .editImg {
+                        display: flex;
+                    }
+
+                    img {
+                        width: 100%;
+
+                    }
+
+                }
+
+                .pencilPhoto {
+
+
+                    position: absolute;
+                    margin: auto;
+                    bottom: 20px;
+
+                    svg {
+                        scale: 1;
+                        fill: $primary-color;
+                    }
+                }
+
+                .pencilIcon {
+
+
+                    position: relative;
+                    left: 95%;
+                    bottom: 20px;
+
+                    svg {
+                        scale: 1;
+                        fill: $primary-color;
+                    }
+                }
+
+                label {
+                    display: block;
+                    color: white;
+                    text-align: left;
+                    font-size: 1rem;
+                    margin-top: 0.65rem;
+                    margin-bottom: 0
+                }
+
+                select {
+                    @include select;
+                    margin-top: 0;
+                }
+
+                .username {
+
+                    width: fit-content;
+
+                    svg {
+                        position: relative;
+                        top: -7px;
+                    }
+
+                    p {
+                        height: fit-content;
+                        padding: 0.8rem;
+                        margin: 10px;
+                    }
+
+                }
+
+                .inputContainer {
+                    display: flex;
+                    justify-content: center;
+
+                    button {
+                        @include btn-primary;
+                    }
+
+                    .pencilIcon {
+                        scale: 0.65;
+                        position: absolute;
+                        right: 1em;
+                        bottom: 0.5em;
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    @media screen and (max-width: 570px) {
+        padding: 0;
+        margin: 0;
+
+        .titleContainer{
+            margin-top: 5.8rem;
+            margin-left: 1.5rem;
+
+            h2{
+                font-size: 1.5rem;
+            }
+        }
+
+        .infoContainer{
+            .subInfoContainer{
+    //============ TITULO INFORMATION ============
+                max-height: 30vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-top: 3em;
+
+                    h3 {
+                        font-size: 1rem;
+                        text-shadow: none;
+                    }
+    //============ CONTENEDOR DE INFORMACIÓN DE USUARIO ============
+                .fieldsContainer{
+                    margin: 0;
+                    padding: 0;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .cardsContainer{
+
+                    overflow-x: hidden;
+                    width: 100%;
+                    padding: 0;
+                    margin: 0;
+
+
+                    .unsubscribedContainer{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        h1{
+                            font-size: 1em;
+                        }
+                    }
+                }
+
+                .subtitlesContainer{
+                    width: 100%;
+                    
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    margin: 0;
+                    padding: 0;
+    
+                    .subtitle2{
+                        margin: 0;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+@import '../../abstracts/mixins';
+@import '../../abstracts/variables';
+
+
+.main_about{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: auto;
+    margin-top: 50px;
+
+    .divContainer{
+        width: 300px;
+        height: 350px;
+    }
+
+    @media screen and (min-width: 1921px){
+        width: 55%;        
+    }
+    @media screen and (max-width: 1920px){
+        width: 65%;        
+    }
+
+    @media screen and (max-width: 1440px){
+        width: 70%;        
+    }
+
+    @media screen and (max-width: 1366px){
+        width: 90%;        
+    }
+}

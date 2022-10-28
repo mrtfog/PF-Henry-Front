@@ -1,0 +1,157 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+
+
+.mainContainer{
+    margin-top:8%;
+    margin-left: 15%;
+    width: 80vw;
+    color: $text-color-white;
+    font-family: $font;
+    height: auto;
+
+        .titleContainer{
+            margin-bottom:3em;
+
+            h2{
+                font-size: 2rem;
+                text-shadow: none;
+            }
+            
+        }
+
+        .infoContainer{
+            .subInfoContainer{
+                margin-bottom: 4em;
+                h3{
+                    font-size: 1.5rem;
+                    margin-bottom: 1.5em;
+                    text-shadow: none;
+                }
+                .subtitlesContainer{
+                    background-color: rgba(255, 255, 255, 0.1);
+                    display: flex;                    
+                    flex-direction: flex;
+                    justify-content: space-around;
+                    align-items: center;
+                    padding: 1em 0em;
+                    border-radius: 10px;
+                    font-family: $font;
+                    width: 69.5%;
+                    margin: 0;
+
+                    div{
+                        width: 20%;
+                        text-align: center;
+
+                        button{
+                            background-color: rgba(255, 255, 255, 0);
+                            color: $primary-color;
+                            font-size: 1.2rem;
+                            font-weight: 600;
+                        }
+
+                        &:first-child{
+                            margin-left: 2em;
+                            width: 10%;
+                        }
+
+                        &:nth-child(2){
+                            width: 30%;
+                        }
+                        &:nth-child(3){
+                            width: 30%;
+                        }
+                        &:nth-child(4){
+                            width: 35%;
+                        }
+                    }
+
+                }
+                .cardsContainer{
+                    overflow-y: scroll;
+                    overflow-x: visible;
+                    height: 50vh;
+                    width: 70%;
+                    border-radius: 25px;
+                    position: relative;
+    
+                }
+
+            }
+        }
+
+
+
+        @media screen and (max-width: 580px){
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .titleContainer{
+                padding: 0;
+                margin: 0;
+
+                h2{
+                    font-size: 1.5rem;
+                }
+            }
+
+            .infoContainer{
+                width: 100vw;
+                .subInfoContainer{
+                    width: 100vw;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    
+                    .subtitlesContainer{
+                        padding: 0;
+                        margin: 0;
+
+                        height: 50px;
+                        display: flex;                    
+                        flex-direction: flex;
+                        justify-content: space-around;
+                        font-size: 15px;
+                        width: 97vw;
+
+                        div{
+                            display: flex;
+
+                            button{
+                                color: $primary-color;
+                                font-size: .8rem;
+                                font-weight: 600;
+                            }
+
+                        }
+                    }
+                    .cardsContainer{
+                        width: 100vw;
+                        margin-top: 1em;
+                        .allCardsContainer{
+                            margin: 0;
+                            padding: 0;
+
+
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            width: 97vw;
+                            overflow: hidden;
+                        }
+                    }
+                }
+
+
+            }
+
+        }
+
+    }

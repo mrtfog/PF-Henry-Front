@@ -1,0 +1,187 @@
+@import '../../abstracts/mixins';
+@import '../../abstracts/variables';
+
+
+.main_aboutCard{
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: $font;
+
+        .AboutCard{
+            margin: 3em 1em;
+            border-radius: 15px;
+            position: relative;
+            width: 250px;
+            height: 190px;
+            background-color: #fff;
+            transition: .5s;
+    
+            &:hover{
+                height: 275px;
+                .imgBox{
+                    width: 175px;
+                    height: 175px;
+    
+                    img{
+                        filter: grayscale(0);
+                    }
+                }
+    
+                .content{
+                    .details{
+
+                        padding-bottom: 35px;
+                        .icons{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+    
+            .lines{
+                position: absolute;
+                inset: 0;
+                border-radius: 10px;
+                background-color: #000;
+                overflow: hidden;
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 10px;
+                    width: 600px;
+                    height: 120px;
+                    background: linear-gradient(transparent, $primary-color, $primary-color, $primary-color, transparent);
+                    animation: cardLines 4s linear infinite;
+                }
+    
+                &::after{
+                    content: '';
+                    position: absolute;
+                    inset: 2px;
+                    background: $background-color;
+                    border-radius: 10px;
+                }
+            }
+    
+            .imgBox{
+                position: absolute;
+                top: -50px;
+                left: 50%;
+                transform: translate(-50%);
+                width: 125px;
+                height: 125px;
+                background-color: #000;
+                border-radius: 10px;
+                transition: .5s;
+                z-index: 2;
+                overflow: hidden;
+    
+                &::before{
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    border-radius: 10px;
+                    width: 500px;
+                    height: 75px;
+                    background: linear-gradient(transparent, $secondary-color, $secondary-color, $secondary-color, transparent);
+                    animation: imgLines 5s linear infinite;
+                }
+    
+                &::after{
+                    content: '';
+                    position: absolute;
+                    inset: 2px;
+                    background: $background-color;
+                    border-radius: 10px;
+                }
+    
+                img{
+                    border-radius: 10px;
+                    position: absolute;
+                    top: 10px;
+                    left: 10px;
+                    z-index: 1;
+                    width: calc(100% - 20px);
+                    height: calc(100% - 20px);
+                    filter: grayscale(1);
+                    transition: filter .5s linear;
+                }   
+            }
+    
+            .content{
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: flex-end;
+                overflow: hidden;
+                .details{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: Center;
+                    padding-top: 40px;
+                    text-align: center;
+                    width: 100%;
+                    transition: .5s;
+    
+                    h2{
+                        width: 100%;
+                        font-size: 1.25em;
+                        font-weight: 600;
+                        color: $text-color-white;
+                        line-height: 1em;
+                    }
+    
+                    .icons{
+                        opacity: 0;
+                        transition: opacity .5s;
+                        a{
+                            margin: 0 .9em;
+                            text-decoration: none;
+                            cursor: pointer;
+                            span{
+                                svg{                                
+                                    height: 35px;
+                                    width: 35px;
+                                    transition: 0.2s linear;
+                                    &:hover {
+                                        transform: scale(1.15);
+                                      }
+                                }
+    
+                            }
+                        }
+                    }
+                }
+            }
+    
+        }
+    
+}
+
+@keyframes cardLines{
+    0%{
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes imgLines{
+    0%{
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+    100%{
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
