@@ -281,7 +281,7 @@ const NewCart = () => {
 
         <div className={style.footerBtn}>
           <div className={style.paymentGateway}>
-            <form action={`https://pf-henry-back.herokuapp.com/payment/payment?userId=${currentUser?.uid}`} method="POST">
+            <form action={`https://pf-henry-back2.herokuapp.com/payment/payment?userId=${currentUser?.uid}`} method="POST">
               <input type="hidden" name="name" value={currentUser?.displayName} ></input>
               <input type="hidden" name="email" value={currentUser?.email} ></input>
               <input type="hidden" name="title" value={ displayReservations ? displayReservations.length ? displayReservations.map((r) => r.title) : "" : null}></input>

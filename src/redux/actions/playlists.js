@@ -7,7 +7,7 @@ export function getUserPlaylists(currentUser) {
 
         try {
 
-            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser`, { headers: { 'user': currentUser.accessToken } })
+            let { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/list/getByUser`, { headers: { 'user': currentUser.accessToken } })
             return dispatch({ type: 'GET_USER_PLAYLISTS', payload: data })
         }
 
@@ -24,7 +24,7 @@ export function getPlaylist(id, currentUser) {
 
         try {
 
-            let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/list/getByUser`, { headers: { 'user': currentUser.accessToken } })
+            let { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/list/getByUser`, { headers: { 'user': currentUser.accessToken } })
 
             const playlist = data.filter(p => p._id.toString() === id)
             return dispatch({ type: 'GET_PLAYLIST', payload: playlist[0] })
@@ -46,7 +46,7 @@ export function getPlaylistMovies(movies) {
             if (movies.length) {
                 const promises = movies.map(async (id) => {
 
-                    let { data } = await axios.get(`https://pf-henry-back.herokuapp.com/api/${id}`)
+                    let { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/api/${id}`)
                     return data
                 })
                 let promiseAll = await Promise.all(promises)
@@ -68,7 +68,7 @@ export function createNewPlaylist(playlist, currentUser) {
 
         try {
 
-            await axios.post('https://pf-henry-back.herokuapp.com/list/post', playlist, { headers: { 'user': currentUser.accessToken } })
+            await axios.post('https://pf-henry-back2.herokuapp.com/list/post', playlist, { headers: { 'user': currentUser.accessToken } })
 
             return dispatch({ type: 'CREATE_NEW_PLAYLIST' })
 
@@ -88,7 +88,7 @@ export function addMovieToPlaylist(movieId, playlistId, currentUser) {
         try {
 
             if (movieId && playlistId && currentUser) {
-                const { data } = await axios.put(`https://pf-henry-back.herokuapp.com/list/addMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': currentUser.accessToken } })
+                const { data } = await axios.put(`https://pf-henry-back2.herokuapp.com/list/addMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': currentUser.accessToken } })
                 return dispatch({ type: 'ADD_MOVIE_TO_PLAYLIST', payload: data })
             }
 
@@ -107,7 +107,7 @@ export function removeMovieFromPlaylist(movieId, playlistId, currentUser) {
 
         try {
 
-            const { data } = await axios.put(`https://pf-henry-back.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.put(`https://pf-henry-back2.herokuapp.com/list/removeMovie/${playlistId}/${movieId}`, {}, { headers: { 'user': currentUser.accessToken } })
             return dispatch({ type: 'REMOVE_MOVIE_FROM_PLAYLIST', payload: { list: data, movieId } })
 
         }
@@ -125,7 +125,7 @@ export function deletePlaylist(playlistId, currentUser) {
 
         try {
 
-            await axios.delete(`https://pf-henry-back.herokuapp.com/list/removeById/${playlistId}`, { headers: { 'user': currentUser.accessToken } })
+            await axios.delete(`https://pf-henry-back2.herokuapp.com/list/removeById/${playlistId}`, { headers: { 'user': currentUser.accessToken } })
             
             return dispatch({ type: 'DELETE_PLAYLIST', payload: playlistId})
 
