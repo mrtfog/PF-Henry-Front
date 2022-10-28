@@ -44,7 +44,7 @@ export function AuthProvider({ children }) {
                     displayName: username
                 })
 
-                axios.post('https://pf-henry-back.herokuapp.com/user/register', { user: { ...user, displayName: username }, reservations: [] })
+                axios.post('https://pf-henry-back2.herokuapp.com/user/register', { user: { ...user, displayName: username }, reservations: [] })
 
             }
         })
@@ -384,7 +384,7 @@ export function AuthProvider({ children }) {
 
 
         try {
-            if (currentUser) axios.get("https://pf-henry-back.herokuapp.com/user/emailSend", { headers: { "user": currentUser.accessToken } })
+            if (currentUser) axios.get("https://pf-henry-back2.herokuapp.com/user/emailSend", { headers: { "user": currentUser.accessToken } })
             const sessionCart = JSON.parse(sessionStorage.getItem("newCart")) || []
 
             if (sessionCart.length && currentUser) {

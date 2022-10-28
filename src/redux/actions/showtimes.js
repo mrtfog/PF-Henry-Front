@@ -6,7 +6,7 @@ export function getAllShowtimes() {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        "https://pf-henry-back.herokuapp.com/showtime/getAll"
+        "https://pf-henry-back2.herokuapp.com/showtime/getAll"
       );
 
       return dispatch({ type: "GET_SHOWTIMES", payload: data });
@@ -33,7 +33,7 @@ export function getAllShowtimes() {
 export function postShowtime(values, currentUser) {
   return async (dispatch) => {
     try {
-      const { data } = await axios.post("https://pf-henry-back.herokuapp.com/showtime/post", values, { headers: { user: currentUser.accessToken } });
+      const { data } = await axios.post("https://pf-henry-back2.herokuapp.com/showtime/post", values, { headers: { user: currentUser.accessToken } });
       
       Swal.fire({
         text: "Show created",
@@ -81,7 +81,7 @@ export function getBillboardMovies(movies) {
     try {
       const promises = movies.map(async (id) => {
         let { data } = await axios.get(
-          `https://pf-henry-back.herokuapp.com/api/${id}`
+          `https://pf-henry-back2.herokuapp.com/api/${id}`
         );
         return data;
       });
@@ -113,7 +113,7 @@ export function logicDeleteShowtime(id, currentUser) {
   return async (dispatch) => {
     try {
       await axios.delete(
-        `https://pf-henry-back.herokuapp.com/showtime/endById/${id}`,
+        `https://pf-henry-back2.herokuapp.com/showtime/endById/${id}`,
         { headers: { user: currentUser.accessToken } }
       );
 

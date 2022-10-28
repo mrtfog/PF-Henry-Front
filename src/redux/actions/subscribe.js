@@ -4,7 +4,7 @@ export function getAllSubscribers(currentUser) {
   return async (dispatch) => {
     try {
       const { data } = await axios.get(
-        `https://pf-henry-back.herokuapp.com/subscription/getAll`,
+        `https://pf-henry-back2.herokuapp.com/subscription/getAll`,
         {headers: { user: currentUser.accessToken}}
       );
       console.log(data)
