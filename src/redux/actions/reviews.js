@@ -6,7 +6,7 @@ export function getMovieReviews(id) {
 
         try {
 
-            const { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/review/${id}`)
+            const { data } = await axios.get(`https://moviefy-lphj.onrender.com/review/${id}`)
 
             return dispatch({ type: 'GET_MOVIE_REVIEWS', payload: data })
         }
@@ -23,7 +23,7 @@ export function postMovieReview(payload, currentUser) {
     return async (dispatch) => {
 
         try {
-            const { data } = await axios.post('https://pf-henry-back2.herokuapp.com/review/post', payload, { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.post('https://moviefy-lphj.onrender.com/review/post', payload, { headers: { 'user': currentUser.accessToken } })
 
             return dispatch({ type: 'POST_MOVIE_REVIEW', payload: data })
         }
@@ -38,7 +38,7 @@ export function postWebsiteReview(payload, currentUser) {
     return async (dispatch) => {
 
         try {
-            const { data } = await axios.post('https://pf-henry-back2.herokuapp.com/review/postWebsite', payload, { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.post('https://moviefy-lphj.onrender.com/review/postWebsite', payload, { headers: { 'user': currentUser.accessToken } })
 
             return dispatch({ type: 'POST_WEBSITE_REVIEW', payload: data })
         }
@@ -54,7 +54,7 @@ export function getWebsiteReviews() {
 
         try {
 
-            const { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/review/getAllWebsite`)
+            const { data } = await axios.get(`https://moviefy-lphj.onrender.com/review/getAllWebsite`)
 
             return dispatch({ type: 'GET_WEBSITE_REVIEWS', payload: data })
         }

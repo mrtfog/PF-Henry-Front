@@ -24,8 +24,8 @@ export default function WebsiteReviews() {
 
 
     if (currentUser) {
-        axios.get("https://pf-henry-back2.herokuapp.com/reservation/getPayedByUser", { headers: { "user": currentUser.accessToken } }).then(r => setReservationBoolean(r.data.length !== 0))
-        axios.get("https://pf-henry-back2.herokuapp.com/subscription/hasActiveSubscription", { headers: { "user": currentUser.accessToken } }).then(r => { setsubscriptionBoolean(r.data) })
+        axios.get("https://moviefy-lphj.onrender.com/reservation/getPayedByUser", { headers: { "user": currentUser.accessToken } }).then(r => setReservationBoolean(r.data.length !== 0))
+        axios.get("https://moviefy-lphj.onrender.com/subscription/hasActiveSubscription", { headers: { "user": currentUser.accessToken } }).then(r => { setsubscriptionBoolean(r.data) })
     }
 
     useEffect(() => {

@@ -6,7 +6,7 @@ export function getMovies() {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.get("https://pf-henry-back2.herokuapp.com/api/popular");
+            const { data } = await axios.get("https://moviefy-lphj.onrender.com/api/popular");
 
             return dispatch({ type: "GET_MOVIES", payload: data });
         } 
@@ -24,7 +24,7 @@ export function getUpcoming(){
   
         try{
 
-            const { data } = await axios.get('https://pf-henry-back2.herokuapp.com/api/upcoming')
+            const { data } = await axios.get('https://moviefy-lphj.onrender.com/api/upcoming')
             return dispatch({type: 'GET_UPCOMING', payload: data})
 
         }
@@ -41,7 +41,7 @@ export function getGenre(){
     return async (dispatch) => {
 
         try{  
-            const { data } = await axios('https://pf-henry-back2.herokuapp.com/api/genres')
+            const { data } = await axios('https://moviefy-lphj.onrender.com/api/genres')
             return dispatch({ type: 'GET_GENRES', payload: data })
         }
         catch (e) {
@@ -58,7 +58,7 @@ export function getMovieDetail(id) {
     return async (dispatch) => {
 
         try {
-            const { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/api/${id}`);
+            const { data } = await axios.get(`https://moviefy-lphj.onrender.com/api/${id}`);
 
             return dispatch({ type: "GET_MOVIE_DETAIL", payload: data });
 
