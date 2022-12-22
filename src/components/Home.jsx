@@ -9,8 +9,6 @@ import {
 } from "../redux/actions/showtimes";
 import Footer from "./Footer";
 import Slider from "./Slider";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -36,10 +34,7 @@ export default function Home() {
     dispatch(getUpcoming());
     window.scrollTo(0, 0);
   }, []);
-  useEffect(() => {
-    AOS.init({ duration: 2000 });
-    AOS.refresh();
-  }, []);
+
   const horrorFilms = movies
     .filter((m) => {
       return m.genres.includes(27);
@@ -66,28 +61,23 @@ export default function Home() {
     <div className={style.container_home}>
       <Carousel></Carousel>
       <Slider
-        scroll="fade-up-right"
         title="Billboard"
         movies={arrayBillboardMovies}
       ></Slider>
       <Slider
-        scroll="fade-up-left"
         title="Upcomings"
         movies={arrayUpcomingMovies}
       ></Slider>
 
       <Slider
-        scroll="fade-up-right"
         title="Just for Halloween season 🎃"
         movies={horrorFilms}
       ></Slider>
       <Slider
-        scroll="fade-up-left"
         title="Top 10 rated 💯"
         movies={mostPopular}
       ></Slider>
       <Slider
-        scroll="fade-up-right"
         title="You're the  disease, and i'm the cure 💥"
         movies={actionFilms}
       ></Slider>
