@@ -90,7 +90,7 @@ export default function Subscription() {
             </p>
             <div>
               <form
-                action={`https://pf-henry-back2.herokuapp.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
+                action={`https://moviefy-lphj.onrender.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
                 method="POST"
               >
                 {/* <form onSubmit={handleSubmit}> */}
@@ -179,7 +179,7 @@ export default function Subscription() {
         </span>
         <form
           data-aos="fade-up"
-          action={`https://pf-henry-back2.herokuapp.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
+          action={`https://moviefy-lphj.onrender.com/payment/paymentSubscription?userId=${currentUser?.uid}`}
           method="POST"
         >
           <input

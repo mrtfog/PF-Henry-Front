@@ -9,7 +9,7 @@ export function getAllRooms() {
 
         try {
 
-            const { data } = await axios.get("https://pf-henry-back2.herokuapp.com/room/getAll");
+            const { data } = await axios.get("https://moviefy-lphj.onrender.com/room/getAll");
            
             return dispatch({ type: "GET_ROOMS", payload: data });
         } 
@@ -25,7 +25,7 @@ export function postNewRoom(room, currentUser){
     return async(dispatch)=>{
 
         try{
-            const {data} = await axios.post('https://pf-henry-back2.herokuapp.com/room/post', room, {headers: { "user": currentUser.accessToken}})
+            const {data} = await axios.post('https://moviefy-lphj.onrender.com/room/post', room, {headers: { "user": currentUser.accessToken}})
             Swal.fire({
                 text: "Movie theater created",
                 icon: "success",
@@ -70,7 +70,7 @@ export function logicDeleteRoom(id, currentUser){
 
         try{
 
-            await axios.delete(`https://pf-henry-back2.herokuapp.com/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
+            await axios.delete(`https://moviefy-lphj.onrender.com/room/delete/${id}`, {headers: { "user": currentUser.accessToken}})
             return dispatch({type:'DELETE_ROOM', payload: id})
         }
         catch(e){

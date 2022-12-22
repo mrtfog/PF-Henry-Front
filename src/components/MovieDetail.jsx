@@ -27,7 +27,7 @@ export default function MovieDetail() {
     const [subscriptionBoolean, setsubscriptionBoolean] = useState(0)
 
     if (currentUser) {
-      axios.get("https://pf-henry-back2.herokuapp.com/subscription/hasActiveSubscription", { headers: { "user": currentUser.accessToken } }).then(r => { setsubscriptionBoolean(r.data) })
+      axios.get("https://moviefy-lphj.onrender.com/subscription/hasActiveSubscription", { headers: { "user": currentUser.accessToken } }).then(r => { setsubscriptionBoolean(r.data) })
     }
 
     useEffect(()=>{

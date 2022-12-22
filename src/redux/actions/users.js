@@ -4,7 +4,7 @@ export function getUserById(id) {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/auth/${id}`);
+            const { data } = await axios.get(`https://moviefy-lphj.onrender.com/auth/${id}`);
             return dispatch({ type: "GET_USER_BY_ID", payload: data });
         }
 
@@ -18,7 +18,7 @@ export function getUserSession(id) {
 
     return async (dispatch) => {
         try {
-            const { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/auth/success`);
+            const { data } = await axios.get(`https://moviefy-lphj.onrender.com/auth/success`);
             return dispatch({ type: "GET_USER_SESSION", payload: data });
         }
         catch (e) {
@@ -30,7 +30,7 @@ export function getUserSession(id) {
 export function postLogIn(payload) {
     return async (dispatch) => {
         try {
-            const response = await axios.post(`https://pf-henry-back2.herokuapp.com/auth/login`, payload);
+            const response = await axios.post(`https://moviefy-lphj.onrender.com/auth/login`, payload);
             return dispatch({ type: "POST_LOG_IN", payload: response });
         }
         catch (e) {
@@ -44,7 +44,7 @@ export function postNewUser(payload) {
     return async (dispatch) => {
 
         try {
-            const response = await axios.post('https://pf-henry-back2.herokuapp.com/auth/register', payload, { withCredentials: true })
+            const response = await axios.post('https://moviefy-lphj.onrender.com/auth/register', payload, { withCredentials: true })
             return dispatch({ type: 'POST_NEW_USER', payload: response.status })
         }
         catch (e) {
@@ -67,7 +67,7 @@ export function getUserPayments(currentUser) {
 
         try {
 
-            const { data } = await axios.get('https://pf-henry-back2.herokuapp.com/reservation/getPayedByUser', { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.get('https://moviefy-lphj.onrender.com/reservation/getPayedByUser', { headers: { 'user': currentUser.accessToken } })
 
             return dispatch({ type: 'GET_USER_PAYMENTS', payload: data })
         }
@@ -83,7 +83,7 @@ export function getUserRole(accessToken) {
 
         try {
 
-            const { data } = await axios.get("https://pf-henry-back2.herokuapp.com/user/role", { headers: { "user": accessToken } })
+            const { data } = await axios.get("https://moviefy-lphj.onrender.com/user/role", { headers: { "user": accessToken } })
             return dispatch({ type: "GET_USER_ROLE", payload: data })
 
         } catch (e) {
@@ -111,7 +111,7 @@ export function getUserSubscription(currentUser) {
     return async (dispatch) => {
 
         try {
-            const { data } = await axios.get("https://pf-henry-back2.herokuapp.com/subscription/getByUser", { headers: { 'user': currentUser.accessToken } })
+            const { data } = await axios.get("https://moviefy-lphj.onrender.com/subscription/getByUser", { headers: { 'user': currentUser.accessToken } })
             return dispatch({ type: "GET_USER_SUBSCRIPTION", payload: data })
 
         } catch (e) {
@@ -131,7 +131,7 @@ export function cancelUserPayment(currentUser) {
     return async (dispatch) => {
 
         try {
-            await axios.delete("https://pf-henry-back2.herokuapp.com/subscription/cancelPayment", { headers: { 'user': currentUser.accessToken } })
+            await axios.delete("https://moviefy-lphj.onrender.com/subscription/cancelPayment", { headers: { 'user': currentUser.accessToken } })
             return dispatch({ type: "CANCEL_USER_SUBSCRIPTION", payload: {} })
         } catch (e) {
             console.log(e)

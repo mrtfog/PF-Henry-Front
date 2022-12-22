@@ -6,7 +6,7 @@ export function getReservations(accessToken) {
 
         try {
 
-            const { data } = await axios.get("https://pf-henry-back2.herokuapp.com/reservation/getByUser", { headers: { "user": accessToken } })
+            const { data } = await axios.get("https://moviefy-lphj.onrender.com/reservation/getByUser", { headers: { "user": accessToken } })
             return dispatch({ type: "NEW_GET_RESERVATIONS", payload: data })
 
         } catch (e) {
@@ -23,7 +23,7 @@ export function clearNewReservations(accessToken) {
 
     return async dispatch => {
 
-        axios.put("https://pf-henry-back2.herokuapp.com/reservation/deleteByUser", {}, { headers: { "user": accessToken } })
+        axios.put("https://moviefy-lphj.onrender.com/reservation/deleteByUser", {}, { headers: { "user": accessToken } })
         return dispatch({ type: "CLEAR_NEW_RESERVATIONS" })
     }
 
@@ -34,7 +34,7 @@ export function getAllReservations(currentUser) {
     return async (dispatch) => {
         try {
             const { data } = await axios.get(
-                "https://pf-henry-back2.herokuapp.com/reservation/getAll",
+                "https://moviefy-lphj.onrender.com/reservation/getAll",
                 { headers: { user: currentUser.accessToken } }
             );
 
@@ -89,7 +89,7 @@ export function getShowtimeByMovieId(id) {
     return async (dispatch) => {
 
         try {
-            let { data } = await axios.get(`https://pf-henry-back2.herokuapp.com/showtime/getByMovie/${id}`)
+            let { data } = await axios.get(`https://moviefy-lphj.onrender.com/showtime/getByMovie/${id}`)
 
             return dispatch({ type: 'GET_SHOWTIME_BY_MOVIE_ID', payload: data })
 
@@ -111,7 +111,7 @@ export function postCart(payload, accestoken) {
 
         try {
 
-            const { data } = await axios.post('https://pf-henry-back2.herokuapp.com/reservation/post', payload, { headers: { 'user': accestoken } })
+            const { data } = await axios.post('https://moviefy-lphj.onrender.com/reservation/post', payload, { headers: { 'user': accestoken } })
             return dispatch({ type: 'POST_RESERVATION' })
 
         } catch (e) {
@@ -167,7 +167,7 @@ export function selectedSeats(accessToken, showtimeId, seatLocations) {
 
         try {
 
-            const { data } = await axios.put('https://pf-henry-back2.herokuapp.com/reservation/setUserSeats', { showtimeId, seatLocations }, { headers: { "user": accessToken } })
+            const { data } = await axios.put('https://moviefy-lphj.onrender.com/reservation/setUserSeats', { showtimeId, seatLocations }, { headers: { "user": accessToken } })
 
             return dispatch({ type: 'SELECTED_SEATS', payload: data })
 
@@ -183,7 +183,7 @@ export function deleteReservationBack(reservationId, accessToken) {
     return async (dispatch) => {
         try {
             const { data } = await axios.put(
-                "https://pf-henry-back2.herokuapp.com/reservation/cancelById", reservationId,
+                "https://moviefy-lphj.onrender.com/reservation/cancelById", reservationId,
                 { headers: { 'user': accessToken } }
             );
 
