@@ -9,7 +9,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import { ThemeProvider } from "@material-ui/core";
 import { createTheme } from "@material-ui/core/styles";
-import { AuthProvider } from "./components/contexts/AuthContext";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const theme = createTheme({
   overrides: {

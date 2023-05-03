@@ -1,7 +1,7 @@
 import React from "react";
 import style from "../../../scss/components/Users/UserPanel/_navbarUser.module.scss";
 import { NavLink, useHistory } from "react-router-dom";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import User from '../../../assets/user.png'
 

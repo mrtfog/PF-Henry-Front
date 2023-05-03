@@ -1,0 +1,117 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+
+.container_addToCartPU{
+    font-family: $font;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    hr{
+        width: 80%;
+        height: 1px;
+        border: none;
+        background-color: $secondary-color;
+    }
+
+    h2{
+        @media screen and (max-width: 570px){
+            padding: 0 10vw;
+            text-align: center;
+        }
+    }
+
+    h2 span{
+        color: $primary-color;
+        text-shadow: 0 0 10px $primary-color;
+        margin: 0 1rem;
+    }
+
+    select{
+        @include select;
+        width: 50%;
+        margin-right: 0;
+        margin-left: 0;
+
+        @media screen and (max-width: 570px){
+            width: 80vw;
+        }
+    }
+
+    .counter{
+
+        margin-top: 20px;
+        height: 60px;
+        min-width: 200px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-radius: 10px;
+
+        span{
+            width: 100%;
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+        .minus{
+            color: #000;
+            cursor: pointer;
+            transition: .2s linear;
+            &:hover{
+                transform: scale(1.10);
+            }
+        }
+
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+
+        input[type=number] { -moz-appearance:textfield; }
+            .count{
+            text-align: center;
+            height: 80%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            border-style: none;
+            max-width: 40px;
+        }
+        .plus{
+            color: #000;
+            cursor: pointer;
+            transition: .2s linear;
+            &:hover{
+                transform: scale(1.10);
+            }
+        }
+       }
+
+        button{
+            @include btn-primary;
+            position: relative;
+            width: 15vw;
+            max-height: 50px;
+
+                &:disabled{
+                    background-color: rgba(255, 255, 255, .3);
+                    border-color: rgba(255, 255, 255, .5);
+                    cursor: not-allowed;
+                    transform: scale(1);
+                }
+
+                @media screen and (max-width: 570px){
+                    width: 200px;
+                    margin-top: 30px;
+                }
+    }
+
+}

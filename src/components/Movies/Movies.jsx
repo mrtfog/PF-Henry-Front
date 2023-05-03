@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import CardsResponsive from "../CardsResponsive";
-import Filters from "../Filters";
-import Paginado from "../Paginado";
-import Footer from '../Footer'
+import CardsResponsive from './CardsResponsive';
+import Filters from "./Filters";
+import Paginado from "./Paginado";
+import Footer from "../common/Footer";
 import { useSelector } from "react-redux";
-import SearchBar from "../SearchBar";
+import SearchBar from "./SearchBar";
 import style from "../../scss/components/Movies/_movies.module.scss";
 
 export default function Movies() {

@@ -4,7 +4,7 @@ import style from "../../../scss/components/AdminPanel/_subscriptions.module.scs
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllSubscribers, orderedBy } from "../../../redux/actions/subscribe";
-import { useAuth } from '../../contexts/AuthContext'
+import { useAuth } from "../../../contexts/AuthContext";
 import { useState } from "react";
 
 const Subscriptions = () => {

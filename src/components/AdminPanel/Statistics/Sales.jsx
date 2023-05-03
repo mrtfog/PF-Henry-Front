@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CardsAdmin from "../CardsAdmin";
 import style from "../../../scss/components/AdminPanel/statistics/_sales.module.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { useEffect } from "react";
 import { getAllReservations, orderedBy } from "../../../redux/actions/cart";
 

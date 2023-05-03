@@ -1,11 +1,12 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import style from "../../scss/components/Users/_login.module.scss";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext.jsx";
 import validate from "./ValidationLogin.js";
 import { Link } from "react-router-dom";
 import GoogleSignIn from "./GoogleSignIn";
+
+import style from "../../scss/components/Users/_login.module.scss";
 
 export default function Login() {
   const { logIn } = useAuth();

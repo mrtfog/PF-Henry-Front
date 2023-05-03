@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import style from '../../scss/components/Forms/_reviewForm.module.scss'
 import validate from './validateReview'
-import PopUpTemplate from '../PopUpTemplate'
+import PopUpTemplate from "../common/PopUpTemplate";
 import { postMovieReview, postWebsiteReview, setFormDisplay } from "../../redux/actions/reviews";
 import { useFormik } from "formik";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'

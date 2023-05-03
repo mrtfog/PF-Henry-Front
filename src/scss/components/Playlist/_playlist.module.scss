@@ -1,0 +1,237 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+.container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .titleAndButton{
+
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 75%;
+        margin: 8vh 0;
+        color: $text-color-white;
+
+        @media screen and (max-width: 570px){
+            width: 90%;
+        }
+
+        h2{
+            text-transform: capitalize;
+            font-size: 2rem;
+
+            @media screen and (max-width: 570px){
+                font-size: 25px;
+            }
+        }
+
+        div{  
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            @media screen and (max-width: 570px){
+                width: 35vw;
+                font-size: 10px;
+                align-items: center;
+            }
+
+            .button{
+                @include btn-secondary;
+
+                &:disabled{
+                    cursor: not-allowed;
+
+                    &:hover{
+                        background-color: $background-color;
+                    }
+                }
+
+                @media screen and (max-width: 570px){
+                    font-size: 10px;
+                    padding: 0.4rem 0.8rem;
+                }
+            }
+
+        }
+    
+    }
+
+
+    .playlist{
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 65vw;
+
+        p{
+            color: $text-color-white;
+        }
+        
+        .movie{
+            width: 70vw;
+            @include  btn-tertiary;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            height: fit-content;
+            padding: 5px;
+            margin-bottom: 20px;
+            text-decoration: none;
+
+            &:hover div .play{
+                background-color: $primary-color;
+            }
+
+            @media screen and (max-width: 570px){
+                width: 90vw;
+            }
+
+            h4{
+                @media screen and (max-width: 570px){
+                    font-size: 13px;
+                }
+            }
+
+            h5{
+                @media screen and (max-width: 570px){
+                    font-size: 10px;
+                }
+            }
+
+            img{
+                width: 70px;
+                border-radius: 10px;
+                margin-left: 5px;
+
+                @media screen and (max-width: 570px){
+                   width: 50px;
+                }
+            }
+
+            a{
+                width: 70%;
+                height: 100%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                display: flex;
+                color: $text-color-white;
+            }
+
+            div{
+
+                display: flex;
+                flex-direction: row;
+
+                .play{
+                    @include btn-primary;
+                    background-color: $background-color;
+                    border-color: $background-color;
+                    color: $text-color-white;
+                    padding: 0.3rem 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+
+                    @media screen and (max-width: 570px){
+                        font-size: 0.6rem;
+                        margin-right: 0;
+                    }
+                    svg{
+                        fill: white;
+                        margin-right: 5px;
+                        @media screen and (max-width: 570px){
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+
+                    span{
+                        padding-left: 3px;
+                    }
+                }
+
+            }
+            
+        }
+        
+    }
+
+    .randomMovie{
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 90%;
+        justify-content: space-evenly;
+
+        @media screen and (max-width: 570px){
+            flex-direction: column;
+        }
+
+        div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            max-width: 50%;
+
+            img{
+                width: 250px;
+
+                @media screen and (max-width: 570px){
+                    width: auto;
+                    height: 40vh;
+                }
+            }
+
+            h2{
+                font-size: 2.3rem;
+                text-align: center;
+
+                @media screen and (max-width: 570px){
+                    font-size: 1.8rem;
+                }
+            }
+            
+            .buttons{
+                display: flex;
+                max-width: none;
+                flex-direction: row;
+
+                button{
+                    @include btn-secondary;
+                    width: 100px;
+                }
+                button:first-child{
+                    @include btn-primary;
+                    padding: 0.3rem 0.5rem;
+                    display: flex;
+                    align-items: center;
+                    font-weight: 500;
+                    svg{
+                        fill: white;
+                        margin-right: 5px;
+                    }
+                }
+            }
+
+        }
+    }
+
+    button.delete{
+        @include btn-secondary;
+        padding: 0.4rem 0.6rem;
+        border: none;
+    }
+}

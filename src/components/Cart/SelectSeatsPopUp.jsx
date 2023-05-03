@@ -3,8 +3,8 @@ import style from '../../scss/components/Cart/_selectSeatsPopUp.module.scss'
 import { selectSeatsDisplay } from "../../redux/actions/cart";
 import { getAllRooms } from '../../redux/actions/rooms'
 import { useDispatch, useSelector } from 'react-redux'
-import PopUpTemplate from '../PopUpTemplate';
-import SeatPicker from '../SeatPicker'
+import PopUpTemplate from '../common/PopUpTemplate';
+import SeatPicker from './SeatPicker';
 import { getAllShowtimes } from '../../redux/actions/showtimes';
 import Swal from "sweetalert2"
 

@@ -1,0 +1,54 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+$infinity: 100;
+
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    z-index: $infinity;
+
+
+    .popup{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        top:15vh;
+        background-color: $background-color;
+        border-radius: 10px;
+        width: 65vw;
+        height: 80vh;
+        filter: drop-shadow(0 0 100vw black);
+        box-shadow: 0 0 10px 3px $secondary-color;
+        color: $text-color-white;
+
+        @media screen and (max-width: 570px){
+            width: 94vw;
+            top: 10vh;
+        }
+ 
+        .close{
+
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            @include btn-secondary;
+            padding: 0.4rem 0.6rem;
+            border: none;
+
+            @media screen and (max-width: 570px){
+                font-size: 1.5rem;
+            }
+        }
+    }
+}

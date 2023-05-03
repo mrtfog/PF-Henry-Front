@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import style from '../../../scss/components/Users/UserPanel/_payments.module.scss'
 import CardPayments from "./Card";
-// import style from "../../../scss/components/Users/UserPanel/_editProfile.module.scss";
 import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
 import { useSelector, useDispatch } from "react-redux";
 import { getUserPayments } from "../../../redux/actions/users";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 
 function Payments() {
 

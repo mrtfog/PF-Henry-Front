@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearRegisterStatus, postNewUser } from "../../redux/actions/users";
 import { useFormik } from "formik";
 import validate from "./ValidationRegister";
 import { useHistory } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import style from "../../scss/components/Users/_register.module.scss";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
