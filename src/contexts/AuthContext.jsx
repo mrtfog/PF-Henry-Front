@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { auth } from '../../firebase'
+import { auth } from '../firebase'
 import axios from 'axios'
 import { getAuth, GoogleAuthProvider, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, updateProfile, updatePassword, deleteUser, reauthenticateWithCredential, EmailAuthProvider, sendPasswordResetEmail, EmailAuthCredential, reauthenticateWithPopup } from 'firebase/auth'
-import { clearCart } from '../../redux/actions/cart'
+import { clearCart } from '../redux/actions/cart'
 import { useDispatch } from 'react-redux'
-import { postCart } from '../../redux/actions/cart'
+import { postCart } from '../redux/actions/cart'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import { useHistory } from 'react-router-dom'
-import { clearUserRole } from '../../redux/actions/users'
+import { clearUserRole } from '../redux/actions/users'
 
 const AuthContext = React.createContext()
 

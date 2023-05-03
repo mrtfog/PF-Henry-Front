@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../scss/components/_popUpTemplate.module.scss'
+import style from '../../scss/components/common/_popUpTemplate.module.scss'
 
 export default function PopUpTemplate({ content, displayState, handleOnClose, width, height, top}) {
 

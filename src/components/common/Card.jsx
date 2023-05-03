@@ -5,7 +5,7 @@ import { addToPlaylistDisplay, selectedMovie } from '../../redux/actions/playlis
 import { addToCartDisplay, takenTickets } from '../../redux/actions/cart'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { useAuth } from '../contexts/AuthContext'
+import { useAuth } from '../../contexts/AuthContext'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 
 

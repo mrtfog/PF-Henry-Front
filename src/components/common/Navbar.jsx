@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import style from "../scss/components/_navbar.module.scss";
-import { useAuth } from "../contexts/AuthContext";
-import userIMG from '../assets/user.png'
+import style from "../../scss/components/common/_navbar.module.scss";
+import { useAuth } from "../../contexts/AuthContext";
+import userIMG from '../../assets/user.png'
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";

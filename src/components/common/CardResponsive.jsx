@@ -1,5 +1,5 @@
 import React from "react";
-import style from "../scss/components/_cardResponsive.module.scss";
+import style from "../../scss/components/common/_cardResponsive.module.scss";
 import { Link, useHistory } from "react-router-dom";
 import { addToPlaylistDisplay, selectedMovie } from "../../redux/actions/playlists";
 import { addToCartDisplay, takenTickets } from "../../redux/actions/cart";

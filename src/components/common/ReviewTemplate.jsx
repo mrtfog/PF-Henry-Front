@@ -1,5 +1,5 @@
 import React from 'react'
-import style from '../scss/components/_reviewTemplate.module.scss'
+import style from '../../scss/components/common/_reviewTemplate.module.scss'
 
 export default function ReviewTemplate({stars, description, username}) {
     
