@@ -2,7 +2,7 @@ import React from "react";
 import style from "../../scss/components/AdminPanel/_navbar.module.scss";
 
 import { NavLink, useHistory, useLocation } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useState } from "react";
 import Swal from 'sweetalert2/dist/sweetalert2.all.min.js'
 

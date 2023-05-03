@@ -1,0 +1,260 @@
+@import '../abstracts/_variables';
+@import '../../abstracts/mixins';
+
+.navMain{
+    height: 70px;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0rem 1rem;
+    position:sticky;
+    top: 0px;
+    z-index: 5;
+
+    .navBtnContainer{
+        display: flex;
+        align-items: center;
+
+        .btn_primary{
+            @include btn-primary;
+        }
+        
+        button{
+            @include btn-secondary
+        }
+
+        .cart{
+            padding: 0;
+            margin: 0;
+
+            margin: 0 1em;
+            display: flex;
+            flex-direction: column;
+            transition: .2s linear;
+            span{
+                padding: 0;
+                margin: 0;
+
+                position: absolute;
+                top: -10px;
+                font-size: 40px;
+                text-shadow: 0 0 5px $hprimary-color,
+                             0 0 10px $primary-color;
+                color: $hprimary-color;
+            }
+
+            svg{
+                transform: rotateY(180deg);
+                path{
+                    fill: $primary-color;
+                }
+                transition: .2s linear;
+                &:hover{    
+                    transform: scale(1.08) rotateY(180deg);
+                    filter: drop-shadow(0px 0px 4px $primary-color);
+                }
+            }
+        }
+
+        img{
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        .profile{
+            svg{
+                fill: $primary-color;
+            }
+        }
+
+        .userPopUp{
+            position: absolute;
+            flex-direction: column;
+            justify-content: center;
+            top: 80px;
+            right: 20px;
+            border: 1px solid $primary-color;
+            background-color: $background-color;
+            width: 20vw;
+            height: 30vh;
+            min-height: max-content;
+            padding: 10px;
+            border-radius: 15px;
+            
+            h3{
+                width: 100%;
+                text-align: center;
+                color: $primary-color;
+                text-shadow: 0 0 8px $primary-color;
+                padding: 0;
+                padding-bottom: 5px;
+                margin: 0;
+            }
+                
+            a{
+                align-self: center;
+                width: fit-content;
+
+                button{
+                    width: 200px;
+                }
+            
+            }
+            button{
+                width: 200px;
+                align-self: center;
+            }
+            
+
+        }
+
+    }
+
+    .navLogo{
+
+        cursor: pointer;
+        color: white;
+        margin-left: 1rem;
+        animation: 3.5s lightsSpan infinite;
+        transition: .2s linear;
+
+        span{
+            color: $primary-color;
+            animation: 3.5s lights infinite;
+            transition: .2s linear;
+            animation-delay: 0;
+            font-size: 1.9rem;
+        }
+
+        &:hover{
+            transform: scale(1.08);
+        }
+    }
+
+    .navLogo:hover{
+
+        cursor: pointer;
+        box-shadow: none;
+    }
+
+    @media screen and (max-width: 576px) {
+        .navBtnContainer{
+            display: none;
+            .cart{
+                span{
+                    top: 147px;
+                }
+            }
+        }
+
+        .burgerMenu{
+            height: 40%;
+            width: 2.5em;
+            margin: 0em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            scale: 0.8;
+
+            .burgerBar{
+                width: 100%;
+                height: .2em;
+                background-color: white;
+                border-radius: 0.5em;
+            }
+            /* Clicked */
+            .clicked:nth-child(1){
+                transform: rotate(45deg) translate(0.95em, 0) scale(0.9);
+                transition: ease-out 0.5s;
+            }
+            .clicked:nth-child(2){
+                display: none;
+                transform: scale(0.1);
+                transition: ease-out 0.5s;
+            }
+            .clicked:nth-child(3){
+                transform: rotate(135deg) translate(-1em, 0.2em) scale(0.9);
+                transition: ease-out 0.5s;
+            }
+
+            /*Unclicked*/
+            .unclicked{
+                display: block;
+                transform: none;
+                color: white;
+                transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+            }
+
+        }
+
+        .menu{
+            display: flex;
+            flex-direction: column;
+            width: 85vw;
+            background-color: $background-color;
+            position: absolute;
+            top: 4.3em;
+            right: 0;
+            z-index: -1;
+            padding-bottom: 2em;
+            gap: 1em;
+            box-shadow: 0px 10px 15px black;
+
+            button{
+                font-size: 1.2rem;
+                width: 50vw;
+                border: none;
+                border-bottom: 1px solid $primary-color;
+            }
+        }
+
+        .hidden{
+            display: none;
+        }
+
+        .visible{
+            display: inherit;
+
+            .userPopUp{
+                position: relative;
+                font-size: 1rem;
+                height: auto;
+                z-index: -1;
+                top: 0;
+                right: 0;
+                width: 85vw;
+                border-radius: 0;
+                border: none;
+                background-color:$background-color;
+                padding: 0;
+                padding-bottom: 1.5em;
+
+                button{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+}
+
+@keyframes lights{
+    0%{ text-shadow: 0 0 10px $primary-color}
+    25%{ text-shadow: 0 0 0px $primary-color}
+    50%{ text-shadow: 0 0 10px $primary-color}
+    75%{ text-shadow: 0 0 0px $primary-color}
+    100%{ text-shadow: 0 0 10px $primary-color}
+}
+
+@keyframes lightsSpan{
+    0%{ text-shadow: 0 0 10px white}
+    25%{ text-shadow: 0 0 0px white}
+    50%{ text-shadow: 0 0 10px white}
+    75%{ text-shadow: 0 0 0px white}
+    100%{ text-shadow: 0 0 10px white}
+}
+

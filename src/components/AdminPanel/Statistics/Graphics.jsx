@@ -5,7 +5,7 @@ import PieChart from "./PieChart";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllShowtimes } from "../../../redux/actions/showtimes";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import style from "../../../scss/components/AdminPanel/statistics/_graphics.module.scss";
 import { getGraphicReservations, getGraphicSubscriptions } from "../../../redux/actions/graphics";
 import { getAllRooms } from "../../../redux/actions/rooms";

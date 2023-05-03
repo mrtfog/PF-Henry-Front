@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getAllRooms,
-  logicDeleteRoom,
-  postNewRoom,
-} from "../../redux/actions/rooms";
-import { useAuth } from "../contexts/AuthContext";
+import { getAllRooms, logicDeleteRoom, postNewRoom } from "../../redux/actions/rooms";
+import { useAuth } from "../../contexts/AuthContext";
 
 import style from "../../scss/components/AdminPanel/_rooms.module.scss";
 import Swal from "sweetalert2/dist/sweetalert2.all.min.js";

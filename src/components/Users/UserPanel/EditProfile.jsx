@@ -2,7 +2,7 @@ import React from "react";
 import Swal from "sweetalert2";
 import CardPayments from "./Card";
 import UploadImg from "../../Cloudinary/UploadImage";
-import { useAuth } from "../../contexts/AuthContext";
+import { useAuth } from "../../../contexts/AuthContext";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cancelUserPayment, getUserSubscription} from "../../../redux/actions/users";

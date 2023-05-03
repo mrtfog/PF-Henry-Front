@@ -1,0 +1,299 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+.container {
+    font-family: $font;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+    h1{
+
+        @media screen and (max-width: 570px){
+           font-size: 23px;
+           margin-bottom: 15px;
+        }
+        span{
+            color: $primary-color;
+            text-shadow: 0 0 10px $primary-color;
+        }
+    }
+
+    .inRow {
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: space-around;
+        flex-flow: row;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        gap: 3em;
+
+        @media screen and (max-width: 570px){
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 62vh;
+            gap: 0;
+        }
+
+        .movieDetail{
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            @media screen and (max-width: 570px){
+                width: 90vw;
+                font-size: 9px;
+                gap: 20px;
+            }
+
+            .imgContainer{
+
+                @media screen and (max-width: 570px){
+                    width: 20%;
+                }
+                .img {
+                    width: 150px;
+                    margin: 1rem;
+
+                    @media screen and (max-width: 570px){
+                        width: 70px;
+                    }
+                }
+            }
+
+            p{
+                margin: 5px 0;
+                padding: 0;
+
+                @media screen and (max-width: 570px){
+                    margin: 1px 0;
+                }
+                .spanTitle{
+                    font-weight: 700;
+                }
+
+                .lastSpan{
+                    margin-top: 20px;
+                }
+            }
+
+            .descriptionContainer{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                row-gap: 10px;
+                margin-left: 1rem;
+
+                .spanTitle{
+
+                    @media screen and (max-width: 570px){
+                        width: 60%;
+                        padding-right: 10px;
+
+                    }
+                }
+
+                @media screen and (max-width: 570px){
+                    width: 60%;
+                }
+            
+            }
+        }
+
+        .seatPicker{
+
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .box {
+
+                width: 600px;
+                height: fit-content;
+                border: solid 5px rgb(236, 235, 235);
+                border-color: rgb(252, 247, 247) transparent transparent transparent;
+                border-radius: 10%/75px 75px 0 0  ;
+                margin-top: 5px;
+                padding: 2rem;
+                padding-top: 3.5rem;
+                transform: translateY(180deg);
+
+                @media screen and (max-width: 570px){
+                    width: 80vw;
+                    padding: 2rem 0;
+                    margin-top: 0;
+                    padding-bottom: 0.5rem;
+                }
+
+                .seat-picker__row__leter{
+
+                    
+                    @media screen and (max-width: 570px){
+                        width: 13px;
+                        height: 13px;
+                        font-size: 8px;
+                    }
+                }
+                .columnNumber{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    margin-bottom: 10px;
+                    margin-left: 30px;
+
+                                        
+                    .blank {
+                        margin: 0 .67rem;
+
+                        @media screen and (max-width: 570px){
+                            width: 15px;
+                            height: 15px;
+                            margin: 0 0.38rem;
+                        }
+                    }
+
+                    
+                    @media screen and (max-width: 570px){
+                        width: 13px;
+                        height: 13px;
+                        font-size: 8px;
+                        margin-left: 0px;
+                    }
+
+                }
+
+                .seat-picker__row {
+                    font-family: $font;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-flow: row;
+                    margin: 1px;
+
+                    
+                    .blank {
+                        margin: 1rem;
+                        
+                        @media screen and (max-width: 570px){
+                           margin: 0.5rem;
+                        }
+                    }
+
+                    .seat {
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        height: 28px;
+                        width: 28px;
+                        color: #fff;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        cursor: pointer;
+                        margin: 2px;
+                        border-radius: 20%;
+
+                        @media screen and (max-width: 570px){
+                            width: 13px;
+                            height: 13px;
+                        }
+
+                        svg{
+                            fill: $secondary-color;
+                            z-index: -1;
+                        }
+
+                        &:hover svg{
+                            fill: $text-color-white;
+                        }
+
+                    }
+
+                    .seat--reserved {
+                        height: 28px;
+                        width: 28px;
+                        color: rgb(97, 97, 97);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+                        cursor: not-allowed;
+
+                        
+                        @media screen and (max-width: 570px){
+                            width: 13px;
+                            height: 13px;
+                        }
+
+                        svg{
+                            fill: grey;
+                        }
+
+                        &:hover svg{
+                            fill: rgb(97, 97, 97);
+                        }
+                    }
+
+                    .seat--selected {
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        background-size: contain;
+                        height: 28px;
+                        width: 28px;
+                        color: rgb(0, 0, 0);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: center;
+
+                        
+                        @media screen and (max-width: 570px){
+                            width: 13px;
+                            height: 13px;
+                        }
+
+                        svg{
+                            fill: $primary-color;
+                            filter: drop-shadow(0 0 10px $primary-color);
+                            z-index: -1;
+                        }
+                    
+                        &:hover svg {
+                            fill: $hprimary-color;
+                        }
+                    }
+                }
+
+
+            }
+        }
+    }
+
+    button{
+        @include btn-primary;
+        &:disabled{
+            background-color: rgba(255, 255, 255, .3);
+            border-color: rgba(255, 255, 255, .5);
+            cursor: not-allowed;
+            transform: scale(1);
+        }
+        
+        @media screen and (max-width: 570px){
+            padding: 0.6rem 0.3rem;
+            margin-top: 0;
+        }
+    }
+
+
+}

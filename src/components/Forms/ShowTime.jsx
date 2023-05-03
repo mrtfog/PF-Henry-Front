@@ -8,9 +8,8 @@ import style from "../../scss/components/Forms/_function.module.scss";
 import validate from "./ValidationFunction";
 import Select from "./Select";
 import { useFormik } from "formik";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import Swal from "sweetalert2/dist/sweetalert2.all.min.js";
-import Loader from '../Loader'
 
 export default function ShowTime() {
   const { currentUser } = useAuth();
@@ -226,7 +225,6 @@ export default function ShowTime() {
           </div>
 
           <div className={style.Select}>
-            {/* <label>Films on the billboard</label> */}
             <label>
               Films on the billboard
               {formik.errors.movieId ? (
@@ -277,14 +275,6 @@ export default function ShowTime() {
           </div>
           <div className={style.inputNumber}>
             <label>Select price</label>
-            {/* <Select
-                name='ticketPrice'
-                label='Set a price'
-                value={formik.values.ticketPrice}
-                options={fakePrices}
-                onChange={(e) => {formik.setFieldValue("ticketPrice", e.target.value);}}
-              /> */}
-
             <input
               onChange={(e) => {
                 formik.setFieldValue("ticketPrice", e.target.value);

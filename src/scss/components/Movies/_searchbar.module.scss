@@ -1,0 +1,33 @@
+@import '../../abstracts/variables';
+
+
+.searchContainer{
+    display:flex;
+    align-items: center;
+    form{
+        position: relative;
+        input {
+            text-align: center;
+            min-width: 230px;
+            border: none;
+            border-bottom: 2.5px solid $primary-color;
+            border-radius: 10px;
+            padding: .8rem;
+            outline: 0;
+            background-position: 12px;
+            background-size: 15px;
+            font-size: 0.9em;
+            &::placeholder{
+                color: #4d4d4d;
+                font-weight: 500;
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px){
+        margin-top: 2em;
+    }
+        
+    
+}
+  

@@ -4,7 +4,7 @@ import { getReservations, clearNewReservations, getCart, deleteReservationBack} 
 import { getAllShowtimes } from "../../redux/actions/showtimes";
 import { getAllRooms } from "../../redux/actions/rooms";
 import { selectSeatsDisplay, selectedReservation, clearCart, clearCartByMovie} from "../../redux/actions/cart";
-import { useAuth } from "../contexts/AuthContext";
+import { useAuth } from "../../contexts/AuthContext";
 import { useEffect } from "react";
 import Swal from "sweetalert2";
 import { useHistory } from "react-router-dom";
