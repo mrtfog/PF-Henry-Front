@@ -1,0 +1,82 @@
+@import '../../../abstracts/variables';
+@import '../../../abstracts/mixins';
+
+
+.card{
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+    padding: 1em;
+    padding-left:  4em;
+    padding-right:  4em;
+    align-items: center;
+    background-color: white;
+    margin: 1em 0;
+    border-radius: 10px;
+    font-family: $font;
+    height: 4rem;
+    overflow: hidden;
+
+    .type{
+        //width: 10%;
+        text-align: left;
+        text-transform: capitalize;
+        span{
+            font-weight: 600;
+            font-size: 1.1rem;
+            color:rgb(0, 88, 0);
+        }
+
+    }
+
+    span{
+        width: 20%;
+        text-align: center;
+        color:$background-color;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    @media screen and (max-width: 570px){
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 1em .5em;
+        margin: 0.5em;
+        width: 75vw;
+        height: min-content;
+        
+        span{
+            font-size: .85rem;
+            margin: 0;
+        }
+        
+        span:nth-child(1){
+            width: 20%;
+            //margin-right: 40px;
+        }
+        span:nth-child(2){
+            text-align: left;
+            font-size: 0.8rem;
+            font-weight: 600;
+            width: 30%;
+            //margin-right: 40px;
+        }
+        span:nth-child(3){
+            width: 20%;
+            //margin-right: 40px;
+        }
+        span:nth-child(4){
+            width: 15%;
+            //margin-right: 15px;
+        }
+        span:nth-child(5){
+            width: 15%;
+            //margin-right: 15px;
+        }
+
+    }
+
+
+}

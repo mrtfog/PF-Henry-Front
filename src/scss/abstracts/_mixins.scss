@@ -1,0 +1,116 @@
+@import './variables';
+
+@mixin btn-primary{
+        font-family: $font;
+        font-weight: 400;
+        padding: 0.8rem;
+        margin: 10px;
+        display: inline;
+        border-radius: 8px;
+        border: 1px solid $primary-color;
+        background-color: $primary-color;
+        color: $text-color-white;
+        transition: 0.2s linear;
+        cursor: pointer;
+
+        &:hover{
+            transform: scale(1.05);
+            background-color: $hprimary-color;
+            color: $text-color-white;
+            border-color: $hprimary-color;
+        }
+}
+
+@mixin btn-secondary{
+    font-family: $font;
+    font-weight: 400;
+    padding: 0.8rem;
+    margin: 10px;
+    display: inline;
+    border-radius: 8px;
+    background-color: transparent;
+    border: 1.7px solid $primary-color;
+    color: $text-color-white;
+    transition: 0.2s linear;
+    cursor: pointer;
+
+    &:hover{
+        transform: scale(1.05);
+        background-color: $primary-color;
+        color: $text-color-white;
+        border-radius: $primary-color;
+    }
+}
+@mixin btn-tertiary{
+    font-family: $font;
+    color: $text-color-white;
+    border-radius: 8px;
+    transition: 0.2s linear;
+    display: inline;
+    background: linear-gradient(345deg, $primary-color 10%, $secondary-color 33%, RGB(20, 21, 24) 66%, rgba(255, 255, 255, 0) 100%) 99% 50% / 400% 400%;
+    padding: .9em 1.5em ;
+    cursor: pointer;
+    border:2px solid transparent ;
+    &:hover{
+        background-position: 1% 50%;
+        border: 2px solid $primary-color;
+        color: rgb(255, 255, 255);
+        transition: all 0.5s ease 0s !important;
+     
+        // transform: scale(1.1);
+    }
+}
+
+@mixin reset{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+@mixin select{
+
+    font-family: $font;
+    font-weight: 500;
+    padding: .5em;
+    margin: .5em;
+    text-align: center;
+    font-size: 14px;
+    background-color: #f5f5f5;
+    border: 2px #f5f5f5 solid;
+    border-radius: 6px;
+    transition: .2s linear;
+
+    &:hover, &:focus, &:active{
+        background-color: $secondary-color;
+        border: 2px $secondary-color solid;
+        color: $text-color-white;
+        box-shadow: none;
+        outline: none;
+    }
+
+}
+
+@mixin playlist{
+
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(70deg,
+    $primary-color,
+    $secondary-color  75%
+    );
+    width: 100%;
+    height: 9vh;
+    margin: 15px;
+    padding: 0 20px;
+    border-radius: 10px;
+    transition: 0.3s linear;
+    box-shadow: 6px 4px 8px black;
+
+
+    &:hover{
+        transform: scale(1.03);
+    }
+}
+

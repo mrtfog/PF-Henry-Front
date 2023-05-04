@@ -1,0 +1,222 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+.container{
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    font-family: $font;
+
+    .form_container{
+        margin-top: 5em;
+        margin-bottom: 5em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 25%;
+        min-height: fit-content;
+        border: 2px solid $secondary-color;
+        border-radius: 25px;
+        color: $text-color-white;
+        justify-content: space-around;
+        padding: 2.5em 3em;
+
+
+
+        h2{
+            font-size: 2rem;
+        }
+
+        form{
+            width: 100%;
+            padding: 1em;
+            overflow: hidden;
+
+            .inputContainer{
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                text-align: left;
+                margin-bottom: 2em;
+
+                input[type=password]::-ms-reveal {
+                    display: none;
+                }
+
+                input{
+                    @include select;
+                    padding: 0.5rem 0.5rem;
+                    width: auto;
+                    text-align: left;
+                    border: none;
+                    background-color: rgba(58, 58, 58, 0.486);
+                    color: $background-color;
+                    font-size: 1rem;
+
+                    &:focus, &:hover{
+                        color: $background-color;
+                        background-color: white;
+                    }
+                }
+
+                span{
+                    font-size: 0.9rem;
+                    margin-left: 1rem;
+                    margin-top: 0.3rem;
+                }
+
+                .showButton{
+                    position: absolute;
+                    right: 2em;
+                    top: 0.9em;
+                    scale: 0.9;
+                    svg{
+                        width: auto;
+                        height: 25px;
+                        fill: $secondary-color;
+                    }
+                }
+
+            span{
+                color: $hprimary-color;
+            }
+
+}
+
+
+            .btnContainer{
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                margin-top:1em;
+                align-items: center;
+                justify-content: center;
+                gap: 1em;
+
+                .primaryBtn{
+                    @include btn-primary;
+                    font-size: 14px;
+                    width: 50%;
+                    margin-top: 2em;
+                    min-width: fit-content;
+
+                    @media screen and (max-width: 570px){
+                        width: 71%;
+                    }
+                    
+                }
+
+                span{
+                    color: white;
+                }
+
+                .googleBtn{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content:space-between;
+                    align-items: center;
+                    width: 50%;
+                    min-width: fit-content;
+                    background-color:rgb(66 133 244);
+                    border-radius: 8px;
+                    height: 2.65rem;
+                    box-shadow: 0 3px 4px 0 rgba(0,0,0,.25);
+                    overflow: hidden;
+
+                    .btnText{
+                        display: flex;
+                        justify-content: center;     
+                        align-items: center;                       
+                        width: 100%;
+                        height: 100%;
+
+                        a{  
+                            padding: 1rem;
+                            color: white;
+                            font-size: 14px;
+                            letter-spacing: 0.2px;
+                            font-family: $font;
+                        }
+                    }
+
+                    .googleIconWrapper{
+                        padding: 1rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: auto;
+                        height: 100%;
+                        border-radius: 2px;
+                        background-color: white;
+
+                        .googleIcon{
+                            width: auto;
+                            height: 50%;
+                        }     
+                    }
+
+                    &:hover{
+                        transform: scale(1.05);
+                        transition: 0.2s linear;
+                        background-color:rgb(46, 110, 214);
+                    }
+
+                    &:active{
+                        background:rgb(66 133 244);
+                    }  
+                }
+
+            }
+            
+        }
+
+        .linkToRegister{
+            display: flex;
+            flex-direction: row;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 4em;
+            margin-bottom: 2em;
+            color: white;
+
+            span{
+
+                .Link{
+                    font-weight: 600;
+                    color: $primary-color;
+                    text-decoration: none;
+                }
+            }
+        }
+        .contact{
+            display: flex;
+            flex-direction: row;
+            color: white;
+            margin-bottom: 2em;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 570px) {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1em 1.5em;
+
+            .contact{
+                display: flex;
+                flex-direction: row;
+                color: rgb(182, 182, 182);
+                font-size: 0.9rem;
+                margin-bottom: 1em;
+                text-align: center;
+            }
+
+        }
+    }
+}

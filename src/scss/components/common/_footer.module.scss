@@ -1,0 +1,150 @@
+@import "../../abstracts/variables";
+@import "../../abstracts/mixins";
+
+footer {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  bottom: 0;
+  width: 100%;
+  background: linear-gradient(70deg, $primary-color, $secondary-color 75%);
+
+  color: $text-color-white;
+
+  .footer_container {
+    display: flex;
+    justify-content: space-around;
+    .box {
+      width: 400px;
+      padding: 10px 20px;
+    }
+  }
+
+  .left {
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      line-height: 1.5rem;
+      .social {
+        margin-top: 20px;
+        svg {
+          transition: 0.2s linear;
+          margin-right: 7px;
+          &:hover {
+            fill: #fff;
+            transform: scale(1.15);
+          }
+        }
+      }
+    }
+  }
+
+  .center {
+    .content {
+      .place {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        p {
+          margin-left: 20px;
+        }
+        svg {
+          --size: 32px;
+          height: var(--size);
+          width: var(--size);
+        }
+      }
+      .phone {
+        display: flex;
+        align-items: center;
+        margin: 22px 0;
+        p {
+          margin-left: 20px;
+        }
+        svg {
+          --size: 32px;
+          height: var(--size);
+          width: var(--size);
+        }
+      }
+      .email {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        p {
+          margin-left: 20px;
+        }
+        svg {
+          --size: 32px;
+          height: var(--size);
+          width: var(--size);
+        }
+      }
+    }
+  }
+  .right {
+    .content {
+      h4{
+        font-weight: 400;
+      }
+      .reviewBtn{
+        @include btn-primary;
+        width: 50%;
+        margin: 0;
+        margin-top: .5em;
+        color: white;
+        font-weight: 500;
+      }
+      .email {
+        margin-top: 50px;
+        input {
+          text-align: center;
+          min-width: 230px;
+          border-radius: 8px;
+          padding: 0.8rem;
+          outline: 0;
+          border: none;
+          background-position: 12px;
+          background-size: 15px;
+          font-size: 0.9em;
+          &::placeholder {
+            color: #4d4d4d;
+            font-weight: 500;
+          }
+        }
+
+        button {
+          @include btn-secondary;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    .footer_container {
+      flex-direction: column;
+      padding: 1em 0em;
+
+      .box{
+        max-width: 80%;
+        //padding: ;
+        .content{
+
+          .reviewBtn{
+            @include btn-primary;
+            background-color: $secondary-color;
+            border: none;
+            width: 50%;
+            margin: 0;
+            margin-top: .5em;
+            color: white;
+            font-weight: 500;
+          }
+
+        }
+      }
+    }
+  }
+}

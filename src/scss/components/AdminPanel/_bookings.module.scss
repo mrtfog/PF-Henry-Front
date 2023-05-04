@@ -1,0 +1,12 @@
+@import '../../abstracts/variables';
+@import '../../abstracts/mixins';
+
+.container_bookings{
+    width:100%;
+    color:$text-color-white;
+    font-family: $font;
+    margin-left: 15%;
+    div{
+        margin:3rem;
+    }
+    }

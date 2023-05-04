@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.bd9978b6.css",
+    "main.js": "/static/js/main.910cc945.js",
+    "static/js/787.8573494a.chunk.js": "/static/js/787.8573494a.chunk.js",
+    "static/media/videoSubscribe.webm": "/static/media/videoSubscribe.9b719839ea969a5dc39f.webm",
+    "static/media/uncharted-poster.jpg": "/static/media/uncharted-poster.70e27bc6518521990ca4.jpg",
+    "index.html": "/index.html",
+    "main.bd9978b6.css.map": "/static/css/main.bd9978b6.css.map",
+    "main.910cc945.js.map": "/static/js/main.910cc945.js.map",
+    "787.8573494a.chunk.js.map": "/static/js/787.8573494a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd9978b6.css",
+    "static/js/main.910cc945.js"
+  ]
+}
